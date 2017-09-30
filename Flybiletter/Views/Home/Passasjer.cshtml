@@ -1,0 +1,94 @@
+﻿@model Flybiletter.Models.Passasjer
+
+@{
+    ViewBag.Title = "Passasjer";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Passasjer</title>
+</head>
+<body>
+ 
+
+
+    <!--FLYINFORMASJON-->
+    <div class="container col-md-4">
+        <h2 id="tickets-header">FLYINFORMASJON</h2>
+        <div class="biletter">
+            <h4>AVREISE</h4>
+            <p><label>Dato:</label></p>
+            <p><label>Flyselskap:</label></p>
+            <p><label>Total reisetid:</label></p>
+            <p><label>Land:</label></p>
+            <br />
+            <h4>RETUR</h4>
+            <p><label>Dato:</label></p>
+            <p><label>Flyselskap:</label></p>
+            <p><label>Total reisetid:</label></p>
+            <p><label>Land:</label></p>
+        </div>
+    </div>
+
+    <!--PASSASJER INFORMASJON-->
+    <div class="container col-md-8">
+        <h2 id="tickets-header">REISENDE</h2>
+        <div class="biletter">
+            <form method="post">
+                <table>
+                    <tr>
+                        <td>
+                            FORNAVN
+                            @Html.ValidationMessageFor(model => model.Fornavn, "", new { @class = "text-danger" })
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="fornavn" class="reisende-input" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            ETTERNAVN
+                            @Html.ValidationMessageFor(model => model.Etternavn, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="etternavn" class="reisende-input" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            NASJONALITET
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="search" name="nasjonalitet" class="reisende-input" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            E-POST
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="email" name="e-post" class="reisende-input" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            TELEFON
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" name="telefonnummer" class="reisende-input" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <br />
+        <a href="Reise" class="btn btn-lg btn-default pull-left">Tilbake</a>
+        <a href="Bekreftelse" class="btn btn-lg btn-primary pull-right" id="button-design">Fortsett</a>
+    </div>
+
+</body>
+</html>

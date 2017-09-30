@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flybiletter", "Flybiletter\Flybiletter.csproj", "{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A3EA64F-BE2C-4D95-B5AC-6BAF6EEEC7B0}
+	EndGlobalSection
+EndGlobal
