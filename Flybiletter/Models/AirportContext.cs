@@ -8,11 +8,11 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 namespace Flybiletter.Models
 {
 
-    public class DbContext : System.Data.Entity.DbContext
+    public class AirportContext : DbContext
     {
-        public DbContext() : base("name=Flybilett")
+        public AirportContext() : base("name=Flybilett")
         {
-            Database.SetInitializer<SchoolDBContext>(new DbInitialize());
+            Database.SetInitializer<AirportContext>(new DbInitialize());
         }
 
         public DbSet<Passasjer> Passasjer { get; set; }

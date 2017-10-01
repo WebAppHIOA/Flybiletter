@@ -6,13 +6,13 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public class DbInitialize : DropCreateDatabaseAlways<DbContext>
+    public class DbInitialize : CreateDatabaseIfNotExists<AirportContext>
     {
-        protected override void Seed(DbContext context)
+        protected override void Seed(AirportContext context)
         {
             List<Airport> allAirports = new List<Airport>();
 
-           allAirports.Add(new Flyplass
+           allAirports.Add(new Airport
            {
                 FlyplassId = "AMS",
                 Navn = "Amsterdam Schipol International Airport",
@@ -22,7 +22,7 @@ namespace Flybiletter.Models
                 Avgift = "32.79"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "ATL",
                 Navn = "Hartsfield Jackson International Airport",
@@ -32,7 +32,7 @@ namespace Flybiletter.Models
                 Avgift = "45.12"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "BCN",
                 Navn = "Barcelona International Airport",
@@ -42,7 +42,7 @@ namespace Flybiletter.Models
                 Avgift = "35.33"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "BKK",
                 Navn = "Suvarnabhumi International Airport",
@@ -52,7 +52,7 @@ namespace Flybiletter.Models
                 Avgift = "26.96"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "BOM",
                 Navn = "Chhatrapati Shivaji International Airport",
@@ -62,7 +62,7 @@ namespace Flybiletter.Models
                 Avgift = "21.74"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "CAN",
                 Navn = "Guangzhou Baiyun International Airport",
@@ -72,7 +72,7 @@ namespace Flybiletter.Models
                 Avgift = "37.89"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "CDG",
                 Navn = "Charles de Gaulle International Airport",
@@ -82,7 +82,7 @@ namespace Flybiletter.Models
                 Avgift = "39.11"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "CKG",
                 Navn = "Soekarno-Hatta International Airport",
@@ -92,7 +92,7 @@ namespace Flybiletter.Models
                 Avgift = "19.75"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "CTU",
                 Navn = "Chengdu Shuuangliu International Airport",
@@ -102,7 +102,7 @@ namespace Flybiletter.Models
                 Avgift = "34.61"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "CLT",
                 Navn = "Charlotte Douglas International Airport",
@@ -112,7 +112,7 @@ namespace Flybiletter.Models
                 Avgift = "47.38"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "DEL",
                 Navn = "Indira Ghandi International Airport",
@@ -122,7 +122,7 @@ namespace Flybiletter.Models
                 Avgift = "21.99"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "DEN",
                 Navn = "Denver International Airport",
@@ -132,7 +132,7 @@ namespace Flybiletter.Models
                 Avgift = "41.94"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "DFW",
                 Navn = "Dallas Fort Worth International Airport",
@@ -142,7 +142,7 @@ namespace Flybiletter.Models
                 Avgift = "39.87"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "DXB",
                 Navn = "Dubai International Airport",
@@ -152,7 +152,7 @@ namespace Flybiletter.Models
                 Avgift = "38.95"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "EWR",
                 Navn = "Newark Liberty International Airport",
@@ -162,7 +162,7 @@ namespace Flybiletter.Models
                 Avgift = "45.67"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "FCO",
                 Navn = "Leonardo Da Vinci International Airport",
@@ -172,7 +172,7 @@ namespace Flybiletter.Models
                 Avgift = "36.17"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "FRA",
                 Navn = "Frankfurt am Main International Airport",
@@ -182,7 +182,7 @@ namespace Flybiletter.Models
                 Avgift = "33.21"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "GRU",
                 Navn = "Guarulhos International Airport",
@@ -192,7 +192,7 @@ namespace Flybiletter.Models
                 Avgift = "30.09"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "HKG",
                 Navn = "Hong Kong International Airport",
@@ -202,7 +202,7 @@ namespace Flybiletter.Models
                 Avgift = "46.10"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "HND",
                 Navn = "Tokyo International Airport",
@@ -212,7 +212,7 @@ namespace Flybiletter.Models
                 Avgift = "34.21"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "IAH",
                 Navn = "Georgi Bush Intercontinental Houston",
@@ -222,7 +222,7 @@ namespace Flybiletter.Models
                 Avgift = "38.45"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "ICN",
                 Navn = "Incheon International Airport",
@@ -232,7 +232,7 @@ namespace Flybiletter.Models
                 Avgift = "32.55"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "IST",
                 Navn = "Atatürk International Airport",
@@ -242,7 +242,7 @@ namespace Flybiletter.Models
                 Avgift = "25.31"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "JFK",
                 Navn = "John F Kennedy International Airport",
@@ -252,7 +252,7 @@ namespace Flybiletter.Models
                 Avgift = "43.17"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "KMG",
                 Navn = "Kunming Changshui International Airport",
@@ -262,7 +262,7 @@ namespace Flybiletter.Models
                 Avgift = "29.32"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "KUL",
                 Navn = "Kuala Lumpur International Airport",
@@ -272,7 +272,7 @@ namespace Flybiletter.Models
                 Avgift = "41.76"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "LAS",
                 Navn = "McCarran International Airport",
@@ -282,7 +282,7 @@ namespace Flybiletter.Models
                 Avgift = "36.66"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "LAX",
                 Navn = "Los Angeles International Airport",
@@ -292,7 +292,7 @@ namespace Flybiletter.Models
                 Avgift = "43.78"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "LGW",
                 Navn = "London Gatwick",
@@ -302,7 +302,7 @@ namespace Flybiletter.Models
                 Avgift = "31.09"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "LHR",
                 Navn = "London Heathrow",
@@ -312,7 +312,7 @@ namespace Flybiletter.Models
                 Avgift = "37.11"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MAD",
                 Navn = "Madrid Barajas International Airport",
@@ -322,7 +322,7 @@ namespace Flybiletter.Models
                 Avgift = "31.01"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MCO",
                 Navn = "Orlando International Airport",
@@ -332,7 +332,7 @@ namespace Flybiletter.Models
                 Avgift = "37.90"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MEX",
                 Navn = "Benito Juarez International Airport",
@@ -342,7 +342,7 @@ namespace Flybiletter.Models
                 Avgift = "23.53"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MIA",
                 Navn = "Miami International Airport",
@@ -352,7 +352,7 @@ namespace Flybiletter.Models
                 Avgift = "36.31"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MNL",
                 Navn = "Ninoy Aquino International Airport",
@@ -362,7 +362,7 @@ namespace Flybiletter.Models
                 Avgift = "23.87"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MSP",
                 Navn = "Minneapolis-St Paul International Airport",
@@ -372,7 +372,7 @@ namespace Flybiletter.Models
                 Avgift = "35.13"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "MUC",
                 Navn = "Munich International",
@@ -382,7 +382,7 @@ namespace Flybiletter.Models
                 Avgift = "28.90"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "NRT",
                 Navn = "Narita International Airport",
@@ -392,7 +392,7 @@ namespace Flybiletter.Models
                 Avgift = "31.71"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "ORD",
                 Navn = "Chicago O'Hare International Airport",
@@ -402,7 +402,7 @@ namespace Flybiletter.Models
                 Avgift = "33.33"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "OSL",
                 Navn = "Oslo Airport Gardemoen",
@@ -412,7 +412,7 @@ namespace Flybiletter.Models
                 Avgift = "36.78"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "PHX",
                 Navn = "Phoenix Sky Harbor International",
@@ -422,7 +422,7 @@ namespace Flybiletter.Models
                 Avgift = "32.19"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "SEA",
                 Navn = "Seattle Tacoma International Airport",
@@ -432,7 +432,7 @@ namespace Flybiletter.Models
                 Avgift = "36.69"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "SFO",
                 Navn = "San Francisco International Airport",
@@ -442,7 +442,7 @@ namespace Flybiletter.Models
                 Avgift = "39.99"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "SHA",
                 Navn = "Shanghai Hongqiao International Airport",
@@ -452,7 +452,7 @@ namespace Flybiletter.Models
                 Avgift = "38.11"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "SIN",
                 Navn = "Singapore Changi International Airport",
@@ -462,7 +462,7 @@ namespace Flybiletter.Models
                 Avgift = "25.12"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "SYD",
                 Navn = "Sydney Kingsford Smith International Airport",
@@ -472,7 +472,7 @@ namespace Flybiletter.Models
                 Avgift = "41.19"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "SZX",
                 Navn = "Shenzhen Bao'an International Airport",
@@ -482,7 +482,7 @@ namespace Flybiletter.Models
                 Avgift = "25.86"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "TPE",
                 Navn = "Taoyuan International Airport",
@@ -492,7 +492,7 @@ namespace Flybiletter.Models
                 Avgift = "31.07"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "PEK",
                 Navn = "Beijing Capital International Airport",
@@ -502,7 +502,7 @@ namespace Flybiletter.Models
                 Avgift = "30.65"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "PVG",
                 Navn = "Shanghai Pudong International Airport",
@@ -512,7 +512,7 @@ namespace Flybiletter.Models
                 Avgift = "33.90"
             });
 
-            allAirports.Add(new Flyplass
+            allAirports.Add(new Airport
             {
                 FlyplassId = "YYZ",
                 Navn = "Lester B. Pearson International Airport",
