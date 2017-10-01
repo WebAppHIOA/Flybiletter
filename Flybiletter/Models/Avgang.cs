@@ -26,9 +26,8 @@ namespace Flybiletter.Models
         //enum isteden??
         [Required(ErrorMessage = "Kabinklasse må velges")]
         public string Klasse { get; set; }
-        public virtual Flyplass Flyplass { get; set; }
+        public virtual Airport airport { get; set; }
         public virtual List<Bestilling> bestilling { get; set; }
-        public virtual List<PassasjerAvgang> passasjerAvgang { get; set; }
     }
    
     //if antallBarn==0 && antallVoksne==0, få opp advarsel

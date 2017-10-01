@@ -157,7 +157,6 @@
     <Compile Include="Models\Bestilling.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\DbInitialize.cs" />
-    <Compile Include="Models\Flyplass.cs" />
     <Compile Include="Models\Passasjer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

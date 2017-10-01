@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public class Flyplass
+    public class Airport
     {
         public string FlyplassId { get; set; }
         public string Navn { get; set; }

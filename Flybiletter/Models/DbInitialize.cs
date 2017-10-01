@@ -10,207 +10,209 @@ namespace Flybiletter.Models
     {
         protected override void Seed(DbContext context)
         {
-            var AMS = new Flyplass
-            {
+            List<Airport> allAirports = new List<Airport>();
+
+           allAirports.Add(new Flyplass
+           {
                 FlyplassId = "AMS",
-                Navn = "Amsterdam Schipol",
+                Navn = "Amsterdam Schipol International Airport",
                 By = "Amsterdam",
                 Land = "Netherlands",
                 Kontinent = "Europe",
                 Avgift = "32.79"
-            };
+            });
 
-            var ATL = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "ATL",
-                Navn = "Hartsfield Jackson International",
+                Navn = "Hartsfield Jackson International Airport",
                 By = "Atlanta",
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "45.12"
-            };
+            });
 
-            var BCN = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "BCN",
-                Navn = "Barcelona International",
+                Navn = "Barcelona International Airport",
                 By = "Barcelona",
                 Land = "Spain",
                 Kontinent = "Europe",
                 Avgift = "35.33"
-            };
+            });
 
-            var BKK = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "BKK",
-                Navn = "Suvarnabhumi",
+                Navn = "Suvarnabhumi International Airport",
                 By = "Bangkok",
                 Land = "Thailand",
                 Kontinent = "Asia",
                 Avgift = "26.96"
-            };
+            });
 
-            var BOM = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "BOM",
-                Navn = "Chhatrapati Shivaji International",
+                Navn = "Chhatrapati Shivaji International Airport",
                 By = "Mumbai",
                 Land = "India",
                 Kontinent = "Asia",
                 Avgift = "21.74"
-            };
+            });
 
-            var CAN = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "CAN",
-                Navn = "Guangzhou Baiyun International",
+                Navn = "Guangzhou Baiyun International Airport",
                 By = "Guangzhou",
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "37.89"
-            };
+            });
 
-            var CDG = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "CDG",
-                Navn = "Charles de Gaulle International",
+                Navn = "Charles de Gaulle International Airport",
                 By = "Paris",
                 Land = "France",
                 Kontinent = "Europe",
                 Avgift = "39.11"
-            };
+            });
 
-            var CKG = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "CKG",
-                Navn = "Soekarno-Hatta International",
+                Navn = "Soekarno-Hatta International Airport",
                 By = "Jakarta",
                 Land = "Indonesia",
                 Kontinent = "Asia",
                 Avgift = "19.75"
-            };
+            });
 
-            var CTU = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "CTU",
-                Navn = "Chengdu Shuuangliu International",
+                Navn = "Chengdu Shuuangliu International Airport",
                 By = "Chengdu",
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "34.61"
-            };
+            });
 
-            var CLT = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "CLT",
-                Navn = "Charlotte Douglas International",
+                Navn = "Charlotte Douglas International Airport",
                 By = "Charlotte",
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "47.38"
-            };
+            });
 
-            var DEL = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "DEL",
-                Navn = "Indira Ghandi International",
+                Navn = "Indira Ghandi International Airport",
                 By = "New Dehli",
                 Land = "India",
                 Kontinent = "Asia",
                 Avgift = "21.99"
-            };
+            });
 
-            var DEN = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "DEN",
-                Navn = "Denver International",
+                Navn = "Denver International Airport",
                 By = "Denver",
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "41.94"
-            };
+            });
 
-            var DFW = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "DFW",
-                Navn = "Dallas Fort Worth International",
+                Navn = "Dallas Fort Worth International Airport",
                 By = "Dallas",
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "39.87"
-            };
+            });
 
-            var DXB = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "DXB",
-                Navn = "Dubai International",
+                Navn = "Dubai International Airport",
                 By = "Dubai",
                 Land = "United Arab Emirates",
                 Kontinent = "Asia",
                 Avgift = "38.95"
-            };
+            });
 
-            var EWR = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "EWR",
-                Navn = "Newark Liberty International",
+                Navn = "Newark Liberty International Airport",
                 By = "New York",
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "45.67"
-            };
+            });
 
-            var FCO = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "FCO",
-                Navn = "Leonardo Da Vinci International",
+                Navn = "Leonardo Da Vinci International Airport",
                 By = "Rome",
                 Land = "Italy",
                 Kontinent = "Europe",
                 Avgift = "36.17"
-            };
+            });
 
-            var FRA = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "FRA",
-                Navn = "Frankfurt am Main International",
+                Navn = "Frankfurt am Main International Airport",
                 By = "Frankfurt",
                 Land = "Germany",
                 Kontinent = "Europe",
                 Avgift = "33.21"
-            };
+            });
 
-            var GRU = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "GRU",
-                Navn = "Guarulhos International",
+                Navn = "Guarulhos International Airport",
                 By = "Sao Paulo",
                 Land = "Brazil",
                 Kontinent = "South America",
                 Avgift = "30.09"
-            };
+            });
 
-            var HKG = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "HKG",
-                Navn = "Hong Kong International",
+                Navn = "Hong Kong International Airport",
                 By = "Hong Kong",
                 Land = "Hong Kong",
                 Kontinent = "Asia",
                 Avgift = "46.10"
-            };
+            });
 
-            var HND = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "HND",
-                Navn = "Tokyo International",
+                Navn = "Tokyo International Airport",
                 By = "Tokyo",
                 Land = "Japan",
                 Kontinent = "Asia",
                 Avgift = "34.21"
-            };
+            });
 
-            var IAH = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "IAH",
                 Navn = "Georgi Bush Intercontinental Houston",
@@ -218,39 +220,39 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "38.45"
-            };
+            });
 
-            var ICN = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "ICN",
-                Navn = "Incheon International",
+                Navn = "Incheon International Airport",
                 By = "Seoul",
                 Land = "South Korea",
                 Kontinent = "Asia",
                 Avgift = "32.55"
-            };
+            });
 
-            var IST = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "IST",
-                Navn = "Atatürk International",
+                Navn = "Atatürk International Airport",
                 By = "Istanbul",
                 Land = "Turkey",
                 Kontinent = "Europe",
                 Avgift = "25.31"
-            };
+            });
 
-            var JFK = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "JFK",
-                Navn = "John F Kennedy International",
+                Navn = "John F Kennedy International Airport",
                 By = "New York",
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "43.17"
-            };
+            });
 
-            var KMG = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "KMG",
                 Navn = "Kunming Changshui International Airport",
@@ -258,9 +260,9 @@ namespace Flybiletter.Models
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "29.32"
-            };
+            });
 
-            var KUL = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "KUL",
                 Navn = "Kuala Lumpur International Airport",
@@ -268,9 +270,9 @@ namespace Flybiletter.Models
                 Land = "Malaysia",
                 Kontinent = "Asia",
                 Avgift = "41.76"
-            };
+            });
 
-            var LAS = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "LAS",
                 Navn = "McCarran International Airport",
@@ -278,9 +280,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "36.66"
-            };
+            });
 
-            var LAX = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "LAX",
                 Navn = "Los Angeles International Airport",
@@ -288,9 +290,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "43.78"
-            };
+            });
 
-            var LGW = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "LGW",
                 Navn = "London Gatwick",
@@ -298,9 +300,9 @@ namespace Flybiletter.Models
                 Land = "United Kingdom",
                 Kontinent = "Europe",
                 Avgift = "31.09"
-            };
+            });
 
-            var LHR = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "LHR",
                 Navn = "London Heathrow",
@@ -308,9 +310,9 @@ namespace Flybiletter.Models
                 Land = "United Kingdom",
                 Kontinent = "Europe",
                 Avgift = "37.11"
-            };
+            });
 
-            var MAD = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MAD",
                 Navn = "Madrid Barajas International Airport",
@@ -318,9 +320,9 @@ namespace Flybiletter.Models
                 Land = "Spain",
                 Kontinent = "Europe",
                 Avgift = "31.01"
-            };
+            });
 
-            var MCO = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MCO",
                 Navn = "Orlando International Airport",
@@ -328,9 +330,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "37.90"
-            };
+            });
 
-            var MEX = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MEX",
                 Navn = "Benito Juarez International Airport",
@@ -338,9 +340,9 @@ namespace Flybiletter.Models
                 Land = "Mexico",
                 Kontinent = "North America",
                 Avgift = "23.53"
-            };
+            });
 
-            var MIA = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MIA",
                 Navn = "Miami International Airport",
@@ -348,9 +350,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "Europe",
                 Avgift = "36.31"
-            };
+            });
 
-            var MNL = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MNL",
                 Navn = "Ninoy Aquino International Airport",
@@ -358,9 +360,9 @@ namespace Flybiletter.Models
                 Land = "Philippines",
                 Kontinent = "Asia",
                 Avgift = "23.87"
-            };
+            });
 
-            var MSP = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MSP",
                 Navn = "Minneapolis-St Paul International Airport",
@@ -368,9 +370,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "35.13"
-            };
+            });
 
-            var MUC = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "MUC",
                 Navn = "Munich International",
@@ -378,9 +380,9 @@ namespace Flybiletter.Models
                 Land = "Germany",
                 Kontinent = "Europe",
                 Avgift = "28.90"
-            };
+            });
 
-            var NRT = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "NRT",
                 Navn = "Narita International Airport",
@@ -388,9 +390,9 @@ namespace Flybiletter.Models
                 Land = "Japan",
                 Kontinent = "Asia",
                 Avgift = "31.71"
-            };
+            });
 
-            var ORD = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "ORD",
                 Navn = "Chicago O'Hare International Airport",
@@ -398,9 +400,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "33.33"
-            };
+            });
 
-            var OSL = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "OSL",
                 Navn = "Oslo Airport Gardemoen",
@@ -408,9 +410,9 @@ namespace Flybiletter.Models
                 Land = "Norway",
                 Kontinent = "Europe",
                 Avgift = "36.78"
-            };
+            });
 
-            var PHX = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "PHX",
                 Navn = "Phoenix Sky Harbor International",
@@ -418,9 +420,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "32.19"
-            };
+            });
 
-            var SEA = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "SEA",
                 Navn = "Seattle Tacoma International Airport",
@@ -428,9 +430,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "36.69"
-            };
+            });
 
-            var SFO = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "SFO",
                 Navn = "San Francisco International Airport",
@@ -438,9 +440,9 @@ namespace Flybiletter.Models
                 Land = "USA",
                 Kontinent = "North America",
                 Avgift = "39.99"
-            };
+            });
 
-            var SHA = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "SHA",
                 Navn = "Shanghai Hongqiao International Airport",
@@ -448,9 +450,9 @@ namespace Flybiletter.Models
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "38.11"
-            };
+            });
 
-            var SIN = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "SIN",
                 Navn = "Singapore Changi International Airport",
@@ -458,9 +460,9 @@ namespace Flybiletter.Models
                 Land = "Singapore",
                 Kontinent = "Asia",
                 Avgift = "25.12"
-            };
+            });
 
-            var SYD = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "SYD",
                 Navn = "Sydney Kingsford Smith International Airport",
@@ -468,9 +470,9 @@ namespace Flybiletter.Models
                 Land = "Australia",
                 Kontinent = "Oseania",
                 Avgift = "41.19"
-            };
+            });
 
-            var SZX = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "SZX",
                 Navn = "Shenzhen Bao'an International Airport",
@@ -478,9 +480,9 @@ namespace Flybiletter.Models
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "25.86"
-            };
+            });
 
-            var TPE = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "TPE",
                 Navn = "Taoyuan International Airport",
@@ -488,9 +490,9 @@ namespace Flybiletter.Models
                 Land = "Taipei",
                 Kontinent = "Asia",
                 Avgift = "31.07"
-            };
+            });
 
-            var PEK = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "PEK",
                 Navn = "Beijing Capital International Airport",
@@ -498,9 +500,9 @@ namespace Flybiletter.Models
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "30.65"
-            };
+            });
 
-            var PVG = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "PVG",
                 Navn = "Shanghai Pudong International Airport",
@@ -508,9 +510,9 @@ namespace Flybiletter.Models
                 Land = "China",
                 Kontinent = "Asia",
                 Avgift = "33.90"
-            };
+            });
 
-            var YYZ = new Flyplass
+            allAirports.Add(new Flyplass
             {
                 FlyplassId = "YYZ",
                 Navn = "Lester B. Pearson International Airport",
@@ -518,7 +520,12 @@ namespace Flybiletter.Models
                 Land = "Canada",
                 Kontinent = "North America",
                 Avgift = "37.89"
-            };
+            });
+
+            foreach(Airport f in allAirports)
+            {
+                context.Airport.Add(f);
+            }
 
             base.Seed(context);
         }

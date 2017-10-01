@@ -26,6 +26,5 @@ namespace Flybiletter.Models
         [Required(ErrorMessage = "E-post adresse må oppgis")]
         public string email { get; set; }
         public virtual Bestilling bestilling { get; set; }
-        public virtual List<PassasjerAvgang> passasjerAvgang { get; set; }
     }
 }

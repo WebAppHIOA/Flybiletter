@@ -12,13 +12,13 @@ namespace Flybiletter.Models
     {
         public DbContext() : base("name=Flybilett")
         {
-            Database.CreateIfNotExists();
+            Database.SetInitializer<SchoolDBContext>(new DbInitialize());
         }
 
         public DbSet<Passasjer> Passasjer { get; set; }
         public DbSet<Avgang> Avgang { get; set; }
         public DbSet<Bestilling> Bestilling { get; set; }
-        public DbSet<Flyplass> Flyplass { get; set; }
+        public DbSet<Airport> Airport { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
