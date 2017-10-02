@@ -1,8 +1,5 @@
-﻿@model Flybiletter.Models.Passasjer
+﻿@model Flybiletter.Models.Passenger
 
-@{
-    ViewBag.Title = "Passasjer";
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +39,7 @@
                     <tr>
                         <td>
                             FORNAVN
-                            @Html.ValidationMessageFor(model => model.Fornavn, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
                         </td>
 
                     </tr>
@@ -52,7 +49,7 @@
                     <tr>
                         <td>
                             ETTERNAVN
-                            @Html.ValidationMessageFor(model => model.Etternavn, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                     <tr>

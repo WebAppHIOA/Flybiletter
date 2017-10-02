@@ -12,8 +12,8 @@ namespace Flybiletter.Controllers
         // GET: Bestilling
         public ActionResult Bestilling()
         {
-            var flyselskap = new Avgang() { Flyselskap = "KLM" };
-            return View();
+           /* var flyselskap = new Departure() { Flyselskap = "KLM" };*/
+            return View(); 
         }
     }
 }

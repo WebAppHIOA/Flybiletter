@@ -20,7 +20,7 @@ namespace Flybiletter.Models
                 Country = "Netherlands",
                 Continent = "Europe",
                 Fee = "32.79",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
            });
 
             allAirports.Add(new Airport
@@ -31,7 +31,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "45.12",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -42,7 +42,7 @@ namespace Flybiletter.Models
                 Country = "Spain",
                 Continent = "Europe",
                 Fee = "35.33",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -53,7 +53,7 @@ namespace Flybiletter.Models
                 Country = "Thailand",
                 Continent = "Asia",
                 Fee = "26.96",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -64,7 +64,7 @@ namespace Flybiletter.Models
                 Country = "India",
                 Continent = "Asia",
                 Fee = "21.74",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -75,7 +75,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "37.89",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -86,7 +86,7 @@ namespace Flybiletter.Models
                 Country = "France",
                 Continent = "Europe",
                 Fee = "39.11",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -97,7 +97,7 @@ namespace Flybiletter.Models
                 Country = "Indonesia",
                 Continent = "Asia",
                 Fee = "19.75",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -108,7 +108,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "34.61",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -119,7 +119,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "47.38",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -130,7 +130,7 @@ namespace Flybiletter.Models
                 Country = "India",
                 Continent = "Asia",
                 Fee = "21.99",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -141,7 +141,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "41.94",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -152,7 +152,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "39.87",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -163,7 +163,7 @@ namespace Flybiletter.Models
                 Country = "United Arab Emirates",
                 Continent = "Asia",
                 Fee = "38.95",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -174,7 +174,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "45.67",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -185,7 +185,7 @@ namespace Flybiletter.Models
                 Country = "Italy",
                 Continent = "Europe",
                 Fee = "36.17",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -196,7 +196,7 @@ namespace Flybiletter.Models
                 Country = "Germany",
                 Continent = "Europe",
                 Fee = "33.21",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -207,7 +207,7 @@ namespace Flybiletter.Models
                 Country = "Brazil",
                 Continent = "South America",
                 Fee = "30.09",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
 
             });
 
@@ -219,7 +219,7 @@ namespace Flybiletter.Models
                 Country = "Hong Kong",
                 Continent = "Asia",
                 Fee = "46.10",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -230,7 +230,7 @@ namespace Flybiletter.Models
                 Country = "Japan",
                 Continent = "Asia",
                 Fee = "34.21",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -241,7 +241,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "38.45",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -252,7 +252,7 @@ namespace Flybiletter.Models
                 Country = "South Korea",
                 Continent = "Asia",
                 Fee = "32.55",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -263,7 +263,7 @@ namespace Flybiletter.Models
                 Country = "Turkey",
                 Continent = "Europe",
                 Fee = "25.31",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -274,7 +274,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "43.17",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -285,7 +285,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "29.32",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -296,7 +296,7 @@ namespace Flybiletter.Models
                 Country = "Malaysia",
                 Continent = "Asia",
                 Fee = "41.76",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -307,7 +307,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "36.66",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -318,7 +318,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "43.78",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -329,7 +329,7 @@ namespace Flybiletter.Models
                 Country = "United Kingdom",
                 Continent = "Europe",
                 Fee = "31.09",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -340,7 +340,7 @@ namespace Flybiletter.Models
                 Country = "United Kingdom",
                 Continent = "Europe",
                 Fee = "37.11",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -351,7 +351,7 @@ namespace Flybiletter.Models
                 Country = "Spain",
                 Continent = "Europe",
                 Fee = "31.01",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -362,7 +362,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "37.90",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -373,7 +373,7 @@ namespace Flybiletter.Models
                 Country = "Mexico",
                 Continent = "North America",
                 Fee = "23.53",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -384,7 +384,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "Europe",
                 Fee = "36.31",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -395,7 +395,7 @@ namespace Flybiletter.Models
                 Country = "Philippines",
                 Continent = "Asia",
                 Fee = "23.87",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -406,7 +406,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "35.13",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -417,7 +417,7 @@ namespace Flybiletter.Models
                 Country = "Germany",
                 Continent = "Europe",
                 Fee = "28.90",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -428,7 +428,7 @@ namespace Flybiletter.Models
                 Country = "Japan",
                 Continent = "Asia",
                 Fee = "31.71",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -439,7 +439,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "33.33",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -450,7 +450,7 @@ namespace Flybiletter.Models
                 Country = "Norway",
                 Continent = "Europe",
                 Fee = "36.78",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -461,7 +461,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "32.19",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -472,7 +472,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "36.69",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -483,7 +483,7 @@ namespace Flybiletter.Models
                 Country = "USA",
                 Continent = "North America",
                 Fee = "39.99",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -494,7 +494,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "38.11",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -505,7 +505,7 @@ namespace Flybiletter.Models
                 Country = "Singapore",
                 Continent = "Asia",
                 Fee = "25.12",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -516,7 +516,7 @@ namespace Flybiletter.Models
                 Country = "Australia",
                 Continent = "Oseania",
                 Fee = "41.19",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -527,7 +527,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "25.86",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -538,7 +538,7 @@ namespace Flybiletter.Models
                 Country = "Taipei",
                 Continent = "Asia",
                 Fee = "31.07",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -549,7 +549,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "30.65",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -560,7 +560,7 @@ namespace Flybiletter.Models
                 Country = "China",
                 Continent = "Asia",
                 Fee = "33.90",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             allAirports.Add(new Airport
@@ -571,7 +571,7 @@ namespace Flybiletter.Models
                 Country = "Canada",
                 Continent = "North America",
                 Fee = "37.89",
-                Avgang = new List<Avgang>()
+                Departure = new List<Departure>()
             });
 
             foreach(Airport f in allAirports)

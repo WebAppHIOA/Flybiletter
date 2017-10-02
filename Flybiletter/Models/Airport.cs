@@ -13,6 +13,6 @@ namespace Flybiletter.Models
         public string Country { get; set; }
         public string Continent { get; set; }
         public string Fee { get; set; }
-        public virtual List<Avgang> Avgang { get; set; }
+        public virtual List<Departure> Departure { get; set; }
     }
 }

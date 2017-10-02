@@ -16,9 +16,9 @@ namespace Flybiletter.Models
             Database.SetInitializer<AirportContext>(new DbInitialize());
         }
 
-        public DbSet<Passasjer> Passasjer { get; set; }
-        public DbSet<Avgang> Avgang { get; set; }
-        public DbSet<Bestilling> Bestilling { get; set; }
+        public DbSet<Passenger> Passenger { get; set; }
+        public DbSet<Departure> Departure { get; set; }
+        public DbSet<Order> Order { get; set; }
         public DbSet<Airport> Airport { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

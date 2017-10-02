@@ -155,11 +155,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Airport.cs" />
-    <Compile Include="Models\Avgang.cs" />
-    <Compile Include="Models\Bestilling.cs" />
+    <Compile Include="Models\Departure.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\AirportContext.cs" />
     <Compile Include="Models\DbInitialize.cs" />
-    <Compile Include="Models\Passasjer.cs" />
+    <Compile Include="Models\Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
