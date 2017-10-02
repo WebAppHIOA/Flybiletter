@@ -6,527 +6,579 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public class DbInitialize : CreateDatabaseIfNotExists<AirportContext>
+    public class DbInitialize : DropCreateDatabaseAlways<AirportContext>
     {
         protected override void Seed(AirportContext context)
         {
             List<Airport> allAirports = new List<Airport>();
 
-           allAirports.Add(new Airport
-           {
-                FlyplassId = "AMS",
-                Navn = "Amsterdam Schipol International Airport",
-                By = "Amsterdam",
-                Land = "Netherlands",
-                Kontinent = "Europe",
-                Avgift = "32.79"
+            allAirports.Add(new Airport
+            {
+                AirportId = "AMS",
+                Name = "Amsterdam Schipol International Airport",
+                City = "Amsterdam",
+                Country = "Netherlands",
+                Continent = "Europe",
+                Fee = "32.79",
+                Avgang = new List<Avgang>()
+           });
+
+            allAirports.Add(new Airport
+            {
+                AirportId = "ATL",
+                Name = "Hartsfield Jackson International Airport",
+                City = "Atlanta",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "45.12",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "ATL",
-                Navn = "Hartsfield Jackson International Airport",
-                By = "Atlanta",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "45.12"
+                AirportId = "BCN",
+                Name = "Barcelona International Airport",
+                City = "Barcelona",
+                Country = "Spain",
+                Continent = "Europe",
+                Fee = "35.33",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "BCN",
-                Navn = "Barcelona International Airport",
-                By = "Barcelona",
-                Land = "Spain",
-                Kontinent = "Europe",
-                Avgift = "35.33"
+                AirportId = "BKK",
+                Name = "Suvarnabhumi International Airport",
+                City = "Bangkok",
+                Country = "Thailand",
+                Continent = "Asia",
+                Fee = "26.96",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "BKK",
-                Navn = "Suvarnabhumi International Airport",
-                By = "Bangkok",
-                Land = "Thailand",
-                Kontinent = "Asia",
-                Avgift = "26.96"
+                AirportId = "BOM",
+                Name = "Chhatrapati Shivaji International Airport",
+                City = "Mumbai",
+                Country = "India",
+                Continent = "Asia",
+                Fee = "21.74",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "BOM",
-                Navn = "Chhatrapati Shivaji International Airport",
-                By = "Mumbai",
-                Land = "India",
-                Kontinent = "Asia",
-                Avgift = "21.74"
+                AirportId = "CAN",
+                Name = "Guangzhou Baiyun International Airport",
+                City = "Guangzhou",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "37.89",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "CAN",
-                Navn = "Guangzhou Baiyun International Airport",
-                By = "Guangzhou",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "37.89"
+                AirportId = "CDG",
+                Name = "Charles de Gaulle International Airport",
+                City = "Paris",
+                Country = "France",
+                Continent = "Europe",
+                Fee = "39.11",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "CDG",
-                Navn = "Charles de Gaulle International Airport",
-                By = "Paris",
-                Land = "France",
-                Kontinent = "Europe",
-                Avgift = "39.11"
+                AirportId = "CKG",
+                Name = "Soekarno-Hatta International Airport",
+                City = "Jakarta",
+                Country = "Indonesia",
+                Continent = "Asia",
+                Fee = "19.75",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "CKG",
-                Navn = "Soekarno-Hatta International Airport",
-                By = "Jakarta",
-                Land = "Indonesia",
-                Kontinent = "Asia",
-                Avgift = "19.75"
+                AirportId = "CTU",
+                Name = "Chengdu Shuuangliu International Airport",
+                City = "Chengdu",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "34.61",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "CTU",
-                Navn = "Chengdu Shuuangliu International Airport",
-                By = "Chengdu",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "34.61"
+                AirportId = "CLT",
+                Name = "Charlotte Douglas International Airport",
+                City = "Charlotte",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "47.38",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "CLT",
-                Navn = "Charlotte Douglas International Airport",
-                By = "Charlotte",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "47.38"
+                AirportId = "DEL",
+                Name = "Indira Ghandi International Airport",
+                City = "New Dehli",
+                Country = "India",
+                Continent = "Asia",
+                Fee = "21.99",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "DEL",
-                Navn = "Indira Ghandi International Airport",
-                By = "New Dehli",
-                Land = "India",
-                Kontinent = "Asia",
-                Avgift = "21.99"
+                AirportId = "DEN",
+                Name = "Denver International Airport",
+                City = "Denver",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "41.94",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "DEN",
-                Navn = "Denver International Airport",
-                By = "Denver",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "41.94"
+                AirportId = "DFW",
+                Name = "Dallas Fort Worth International Airport",
+                City = "Dallas",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "39.87",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "DFW",
-                Navn = "Dallas Fort Worth International Airport",
-                By = "Dallas",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "39.87"
+                AirportId = "DXB",
+                Name = "Dubai International Airport",
+                City = "Dubai",
+                Country = "United Arab Emirates",
+                Continent = "Asia",
+                Fee = "38.95",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "DXB",
-                Navn = "Dubai International Airport",
-                By = "Dubai",
-                Land = "United Arab Emirates",
-                Kontinent = "Asia",
-                Avgift = "38.95"
+                AirportId = "EWR",
+                Name = "Newark Liberty International Airport",
+                City = "New York",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "45.67",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "EWR",
-                Navn = "Newark Liberty International Airport",
-                By = "New York",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "45.67"
+                AirportId = "FCO",
+                Name = "Leonardo Da Vinci International Airport",
+                City = "Rome",
+                Country = "Italy",
+                Continent = "Europe",
+                Fee = "36.17",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "FCO",
-                Navn = "Leonardo Da Vinci International Airport",
-                By = "Rome",
-                Land = "Italy",
-                Kontinent = "Europe",
-                Avgift = "36.17"
+                AirportId = "FRA",
+                Name = "Frankfurt am Main International Airport",
+                City = "Frankfurt",
+                Country = "Germany",
+                Continent = "Europe",
+                Fee = "33.21",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "FRA",
-                Navn = "Frankfurt am Main International Airport",
-                By = "Frankfurt",
-                Land = "Germany",
-                Kontinent = "Europe",
-                Avgift = "33.21"
+                AirportId = "GRU",
+                Name = "Guarulhos International Airport",
+                City = "Sao Paulo",
+                Country = "Brazil",
+                Continent = "South America",
+                Fee = "30.09",
+                Avgang = new List<Avgang>()
+
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "GRU",
-                Navn = "Guarulhos International Airport",
-                By = "Sao Paulo",
-                Land = "Brazil",
-                Kontinent = "South America",
-                Avgift = "30.09"
+                AirportId = "HKG",
+                Name = "Hong Kong International Airport",
+                City = "Hong Kong",
+                Country = "Hong Kong",
+                Continent = "Asia",
+                Fee = "46.10",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "HKG",
-                Navn = "Hong Kong International Airport",
-                By = "Hong Kong",
-                Land = "Hong Kong",
-                Kontinent = "Asia",
-                Avgift = "46.10"
+                AirportId = "HND",
+                Name = "Tokyo International Airport",
+                City = "Tokyo",
+                Country = "Japan",
+                Continent = "Asia",
+                Fee = "34.21",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "HND",
-                Navn = "Tokyo International Airport",
-                By = "Tokyo",
-                Land = "Japan",
-                Kontinent = "Asia",
-                Avgift = "34.21"
+                AirportId = "IAH",
+                Name = "Georgi Bush Intercontinental Houston",
+                City = "Houston",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "38.45",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "IAH",
-                Navn = "Georgi Bush Intercontinental Houston",
-                By = "Houston",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "38.45"
+                AirportId = "ICN",
+                Name = "Incheon International Airport",
+                City = "Seoul",
+                Country = "South Korea",
+                Continent = "Asia",
+                Fee = "32.55",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "ICN",
-                Navn = "Incheon International Airport",
-                By = "Seoul",
-                Land = "South Korea",
-                Kontinent = "Asia",
-                Avgift = "32.55"
+                AirportId = "IST",
+                Name = "Atatürk International Airport",
+                City = "Istanbul",
+                Country = "Turkey",
+                Continent = "Europe",
+                Fee = "25.31",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "IST",
-                Navn = "Atatürk International Airport",
-                By = "Istanbul",
-                Land = "Turkey",
-                Kontinent = "Europe",
-                Avgift = "25.31"
+                AirportId = "JFK",
+                Name = "John F Kennedy International Airport",
+                City = "New York",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "43.17",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "JFK",
-                Navn = "John F Kennedy International Airport",
-                By = "New York",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "43.17"
+                AirportId = "KMG",
+                Name = "Kunming Changshui International Airport",
+                City = "Kunming",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "29.32",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "KMG",
-                Navn = "Kunming Changshui International Airport",
-                By = "Kunming",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "29.32"
+                AirportId = "KUL",
+                Name = "Kuala Lumpur International Airport",
+                City = "Kuala Lumpur",
+                Country = "Malaysia",
+                Continent = "Asia",
+                Fee = "41.76",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "KUL",
-                Navn = "Kuala Lumpur International Airport",
-                By = "Kuala Lumpur",
-                Land = "Malaysia",
-                Kontinent = "Asia",
-                Avgift = "41.76"
+                AirportId = "LAS",
+                Name = "McCarran International Airport",
+                City = "Las Vegas",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "36.66",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "LAS",
-                Navn = "McCarran International Airport",
-                By = "Las Vegas",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "36.66"
+                AirportId = "LAX",
+                Name = "Los Angeles International Airport",
+                City = "Los Angeles",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "43.78",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "LAX",
-                Navn = "Los Angeles International Airport",
-                By = "Los Angeles",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "43.78"
+                AirportId = "LGW",
+                Name = "London Gatwick",
+                City = "London",
+                Country = "United Kingdom",
+                Continent = "Europe",
+                Fee = "31.09",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "LGW",
-                Navn = "London Gatwick",
-                By = "London",
-                Land = "United Kingdom",
-                Kontinent = "Europe",
-                Avgift = "31.09"
+                AirportId = "LHR",
+                Name = "London Heathrow",
+                City = "London",
+                Country = "United Kingdom",
+                Continent = "Europe",
+                Fee = "37.11",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "LHR",
-                Navn = "London Heathrow",
-                By = "London",
-                Land = "United Kingdom",
-                Kontinent = "Europe",
-                Avgift = "37.11"
+                AirportId = "MAD",
+                Name = "Madrid Barajas International Airport",
+                City = "Madrid",
+                Country = "Spain",
+                Continent = "Europe",
+                Fee = "31.01",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MAD",
-                Navn = "Madrid Barajas International Airport",
-                By = "Madrid",
-                Land = "Spain",
-                Kontinent = "Europe",
-                Avgift = "31.01"
+                AirportId = "MCO",
+                Name = "Orlando International Airport",
+                City = "Orlando",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "37.90",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MCO",
-                Navn = "Orlando International Airport",
-                By = "Orlando",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "37.90"
+                AirportId = "MEX",
+                Name = "Benito Juarez International Airport",
+                City = "Mexico City",
+                Country = "Mexico",
+                Continent = "North America",
+                Fee = "23.53",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MEX",
-                Navn = "Benito Juarez International Airport",
-                By = "Mexico City",
-                Land = "Mexico",
-                Kontinent = "North America",
-                Avgift = "23.53"
+                AirportId = "MIA",
+                Name = "Miami International Airport",
+                City = "Miami",
+                Country = "USA",
+                Continent = "Europe",
+                Fee = "36.31",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MIA",
-                Navn = "Miami International Airport",
-                By = "Miami",
-                Land = "USA",
-                Kontinent = "Europe",
-                Avgift = "36.31"
+                AirportId = "MNL",
+                Name = "Ninoy Aquino International Airport",
+                City = "Manila",
+                Country = "Philippines",
+                Continent = "Asia",
+                Fee = "23.87",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MNL",
-                Navn = "Ninoy Aquino International Airport",
-                By = "Manila",
-                Land = "Philippines",
-                Kontinent = "Asia",
-                Avgift = "23.87"
+                AirportId = "MSP",
+                Name = "Minneapolis-St Paul International Airport",
+                City = "Minneapolis",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "35.13",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MSP",
-                Navn = "Minneapolis-St Paul International Airport",
-                By = "Minneapolis",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "35.13"
+                AirportId = "MUC",
+                Name = "Munich International",
+                City = "Munich",
+                Country = "Germany",
+                Continent = "Europe",
+                Fee = "28.90",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "MUC",
-                Navn = "Munich International",
-                By = "Munich",
-                Land = "Germany",
-                Kontinent = "Europe",
-                Avgift = "28.90"
+                AirportId = "NRT",
+                Name = "Narita International Airport",
+                City = "Tokyo",
+                Country = "Japan",
+                Continent = "Asia",
+                Fee = "31.71",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "NRT",
-                Navn = "Narita International Airport",
-                By = "Tokyo",
-                Land = "Japan",
-                Kontinent = "Asia",
-                Avgift = "31.71"
+                AirportId = "ORD",
+                Name = "Chicago O'Hare International Airport",
+                City = "Chicago",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "33.33",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "ORD",
-                Navn = "Chicago O'Hare International Airport",
-                By = "Chicago",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "33.33"
+                AirportId = "OSL",
+                Name = "Oslo Airport Gardemoen",
+                City = "Oslo",
+                Country = "Norway",
+                Continent = "Europe",
+                Fee = "36.78",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "OSL",
-                Navn = "Oslo Airport Gardemoen",
-                By = "Oslo",
-                Land = "Norway",
-                Kontinent = "Europe",
-                Avgift = "36.78"
+                AirportId = "PHX",
+                Name = "Phoenix Sky Harbor International",
+                City = "Phoenix",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "32.19",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "PHX",
-                Navn = "Phoenix Sky Harbor International",
-                By = "Phoenix",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "32.19"
+                AirportId = "SEA",
+                Name = "Seattle Tacoma International Airport",
+                City = "Seattle",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "36.69",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "SEA",
-                Navn = "Seattle Tacoma International Airport",
-                By = "Seattle",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "36.69"
+                AirportId = "SFO",
+                Name = "San Francisco International Airport",
+                City = "San Francisco",
+                Country = "USA",
+                Continent = "North America",
+                Fee = "39.99",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "SFO",
-                Navn = "San Francisco International Airport",
-                By = "San Francisco",
-                Land = "USA",
-                Kontinent = "North America",
-                Avgift = "39.99"
+                AirportId = "SHA",
+                Name = "Shanghai Hongqiao International Airport",
+                City = "Shanghai",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "38.11",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "SHA",
-                Navn = "Shanghai Hongqiao International Airport",
-                By = "Shanghai",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "38.11"
+                AirportId = "SIN",
+                Name = "Singapore Changi International Airport",
+                City = "Singapore",
+                Country = "Singapore",
+                Continent = "Asia",
+                Fee = "25.12",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "SIN",
-                Navn = "Singapore Changi International Airport",
-                By = "Singapore",
-                Land = "Singapore",
-                Kontinent = "Asia",
-                Avgift = "25.12"
+                AirportId = "SYD",
+                Name = "Sydney Kingsford Smith International Airport",
+                City = "Sydney",
+                Country = "Australia",
+                Continent = "Oseania",
+                Fee = "41.19",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "SYD",
-                Navn = "Sydney Kingsford Smith International Airport",
-                By = "Sydney",
-                Land = "Australia",
-                Kontinent = "Oseania",
-                Avgift = "41.19"
+                AirportId = "SZX",
+                Name = "Shenzhen Bao'an International Airport",
+                City = "Shenzhen",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "25.86",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "SZX",
-                Navn = "Shenzhen Bao'an International Airport",
-                By = "Shenzhen",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "25.86"
+                AirportId = "TPE",
+                Name = "Taoyuan International Airport",
+                City = "Taiwan",
+                Country = "Taipei",
+                Continent = "Asia",
+                Fee = "31.07",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "TPE",
-                Navn = "Taoyuan International Airport",
-                By = "Taiwan",
-                Land = "Taipei",
-                Kontinent = "Asia",
-                Avgift = "31.07"
+                AirportId = "PEK",
+                Name = "Beijing Capital International Airport",
+                City = "Beijing",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "30.65",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "PEK",
-                Navn = "Beijing Capital International Airport",
-                By = "Beijing",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "30.65"
+                AirportId = "PVG",
+                Name = "Shanghai Pudong International Airport",
+                City = "Shanghai",
+                Country = "China",
+                Continent = "Asia",
+                Fee = "33.90",
+                Avgang = new List<Avgang>()
             });
 
             allAirports.Add(new Airport
             {
-                FlyplassId = "PVG",
-                Navn = "Shanghai Pudong International Airport",
-                By = "Shanghai",
-                Land = "China",
-                Kontinent = "Asia",
-                Avgift = "33.90"
-            });
-
-            allAirports.Add(new Airport
-            {
-                FlyplassId = "YYZ",
-                Navn = "Lester B. Pearson International Airport",
-                By = "Toronto",
-                Land = "Canada",
-                Kontinent = "North America",
-                Avgift = "37.89"
+                AirportId = "YYZ",
+                Name = "Lester B. Pearson International Airport",
+                City = "Toronto",
+                Country = "Canada",
+                Continent = "North America",
+                Fee = "37.89",
+                Avgang = new List<Avgang>()
             });
 
             foreach(Airport f in allAirports)
             {
                 context.Airport.Add(f);
             }
-
+            context.SaveChanges();
             base.Seed(context);
         }
     }

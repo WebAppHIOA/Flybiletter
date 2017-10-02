@@ -8,7 +8,7 @@ namespace Flybiletter.Models
 {
     public class Avgang
     {
-
+        [Key]
         public string FlighId { get; set; }
         public string Flyselskap { get; set; }
         [Required(ErrorMessage = "Opprinnelig sted må oppgis")]

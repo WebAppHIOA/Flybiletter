@@ -8,7 +8,7 @@ namespace Flybiletter.Models
 {
     public class Bestilling
     {
-       
+        [Key]
         public string Referanse { get; set; }
         public string Dato { get; set; }
         public string Pris { get; set; }

@@ -8,7 +8,7 @@ namespace Flybiletter.Models
 {
     public class Passasjer
     {
-   	public string PassasjerID { get; set; }
+   	public string PassasjerId { get; set; }
 
         [Required(ErrorMessage = "Fornavn må oppgis")]
         public string Fornavn { get; set; }

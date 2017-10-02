@@ -7,12 +7,12 @@ namespace Flybiletter.Models
 {
     public class Airport
     {
-        public string FlyplassId { get; set; }
-        public string Navn { get; set; }
-        public string By { get; set; }
-        public string Land { get; set; }
-        public string Kontinent { get; set; }
-        public string Avgift { get; set; }
+        public string AirportId { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string Continent { get; set; }
+        public string Fee { get; set; }
         public virtual List<Avgang> Avgang { get; set; }
     }
 }

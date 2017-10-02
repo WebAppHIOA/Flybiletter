@@ -1,7 +1,4 @@
-﻿@model Flybiletter.Models.Avgang
-@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model List<Flybiletter.Models.Airport>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
@@ -22,113 +19,19 @@
                 <td>
                     <input type="search" class="input-dialog-design" list="airports">
                     <datalist id="airports">
-                        <option value="AMS - Amsterdam Schipol, Netherlands"></option>
-                        <option value="ATL - Hartsfield Jackson International, USA"></option>
-                        <option value="BCN - Barcelona International, Spain"></option>
-                        <option value="BKK - Suvarnabhumi, Bangkok, Thailand"></option>
-                        <option value="BOM - Chhatrapati Shivaji International, India"></option>
-                        <option value="CAN - Guangzhou Baiyun International, China"></option>
-                        <option value="CDG - Charles de Gaulle International, France"></option>
-                        <option value="CGK - Soekarno-Hatta International, Indonesia"></option>
-                        <option value="CTU - Chengdu Shuangliu International, China"></option>
-                        <option value="CLT - Charlotte Douglas International, USA"></option>
-                        <option value="DEL - Indira Gandhi International, New Delhi, India"></option>
-                        <option value="DEN - Denver International, USA"></option>
-                        <option value="DFW - Dallas Fort Worth International, USA"></option>
-                        <option value="DXB - Dubai International, United Arab Emirates"></option>
-                        <option value="EWR - Newark Liberty International"></option>
-                        <option value="FCO - Leonardo Da Vinci (Fiumicino) International, Italy"></option>
-                        <option value="FRA - Frankfurt am Main International, France"></option>
-                        <option value="GRU - Guarulhos - Governador André Franco Montoro International, Brazil"></option>
-                        <option value="HKG - Hong Kong International, Hong Kong"></option>
-                        <option value="HND - Tokyo International, Japan"></option>
-                        <option value="IAH - George Bush Intercontinental Houston, USA"></option>
-                        <option value="ICN - Incheon International, South Korea"></option>
-                        <option value="IST - Atatürk International, Turkey"></option>
-                        <option value="JFK - John F Kennedy International, USA"></option>
-                        <option value="KMG - Kunming Changshui International Airport, China"></option>
-                        <option value="KUL - Kuala Lumpur International, Malaysia"></option>
-                        <option value="LAS - McCarran International, Las Vegas, USA"></option>
-                        <option value="LAX - Los Angeles International Airport, USA"></option>
-                        <option value="LGW - London Gatwick, United Kingdom"></option>
-                        <option value="LHR - London Heathrow, United Kingdom"></option>
-                        <option value="MAD - Madrid Barajas International, Spain"></option>
-                        <option value="MCO - Orlando International, USA"></option>
-                        <option value="MEX - Benito Juárez International Airport"></option>
-                        <option value="MIA - Miami International, USA"></option>
-                        <option value="MNL - Ninoy Aquino International Airport, Philippines"></option>
-                        <option value="MSP - Minneapolis-St Paul/Wold-Chamberlain, USA"></option>
-                        <option value="MUC - Munich International, Germany"></option>
-                        <option value="NRT - Narita International, Japan"></option>
-                        <option value="ORD - Chicago O'Hare International, USA"></option>
-                        <option value="OSL - Gardemoen, Norway"></option>
-                        <option value="PHX - Phoenix Sky Harbor International, USA"></option>
-                        <option value="SEA - Seattle Tacoma International, USA"></option>
-                        <option value="SFO - San Francisco International, USA"></option>
-                        <option value="SHA - Shanghai Hongqiao International, China"></option>
-                        <option value="SIN - Singapore Changi International, Singapore"></option>
-                        <option value="SYD - Sydney Kingsford Smith International, Australia"></option>
-                        <option value="SZX - Shenzhen Bao'an International, China"></option>
-                        <option value="TPE - Taiwan Taoyuan International Aiport, Taiwan"></option>
-                        <option value="PEK - Beijing Capital International, China"></option>
-                        <option value="PVG - Shanghai Pudong International, China"></option>
-                        <option value="YYZ - Lester B. Pearson International, Canada"></option>
+                       @foreach (var airport in Model)
+                       {
+                        <option value="@airport.AirportId -  @airport.Name"></option>
+                       }
                     </datalist>
                 </td>
                 <td>
                     <input type="search" class="input-dialog-design" list="airports">
                     <datalist id="airports">
-                            <option value="AMS - Amsterdam Schipol, Netherlands"></option>
-                            <option value="ATL - Hartsfield Jackson International, USA"></option>
-                            <option value="BCN - Barcelona International, Spain"></option>
-                            <option value="BKK - Suvarnabhumi, Bangkok, Thailand"></option>
-                            <option value="BOM - Chhatrapati Shivaji International, India"></option>
-                            <option value="CAN - Guangzhou Baiyun International, China"></option>
-                            <option value="CDG - Charles de Gaulle International, France"></option>
-                            <option value="CGK - Soekarno-Hatta International, Indonesia"></option>
-                            <option value="CTU - Chengdu Shuangliu International, China"></option>
-                            <option value="CLT - Charlotte Douglas International, USA"></option>
-                            <option value="DEL - Indira Gandhi International, New Delhi, India"></option>
-                            <option value="DEN - Denver International, USA"></option>
-                            <option value="DFW - Dallas Fort Worth International, USA"></option>
-                            <option value="DXB - Dubai International, United Arab Emirates"></option>
-                            <option value="EWR - Newark Liberty International"></option>
-                            <option value="FCO - Leonardo Da Vinci (Fiumicino) International, Italy"></option>
-                            <option value="FRA - Frankfurt am Main International, France"></option>
-                            <option value="GRU - Guarulhos - Governador André Franco Montoro International, Brazil"></option>
-                            <option value="HKG - Hong Kong International, Hong Kong"></option>
-                            <option value="HND - Tokyo International, Japan"></option>
-                            <option value="IAH - George Bush Intercontinental Houston, USA"></option>
-                            <option value="ICN - Incheon International, South Korea"></option>
-                            <option value="IST - Atatürk International, Turkey"></option>
-                            <option value="JFK - John F Kennedy International, USA"></option>
-                            <option value="KMG - Kunming Changshui International Airport, China"></option>
-                            <option value="KUL - Kuala Lumpur International, Malaysia"></option>
-                            <option value="LAS - McCarran International, Las Vegas, USA"></option>
-                            <option value="LAX - Los Angeles International Airport, USA"></option>
-                            <option value="LGW - London Gatwick, United Kingdom"></option>
-                            <option value="LHR - London Heathrow, United Kingdom"></option>
-                            <option value="MAD - Madrid Barajas International, Spain"></option>
-                            <option value="MCO - Orlando International, USA"></option>
-                            <option value="MEX - Benito Juárez International Airport"></option>
-                            <option value="MIA - Miami International, USA"></option>
-                            <option value="MNL - Ninoy Aquino International Airport, Philippines"></option>
-                            <option value="MSP - Minneapolis-St Paul/Wold-Chamberlain, USA"></option>
-                            <option value="MUC - Munich International, Germany"></option>
-                            <option value="NRT - Narita International, Japan"></option>
-                            <option value="ORD - Chicago O'Hare International, USA"></option>
-                            <option value="OSL - Gardemoen, Norway"></option>
-                            <option value="PHX - Phoenix Sky Harbor International, USA"></option>
-                            <option value="SEA - Seattle Tacoma International, USA"></option>
-                            <option value="SFO - San Francisco International, USA"></option>
-                            <option value="SHA - Shanghai Hongqiao International, China"></option>
-                            <option value="SIN - Singapore Changi International, Singapore"></option>
-                            <option value="SYD - Sydney Kingsford Smith International, Australia"></option>
-                            <option value="SZX - Shenzhen Bao'an International, China"></option>
-                            <option value="TPE - Taiwan Taoyuan International Aiport, Taiwan"></option>
-                            <option value="PEK - Beijing Capital International, China"></option>
-                            <option value="PVG - Shanghai Pudong International, China"></option>
-                            <option value="YYZ - Lester B. Pearson International, Canada"></option>
+                        @foreach (var airport in Model)
+                        {
+                            <option value="@airport.AirportId -  @airport.Name"></option>
+                        }
                     </datalist>
                 </td>
             </tr>
@@ -175,10 +78,9 @@
 
                     </label>
                     <select name="kabin" id="cabinclass">
-                        <option value="økonomi-klasse" selected>Økonomiklasse</option>
-                        <option value="premium-økonomi">Premium økonomi</option>
-                        <option value="business-klasse">Business</option>
-                        <option value="first-klasse">Første klasse</option>
+                        <option value="økonomi" selected>Økonomi</option>
+                        <option value="business">Business</option>
+                        <option value="første">Første klasse</option>
                     </select>
                 </td>
             </tr>

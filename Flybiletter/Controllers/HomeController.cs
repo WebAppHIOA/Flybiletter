@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flybiletter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,13 +11,16 @@ namespace Flybiletter.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var db = new DB();
+            List<Airport> allAirports = db.getAllAirports();
+            return View(allAirports);
         }
 
         public ActionResult Reise()
         {
             return View();
         }
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Passasjer()
@@ -47,5 +51,6 @@ namespace Flybiletter.Controllers
 
             return View();
         }
+
     }
 }
