@@ -30,7 +30,7 @@
         <h2 id="tickets-header">PASSASJER INFORMASJON</h2>
         <div class="biletter">
         <br />
-        @using (Html.BeginForm())
+        @using (Html.BeginForm(FormMethod.Post))
         {
             @Html.ValidationSummary()
             <table>
@@ -38,25 +38,25 @@
                     <td>@Html.LabelFor(x => x.Firstname)</td>
                 </tr>
                 <tr>
-                    <td>@Html.TextBoxFor(x => x.Firstname)</td>
+                    <td>@Html.TextBoxFor(x => x.Firstname, new { @class = "input-dialog-design"})</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Surname)</td>
                 </tr>
                 <tr>
-                    <td>@Html.TextBoxFor(x => x.Surname)</td>
+                    <td>@Html.TextBoxFor(x => x.Surname, new { @class = "input-dialog-design"})</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Tlf)</td>
                 </tr>
                 <tr>
-                    <td>@Html.TextBoxFor(x => x.Tlf)</td>
+                    <td>@Html.TextBoxFor(x => x.Tlf, new { @class = "input-dialog-design" })</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Email)</td>
                 </tr>
                 <tr>
-                    <td>@Html.TextBoxFor(x => x.Email)</td>
+                    <td>@Html.TextBoxFor(x => x.Email, new { @class = "input-dialog-design" })</td>
                 </tr>
             </table>
         }

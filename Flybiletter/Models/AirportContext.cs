@@ -12,7 +12,7 @@ namespace Flybiletter.Models
     {
         public AirportContext() : base("name=Flybilett")
         {
-            Database.CreateIfNotExists();
+            //Database.CreateIfNotExists();
             Database.SetInitializer<AirportContext>(new DbInitialize());
         }
 

@@ -5013,6 +5013,16 @@ input[type=search]:hover:not(:focus) {
     outline: 0;
 }
 
+input[type=text]:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+input[type=text]:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
 input[type=radio]:checked ~ .check {
     border: 5px solid #0DFF92;
 }
