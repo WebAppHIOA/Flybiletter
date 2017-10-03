@@ -31,6 +31,7 @@ namespace Flybiletter.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        //Enum? - Sondre
         public string Class { get; set; }
 
         // Barn eller voksen 
