@@ -1,0 +1,70 @@
+﻿@model Flybiletter.Models.Passenger
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" content="width=device-width"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Passasjer</title>
+</head>
+<body>
+    <!--FLYINFORMASJON-->
+    <div class="container col-md-5">
+        <h2 id="tickets-header">FLYINFORMASJON</h2>
+        <div class="biletter">
+            <h4>AVREISE</h4>
+            <p><label>Dato:</label></p>
+            <p><label>Flyselskap:</label></p>
+            <p><label>Total reisetid:</label></p>
+            <p><label>Land:</label></p>
+            <br />
+            <h4>RETUR</h4>
+            <p><label>Dato:</label></p>
+            <p><label>Flyselskap:</label></p>
+            <p><label>Total reisetid:</label></p>
+            <p><label>Land:</label></p>
+        </div>
+    </div>
+
+    <div class="container col-md-7">
+        <h2 id="tickets-header">PASSASJER INFORMASJON</h2>
+        <div class="biletter">
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(x => x.Firstname)</td>
+                </tr>
+                <tr>
+                    <td>@Html.TextBoxFor(x => x.Firstname)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.Surname)</td>
+                </tr>
+                <tr>
+                    <td>@Html.TextBoxFor(x => x.Surname)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.Tlf)</td>
+                </tr>
+                <tr>
+                    <td>@Html.TextBoxFor(x => x.Tlf)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.Email)</td>
+                </tr>
+                <tr>
+                    <td>@Html.TextBoxFor(x => x.Email)</td>
+                </tr>
+            </table>
+        }
+          </div> 
+        <br />
+        <br />
+        <a href="FlightDetails" class="btn btn-default btn-lg pull-left">Tilbake</a>
+        <a href="/Home/Confirmation" class="btn btn-primary btn-lg pull-right">Bekreft</a>
+    </div>
+</body>
+</html>

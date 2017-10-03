@@ -18,6 +18,8 @@ namespace Flybiletter.Models
         public string Arrival { get; set; }
         [Required(ErrorMessage = "Dato må oppgis")]
         public string Date { get; set; }
+     
+
         public virtual Airport Airport { get; set; }
         public virtual List<Passenger> Passenger { get; set; }
     }

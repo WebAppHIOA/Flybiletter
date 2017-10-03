@@ -11,44 +11,39 @@ namespace Flybiletter.Controllers
     {
         public ActionResult Index()
         {
-            var db = new DB();
-            List<Airport> allAirports = db.getAllAirports();
-            return View(allAirports);
-        }
-
-        public ActionResult Reise()
-        {
-            return View();
-        }
-
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public ActionResult Passasjer()
-        {
-            //TODO
+            /*TODO VALIDERING
             if (ModelState.IsValid)
             {
                 return RedirectToAction("");
-            }
-            return View();
-        }
-        
-        public ActionResult Bekreftelse()
-        {
-            return View();
+            }*/
+            var db = new DB();
+            List<Airport> allAirports = db.getAllAirports();
+
+            return View(allAirports);
         }
 
-        public ActionResult About()
+      
+        public ActionResult FlightDetails()
         {
-            ViewBag.Message = "Your application description page.";
-
+           
             return View();
         }
+      
 
-        public ActionResult Contact()
+        public ActionResult Passenger()
         {
-            ViewBag.Message = "Your contact page.";
+            /*TODO VALIDERING
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("");
+            }*/
+            return View();
 
+        }
+
+        [HttpPost]
+        public ActionResult Confirmation()
+        {
             return View();
         }
 

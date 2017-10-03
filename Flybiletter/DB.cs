@@ -6,8 +6,13 @@ using Flybiletter.Models;
 
 namespace Flybiletter
 {
+    /** Klassen skal kanskje ikke være med senere
+     * 
+     * 
+     * */
     public class DB
     {
+    
         
         public List<Airport> getAllAirports()
         {
@@ -20,4 +25,5 @@ namespace Flybiletter
         }
 
     }
+   
 }
