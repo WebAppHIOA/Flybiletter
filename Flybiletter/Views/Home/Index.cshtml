@@ -1,5 +1,4 @@
 ﻿@model List<Flybiletter.Models.Airport>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,50 +12,93 @@
         <h1 id="tickets-header">SØK FLYBILETTER</h1>
     </div>
     <div class="biletter">
-
         <form action="~/Models/Flybiletter.cs" method="post">
-            <table>
-                <tr>
-                    <td><label>FRA</label></td>
-                    <td><label>TIL</label></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="search" class="input-dialog-design" list="airports">
-                        <datalist id="airports">
-                            @foreach (var airport in Model)
-                            {
-                                <option value="@airport.AirportId -  @airport.Name"></option>
-                            }
-                        </datalist>
-                    </td>
-                    <td>
-                        <input type="search" class="input-dialog-design" list="airports">
-                        <datalist id="airports">
-                            @foreach (var airport in Model)
-                            {
-                                <option value="@airport.AirportId -  @airport.Name"></option>
-                            }
-                        </datalist>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>REISE</label>
-                        <label class="radio-inline"><input type="radio" name="reise" value="tur-retur" /> Tur/retur</label>
-                        <label class="radio-inline"><input type="radio" name="reise" value="en-vei" /> Én vei</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>AVREISE</label></td>
-                    <td><label>RETUR</label></td>
-                </tr>
-                <tr>
-                    <td><input class="date-design" type="date" name="avreise" /></td>
-                    <td><input class="date-design" type="date" name="retur" /></td>
-                </tr>
-                <tr>
-                    <td>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1 col-md-2">
+                    </div>
+                    <div class="col col-sm-10 col-md-4 text-center">
+                        <div class="row">
+                            <div>
+                                <label>FRA</label>
+                            </div>
+                            <div>
+                                <input type="search" class="input-dialog-design" list="airports">
+                                <datalist id="airports">
+                                    @foreach (var airport in Model)
+                                    {
+                                        <option value="@airport.AirportId -  @airport.Name"></option>
+                                    }
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-10 col-md-4 text-center">
+                        <div class="row">
+                            <div>
+                                <label>TIL</label>
+                            </div>
+                            <div>
+                                <input type="search" class="input-dialog-design" list="airports">
+                                <datalist id="airports">
+                                    @foreach (var airport in Model)
+                                    {
+                                        <option value="@airport.AirportId -  @airport.Name"></option>
+                                    }
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-md-2">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 text-center">
+                        <div>
+                            <label>REISE</label>
+                        </div>
+                        <div>
+                            <label class="radio-inline"><input type="radio" name="reise" value="tur-retur" /> Tur/retur</label>
+                            <label class="radio-inline"><input type="radio" name="reise" value="en-vei" /> Én vei</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1 col-md-2">
+
+                    </div>
+                    <div class="col-sm-10 col-md-4 text-center">
+                        <div class="row">
+                            <div>
+                                <label>AVREISE</label>
+                            </div>
+                            <div>
+                                <input class="date-design" type="date" name="avreise" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 col-md-4 text-center">
+                        <div class="row">
+                            <div>
+                                <label>RETUR</label>
+                            </div>
+                            <div>
+                                <input class="date-design" type="date" name="retur" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-md-2">
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
                         <label>VOKSNE</label>
                         <select name="voksne" id="passengers-dropdown">
                             <option value="0">0</option>
@@ -67,6 +109,8 @@
                             <option value="5">5</option>
                             <option value="6">6</option>
                         </select>
+
+
                         <label>BARN</label>
                         <select name="barn" id="passengers-dropdown">
                             <option value="0" selected>0</option>
@@ -77,10 +121,15 @@
                             <option value="5">5</option>
                             <option value="6">6</option>
                         </select>
-                    </td>
-                </tr>
-            </table>
-            <a href="/Home/FlightDetails" class="btn btn-lg btn-primary">BESTILL</a>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="/Home/FlightDetails" class="btn btn-lg btn-primary">BESTILL</a>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </body>

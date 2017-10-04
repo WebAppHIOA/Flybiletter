@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Flybiletter
 {
-   
+
     public class DB
     {
 
@@ -21,7 +21,7 @@ namespace Flybiletter
             }
         }
 
-   
+
         public Boolean AddOrder(Order order)
         {
             using (var db = new AirportContext())
@@ -48,7 +48,7 @@ namespace Flybiletter
             }
         }
 
-       
+
         public Boolean AddDeparture(Departure departure)
         {
             using (var db = new AirportContext())
@@ -61,18 +61,18 @@ namespace Flybiletter
                     From = departure.From,
                     To = departure.To,
                     Arrival = departure.Arrival,
-                    Date = departure.Date,
+                    DepartureTime = departure.DepartureTime,
                 });
 
 
                 db.SaveChanges();
-              
+
                 return true;
             }
 
         }
 
-     
+
         public Departure FindDeparture(string id)
         {
             using (var db = new AirportContext())
@@ -109,6 +109,91 @@ namespace Flybiletter
             }
 
         }
+/*
+        public List<Departure> GenerateDepartures(String to, String from)
+        {
+            Random random = new Random();
+            List<Departure> departures = new List<Departure>();
 
+            var times = GenerateTimes(random.Next(8));
+
+            foreach (string i in times)
+            {
+                departures.Add(new Departure
+                {
+                    FlightId = GenerateFlightId(),
+                    From = from,
+                    To = to,
+                    Arrival = "TBD",
+                    DepartureTime = i
+                });
+            }
+
+            return departures;
+        }
+
+       
+        public string[] GenerateTimes(int departures)
+        {
+            string[] time = new string[departures];
+            Random random = new Random();
+
+            for (int i = 0; i < departures; i++)
+            {
+                TimeSpan start = new TimeSpan(random.Next(4, 23), random.Next(0, 59), 0);
+                time[i] = start.ToString();
+            }
+
+            Array.Sort(time);
+
+            return time;
+        }
+   
+        /* Ligger for øyeblikket i HomeController i stedenfor
+        public string UniqueReference()
+        {
+            var guid = System.Guid.NewGuid().ToString();
+
+            return guid;
+        }
+        
+
+        public string GenerateFlightId()
+        {
+            Random random = new Random();
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append("SK");
+            for (int i = 0; i < 6; i++)
+            {
+                builder.Append(random.Next(0,9));
+            }
+            var flightId = builder.ToString();
+
+            if (IsFlightIdAvailable(flightId))
+            {
+                return GenerateFlightId();
+            }
+            else
+            {
+                return flightId;
+            }
+        }
+        */
+        public Boolean IsFlightIdAvailable(string toTest)
+        {
+            using(var db = new AirportContext())
+            {
+                var available = db.Departure.Any(row => row.FlightId == toTest);
+                if (available)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

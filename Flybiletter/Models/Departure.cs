@@ -16,8 +16,10 @@ namespace Flybiletter.Models
         public string To { get; set; }
         [Required(ErrorMessage = "Reisetype må velges")]
         public string Arrival { get; set; }
+
+        // Tidspunkt for avgang, ikke dato
         [Required(ErrorMessage = "Dato må oppgis")]
-        public string Date { get; set; }
+        public string DepartureTime { get; set; }
      
 
         public virtual Airport Airport { get; set; }
