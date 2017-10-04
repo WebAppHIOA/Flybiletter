@@ -148,6 +148,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\ViewOrderModel.cs" />
+    <Compile Include="StaticMethods.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Global.asax.cs">
@@ -174,6 +176,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\flybiletter-scripts.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -199,6 +202,8 @@
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Home\Passenger.cshtml" />
     <Content Include="Views\Home\FlightDetails.cshtml" />
+    <Content Include="Views\Home\OrderTest.cshtml" />
+    <Content Include="Views\Home\OrderTest2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,10 +22,19 @@ namespace Flybiletter.Controllers
             return View(allAirports);
         }
 
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+
+
+            TempData["IndexForm"] = form;
+            return RedirectToAction("FlightDetails");
+        }
+
       
         public ActionResult FlightDetails()
         {
-           
+            ViewBag.data = TempData["IndexForm"];
             return View();
         }
       
@@ -43,6 +52,11 @@ namespace Flybiletter.Controllers
 
         [HttpPost]
         public ActionResult Confirmation()
+        {
+            return View();
+        }
+
+        public ActionResult OrderTest2()
         {
             return View();
         }

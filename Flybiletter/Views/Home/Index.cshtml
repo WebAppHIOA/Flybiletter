@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8" content="width=device-width" />
+    <script src="~/Scripts/flybiletter-scripts.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Bestill</title>
 </head>
@@ -13,6 +14,7 @@
         <h1 id="tickets-header">SØK FLYBILETTER</h1>
     </div>
     <div class="biletter">
+        <div id="but1">Hei</div>
 
         <form action="~/Models/Flybiletter.cs" method="post">
             <div class="container">
@@ -29,7 +31,7 @@
                                 <datalist id="airports">
                                     @foreach (var airport in Model)
                                     {
-                                        <option value="@airport.AirportId -  @airport.Name"></option>
+                                        <option value="@airport.AirportId">@airport.AirportId - @airport.Name</option>
                                     }
                                 </datalist>
                             </div>
@@ -50,7 +52,7 @@
                                 <datalist id="airports">
                                     @foreach (var airport in Model)
                                     {
-                                        <option value="@airport.AirportId -  @airport.Name"></option>
+                                        <option value="@airport.AirportId">@airport.AirportId - @airport.Name</option>
                                     }
                                 </datalist>
                             </div>
@@ -66,8 +68,8 @@
                             <label>REISE</label>
                         </div>
                         <div>
-                            <label class="radio-inline"><input type="radio" name="reise" value="tur-retur" /> Tur/retur</label>
-                            <label class="radio-inline"><input type="radio" name="reise" value="en-vei" /> Én vei</label>
+                            <label class="radio-inline"><input type="radio" id="both-way" name="reise" value="tur-retur" /> Tur/retur</label>
+                            <label class="radio-inline"><input type="radio" id="one-way" name="reise" value="en-vei" /> Én vei</label>
                         </div>
                     </div>
                 </div>
@@ -90,10 +92,10 @@
                     <div class="col-sm-10 col-md-4 text-center">
                         <div class="row">
                             <div>
-                                <label>RETUR</label>
+                                <label id="return-label">RETUR</label>
                             </div>
                             <div>
-                                <input class="date-design" type="date" name="retur" />
+                                <input class="date-design" id="return" type="date" name="retur" />
                             </div>
                         </div>
                     </div>
