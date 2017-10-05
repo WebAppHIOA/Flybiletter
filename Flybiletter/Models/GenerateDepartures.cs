@@ -11,7 +11,7 @@ namespace Flybiletter.Models
         /* Lager liste med Departure objekter. Alle felt fylt ut, med unntak av pris.
          * 
          */
-        public List<Departure> CreateDepartures(String to, String from)
+        public List<Departure> CreateDepartures(string from, string to, string date)
         {
             Random random = new Random();
             List<Departure> departures = new List<Departure>();
@@ -25,7 +25,7 @@ namespace Flybiletter.Models
                     FlightId = GenerateFlightId(),
                     From = from,
                     To = to,
-                    Arrival = "TBD",
+                    Date = date,
                     DepartureTime = i
                 });
             }
@@ -62,6 +62,9 @@ namespace Flybiletter.Models
         {
             Random random = new Random();
             var db = new DB();
+
+
+
 
             StringBuilder builder = new StringBuilder();
             builder.Append("SK");

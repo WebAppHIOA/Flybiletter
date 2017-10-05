@@ -1,4 +1,4 @@
-﻿@model Flybiletter.Models.Passenger
+﻿@model Flybiletter.Models.Customer
 
 <!DOCTYPE html>
 <html>
@@ -8,25 +8,8 @@
     <title>Passasjer</title>
 </head>
 <body>
-    <!--FLYINFORMASJON-->
-    <div class="container col-md-5">
-        <h2 id="tickets-header">FLYINFORMASJON</h2>
-        <div class="biletter">
-            <h4>AVREISE</h4>
-            <p><label>Dato:</label></p>
-            <p><label>Flyselskap:</label></p>
-            <p><label>Total reisetid:</label></p>
-            <p><label>Land:</label></p>
-            <br />
-            <h4>RETUR</h4>
-            <p><label>Dato:</label></p>
-            <p><label>Flyselskap:</label></p>
-            <p><label>Total reisetid:</label></p>
-            <p><label>Land:</label></p>
-        </div>
-    </div>
 
-    <div class="container col-md-7">
+    <div class="container col-md-12">
         <h2 id="tickets-header">PASSASJER INFORMASJON</h2>
         <div class="biletter">
         <br />
@@ -36,27 +19,22 @@
             <table>
                 <tr>
                     <td>@Html.LabelFor(x => x.Firstname)</td>
-                </tr>
-                <tr>
                     <td>@Html.TextBoxFor(x => x.Firstname, new { @class = "input-dialog-design"})</td>
-                </tr>
-                <tr>
                     <td>@Html.LabelFor(x => x.Surname)</td>
-                </tr>
-                <tr>
                     <td>@Html.TextBoxFor(x => x.Surname, new { @class = "input-dialog-design"})</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Tlf)</td>
-                </tr>
-                <tr>
+                
                     <td>@Html.TextBoxFor(x => x.Tlf, new { @class = "input-dialog-design" })</td>
-                </tr>
-                <tr>
+                
+                
                     <td>@Html.LabelFor(x => x.Email)</td>
-                </tr>
-                <tr>
+                
+                
                     <td>@Html.TextBoxFor(x => x.Email, new { @class = "input-dialog-design" })</td>
+
+                   
                 </tr>
             </table>
         }

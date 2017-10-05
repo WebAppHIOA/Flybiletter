@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -148,6 +151,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DepartureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,10 +160,11 @@
     <Compile Include="Models\Airport.cs" />
     <Compile Include="Models\Departure.cs" />
     <Compile Include="Models\GenerateDepartures.cs" />
+    <Compile Include="Models\GenerateInvoice.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\AirportContext.cs" />
     <Compile Include="Models\DbInitialize.cs" />
-    <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +187,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -203,11 +210,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Home\Passenger.cshtml" />
-    <Content Include="Views\Home\FlightDetails.cshtml" />
+    <Content Include="Views\Departure\FlightDetails.cshtml" />
+    <Content Include="Views\Departure\Index.cshtml" />
+    <Content Include="Views\Departure\Test.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Bestilling\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

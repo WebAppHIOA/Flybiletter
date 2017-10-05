@@ -6,10 +6,10 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public class Passenger
+    public class Customer
     {
         [Key]
-   	    public string PassengerId { get; set; }
+   	    public string CustomerId { get; set; }
 
       //  [Display(Name = "FORNAVN")]
       //[Required(ErrorMessage = "Fornavn må oppgis")]
@@ -30,11 +30,6 @@ namespace Flybiletter.Models
        // [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Vennlig skriv en gyldig e-postaddresse")]
        // [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
-        public string Class { get; set; }
-
-        // Barn eller voksen 
-        public string Category { get; set; }
 
         public virtual Order Order { get; set; }
         public virtual Departure Departure { get; set; }
