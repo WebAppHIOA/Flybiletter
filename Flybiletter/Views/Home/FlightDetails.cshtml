@@ -12,10 +12,12 @@
     <div class="container">
         <!--UTREISE-->
         <h2 id="tickets-header">UTREISE</h2>
+        <p>@ViewData["ToAirport"]</p>
         <div class="biletter">
             <table class="table table-hover">
                 <thread>
                     <tr>
+                        
                         <th>Tid</th>
                         <th>Antall timer</th>
                         <th>Destinasjon</th>
@@ -27,40 +29,7 @@
             </table>
         </div>
 
-        <br /><br />
-
-        <!--HJEMREISE-->
-        <h2 id="tickets-header">HJEMREISE</h2>
-        <div class="biletter">
-            <table class="table table-hover">
-                <thread>
-                    <tr>
-                        <th>Tid</th>
-                        <th>Antall timer</th>
-                        <th>Destinasjon</th>
-                        <th>Flyselskap</th>
-                        <th>Pris</th>
-                    </tr>
-                   
-                </thread>
-            </table>
-        </div>
-        <br /> <br />
-
-        <h2 id="tickets-header">MIN TUR</h2>
-        <div class="biletter">
-            <table>
-                <thread>
-                    <tr>
-                        <th>Tid</th>
-                        <th>Antall timer</th>
-                        <th>Destinasjon</th>
-                        <th>Flyselskap</th>
-                        <th>Pris</th>
-                    </tr>
-
-            </table>
-        </div>
+        
 
         <a href="Index" class="btn btn-lg btn-default pull-left">Tilbake</a>
         <a href="/Home/Passenger" class="btn btn-lg btn-primary pull-right" id="button-design">Fortsett</a>

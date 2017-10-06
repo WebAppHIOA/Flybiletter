@@ -11,30 +11,42 @@ namespace Flybiletter.Controllers
     {
         public ActionResult Index()
         {
-            /*TODO VALIDERING
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("");
-            }*/
             var db = new DB();
-            List<Airport> allAirports = db.getAllAirports();
+            var IndexVM = new ViewModels.IndexViewModel();
+            IndexVM.FromAirport = db.getAllAirports();
+            IndexVM.ToAirport = db.getAllAirports();
 
-            return View(allAirports);
+            return View(IndexVM);
         }
 
         [HttpPost]
-        public ActionResult Index(FormCollection form)
+        public ActionResult Index(ViewModels.IndexViewModel indexView)
         {
+            if (ModelState.IsValid)
+            {
 
+                if ((indexView.ToAirportID).Equals(indexView.FromAirportID))
+                {
+                    ModelState.AddModelError("ToAirportID", "Destinasjon og avreise må være forskjellig");
+                    ModelState.AddModelError("FromAirportID", "Destinasjon og avreise må være forskjellig");
+                    return Index();
+                }
 
-            TempData["IndexForm"] = form;
-            return RedirectToAction("FlightDetails");
+                Session["IndexObject"] = indexView;
+                return RedirectToAction("FlightDetails");
+            }
+
+            ModelState.AddModelError("TravelDate", "Noe gikk feil, vennsligst prøv igjen");
+            return RedirectToAction("Index");
         }
 
       
         public ActionResult FlightDetails()
         {
-            ViewBag.data = TempData["IndexForm"];
+            var model = (ViewModels.IndexViewModel)Session["IndexObject"];
+            string test = Convert.ToString(Session["travelDate"]);
+
+            ViewData["ToAirport"] = Convert.ToString(model.ToAirportID);
             return View();
         }
       
@@ -59,6 +71,49 @@ namespace Flybiletter.Controllers
         public ActionResult OrderTest2()
         {
             return View();
+        }
+
+        public ActionResult ViewModelTest()
+        {
+            var db = new DB();
+            var IndexVM = new ViewModels.IndexViewModel();
+            IndexVM.FromAirport = db.getAllAirports();
+            IndexVM.ToAirport = db.getAllAirports();
+           
+            return View(IndexVM);
+        }
+
+        [HttpPost]
+        public ActionResult ViewModelTest(ViewModels.IndexViewModel indexView)
+        {
+            /*
+           string airportFrom = Convert.ToString(form["fromAirport"]);
+           string airportTo = Convert.ToString(form["toAirport"]);
+           string travelDate = Convert.ToString(form["TravelDate"]);
+           */
+            if (ModelState.IsValid)
+            {
+
+                if ((indexView.ToAirportID).Equals(indexView.FromAirportID))
+                {
+                    TempData["Error_string"] = "Destinasjon og avreise må være forskjellig";
+                    ModelState.AddModelError("ToAirportID", "Destinasjon og avreise må være forskjellig");
+                    ModelState.AddModelError("FromAirportID", "Destinasjon og avreise må være forskjellig");
+                    ModelState.AddModelError("TravelDate", "Destinasjon og avreise må være forskjellig");
+                    return ViewModelTest();
+                }
+                Session["IndexObject"] = indexView;
+                Session["fromAirport"] = indexView.FromAirportID;
+                Session["toAirport"] = indexView.ToAirportID;
+                Session["travelDate"] = indexView.TravelDate;
+                return RedirectToAction("FlightDetails");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("ModelView not valid");
+            }
+            return RedirectToAction("Index");
+
         }
 
     }

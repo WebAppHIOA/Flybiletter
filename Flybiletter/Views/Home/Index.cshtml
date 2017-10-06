@@ -1,10 +1,10 @@
-﻿@model List<Flybiletter.Models.Airport>
+﻿@model Flybiletter.ViewModels.IndexViewModel
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" content="width=device-width" />
-    <script src="~/Scripts/flybiletter-scripts.js"></script>
+    <script src="~/Scripts/index-custom-JS.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Bestill</title>
 </head>
@@ -14,135 +14,59 @@
         <h1 id="tickets-header">SØK FLYBILETTER</h1>
     </div>
     <div class="biletter">
-        <div id="but1">Hei</div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <form action="~/Models/Flybiletter.cs" method="post">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-1 col-md-2">
-                    </div>
-                    <div class="col col-sm-10 col-md-4 text-center">
-                        <div class="row">
-                            <div>
-                                <label>FRA</label>
-                            </div>
-                            <div>
-                                <input type="search" class="input-dialog-design" list="airports">
-                                <datalist id="airports">
-                                    @foreach (var airport in Model)
-                                    {
-                                        <option value="@airport.AirportId">@airport.AirportId - @airport.Name</option>
-                                    }
-                                </datalist>
-                            </div>
-                        </div>
-                    </div>
-                
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
 
 
-                    <div class="col-sm-10 col-md-4 text-center">
+                    @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.TravelDate, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
 
-                        <div class="row">
-                            <div>
-                                <label>TIL</label>
-                            </div>
+                        @Html.ValidationMessageFor(model => model.FromAirportID, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "input-dialog-design form-control", @type = "search", @list = "FromAirport" } })
+                        <datalist id="FromAirport">
+                            @foreach (var airport in Model.FromAirport)
+                            {
+                                <option value="@airport.AirportId" id="FromAirportID">@airport.AirportId - @airport.Name</option>
+                            }
+                        </datalist>
 
-                            <div>
-                                <input type="search" class="input-dialog-design" list="airports">
-                                <datalist id="airports">
-                                    @foreach (var airport in Model)
-                                    {
-                                        <option value="@airport.AirportId">@airport.AirportId - @airport.Name</option>
-                                    }
-                                </datalist>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-sm-1 col-md-2">
+                    @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.ValidationMessageFor(model => model.ToAirportID, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "input-dialog-design form-control", @type = "search", @list = "ToAirport" } })
+                        <datalist id="ToAirport">
+                            @foreach (var airport in Model.ToAirport)
+                            {
+                                <option value="@airport.AirportId" id="@Model.ToAirportID">@airport.AirportId - @airport.Name</option>
+                            }
+
+                        </datalist>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 text-center">
-                        <div>
-                            <label>REISE</label>
-                        </div>
-                        <div>
-                            <label class="radio-inline"><input type="radio" id="both-way" name="reise" value="tur-retur" /> Tur/retur</label>
-                            <label class="radio-inline"><input type="radio" id="one-way" name="reise" value="en-vei" /> Én vei</label>
-                        </div>
-                    </div>
+
+
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-1 col-md-2">
-                     
-                    </div>
-
-                    <div class="col-sm-10 col-md-4 text-center">
-                        <div class="row">
-                            <div>
-                                <label>AVREISE</label>
-                            </div>
-                            <div>
-                                <input class="date-design" type="date" name="avreise" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-md-4 text-center">
-                        <div class="row">
-                            <div>
-                                <label id="return-label">RETUR</label>
-                            </div>
-                            <div>
-                                <input class="date-design" id="return" type="date" name="retur" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-1 col-md-2">
-                    
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Bestill" class="btn btn-default" />
                     </div>
                 </div>
-
-                
-                
-
-             
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <label>VOKSNE</label>
-                        <select name="voksne" id="passengers-dropdown">
-                            <option value="0">0</option>
-                            <option value="1" selected>1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    
-                    
-                        <label>BARN</label>
-                        <select name="barn" id="passengers-dropdown">
-                            <option value="0" selected>0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                         <a href="/Home/FlightDetails" class="btn btn-lg btn-primary">BESTILL</a>
-                    </div>
-                </div>
-          </div>
-        </form>
+            </div>
+        }
     </div>
+    
 </body>
 </html>
