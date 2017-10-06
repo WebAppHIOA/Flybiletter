@@ -20,6 +20,6 @@ namespace Flybiletter.Models
      
 
         public virtual Airport Airport { get; set; }
-        public virtual List<Customer> Passenger { get; set; }
+        public virtual List<Order> Order { get; set; }
     }
 }

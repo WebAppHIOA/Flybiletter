@@ -21,38 +21,6 @@ namespace Flybiletter.Controllers
             var db = new DB();
             List<Airport> allAirports = db.getAllAirports();
 
-            Departure dep = new Departure
-            {
-                FlightId = "TestId",
-                From = "Amsterdam",
-                To = "Oslo",
-                Date = "21.12",
-                DepartureTime = "20.30",
-                Airport = allAirports[0]
-            };
-
-            db.AddDeparture(dep);
-
-            Order ord = new Order();
-            ord.OrderNumber = UniqueReference();
-            ord.Date = "23.09.2018";
-            
-            ord.PassengerCount = "2";
-            ord.Price = "3223";
-         
-            db.AddOrder(ord);
-
-            Customer pass = new Customer();
-            pass.CustomerId = "123";
-            pass.Firstname = "Olga";
-            pass.Surname = "Olgson";
-            pass.Tlf = 12345678;
-            pass.Email = "katrinealmas@gmail.com";
-        
-            pass.Order = ord;
-            pass.Departure = dep;
-            db.AddCustomer(pass);
-
             return View(allAirports);
         }
 
@@ -73,62 +41,71 @@ namespace Flybiletter.Controllers
 
         public ActionResult TestEmail()
         {
-            GenerateInvoice invoice = new GenerateInvoice();
-            invoice.SendEmail();
-         /*   MailMessage mail = new MailMessage();
-            mail.From = new System.Net.Mail.MailAddress("katrinealmastest@gmail.com");
+            Invoice invoice = new Invoice
+            {
+                InvoiceId = "TestID",
+                OrderReferance = "908497532",
+                Date = "12.03.2019",
+                From = "Oslo",
+                Destination = "Dubai",
+                Price = "12345",
+                Email = "katrinealmas@gmail.com",
+            };
 
-            // The important part -- configuring the SMTP client
-            SmtpClient smtp = new SmtpClient();
-            smtp.Port = 587;   // [1] You can try with 465 also, I always used 587 and got success
-            smtp.EnableSsl = true;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network; // [2] Added this
-            smtp.UseDefaultCredentials = false; // [3] Changed this
-            smtp.Credentials = new NetworkCredential("katrinealmastest@gmail.com", "K2s0G1a7");  // [4] Added this. Note, first parameter is NOT string.
-            smtp.Host = "smtp.gmail.com";
-
-            //recipient address
-            mail.To.Add(new MailAddress("katrinealmas@gmail.com"));
-
-            //Formatted mail body
-            mail.IsBodyHtml = true;
-            string st = "Prøver nok en gang";
-
-            mail.Body = st;
-            smtp.Send(mail); */
+            var content = GenerateInvoice.NewInvoise(invoice);
+            var streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
+            GenerateInvoice.SendEmail(streamContent, invoice);
 
             return View();
         }
 
         public ActionResult FlightDetails()
         {
+            var departures = Session["Departures"];
+            ViewData["Price"] = Session["Prices"];
 
-            /*   Dictionary<string, string> form = new Dictionary<string, string>();
-               foreach (string key in Request.Form.AllKeys)
-                   form.Add(key, Request.Form[key]);
-               Session["Index"] = form;*/
-
-            Session["From"] = Request.Form["from"];
-            Session["To"] = Request.Form["to"];
-            Session["Date"] = Request.Form["avreise"];
-
-            return RedirectToAction("Index", "Departure");
-
-           // return View();
+            return View(departures);
         }
 
-/*
-        [HttpPost]
-        public ActionResult FlightDetails()
+        public ActionResult Departures()
         {
-            Dictionary<string, string> form = new Dictionary<string, string>();
-            foreach (string key in Request.Form.AllKeys)
-                form.Add(key, Request.Form[key]);
-            Session["Index"] = form;
+            string from = Request.Form["from"];
+            string to = Request.Form["to"];
+            string date = Request.Form["avreise"];
 
-            return RedirectToAction("Index", "Departure");
+            Random random = new Random();
+            int antall = random.Next(8);
+            string[] tider = GenerateDepartures.GenerateTimes(antall);
+
+            List<Departure> departures = GenerateDepartures.CreateDepartures(from, to, date, tider);
+
+            Session["Prices"] = GenerateDepartures.GeneratePrice(antall);
+            Session["Departures"] = departures;
+
+            return RedirectToAction("FlightDetails");
         }
-        */
+
+        public ActionResult AddDeparture()
+        {
+            //Test av ny db insert
+            DB db = new DB();
+
+            List<Airport> allAirports = db.getAllAirports();
+
+            Departure dep = new Departure
+            {
+                FlightId = "TestId",
+                From = "Amsterdam",
+                To = "Oslo",
+                Date = "21.12",
+                DepartureTime = "20.30",
+                Airport = allAirports[0]
+            };
+
+            db.AddDeparture(dep);
+
+            return RedirectToAction("Passenger");
+        }
 
         public ActionResult Passenger()
         {
@@ -137,6 +114,8 @@ namespace Flybiletter.Controllers
             {
                 return RedirectToAction("");
             }*/
+      
+
             return View();
 
         }
@@ -144,17 +123,22 @@ namespace Flybiletter.Controllers
        
         public ActionResult Confirmation()
         {
+            Invoice invoice = new Invoice
+            {
+                InvoiceId = "TestID",
+                OrderReferance = "OrderReference",
+                Date = "12.03.2019",
+                From = "Oslo",
+                Destination = "Dubai",
+                Price = "12345",
+                Email = "katrinealmas@gmail.com",
+            };
+
+            var content = GenerateInvoice.NewInvoise(invoice);
+            var  streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
+            GenerateInvoice.SendEmail(streamContent, invoice);
+
             return View();
-        }
-
-        /* Hjelpe metode for å generere unike referanser til feks orderNumber.
-        *  Legges her inntil videre da man trenger å lagre referansen dersom man skal søke spesifikt i db.
-        */
-        private string UniqueReference()
-        {
-            var guid = System.Guid.NewGuid().ToString();
-
-            return guid;
         }
 
     }

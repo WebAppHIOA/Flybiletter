@@ -26,18 +26,24 @@ namespace Flybiletter
         {
             using (var db = new AirportContext())
             {
-                try
-                {
-                    db.Order.Add(order);
+                    var departure = db.Departure.Where(d => d.FlightId == order.Departure.FlightId).First();
+                    departure.Order.Add(new Order
+                    {
+                        OrderNumber = order.OrderNumber,
+                        Date = order.Date,
+                        Firstname = order.Firstname,
+                        Surname = order.Surname,
+                        Tlf = order.Tlf,
+                        Email = order.Email,
+                        Price = order.Price,
+                    });
+
                     db.SaveChanges();
+
                     return true;
                 }
-                catch (Exception e)
-                {
-                    return false;
-                }
             }
-        }
+        
 
         public Order FindOrder(string id)
         {
@@ -53,7 +59,6 @@ namespace Flybiletter
         {
             using (var db = new AirportContext())
             {
-
                 var airport = db.Airport.Where(c => c.AirportId == departure.Airport.AirportId).First();
                 airport.Departure.Add(new Departure
                 {
@@ -64,12 +69,10 @@ namespace Flybiletter
                     DepartureTime = departure.DepartureTime,
                 });
 
-
                 db.SaveChanges();
 
                 return true;
             }
-
         }
 
 
@@ -82,44 +85,14 @@ namespace Flybiletter
             }
         }
 
-
-        public Boolean AddCustomer(Customer passenger)
-        {
-            using (var db = new AirportContext())
-            {
-                Customer insertCustomer = new Customer
-                {
-                    CustomerId = passenger.CustomerId,
-                    Firstname = passenger.Firstname,
-                    Surname = passenger.Surname,
-                    Tlf = passenger.Tlf,
-                    Email = passenger.Email
-                };
-
-                var order = db.Order.Where(o => o.OrderNumber == passenger.Order.OrderNumber).First();
-                order.Customer.Add(insertCustomer);
-
-                var departure = db.Departure.Where(d => d.FlightId == passenger.Departure.FlightId).First();
-                departure.Passenger.Add(insertCustomer);
-
-                db.SaveChanges();
-
-                return true;
-            }
-
-        }
-
-   
-        /* Ligger for øyeblikket i HomeController i stedenfor
         public string UniqueReference()
         {
             var guid = System.Guid.NewGuid().ToString();
 
             return guid;
         }
-        
 
- */
+
         public Boolean IsFlightIdAvailable(string toTest)
         {
             using(var db = new AirportContext())
