@@ -6,11 +6,8 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public enum Trip
-    {
-        Depart,
-        Return
-    }
+ 
+    
     public class Order
     {
         [Key]
@@ -19,7 +16,7 @@ namespace Flybiletter.Models
         public string Email { get; set; }
         public string Price { get; set; }
         public string PassengerCount { get; set; }
-        public Trip Trip { get; set; }
+
 
         public virtual List<Customer> Customer { get; set; }
     }

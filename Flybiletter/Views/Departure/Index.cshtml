@@ -25,18 +25,28 @@
                         <th>Dato</th>
                         <th>Fra</th>
                         <th>Til</th>
-                        <th>Pris</th>
+                        
                     </tr>
+                    @{    
 
-                    @foreach (var departure in Model)
-                    {
-                        <tr>
+                        int[] array = ViewData["Price"] as int[];
+                        int i = -1;
+
+                        foreach (var departure in Model)
+                        {
+                            i++;
+                         <tr>  
                             <td>@departure.DepartureTime</td>
                             <td>@departure.Date</td>
                             <td>@departure.From</td>
                             <td>@departure.To</td>
+                            <td>@array[i]</td>
                         </tr>
-                    }
+
+                            }
+                        }
+
+                    <tr></tr>
 
                 </thread>
             </table>

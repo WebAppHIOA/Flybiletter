@@ -6,17 +6,16 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public class GenerateDepartures
+    public static class GenerateDepartures
     {
         /* Lager liste med Departure objekter. Alle felt fylt ut, med unntak av pris.
          * 
          */
-        public List<Departure> CreateDepartures(string from, string to, string date)
-        {
-            Random random = new Random();
+        public static List<Departure> CreateDepartures(string from, string to, string date, string[] random)
+        { 
             List<Departure> departures = new List<Departure>();
 
-            var times = GenerateTimes(random.Next(8));
+            var times = random;
 
             foreach (string i in times)
             {
@@ -36,7 +35,7 @@ namespace Flybiletter.Models
         /* Lager string array med sorterte tider, HashSet sørger for at det ikke blir duplikate verdier av tid.
          * 
          */
-        public string[] GenerateTimes(int departures)
+        public static string[] GenerateTimes(int departures)
         {
             string[] time = new string[departures];
             Random random = new Random();
@@ -58,13 +57,10 @@ namespace Flybiletter.Models
          * for å opprette en ny. Ikke så effektivt når databasen nærmer seg 6^6 avganger, men gjør jobben.
          * 
          */
-        public string GenerateFlightId()
+        public static string GenerateFlightId()
         {
             Random random = new Random();
             var db = new DB();
-
-
-
 
             StringBuilder builder = new StringBuilder();
             builder.Append("SK");
@@ -83,5 +79,22 @@ namespace Flybiletter.Models
                 return flightId;
             }
         }
+
+        public static int[] GeneratePrice(int antall)
+        {
+            int[] price = new int[antall];
+
+           // StringBuilder builder = new StringBuilder();
+            Random random = new Random();
+
+            for (int i = 0; i < antall; i++)
+            {
+               price[i] = random.Next(99, 5555);
+            }
+
+            return price;
+        }
+
+
     }
 }
