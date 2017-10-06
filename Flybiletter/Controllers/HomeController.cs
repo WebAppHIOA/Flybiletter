@@ -35,7 +35,8 @@ namespace Flybiletter.Controllers
                 }
 
                 Session["IndexObject"] = indexView;
-                return RedirectToAction("FlightDetails");
+                return RedirectToAction("Index", "Departure", new { area = "" });
+                //  return RedirectToAction("FlightDetails");
             }
 
             ModelState.AddModelError("TravelDate", "Noe gikk feil, vennsligst prøv igjen");

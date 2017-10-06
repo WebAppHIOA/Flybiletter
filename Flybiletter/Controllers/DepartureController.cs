@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Flybiletter.Models;
+using Flybiletter.ViewModels;
 
 namespace Flybiletter.Controllers
 {
@@ -14,9 +15,12 @@ namespace Flybiletter.Controllers
         {
 
             //  GenerateDepartures genDep = new GenerateDepartures();
-            var form = Session["From"] as String;
-            var to = Session["To"] as String;
-            var date = Session["Date"] as String;
+           
+
+            var IndexObject = (IndexViewModel)Session["IndexObject"];
+            var form = IndexObject.FromAirportID as String;
+            var to = IndexObject.ToAirportID as String;
+            var date = IndexObject.TravelDate as String;
 
             Random random = new Random();
             int antall = random.Next(8);
