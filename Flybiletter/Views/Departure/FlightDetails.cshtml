@@ -1,0 +1,57 @@
+﻿@model Flybiletter.Models.Departure
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <title>Reise</title>
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+     
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!--UTREISE-->
+        <h2 id="tickets-header">UTREISE</h2>
+        <p>@ViewData["ToAirport"]</p>
+        <div class="biletter">
+            <table class="table table-hover" id="table">
+                <thread>
+                    <tr>
+                        
+                        <th>Tid</th>
+                        <th>Dato</th>
+                        <th>Destinasjon</th>
+                        <th>Pris</th>
+                    </tr>
+                </thread>
+            </table>
+        </div>
+
+        <br /><br />
+
+        <!--HJEMREISE-->
+        <h2 id="tickets-header">HJEMREISE</h2>
+        <div class="biletter">
+            <table class="table table-hover">
+                <thread>
+                    <tr>
+                        <th>Tid</th>
+                        <th>Dato</th>
+                        <th>Destinasjon</th>
+                        <th>Pris</th>
+                    </tr>
+                </thread>
+            </table>
+        </div>
+        <br />
+        <br />
+        <a href="@Url.Action("Index", "Home")" class="btn btn-lg btn-default pull-left">Tilbake</a>
+        <input type="submit" class="btn btn-lg btn-primary pull-right" id="button-design" />
+    </div>
+
+</body>
+</html>

@@ -6,28 +6,28 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
-    public class Passenger
+    public class Customer
     {
         [Key]
-   	    public string PassengerId { get; set; }
+   	    public string CustomerId { get; set; }
 
-        [Display(Name = "FORNAVN")]
+        [Display(Name = "Fornavn")]
         [Required(ErrorMessage = "Fornavn må oppgis")]
         public string Firstname { get; set; }
 
-        [Display(Name = "ETTERNAVN")]
+        [Display(Name = "Etternavn")]
         [Required(ErrorMessage = "Etternavn må oppgis")]
         public string Surname { get; set; }
 
-        [Display(Name = "TELEFON")]
+        [Display(Name = "Telefon")]
         [Required(ErrorMessage = "Telefonnummer må oppgis")]
-        [RegularExpression(@"[0-9]{8}", ErrorMessage="Telefonnummer må være 8 siffer")]
+        [RegularExpression(@"[0-9]", ErrorMessage="Vennlig skriv en gyldig tlfnummer")]
         [DataType(DataType.PhoneNumber)]
         public int Tlf { get; set; }
 
-        [Display(Name = "E-POST")]
+        [Display(Name = "E-post")]
         [Required(ErrorMessage = "E-post adresse må oppgis")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Vennlig skriv en gyldig e-postaddresse")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Vennlig skriv en gyldig e-post")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

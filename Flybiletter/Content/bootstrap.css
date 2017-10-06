@@ -4970,6 +4970,18 @@ td {
     padding: 5px 10px 5px 10px;
 }
 
+#tableDep tr:hover.selected td, 
+#tableDep tr:hover td {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+
+#tableDep tr:hover.selected td {
+    background-color: #66cc99;
+}
+
+
 .input-dialog-design {
     width: 300px;
     height: 33px;
@@ -5013,6 +5025,16 @@ input[type=search]:hover:not(:focus) {
     outline: 0;
 }
 
+input[type=text]:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+input[type=text]:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
 input[type=radio]:checked ~ .check {
     border: 5px solid #0DFF92;
 }
@@ -5037,7 +5059,7 @@ input[type=date]:hover:not(:focus) {
     outline: 0;
 }
 
-#passengers-dropdown {
+.passengers-dropdown {
     width: 58px;
     height: 33px;
     border: solid 1px #dcdcdc;
