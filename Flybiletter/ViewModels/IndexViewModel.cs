@@ -18,13 +18,13 @@ namespace Flybiletter.ViewModels
         
         public List<Airport> ToAirport { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Du må oppgi avreise")]
         [Display(Name= "Til")]
         public string ToAirportID { get; set; }
 
         public List<Airport> FromAirport { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Du må oppgi avreise")]
         [Display(Name = "Fra")]
         public string FromAirportID { get; set; }
 

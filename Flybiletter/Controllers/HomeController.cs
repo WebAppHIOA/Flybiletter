@@ -29,7 +29,6 @@ namespace Flybiletter.Controllers
 
                 if ((indexView.ToAirportID).Equals(indexView.FromAirportID))
                 {
-                    ModelState.AddModelError("ToAirportID", "Destinasjon og avreise må være forskjellig");
                     ModelState.AddModelError("FromAirportID", "Destinasjon og avreise må være forskjellig");
                     return Index();
                 }
