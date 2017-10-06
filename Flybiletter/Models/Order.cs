@@ -6,17 +6,21 @@ using System.Web;
 
 namespace Flybiletter.Models
 {
+    public enum Trip
+    {
+        Depart,
+        Return
+    }
     public class Order
     {
         [Key]
         public string OrderNumber { get; set; }
         public string Date { get; set; }
+        public string Email { get; set; }
         public string Price { get; set; }
+        public string PassengerCount { get; set; }
+        public Trip trip { get; set; }
 
-        //Antall reisende 
-        public string Travellers { get; set; }
-        
-        public string RoundTrip { get; set; }
-        public virtual List<Passenger> Passenger { get; set; }
+        public virtual List<Customer> Passenger { get; set; }
     }
 }

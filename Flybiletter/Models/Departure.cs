@@ -14,13 +14,12 @@ namespace Flybiletter.Models
         public string From { get; set; }
         [Required(ErrorMessage = "Destinasjon må oppgis")]
         public string To { get; set; }
-        [Required(ErrorMessage = "Reisetype må velges")]
-        public string Arrival { get; set; }
         [Required(ErrorMessage = "Dato må oppgis")]
         public string Date { get; set; }
-     
+        public string DepartureTime { get; set; }
+
 
         public virtual Airport Airport { get; set; }
-        public virtual List<Passenger> Passenger { get; set; }
+        public virtual List<Customer> Customer { get; set; }
     }
 }
