@@ -120,5 +120,13 @@ namespace Flybiletter.Models
             builder.Append("</head></html>");
         }
 
+        public static string UniqueReference()
+        {
+            var guid = System.Guid.NewGuid().ToString();
+
+            return guid;
+        }
+
+
     }
 }

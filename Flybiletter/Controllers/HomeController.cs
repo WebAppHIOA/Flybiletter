@@ -178,7 +178,7 @@ namespace Flybiletter.Controllers
 
             DB.AddDeparture(dep);
 
-            order.OrderNumber = UniqueReference();
+            order.OrderNumber = GenerateInvoice.UniqueReference();
             DB.AddOrder(new Order
             {
                 OrderNumber = order.OrderNumber,
@@ -195,8 +195,8 @@ namespace Flybiletter.Controllers
 
             Invoice invoice = new Invoice
             {
-                InvoiceId = UniqueReference(),
-                OrderReferance = UniqueReference(),
+                InvoiceId = order.OrderNumber,
+                OrderReferance = order.OrderNumber,
                 Date = indexObjekt.TravelDate,
                 From = fromAirport.Name,
                 Destination = toAirport.Name,
@@ -213,13 +213,6 @@ namespace Flybiletter.Controllers
         {
 
             return View();
-        }
-
-        public string UniqueReference()
-        {
-            var guid = System.Guid.NewGuid().ToString();
-
-            return guid;
         }
 
     }
