@@ -1,11 +1,12 @@
-﻿@model List<Flybiletter.Models.Airport>
+﻿@model Flybiletter.ViewModels.IndexViewModel
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" content="width=device-width" />
+    <script src="~/Scripts/index-custom-JS.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Bestill</title>
-
 </head>
 <body>
     <!--BESTILLING AV BILLET-->
@@ -13,73 +14,59 @@
         <h1 id="tickets-header">SØK FLYBILETTER</h1>
     </div>
     <div class="biletter">
-        <form action="~/Home/FlightDetails" name="index" method="post">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-1 col-md-2">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+
+                    @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.TravelDate, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col col-sm-10 col-md-4 text-center">
-                        <div class="row">
-                            <div>
-                                <label>FRA</label>
-                            </div>
-                            <div>
-                                <input type="search" name="from" class="input-dialog-design" list="airports">
-                                <datalist id="airports">
-                                    @foreach (var airport in Model)
-                                    {
-                                        <option value="@airport.Name"></option>
-                                    }
-                                </datalist>
-                            </div>
-                        </div>
+                    @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.ValidationMessageFor(model => model.FromAirportID, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "input-dialog-design form-control", @type = "search", @list = "FromAirport" } })
+                        <datalist id="FromAirport">
+                            @foreach (var airport in Model.FromAirport)
+                            {
+                                <option value="@airport.AirportId" id="FromAirportID">@airport.AirportId - @airport.Name</option>
+                            }
+                        </datalist>
+
+                    </div>
+                    @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.ValidationMessageFor(model => model.ToAirportID, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "input-dialog-design form-control", @type = "search", @list = "ToAirport" } })
+                        <datalist id="ToAirport">
+                            @foreach (var airport in Model.ToAirport)
+                            {
+                                <option value="@airport.AirportId" id="@Model.ToAirportID">@airport.AirportId - @airport.Name</option>
+                            }
+
+                        </datalist>
                     </div>
 
 
-                    <div class="col-sm-10 col-md-4 text-center">
-                        <div class="row">
-                            <div>
-                                <label>TIL</label>
-                            </div>
-                            <div>
-                                <input type="search" name="to" class="input-dialog-design" list="airports">
-                                <datalist id="airports">
-                                    @foreach (var airport in Model)
-                                    {
-                                        <option value="@airport.Name"></option>
-                                    }
-                                </datalist>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-1 col-md-2">
-                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-1 col-md-2">
-
-                    </div>
-                    <div class="col-sm-10 col-md-4 text-center">
-                        <div class="row">
-                            <div>
-                                <label>AVREISE</label>
-                            </div>
-                            <div>
-                                <input class="date-design" type="date" name="avreise" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <input type="submit" class="btn btn-lg btn-primary">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Bestill" class="btn btn-default" />
                     </div>
                 </div>
             </div>
-        </form>
+        }
     </div>
+    
 </body>
 </html>
