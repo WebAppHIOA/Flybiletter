@@ -8,9 +8,10 @@ using System.Text;
 namespace Flybiletter
 {
 
-    public class DB
+    public static class DB
     {
-        public List<Airport> getAllAirports()
+
+        public static List<Airport> getAllAirports()
         {
             using (var db = new AirportContext())
             {
@@ -21,7 +22,7 @@ namespace Flybiletter
         }
 
 
-        public Boolean AddOrder(Order order)
+        public static Boolean AddOrder(Order order)
         {
             using (var db = new AirportContext())
             {
@@ -43,7 +44,8 @@ namespace Flybiletter
             }
         }
 
-        public Order FindOrder(string id)
+
+        public static Order FindOrder(string id)
         {
             using (var db = new AirportContext())
             {
@@ -52,7 +54,7 @@ namespace Flybiletter
             }
         }
 
-        public Airport FindAirport(string id)
+        public static Airport FindAirport(string id)
         {
             using (var db = new AirportContext())
             {
@@ -61,7 +63,7 @@ namespace Flybiletter
             }
         }
 
-        public Boolean AddDeparture(Departure departure)
+        public static Boolean AddDeparture(Departure departure)
         {
             using (var db = new AirportContext())
             {
@@ -76,16 +78,14 @@ namespace Flybiletter
                     DepartureTime = departure.DepartureTime,
                 });
 
-
                 db.SaveChanges();
 
                 return true;
             }
-
         }
 
 
-        public Departure FindDeparture(string id)
+        public static Departure FindDeparture(string id)
         {
             using (var db = new AirportContext())
             {
@@ -94,42 +94,7 @@ namespace Flybiletter
             }
         }
 
-        public string UniqueReference()
-        {
-            var guid = System.Guid.NewGuid().ToString();
-
-            return guid;
-        }
-
-
-        /*
-        public Boolean AddCustomer(Customer passenger)
-        {
-            using (var db = new AirportContext())
-            {
-                Customer insertCustomer = new Customer
-                {
-                    CustomerId = passenger.CustomerId,
-                    Firstname = passenger.Firstname,
-                    Surname = passenger.Surname,
-                    Tlf = passenger.Tlf,
-                    Email = passenger.Email
-                };
-
-                var order = db.Order.Where(o => o.OrderNumber == passenger.Order.OrderNumber).First();
-                order.Passenger.Add(insertCustomer);
-
-                var departure = db.Departure.Where(d => d.FlightId == passenger.Departure.FlightId).First();
-                departure.Customer.Add(insertCustomer);
-
-                db.SaveChanges();
-
-                return true;
-            }
-
-        }
- */
-        public Boolean IsFlightIdAvailable(string toTest)
+        public static Boolean IsFlightIdAvailable(string toTest)
         {
             using (var db = new AirportContext())
             {

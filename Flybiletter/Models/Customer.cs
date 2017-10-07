@@ -21,13 +21,13 @@ namespace Flybiletter.Models
 
         [Display(Name = "Telefon")]
         [Required(ErrorMessage = "Telefonnummer må oppgis")]
-        [RegularExpression(@"[0-9]", ErrorMessage="Vennlig skriv en gyldig tlfnummer")]
+        [RegularExpression(@"[0-9]{8}", ErrorMessage="Vennligst skriv en gyldig telefonnummer")]
         [DataType(DataType.PhoneNumber)]
         public int Tlf { get; set; }
 
         [Display(Name = "E-post")]
         [Required(ErrorMessage = "E-post adresse må oppgis")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Vennlig skriv en gyldig e-post")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Vennligst skriv en gyldig e-post")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
