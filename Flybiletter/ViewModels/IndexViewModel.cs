@@ -15,7 +15,6 @@ namespace Flybiletter.ViewModels
         [Display(Name = "Dato")]
         public string TravelDate { get; set; }
 
-        
         public List<Airport> ToAirport { get; set; }
 
         [Required(ErrorMessage = "Du må oppgi avreise")]

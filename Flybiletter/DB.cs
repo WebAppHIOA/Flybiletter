@@ -43,40 +43,6 @@ namespace Flybiletter
             }
         }
 
-        //Fjernes?
-        public Departure getFlightID(string id)
-        {
-            var db = new AirportContext();
-            Departure dbFlightID = db.Departure.Find(id);
-
-            var flightDetails = new Departure()
-            {
-                FlightId = dbFlightID.FlightId,
-                From = dbFlightID.From,
-                To = dbFlightID.To,
-                Date = dbFlightID.Date,
-                // pris??
-            };
-            return flightDetails;
-        }
-
-        public List<Departure> GetFlightInfo()
-        {
-            var db = new AirportContext();
-            List<Departure> dep = db.Departure.Select(d => new Departure()
-            {
-                FlightId = d.FlightId,
-                DepartureTime = d.DepartureTime,
-                From = d.From,
-                To = d.To,
-                //burde stå pris, men pris er på order klassen
-            }).ToList();
-            return dep;
-        }
-
-
-
-
         public Order FindOrder(string id)
         {
             using (var db = new AirportContext())
@@ -86,6 +52,14 @@ namespace Flybiletter
             }
         }
 
+        public Airport FindAirport(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                var airport = db.Airport.First(a => a.AirportId == id);
+                return airport;
+            }
+        }
 
         public Boolean AddDeparture(Departure departure)
         {
