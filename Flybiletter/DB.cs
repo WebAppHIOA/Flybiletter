@@ -8,10 +8,10 @@ using System.Text;
 namespace Flybiletter
 {
 
-    public class DB
+    public static class  DB
     {
 
-        public List<Airport> getAllAirports()
+        public static List<Airport> getAllAirports()
         {
             using (var db = new AirportContext())
             {
@@ -22,7 +22,7 @@ namespace Flybiletter
         }
 
 
-        public Boolean AddOrder(Order order)
+        public static Boolean AddOrder(Order order)
         {
             using (var db = new AirportContext())
             {
@@ -45,7 +45,7 @@ namespace Flybiletter
             }
         
 
-        public Order FindOrder(string id)
+        public static Order FindOrder(string id)
         {
             using (var db = new AirportContext())
             {
@@ -54,7 +54,7 @@ namespace Flybiletter
             }
         }
 
-        public Airport FindAirport(string id)
+        public static Airport FindAirport(string id)
         {
             using (var db = new AirportContext())
             {
@@ -63,7 +63,7 @@ namespace Flybiletter
             }
         }
 
-        public Boolean AddDeparture(Departure departure)
+        public static Boolean AddDeparture(Departure departure)
         {
             using (var db = new AirportContext())
             {
@@ -85,7 +85,7 @@ namespace Flybiletter
         }
 
 
-        public Departure FindDeparture(string id)
+        public static Departure FindDeparture(string id)
         {
             using (var db = new AirportContext())
             {
@@ -94,7 +94,7 @@ namespace Flybiletter
             }
         }
 
-        public Boolean IsFlightIdAvailable(string toTest)
+        public static Boolean IsFlightIdAvailable(string toTest)
         {
             using(var db = new AirportContext())
             {

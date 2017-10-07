@@ -11,11 +11,13 @@ namespace Flybiletter.Models
         /* Lager liste med Departure objekter. Alle felt fylt ut, med unntak av pris.
          * 
          */
-        public static List<Departure> CreateDepartures(string from, string to, string date, string[] random)
+        public static List<Departure> CreateDepartures(string from, string to, string date)
         { 
             List<Departure> departures = new List<Departure>();
-
-            var times = random;
+            Random random = new Random();
+            int randomNumber = random.Next(8);
+            
+            var times = GenerateTimes(randomNumber);
 
             foreach (string i in times)
             {
@@ -84,7 +86,9 @@ namespace Flybiletter.Models
         {
             int[] price = new int[antall];
 
-           // StringBuilder builder = new StringBuilder();
+            // StringBuilder builder = new StringBuilder();
+
+           
             Random random = new Random();
 
             for (int i = 0; i < antall; i++)
