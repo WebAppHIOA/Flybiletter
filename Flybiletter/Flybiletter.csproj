@@ -153,7 +153,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Travel.cs" />
     <Compile Include="StaticMethods.cs" />
-    <Compile Include="Controllers\DepartureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Global.asax.cs">
@@ -307,11 +306,8 @@
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Home\Passenger.cshtml" />
     <Content Include="Views\Home\FlightDetails.cshtml" />
-    <Content Include="Views\Departure\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Passenger\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

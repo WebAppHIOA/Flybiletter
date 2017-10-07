@@ -16,7 +16,7 @@ namespace Flybiletter.Controllers
         public ActionResult Index()
         {
             var db = new DB();
-            var IndexVM = new ViewModels.IndexViewModel();
+            var IndexVM = new IndexViewModel();
             IndexVM.FromAirport = db.getAllAirports();
             IndexVM.ToAirport = db.getAllAirports();
 
@@ -45,8 +45,6 @@ namespace Flybiletter.Controllers
                 }
 
                 Session["IndexObject"] = indexView;
-                // return RedirectToAction("Index", "Departure", new { area = "" });
-                //  return RedirectToAction("FlightDetails");
                 return RedirectToAction("Departures");
             }
 
@@ -93,14 +91,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult FlightDetails()
         {
-
-            /*  
-            Session["From"] = Request.Form["from"];
-            Session["To"] = Request.Form["to"];
-            Session["Date"] = Request.Form["avreise"];
-
-            return RedirectToAction("Index", "Departure");
-            */
             var departures = Session["Departures"];
             ViewData["Price"] = Session["Prices"];
 
@@ -138,10 +128,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult Departures()
         {
-            /*   string from = Request.Form["from"];
-               string to = Request.Form["to"];
-               string date = Request.Form["avreise"];*/
-
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
             Random random = new Random();
@@ -158,7 +144,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult AddDeparture()
         {
-            //Test av ny db insert
             DB db = new DB();
 
             List<Airport> allAirports = db.getAllAirports();
@@ -178,15 +163,6 @@ namespace Flybiletter.Controllers
             return RedirectToAction("Passenger");
         }
       
-        public string RegisterFlight(Departure departure)
-        {
-            var db = new DB();
-            db.AddDeparture(departure);
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize("OK");
-        }
-
-
 
         public ActionResult Passenger()
         {
@@ -194,6 +170,64 @@ namespace Flybiletter.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult Passenger(Order order)
+        {
+            var departure = Session["DepartureDataList"] as List<String>;
+            var indexView = Session["IndexObject"] as IndexViewModel;
+            List<Airport> airports = indexView.FromAirport;
+
+            DB db = new DB();
+            
+
+            var fromAirport = db.FindAirport(indexView.FromAirportID);
+            var toAirport = db.FindAirport(indexView.ToAirportID);
+
+            Departure dep = new Departure
+            {
+                FlightId = departure[0],
+                DepartureTime = departure[1],
+                Date = departure[2],
+                From = departure[3],
+                To = departure[4],
+                Airport = fromAirport
+            };
+
+            db.AddDeparture(dep);
+
+            order.OrderNumber = UniqueReference();
+            db.AddOrder(new Order
+            {
+                OrderNumber = order.OrderNumber,
+                Date = departure[2],
+                Firstname = order.Firstname,
+                Surname = order.Surname,
+                Tlf = order.Tlf,
+                Email = order.Email,
+                Price = departure[5],
+                Departure = dep
+            });
+
+            var indexObjekt = Session["IndexObject"] as IndexViewModel;
+
+            Invoice invoice = new Invoice
+            {
+                InvoiceId = UniqueReference(),
+                OrderReferance = UniqueReference(),
+                Date = indexObjekt.TravelDate,
+                From = fromAirport.Name,
+                Destination = toAirport.Name,
+                Price = departure[5],
+                Email = order.Email
+            };
+
+            var content = GenerateInvoice.NewInvoice(invoice);
+            var streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
+            GenerateInvoice.SendEmail(streamContent, invoice);
+
+            return RedirectToAction("Confirmation");
+        }
 
         public ActionResult Confirmation()
         {
@@ -215,5 +249,12 @@ namespace Flybiletter.Controllers
             */
             return View();
         }
+        public string UniqueReference()
+        {
+            var guid = System.Guid.NewGuid().ToString();
+
+            return guid;
+        }
+
     }
 }
