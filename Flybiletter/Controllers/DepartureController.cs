@@ -33,5 +33,12 @@ namespace Flybiletter.Controllers
             return View(departures);
 
         }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+
+            return RedirectToAction("Confirmation", "Home", new { area = "" });
+        }
     }
 }

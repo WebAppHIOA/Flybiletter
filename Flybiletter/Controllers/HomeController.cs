@@ -53,7 +53,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult Order(Order order)
         {
-
             return View();
         }
 
