@@ -21,6 +21,8 @@
 
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 
+
+
 article,
 aside,
 details,
@@ -4940,6 +4942,8 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 
+
+
 .biletter {
     letter-spacing: 0.8px;
     font-size: 15px;
@@ -4978,7 +4982,7 @@ td {
 
 
 #tableDep tr:hover.selected td {
-    background-color: #66cc99;
+    background-color: #66cc99 !important;
 }
 
 

@@ -8,65 +8,48 @@
     <title>Reise</title>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-
-        /*
-        $("tbody").on("click", "tr", function (e) {
-            $(this)
-                .toggleClass("selected")
-                .siblings(".selected")
-                .removeClass("selected");
-        });*/
-
-        function depRows() {
+        var orderInn;
+        
+        function clickDep() {
             $('tr.clickDep').click(function () {
+                $(".selected").removeClass("selected");
+                $(this).addClass("selected");
                 var tableData = $(this).children("td").map(function () {
                     return $(this).text();
                 }).get();
-
-                //bygger et order objekt fra brukerens selected row
-                var orderInn = {
-                     id = $.trim(tableData[0]),
-                     time = $.trim(tableData[1]),
-                     date = $.trim(tableData[2]),
-                     from = $.trim(tableData[3]),
-                     to = $.trim(tableData[4]),
-                     price = $.trim(tableData[5])
-                }
                 
-                $.ajax({
-                    url: '/Home/GetSelectedFlight',
-                    type: 'POST',
-                    data: JSON.stringify(orderInn),
-                    contentType: "application/json;charset=utf-8",
-                    success: function (orderInn) {
-                        showOrderInfo(orderInn);
-                        //window.location.reload();
-                    },
-                    error: function (x, y, z) {
-                        alert(x + '\n' + y + '\n' + z);
-                    }
-                });
-
-                /*
-                alert("FLYINFO \nFlightID: " + id +
-                    "\nTid: " + tid +
-                    "\nDato: " + dato +
-                    "\nFra: " + fra +
-                    "\nTil: " + til +
-                    "\nPris: " + pris)
-                */
-
-                 // var id = orderInn.id;
-                //window.location("Home/Passenger?ID=" + id);
+                orderInn = {
+                     id : $.trim(tableData[0]),
+                     time : $.trim(tableData[1]),
+                     date : $.trim(tableData[2]),
+                     from : $.trim(tableData[3]),
+                     to : $.trim(tableData[4]),
+                     price : $.trim(tableData[5])
+                }
             });
         }
 
-        function showOrderInfo(order) {
-            var string = "ID: " + order.id + "\nTid: " + order.date + "\nFra: " +
-                order.from + "\nTo: " + order.to + "\nPrice: " + order.price;
-            $("#varInfo").html(string);
+        function sendPost() {
+            $.ajax({
+                url: '/Home/FlightDetailsTest',
+                type: 'POST',
+                data: JSON.stringify(orderInn),
+                contentType: "application/json;charset=utf-8",
+                success: function (response) {
+                    window.location.href = "/Home/Passenger";
+                },
+                error: function (x, y, z) {
+                    console.log(x, y, z);
+                }
+            });
         }
-
+       /*
+        function showOrderInfo(selectedFlight) {
+            var string = "ID: " + selectedFlight.id + "\nTid: " + selectedFlight.date + "\nFra: " +
+                selectedFlight.from + "\nTo: " + selectedFlight.to + "\nPrice: " + selectedFlight.price;
+            $("#showOrderInfo").html(string);
+        }
+        */
     </script>
 </head>
 <body>
@@ -96,17 +79,16 @@
                             }
                             else
                             {
-
                                 foreach (var departure in Model)
                                 {
                                     i++;
-                                <tr onclick="depRows(this)" class="clickDep">
-                                    <td id="flightID">@departure.FlightId</td>
-                                    <td>@departure.DepartureTime</td>
-                                    <td>@departure.Date</td>
-                                    <td>@departure.From</td>
-                                    <td>@departure.To</td>
-                                    <td>@array[i]</td>
+                                <tr onclick="clickDep(this)" class="clickDep">
+                                    <td id="id">@departure.FlightId</td>
+                                    <td id="time">@departure.DepartureTime</td>
+                                    <td id="date">@departure.Date</td>
+                                    <td id="from">@departure.From</td>
+                                    <td id="to">@departure.To</td>
+                                    <td id="price">@array[i]</td>
                                 </tr>
                                     }
                                 }
@@ -115,12 +97,9 @@
                 </thread>
             </table>
         </div>
-
-        <div id="showOrderInfo"></div>
-
         <br />
         <a href="Index" class="btn btn-lg btn-default pull-left">Tilbake</a>
-        <input type="submit" value="Velg" class="btn btn-lg btn-primary pull-right" id="button-design" />
+        <input onclick="sendPost()" type="submit" value="Velg" class="btn btn-lg btn-primary pull-right" id="button-design" />
 
         <!--<a href="/Home/Passenger" class="btn btn-lg btn-primary pull-right" id="button-design">Fortsett</a>-->
     </div>

@@ -42,8 +42,25 @@ namespace Flybiletter
                 return true;
             }
         }
-        
-        public List<Departure> GetDePInfo()
+
+        //Fjernes?
+        public Departure getFlightID(string id)
+        {
+            var db = new AirportContext();
+            Departure dbFlightID = db.Departure.Find(id);
+
+            var flightDetails = new Departure()
+            {
+                FlightId = dbFlightID.FlightId,
+                From = dbFlightID.From,
+                To = dbFlightID.To,
+                Date = dbFlightID.Date,
+                // pris??
+            };
+            return flightDetails;
+        }
+
+        public List<Departure> GetFlightInfo()
         {
             var db = new AirportContext();
             List<Departure> dep = db.Departure.Select(d => new Departure()
@@ -56,6 +73,9 @@ namespace Flybiletter
             }).ToList();
             return dep;
         }
+
+
+
 
         public Order FindOrder(string id)
         {
