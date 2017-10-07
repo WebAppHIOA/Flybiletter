@@ -99,9 +99,15 @@ namespace Flybiletter.Controllers
         }
 
         
-        public JsonResult FlightDetailsTest(String json)
+        public JsonResult FlightDetailsTest(String id, 
+                                            String name , String time,
+                                            String date, String from,
+                                            String to, String price)
         {
-            System.Diagnostics.Debug.WriteLine(json);
+            System.Diagnostics.Debug.WriteLine(id
+                                             + name + time
+                                             + date + from
+                                             + to + price);
             System.Diagnostics.Debug.WriteLine("Burde være JSON over denne meldingen");
             /*  
             Session["From"] = Request.Form["from"];
@@ -110,8 +116,15 @@ namespace Flybiletter.Controllers
 
             return RedirectToAction("Index", "Departure");
             */
-            Session["DepartureJasonObject"] = json;
-
+            List<String> DepartureString = new List<string>();
+            DepartureString.Add(id);
+            DepartureString.Add(name);
+            DepartureString.Add(time);
+            DepartureString.Add(date);
+            DepartureString.Add(from);
+            DepartureString.Add(to);
+            DepartureString.Add(price);
+            Session["DepartureDataList"] = DepartureString;
             return Json("Success");
         }
 
@@ -210,8 +223,8 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
-            
 
+            ViewData["DepartureDataList"] = Session["DepartureDataList"];
             return View();
 
         }
