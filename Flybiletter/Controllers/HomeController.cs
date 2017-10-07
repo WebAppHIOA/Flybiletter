@@ -98,6 +98,23 @@ namespace Flybiletter.Controllers
             return View(departures);
         }
 
+        
+        public JsonResult FlightDetailsTest(String json)
+        {
+            System.Diagnostics.Debug.WriteLine(json);
+            System.Diagnostics.Debug.WriteLine("Burde være JSON over denne meldingen");
+            /*  
+            Session["From"] = Request.Form["from"];
+            Session["To"] = Request.Form["to"];
+            Session["Date"] = Request.Form["avreise"];
+
+            return RedirectToAction("Index", "Departure");
+            */
+            Session["DepartureJasonObject"] = json;
+
+            return Json("Success");
+        }
+
         public ActionResult Departures()
         {
             /*   string from = Request.Form["from"];

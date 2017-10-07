@@ -25,22 +25,22 @@
 
                 //bygger et order objekt fra brukerens selected row
                 var orderInn = {
-                     id = $.trim(tableData[0]),
-                     time = $.trim(tableData[1]),
-                     date = $.trim(tableData[2]),
-                     from = $.trim(tableData[3]),
-                     to = $.trim(tableData[4]),
-                     price = $.trim(tableData[5])
+                     id : $.trim(tableData[0]),
+                     time : $.trim(tableData[1]),
+                     date : $.trim(tableData[2]),
+                     from : $.trim(tableData[3]),
+                     to : $.trim(tableData[4]),
+                     price : $.trim(tableData[5])
                 }
                 
                 $.ajax({
-                    url: '/Home/GetSelectedFlight',
+                    url: '/Home/FlightDetailsTest',
                     type: 'POST',
-                    data: JSON.stringify(orderInn),
+                    data: "data=" + JSON.stringify({orderInn),
                     contentType: "application/json;charset=utf-8",
-                    success: function (orderInn) {
-                        showOrderInfo(orderInn);
-                        //window.location.reload();
+                    success: function (response) {
+                       // showOrderInfo(orderInn);
+                        window.location.href = "/Home/Confirmation";
                     },
                     error: function (x, y, z) {
                         alert(x + '\n' + y + '\n' + z);
