@@ -159,9 +159,7 @@ namespace Flybiletter.Controllers
             Order order = db.FindOrder(orderNumber);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(order);
-            return json;
-
-            
+            return json;      
         }
         
         //?????????????????????
@@ -175,8 +173,10 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
+            DB db = new DB();
+            ViewData["Departure"] = db.FindDeparture("SK317562");
+            //
             return View();
-
         }
 
         /* Kun email delen av dette er testa
