@@ -10,6 +10,7 @@ namespace Flybiletter.Models
     
     public class Order
     {
+
         [Key]
         public string OrderNumber { get; set; }
         public string Date { get; set; }
