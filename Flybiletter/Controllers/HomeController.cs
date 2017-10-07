@@ -16,7 +16,7 @@ namespace Flybiletter.Controllers
         public ActionResult Index()
         {
             var db = new DB();
-            var IndexVM = new ViewModels.IndexViewModel();
+            var IndexVM = new IndexViewModel();
             IndexVM.FromAirport = db.getAllAirports();
             IndexVM.ToAirport = db.getAllAirports();
 
@@ -24,7 +24,7 @@ namespace Flybiletter.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(ViewModels.IndexViewModel indexView)
+        public ActionResult Index(IndexViewModel indexView)
         {
             if (ModelState.IsValid)
             {
@@ -35,28 +35,11 @@ namespace Flybiletter.Controllers
                 }
 
                 Session["IndexObject"] = indexView;
-                // return RedirectToAction("Index", "Departure", new { area = "" });
-                //  return RedirectToAction("FlightDetails");
                 return RedirectToAction("Departures");
             }
 
             ModelState.AddModelError("TravelDate", "Noe gikk feil, vennsligst prøv igjen");
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Test()
-        {
-            var db = new DB();
-            var objekt = db.FindDeparture("TestId");
-            String test = objekt.Airport.City;
-            return View(test);
-        }
-
-
-        public ActionResult Order(Order order)
-        {
-
-            return View();
         }
 
         public ActionResult Test()
@@ -97,13 +80,6 @@ namespace Flybiletter.Controllers
         public ActionResult FlightDetails()
         {
 
-            /*  
-            Session["From"] = Request.Form["from"];
-            Session["To"] = Request.Form["to"];
-            Session["Date"] = Request.Form["avreise"];
-
-            return RedirectToAction("Index", "Departure");
-            */
             var departures = Session["Departures"];
             ViewData["Price"] = Session["Prices"];
 
@@ -112,9 +88,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult Departures()
         {
-            /*   string from = Request.Form["from"];
-               string to = Request.Form["to"];
-               string date = Request.Form["avreise"];*/
 
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
@@ -132,7 +105,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult AddDeparture()
         {
-            //Test av ny db insert
             DB db = new DB();
 
             List<Airport> allAirports = db.getAllAirports();
@@ -201,52 +173,44 @@ namespace Flybiletter.Controllers
             return jsonSerializer.Serialize("OK");
         }
 
-
-
         public ActionResult Passenger()
         {
-            
-
             return View();
 
         }
 
-       /* Skal få inn fra formet i passenger.cshtml, httpPost Order order som parameter?. Destinasjon ligger i modelView session
-        * blir lagt inn ved merge
-        */
-      
-        public ActionResult Confirmation(Order order)
+        /* Kun email delen av dette er testa
+         * 
+         */
+        [HttpPost]
+        public ActionResult Passenger(Order order)
         {
-            /*Invoice invoice = new Invoice
-            {
-                InvoiceId = "TestID",
-                OrderReferance = "OrderReference",
-                Date = "12.03.2019",
-                From = "Oslo",
-                Destination = "Dubai",
-                Price = "12345",
-                Email = "katrinealmas@gmail.com",
-            };*/
-
-            // var indexObjekt = Session["IndexObject"];
+            var indexObjekt = Session["IndexObject"] as IndexViewModel;
 
             Invoice invoice = new Invoice
             {
                 InvoiceId = UniqueReference(),
                 OrderReferance = order.OrderNumber,
                 Date = order.Date,
-                From = "TBD", // indexObjekt.FromAirportID
-                Destination = "TBD", // index.Objekt.ToAirportID 
+                From = indexObjekt.FromAirportID,
+                Destination = indexObjekt.ToAirportID,
                 Price = order.Price,
                 Email = order.Email,
             };
 
             var content = GenerateInvoice.NewInvoise(invoice);
-            var  streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
+            var streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
             GenerateInvoice.SendEmail(streamContent, invoice);
+
+            return RedirectToAction("Confirmation");
+        }
+
+        public ActionResult Confirmation()
+        {
 
             return View();
         }
+
         public string UniqueReference()
         {
             var guid = System.Guid.NewGuid().ToString();
