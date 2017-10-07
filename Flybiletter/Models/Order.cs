@@ -13,14 +13,16 @@ namespace Flybiletter.Models
     }
     public class Order
     {
+
         [Key]
         public string OrderNumber { get; set; }
         public string Date { get; set; }
+        public string Firstname { get; set; }
+        public string Surname { get; set; }
+        public string Tlf { get; set; }
         public string Email { get; set; }
         public string Price { get; set; }
-        public string PassengerCount { get; set; }
-        public Trip trip { get; set; }
 
-        public virtual List<Customer> Passenger { get; set; }
+        public virtual Departure Departure { get; set; }
     }
 }

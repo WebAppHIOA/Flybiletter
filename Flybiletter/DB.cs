@@ -10,7 +10,6 @@ namespace Flybiletter
 
     public class DB
     {
-
         public List<Airport> getAllAirports()
         {
             using (var db = new AirportContext())
@@ -26,17 +25,36 @@ namespace Flybiletter
         {
             using (var db = new AirportContext())
             {
-                try
+                var departure = db.Departure.Where(d => d.FlightId == order.Departure.FlightId).First();
+                departure.Order.Add(new Order
                 {
-                    db.Order.Add(order);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
+                    OrderNumber = order.OrderNumber,
+                    Date = order.Date,
+                    Firstname = order.Firstname,
+                    Surname = order.Surname,
+                    Tlf = order.Tlf,
+                    Email = order.Email,
+                    Price = order.Price,
+                });
+
+                db.SaveChanges();
+
+                return true;
             }
+        }
+        
+        public List<Departure> GetDePInfo()
+        {
+            var db = new AirportContext();
+            List<Departure> dep = db.Departure.Select(d => new Departure()
+            {
+                FlightId = d.FlightId,
+                DepartureTime = d.DepartureTime,
+                From = d.From,
+                To = d.To,
+                //burde stå pris, men pris er på order klassen
+            }).ToList();
+            return dep;
         }
 
         public Order FindOrder(string id)
@@ -82,7 +100,15 @@ namespace Flybiletter
             }
         }
 
+        public string UniqueReference()
+        {
+            var guid = System.Guid.NewGuid().ToString();
 
+            return guid;
+        }
+
+
+        /*
         public Boolean AddCustomer(Customer passenger)
         {
             using (var db = new AirportContext())
@@ -108,17 +134,6 @@ namespace Flybiletter
             }
 
         }
-
-
-        /* Ligger for øyeblikket i HomeController i stedenfor
-        public string UniqueReference()
-        {
-            var guid = System.Guid.NewGuid().ToString();
-
-            return guid;
-        }
-        
-
  */
         public Boolean IsFlightIdAvailable(string toTest)
         {

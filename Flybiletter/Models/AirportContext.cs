@@ -15,7 +15,7 @@ namespace Flybiletter.Models
             Database.SetInitializer<AirportContext>(new DbInitialize());
         }
 
-        public DbSet<Customer> Passenger { get; set; }
+        //public DbSet<Customer> Passenger { get; set; }
         public DbSet<Departure> Departure { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Airport> Airport { get; set; }
