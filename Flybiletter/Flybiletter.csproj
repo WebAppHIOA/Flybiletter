@@ -305,7 +305,6 @@
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Home\Passenger.cshtml" />
     <Content Include="Views\Home\FlightDetails.cshtml" />
-    <Content Include="Views\Departure\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -14,7 +14,6 @@ namespace Flybiletter.ViewModels
                ApplyFormatInEditMode = true)]
         [Display(Name = "Dato")]
         public string TravelDate { get; set; }
-
         
         public List<Airport> ToAirport { get; set; }
 

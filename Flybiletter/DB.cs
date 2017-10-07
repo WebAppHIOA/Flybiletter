@@ -65,9 +65,9 @@ namespace Flybiletter
 
         public Boolean AddDeparture(Departure departure)
         {
-        
             using (var db = new AirportContext())
             {
+
                 var airport = db.Airport.Where(c => c.AirportId == departure.Airport.AirportId).First();
                 airport.Departure.Add(new Departure
                 {
@@ -93,8 +93,6 @@ namespace Flybiletter
                 return departure;
             }
         }
-
-
 
         public Boolean IsFlightIdAvailable(string toTest)
         {

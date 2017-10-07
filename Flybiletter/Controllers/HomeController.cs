@@ -38,7 +38,7 @@ namespace Flybiletter.Controllers
                 return RedirectToAction("Departures");
             }
 
-            ModelState.AddModelError("TravelDate", "Noe gikk feil, vennsligst prøv igjen");
+            ModelState.AddModelError("TravelDate", "Noe gikk feil, vennligst prøv igjen");
             return RedirectToAction("Index");
         }
 
@@ -53,26 +53,6 @@ namespace Flybiletter.Controllers
     
         public ActionResult Order(Order order)
         {
-
-            return View();
-        }
-
-        public ActionResult TestEmail()
-        {
-            Invoice invoice = new Invoice
-            {
-                InvoiceId = "TestID",
-                OrderReferance = "908497532",
-                Date = "12.03.2019",
-                From = "Oslo",
-                Destination = "Dubai",
-                Price = "12345",
-                Email = "katrinealmas@gmail.com",
-            };
-
-            var content = GenerateInvoice.NewInvoise(invoice);
-            var streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
-            GenerateInvoice.SendEmail(streamContent, invoice);
 
             return View();
         }
@@ -212,14 +192,13 @@ namespace Flybiletter.Controllers
             return View();
         }
 
-        /* Kun email delen av dette er testa
-         * 
-         */
+
         [HttpPost]
         public ActionResult Passenger(Order order)
         {
             var departure = Session["DepartureDataList"] as List<String>;
             var indexView = Session["IndexObject"] as IndexViewModel;
+            List<Airport> airports = indexView.FromAirport;
 
             DB db = new DB();
             
