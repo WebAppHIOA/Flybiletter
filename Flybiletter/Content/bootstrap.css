@@ -4982,7 +4982,7 @@ td {
 
 
 #tableDep tr:hover.selected td {
-    background-color: #66cc99;
+    background-color: #66cc99 !important;
 }
 
 
