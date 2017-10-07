@@ -49,7 +49,7 @@ namespace Flybiletter.Models
             builder.Append("<tr><td><p>Dato: </p></td><td><p>").Append(invoice.Date).Append("</p></td></tr>");
             builder.Append("<tr><td><p>Fra: </p></td><td><p>").Append(invoice.From).Append("</p></td></tr>");
             builder.Append("<tr><td><p>Til: </p></td><td><p>").Append(invoice.Destination).Append("</p></td></tr>");
-            builder.Append("<tr><td><p>Pris: </p></td><td><p>").Append(invoice.Price).Append("</p></td></tr></table></br>");
+            builder.Append("<tr><td><p>Pris: </p></td><td><p>").Append(invoice.Price).Append(" kr</p></td></tr></table></br>");
 
             builder.Append("<table style='100%'><tr><td><b><p>Kontonummer: </p></b></td><td><b><p>1234.56.78911</p></b></td>");
             builder.Append("<td><b><p>KID number: </p></b></td><td><b><p>").Append(invoice.OrderReferance).Append("</p></b></td></tr></table></body>");
@@ -109,6 +109,11 @@ namespace Flybiletter.Models
         public static void Footer(StringBuilder builder)
         {
             builder.Append("</head></html>");
+        }
+
+        public static string GenerateKID()
+        {
+            return "KID";
         }
     }
 }

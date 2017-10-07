@@ -97,13 +97,7 @@ namespace Flybiletter.Controllers
                                              + date + from
                                              + to + price);
             System.Diagnostics.Debug.WriteLine("Burde være JSON over denne meldingen");
-            /*  
-            Session["From"] = Request.Form["from"];
-            Session["To"] = Request.Form["to"];
-            Session["Date"] = Request.Form["avreise"];
-
-            return RedirectToAction("Index", "Departure");
-            */
+         
             List<String> DepartureString = new List<string>();
             DepartureString.Add(id);
             DepartureString.Add(name);
@@ -203,8 +197,18 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
-
+            /*            List<String> DepartureString = new List<string>();
+                            DepartureString.Add(id);
+                            DepartureString.Add(name);
+                            DepartureString.Add(time);
+                             DepartureString.Add(date);
+                             DepartureString.Add(from);
+                             DepartureString.Add(to);
+                              DepartureString.Add(price);
+             * 
+             */
             ViewData["DepartureDataList"] = Session["DepartureDataList"];
+
             return View();
         }
 
@@ -214,17 +218,50 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Passenger(Order order)
         {
+            var departure = Session["DepartureDataList"] as List<String>;
+            var indexView = Session["IndexObject"] as IndexViewModel;
+
+            DB db = new DB();
+            
+            var fromAirport = db.FindAirport(indexView.FromAirportID);
+            var toAirport = db.FindAirport(indexView.ToAirportID);
+
+            Departure dep = new Departure
+            {
+                FlightId = departure[0],
+                From = departure[4],
+                To = departure[5],
+                Date = departure[3],
+                DepartureTime = departure[2],
+                Airport = fromAirport
+            };
+
+            db.AddDeparture(dep);
+
+            order.OrderNumber = UniqueReference();
+            db.AddOrder(new Order
+            {
+                OrderNumber = order.OrderNumber,
+                Date = departure[4],
+                Firstname = order.Firstname,
+                Surname = order.Surname,
+                Tlf = order.Tlf,
+                Email = order.Email,
+                Price = departure[6],
+                Departure = dep
+            });
+
             var indexObjekt = Session["IndexObject"] as IndexViewModel;
 
             Invoice invoice = new Invoice
             {
                 InvoiceId = UniqueReference(),
-                OrderReferance = order.OrderNumber,
-                Date = order.Date,
-                From = indexObjekt.FromAirportID,
-                Destination = indexObjekt.ToAirportID,
-                Price = order.Price,
-                Email = order.Email,
+                OrderReferance = UniqueReference(),
+                Date = indexObjekt.TravelDate,
+                From = fromAirport.Name,
+                Destination = toAirport.Name,
+                Price = departure[6],
+                Email = order.Email
             };
 
             var content = GenerateInvoice.NewInvoise(invoice);

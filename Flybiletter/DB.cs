@@ -54,9 +54,18 @@ namespace Flybiletter
             }
         }
 
+        public Airport FindAirport(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                var airport = db.Airport.First(a => a.AirportId == id);
+                return airport;
+            }
+        }
 
         public Boolean AddDeparture(Departure departure)
         {
+        
             using (var db = new AirportContext())
             {
                 var airport = db.Airport.Where(c => c.AirportId == departure.Airport.AirportId).First();
