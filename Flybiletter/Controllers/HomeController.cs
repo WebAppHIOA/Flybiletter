@@ -28,8 +28,18 @@ namespace Flybiletter.Controllers
         {
             if (ModelState.IsValid)
             {
-                if ((indexView.ToAirportID).Equals(indexView.FromAirportID))
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+               // var time = indexView.TravelDate;
+                //indexView.TravelDate = time.Date;
+                if ((indexView.TravelDate) < now.Date)
                 {
+                    ModelState.AddModelError("TravelDate", "Avreise dato kan ikke være tilbake i tid");
+                    return Index();
+                }
+                if((indexView.ToAirportID).Equals(indexView.FromAirportID))
+                {
+                    
                     ModelState.AddModelError("FromAirportID", "Destinasjon og avreise må være forskjellig");
                     return Index();
                 }
@@ -138,7 +148,7 @@ namespace Flybiletter.Controllers
             int number = random.Next(8);
             string[] times = GenerateDepartures.GenerateTimes(number);
 
-            List<Departure> departures = GenerateDepartures.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate, times);
+            List<Departure> departures = GenerateDepartures.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString(), times);
 
             Session["Prices"] = GenerateDepartures.GeneratePrice(number);
             Session["Departures"] = departures;

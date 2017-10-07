@@ -9,11 +9,12 @@ namespace Flybiletter.ViewModels
 {
     public class IndexViewModel
     {
+        [DataType(DataType.Date)]
         [Required(ErrorMessage ="Du må oppgi dato")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}",
                ApplyFormatInEditMode = true)]
         [Display(Name = "Dato")]
-        public string TravelDate { get; set; }
+        public DateTime TravelDate { get; set; }
 
         
         public List<Airport> ToAirport { get; set; }

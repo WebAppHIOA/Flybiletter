@@ -20,7 +20,7 @@ namespace Flybiletter.Controllers
             var IndexObject = (IndexViewModel)Session["IndexObject"];
             var form = IndexObject.FromAirportID as String;
             var to = IndexObject.ToAirportID as String;
-            var date = IndexObject.TravelDate as String;
+            var date = Convert.ToString(IndexObject.TravelDate);
 
             Random random = new Random();
             int antall = random.Next(8);
