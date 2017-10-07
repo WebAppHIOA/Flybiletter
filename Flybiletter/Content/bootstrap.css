@@ -4974,16 +4974,15 @@ td {
     padding: 5px 10px 5px 10px;
 }
 
-#tableDep tr:hover.selected td, 
-#tableDep tr:hover td {
+#tableDep tr:hover, tr.selected {
+    background-color: #66cc99;
+}
+
+#tableDep tr:hover {
     background-color: #fff;
     cursor: pointer;
 }
 
-
-#tableDep tr:hover.selected td {
-    background-color: #66cc99 !important;
-}
 
 
 .input-dialog-design {
