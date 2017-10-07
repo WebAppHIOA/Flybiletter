@@ -98,6 +98,35 @@ namespace Flybiletter.Controllers
             return View(departures);
         }
 
+        public JsonResult FlightDetailsTest(String id,
+                                             String time,
+                                             String date, String from,
+                                             String to, String price)
+        {
+
+            /*  
+            Session["From"] = Request.Form["from"];
+            Session["To"] = Request.Form["to"];
+            Session["Date"] = Request.Form["avreise"];
+            return RedirectToAction("Index", "Departure");
+            */
+            List<String> DepartureString = new List<string>();
+            DepartureString.Add(id);
+            DepartureString.Add(time);
+            DepartureString.Add(date);
+            DepartureString.Add(from);
+            DepartureString.Add(to);
+            DepartureString.Add(price);
+            Session["DepartureDataList"] = DepartureString;
+            return Json("Success");
+        }
+
+
+
+
+
+
+
         public ActionResult Departures()
         {
             /*   string from = Request.Form["from"];
@@ -139,52 +168,11 @@ namespace Flybiletter.Controllers
 
             return RedirectToAction("Passenger");
         }
-
-
-
-        public string GetSelectedFlight(string flightID)
+      
+        public string RegisterFlight(Departure departure)
         {
             var db = new DB();
-            db.FindDeparture(flightID);
-
-            /*
-
-            List<Departure> selectDep = db.GetDePInfo();
-            var flightDetails = new List<Departure>();
-            foreach(Departure d in selectDep)
-            {
-                var flight = new Departure();
-                flight.FlightId = d.FlightId;
-                flight.DepartureTime = d.DepartureTime;
-                flight.From = d.From;
-                flight.To = d.To;
-
-                flightDetails.Add(flight);
-            }*/
-            var jsonSerializer = new JavaScriptSerializer();
-            string json = jsonSerializer.Serialize(flightID);
-            return json;
-        }
-
-        
-
-        //???????????????????
-        public string GetOrderInfo(string orderNumber)
-        {
-            var db = new DB();
-            Order order = db.FindOrder(orderNumber);
-            var jsonSerializer = new JavaScriptSerializer();
-            string json = jsonSerializer.Serialize(order);
-            return json;
-
-            
-        }
-        
-        //?????????????????????
-        public string RegisterOrder(Order insertOrder)
-        {
-            var db = new DB();
-            db.AddOrder(insertOrder);
+            db.AddDeparture(departure);
             var jsonSerializer = new JavaScriptSerializer();
             return jsonSerializer.Serialize("OK");
         }
@@ -193,10 +181,8 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
-            
-
+            ViewData["DepartureDataList"] = Session["DepartureDataList"];
             return View();
-
         }
 
 
