@@ -85,12 +85,6 @@ namespace Flybiletter
             }
         }
 
-        public string UniqueReference()
-        {
-            var guid = System.Guid.NewGuid().ToString();
-
-            return guid;
-        }
 
 
         public Boolean IsFlightIdAvailable(string toTest)

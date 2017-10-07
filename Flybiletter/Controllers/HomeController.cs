@@ -18,6 +18,7 @@ namespace Flybiletter.Controllers
             {
                 return RedirectToAction("");
             }*/
+
             var db = new DB();
             List<Airport> allAirports = db.getAllAirports();
 
@@ -120,10 +121,13 @@ namespace Flybiletter.Controllers
 
         }
 
-       
-        public ActionResult Confirmation()
+       /* Skal få inn fra formet i passenger.cshtml, httpPost Order order som parameter?. Destinasjon ligger i modelView session
+        * blir lagt inn ved merge
+        */
+      
+        public ActionResult Confirmation(Order order)
         {
-            Invoice invoice = new Invoice
+            /*Invoice invoice = new Invoice
             {
                 InvoiceId = "TestID",
                 OrderReferance = "OrderReference",
@@ -132,6 +136,19 @@ namespace Flybiletter.Controllers
                 Destination = "Dubai",
                 Price = "12345",
                 Email = "katrinealmas@gmail.com",
+            };*/
+
+            // var indexObjekt = Session["IndexObject"];
+
+            Invoice invoice = new Invoice
+            {
+                InvoiceId = UniqueReference(),
+                OrderReferance = order.OrderNumber,
+                Date = order.Date,
+                From = "TBD", // indexObjekt.FromAirportID
+                Destination = "TBD", // index.Objekt.ToAirportID 
+                Price = order.Price,
+                Email = order.Email,
             };
 
             var content = GenerateInvoice.NewInvoise(invoice);
@@ -139,6 +156,12 @@ namespace Flybiletter.Controllers
             GenerateInvoice.SendEmail(streamContent, invoice);
 
             return View();
+        }
+        public string UniqueReference()
+        {
+            var guid = System.Guid.NewGuid().ToString();
+
+            return guid;
         }
 
     }
