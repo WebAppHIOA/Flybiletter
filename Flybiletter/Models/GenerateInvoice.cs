@@ -27,18 +27,19 @@ namespace Flybiletter.Models
     {
         /* DB og modeller må oppdateres før dette evt vil fungere da departur per dags dato ikke har en
          * direkte relasjon til order
-         * 
          */
-        public static string NewInvoice(Invoice invoice)
+
+        public static string NewInvoice(Invoice newInvoice)
         {
             StringBuilder builder = new StringBuilder();
-            Header(builder, invoice);
-            Body(builder, invoice);
+            Header(builder);
+            Body(builder, newInvoice);
             Footer(builder);
+
             return builder.ToString();
         }
 
-        public static void Header(StringBuilder builder, Invoice invoice)
+        public static void Header(StringBuilder builder)
         {
             builder.Append("<html><head><body><h3><b>Faktura for din ordre</b></h3></br>");
         }
@@ -57,6 +58,7 @@ namespace Flybiletter.Models
 
         public static Byte[] ConvertHtmlToPDF(string emailContent)
         {
+            // string emailContent = builder.ToString();
             var ms = new MemoryStream();
 
             using (var doc = new Document())
@@ -82,8 +84,11 @@ namespace Flybiletter.Models
             }
         }
 
-        public static void SendEmail(byte[] streamResult, Invoice invoice)
+
+        public static void SendEmail(Invoice invoice)
         {
+            var emailContent = NewInvoice(invoice);
+            var streamResult = ConvertHtmlToPDF(emailContent);
             MailMessage mail = new MailMessage();
             mail.From = new System.Net.Mail.MailAddress("katrinealmastest@gmail.com");
 
@@ -111,9 +116,13 @@ namespace Flybiletter.Models
             builder.Append("</head></html>");
         }
 
-        public static string GenerateKID()
+        public static string UniqueReference()
         {
-            return "KID";
+            var guid = System.Guid.NewGuid().ToString();
+
+            return guid;
         }
+
+
     }
 }

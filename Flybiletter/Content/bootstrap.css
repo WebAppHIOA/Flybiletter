@@ -4942,7 +4942,11 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 
-
+.position-button {
+   float: right !important;
+   margin-right: 29px;
+   
+}
 
 .biletter {
     letter-spacing: 0.8px;
@@ -4996,11 +5000,30 @@ td {
     font-family: 'Montserrat', sans-serif;
 }
 
+.index-dialog {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 8px;
+    margin-left: 10%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input[type=search]:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+input[type=search]:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
 #airports, datalist {
     font-family: 'Montserrat', sans-serif;
-    /*height: 50px !important;
-    max-height: 80px !important;
-    overflow-y: auto;*/
 }
 
 #airports:hover, datalist:hover {
@@ -5044,12 +5067,13 @@ input[type=radio]:checked ~ .check {
 
 .date-design {
     width: 300px;
-    height: 33px;
+    height: 40px;
     border: solid 1px #dcdcdc;
     border-radius: 5px;
     padding-left: 10px;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 8px;
+    margin-left: 10%;
 }
 
 input[type=date]:focus {
@@ -5125,6 +5149,20 @@ input[type=date]:hover:not(:focus) {
 #button-design:hover {
     border: solid 2px #36b075;
     color: white;
+}
+
+#index-button {
+    border: 2px solid #2d8659;
+    background-color: #39ac73;
+    border-radius: 3px;
+    color: #fff;
+    
+}
+
+#index-button:hover {
+    border: solid 2px #40bf80;
+    background-color: #66cc99;
+    color: black;
 }
 
 .reisende-input {

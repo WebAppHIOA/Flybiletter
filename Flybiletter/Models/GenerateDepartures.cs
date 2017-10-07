@@ -11,11 +11,13 @@ namespace Flybiletter.Models
         /* Lager liste med Departure objekter. Alle felt fylt ut, med unntak av pris.
          * 
          */
-        public static List<Departure> CreateDepartures(string from, string to, string date, string[] random)
+        public static List<Departure> CreateDepartures(string from, string to, string date)
         {
             List<Departure> departures = new List<Departure>();
+            Random random = new Random();
+            int randomNumber = random.Next(8);
 
-            var times = random;
+            var times = GenerateTimes(randomNumber);
 
             foreach (string i in times)
             {
@@ -60,7 +62,6 @@ namespace Flybiletter.Models
         public static string GenerateFlightId()
         {
             Random random = new Random();
-            var db = new DB();
 
             StringBuilder builder = new StringBuilder();
             builder.Append("SK");
@@ -70,7 +71,7 @@ namespace Flybiletter.Models
             }
             var flightId = builder.ToString();
 
-            if (db.IsFlightIdAvailable(flightId))
+            if (DB.IsFlightIdAvailable(flightId))
             {
                 return GenerateFlightId();
             }
@@ -85,6 +86,8 @@ namespace Flybiletter.Models
             int[] price = new int[antall];
 
             // StringBuilder builder = new StringBuilder();
+
+
             Random random = new Random();
 
             for (int i = 0; i < antall; i++)
