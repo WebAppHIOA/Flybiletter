@@ -29,7 +29,7 @@ namespace Flybiletter.Models
          * direkte relasjon til order
          * 
          */
-        public string NewInvoise(Invoice invoice)
+        public string NewInvoice(Invoice invoice)
         {
             StringBuilder builder = new StringBuilder();
             Header(builder, invoice);
@@ -38,26 +38,21 @@ namespace Flybiletter.Models
             return builder.ToString();
         }
 
-        public string Header(StringBuilder builder, Invoice invoice)
+        public static void Header(StringBuilder builder, Invoice invoice)
         {
-            builder.Append("<html><head><body><h2><center><u>Order invoice</u></center></h2>");
-            return "Halla";
+            builder.Append("<html><head><body><h3><b>Faktura for din ordre</b></h3></br>");
         }
 
-        public string Body(StringBuilder builder, Invoice invoice)
+        public static void Body(StringBuilder builder, Invoice invoice)
         {
-            builder.Append("<body><table style='100%'><tr><td> Ordrenummer: </td><td>").Append(invoice.OrderReferance).Append("</td></tr>");
-            builder.Append("<tr><td>Dato: </td><td>").Append(invoice.Date).Append("</td></tr>");
-            builder.Append("<tr><td>Fra: </td><td>").Append(invoice.From).Append("</td></tr>");
-            builder.Append("<tr><td>Til: </td><td>").Append(invoice.Destination).Append("</td></tr>");
-            builder.Append("<tr><td>Pris: </td><td>").Append(invoice.Price).Append("</td></tr></br>");
+            builder.Append("</br><table style='100%'><tr><td><p>Ordrenummer:</p></td><td><p>").Append(invoice.OrderReferance).Append("</p></td></tr>");
+            builder.Append("<tr><td><p>Dato: </p></td><td><p>").Append(invoice.Date).Append("</p></td></tr>");
+            builder.Append("<tr><td><p>Fra: </p></td><td><p>").Append(invoice.From).Append("</p></td></tr>");
+            builder.Append("<tr><td><p>Til: </p></td><td><p>").Append(invoice.Destination).Append("</p></td></tr>");
+            builder.Append("<tr><td><p>Pris: </p></td><td><p>").Append(invoice.Price).Append("</p></td></tr></table></br>");
 
-            builder.Append("</br><p>Forfallsdator er 14 dager etter motatt faktura<p></br>");
-
-            builder.Append("<tr><td>Account number: </td></td>1234.56.78901</td></tr>");
-            builder.Append("<tr><td>KID number: </td><td>").Append(invoice.OrderReferance).Append(" </ td ></ tr ></table></body>");
-
-            return "Test";
+            builder.Append("<table style='100%'><tr><td><b><p>Kontonummer: </p></b></td><td><b><p>1234.56.78911</p></b></td>");
+            builder.Append("<td><b><p>KID number: </p></b></td><td><b><p>").Append(invoice.OrderReferance).Append("</p></b></td></tr></table></body>");
         }
 
         private static Byte[] ConvertHtmlToPDF(string emailContent)
@@ -98,7 +93,7 @@ namespace Flybiletter.Models
             }
         }
 
-        public void SendEmail()
+        public void SendEmail(byte[] streamResult, Invoice invoice)
         {
             MailMessage mail = new MailMessage();
             mail.From = new System.Net.Mail.MailAddress("katrinealmastest@gmail.com");
@@ -113,21 +108,18 @@ namespace Flybiletter.Models
             smtp.Host = "smtp.gmail.com";
 
             //recipient address
-            mail.To.Add(new MailAddress("katrinealmas@gmail.com"));
-            mail.Attachments.Add(new Attachment(new MemoryStream(ConvertHtmlToPDF("<h2>Test</h2></br><p>Funker det?</p>")), "Ordre.pdf"));
+            mail.To.Add(new MailAddress(invoice.Email));
+            mail.Attachments.Add(new Attachment(new MemoryStream(streamResult), "Faktura.pdf"));
+            mail.Subject = "Ordrebekreftelse";
 
-            //Formatted mail body
             mail.IsBodyHtml = true;
-            string st = "Takk for din ordre ";
-
-            mail.Body = st;
-            smtp.Send(mail);
+            mail.Body = "Takk for din ordre";
+            smtp.Send(mail); ;
         }
 
-        public string Footer(StringBuilder builder)
+        public static void Footer(StringBuilder builder)
         {
             builder.Append("</head></html>");
-            return "the end";
         }
     }
 }
