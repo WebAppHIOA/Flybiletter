@@ -12,8 +12,7 @@
         
         function clickDep() {
             $('tr.clickDep').click(function () {
-                $(".selected").removeClass("selected");
-                $(this).addClass("selected");
+                $(this).addClass("selected").siblings().removeClass("selected");
                 var tableData = $(this).children("td").map(function () {
                     return $(this).text();
                 }).get();
@@ -29,6 +28,8 @@
             });
         }
 
+       
+
         function sendPost() {
             $.ajax({
                 url: '/Home/FlightDetailsTest',
@@ -43,13 +44,6 @@
                 }
             });
         }
-       /*
-        function showOrderInfo(selectedFlight) {
-            var string = "ID: " + selectedFlight.id + "\nTid: " + selectedFlight.date + "\nFra: " +
-                selectedFlight.from + "\nTo: " + selectedFlight.to + "\nPrice: " + selectedFlight.price;
-            $("#showOrderInfo").html(string);
-        }
-        */
     </script>
 </head>
 <body>
