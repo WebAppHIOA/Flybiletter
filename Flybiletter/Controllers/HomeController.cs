@@ -99,13 +99,12 @@ namespace Flybiletter.Controllers
         }
 
         
-        public JsonResult FlightDetailsTest(String id, 
-                                            String name , String time,
+        public JsonResult FlightDetailsTest(String id, String time,
                                             String date, String from,
                                             String to, String price)
         {
             System.Diagnostics.Debug.WriteLine(id
-                                             + name + time
+                                              + time
                                              + date + from
                                              + to + price);
             System.Diagnostics.Debug.WriteLine("Burde være JSON over denne meldingen");
@@ -116,6 +115,14 @@ namespace Flybiletter.Controllers
 
             return RedirectToAction("Index", "Departure");
             */
+
+            Dictionary<String, String> DepartureDict = new Dictionary<string, string>();
+            DepartureDict.Add("id", id);
+            DepartureDict.Add("date", date);
+            DepartureDict.Add("to", to);
+            DepartureDict.Add("from", from);
+            DepartureDict.Add("price", price);
+
             List<String> DepartureString = new List<string>();
             DepartureString.Add(id);
             DepartureString.Add(name);
@@ -125,6 +132,7 @@ namespace Flybiletter.Controllers
             DepartureString.Add(to);
             DepartureString.Add(price);
             Session["DepartureDataList"] = DepartureString;
+            Session["DepartureDataDict"] = DepartureDict;
             return Json("Success");
         }
 
@@ -223,8 +231,43 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
+            var DB = new DB();
+            var Dep = new Departure();
+            List<Airport> Airports = DB.getAllAirports();
+            List<String> DepList = (List<String>)Session["DepartureDataList"];
+            Dictionary<string, string> DepartureDict = (Dictionary < string, string>)Session["DepartureDataDict"];
 
-            ViewData["DepartureDataList"] = Session["DepartureDataList"];
+            foreach(Airport airport in Airports)
+            {
+                if(airport.AirportId == DepartureDict["from"])
+                {
+                    Dep.Airport = airport;
+                }
+            }
+
+            foreach (Airport airport in Airports)
+            {
+                if (airport.AirportId == DepartureDict["from"])
+                {
+                    Dep.From = airport.Name;
+                }
+            }
+
+            foreach (Airport airport in Airports)
+            {
+                if (airport.AirportId == DepartureDict["to"])
+                {
+                    Dep.To = airport.Name;
+                }
+            }
+
+
+            if (DepartureDict != null)
+            {
+                ViewData["DepartureDataList"] = DepartureDict;
+            }
+
+            
             return View();
 
         }

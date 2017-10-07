@@ -16,8 +16,7 @@
     <div class="container col-md-12">
         <h2 id="tickets-header">PASSASJER INFORMASJON</h2>
         <div class="biletter">
-        @foreach (var item in ViewData["DepartureDataList"] as List<String>)
-        {@item}
+       
         <br />
         @using (Html.BeginForm(FormMethod.Post))
         {
@@ -40,7 +39,8 @@
                     <td>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</td>
                 </tr>
             </table>
-         }
+            <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+        }
           </div> 
         <br />
         <br />
@@ -48,7 +48,7 @@
         <h2 id="tickets-header">ORDRE</h2>
         <div class="biletter">
             <br />
-            <p><label>Fra: </label></p>
+            <p><label>Fra: @ViewData["DepartureDataList"]</label></p>
             <p><label>Til: </label></p>
             <p><label>Dato: </label></p>
             <p><label>Pris: </label></p>
@@ -56,7 +56,7 @@
 
         <br />
         <a href="@Url.Action("FlightDetails", "Home")" class="btn btn-default btn-lg pull-left">Tilbake</a>
-        <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+        
         <!--<a href="Url.Action("Confirmation", "Home")" class="btn btn-primary btn-lg pull-right">Bekreft</a>-->
     </div>
    
