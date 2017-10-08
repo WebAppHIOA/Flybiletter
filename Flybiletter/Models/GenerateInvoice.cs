@@ -90,7 +90,7 @@ namespace Flybiletter.Models
             var emailContent = NewInvoice(invoice);
             var streamResult = ConvertHtmlToPDF(emailContent);
             MailMessage mail = new MailMessage();
-            mail.From = new System.Net.Mail.MailAddress("katrinealmastest@gmail.com");
+            mail.From = new System.Net.Mail.MailAddress("airzureairlines@gmail.com");
 
             // configuring the SMTP client
             SmtpClient smtp = new SmtpClient();
@@ -98,7 +98,7 @@ namespace Flybiletter.Models
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("katrinealmastest@gmail.com", "K2s0G1a7");
+            smtp.Credentials = new NetworkCredential("airzureairlines@gmail.com", "K2s0G1a7");
             smtp.Host = "smtp.gmail.com";
 
             //recipient address

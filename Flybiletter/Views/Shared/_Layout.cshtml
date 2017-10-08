@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<title>@ViewBag.Title - My ASP.NET Application</title>-->
+    @Html.Partial("_Airzures")
     <title>Flybiletter</title>
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
@@ -20,13 +21,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Flyselskap", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
+                    <img src="@Url.Content("~/airzure_nav.png")" />
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
+
+            <div class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home", new { @class = "larger-nav" })</li>
                 </ul>
             </div>
         </div>

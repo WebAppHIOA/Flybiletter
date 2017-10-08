@@ -13,6 +13,7 @@
     </script>
 </head>
 <body>
+    <br /><br />
     <div class="container col-md-12">
 
         <!--ORDRE INFO-->
@@ -30,9 +31,15 @@
                 </tr>
                 <tbody>
                     <tr>
-                        @foreach (var item in ViewData["DepartureDataList"] as List<String>)
-                        {
-                            <td>@item</td>
+                        @{
+                            var departure = ViewData["SelectedDeparture"] as Flybiletter.ViewModels.DepartureViewModel;
+
+                                <td>@departure.Id</td>
+                                <td>@departure.Time</td>
+                                <td>@departure.Date</td>
+                                <td>@departure.From</td>
+                                <td>@departure.To</td>
+                                <td>@departure.Price</td>
                         }
                     </tr>
                 </tbody>

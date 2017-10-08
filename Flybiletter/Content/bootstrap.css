@@ -4993,7 +4993,9 @@ td {
     cursor: default;
 }
 
-
+.larger-nav {
+    font-size: 1.2em;
+}
 
 .input-dialog-design {
     width: 300px;
