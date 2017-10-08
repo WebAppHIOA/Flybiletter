@@ -20,12 +20,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Flyselskap", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+               <a href="@Html.Action("Index", "Home", new { area = "" })">
+                   <img src="@Url.Content("~/Content/images/airline_logo.png")" />
+               </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
