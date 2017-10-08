@@ -193,16 +193,7 @@ namespace Flybiletter.Controllers
 
             var indexObjekt = Session["IndexObject"] as IndexViewModel;
 
-            Invoice invoice = new Invoice
-            {
-                InvoiceId = order.OrderNumber,
-                OrderReferance = order.OrderNumber,
-                Date = indexObjekt.TravelDate,
-                From = fromAirport.Name,
-                Destination = toAirport.Name,
-                Price = departure[6],
-                Email = order.Email
-            };
+            var invoice = DB.getInvoiceInformation(dep.FlightId ,order.OrderNumber);
 
             GenerateInvoice.SendEmail(invoice);
 

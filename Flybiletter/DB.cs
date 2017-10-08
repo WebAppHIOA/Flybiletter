@@ -109,5 +109,28 @@ namespace Flybiletter
                 }
             }
         }
+
+        public static Invoice getInvoiceInformation(string flightID, string orderNo)
+        {
+            
+            using (var db = new AirportContext())
+            {
+
+               var invoice = (from order in db.Order
+                                    join departure in db.Departure
+                                    on order.Departure.FlightId equals departure.FlightId
+                                    where order.OrderNumber == orderNo
+                            select new Invoice
+                                    {     
+                                        OrderReferance = order.OrderNumber,
+                                        Date = order.Date,
+                                        From = departure.From,
+                                        Destination = departure.To,
+                                        Price = order.Price,
+                                        Email = order.Email
+                                    }).First();
+                return invoice;
+            }
+        }
     }
 }

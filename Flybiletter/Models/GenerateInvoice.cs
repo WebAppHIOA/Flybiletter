@@ -15,7 +15,6 @@ namespace Flybiletter.Models
 {
     public class Invoice
     {
-        public string InvoiceId { get; set; }
         public string OrderReferance { get; set; }
         public string Date { get; set; }
         public string From { get; set; }
@@ -28,10 +27,6 @@ namespace Flybiletter.Models
         /* DB og modeller må oppdateres før dette evt vil fungere da departur per dags dato ikke har en
          * direkte relasjon til order
          */
-
-        StringBuilder builder = new StringBuilder();
-        Invoice invoice;
-        byte[] streamResult;
 
         public static string NewInvoice(Invoice newInvoice)
         {

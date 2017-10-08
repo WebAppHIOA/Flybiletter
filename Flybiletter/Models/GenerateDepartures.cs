@@ -62,7 +62,6 @@ namespace Flybiletter.Models
         public static string GenerateFlightId()
         {
             Random random = new Random();
-            var db = new DB();
 
             StringBuilder builder = new StringBuilder();
             builder.Append("SK");
@@ -72,7 +71,7 @@ namespace Flybiletter.Models
             }
             var flightId = builder.ToString();
 
-            if (db.IsFlightIdAvailable(flightId))
+            if (DB.IsFlightIdAvailable(flightId))
             {
                 return GenerateFlightId();
             }
