@@ -4987,7 +4987,15 @@ td {
     cursor: pointer;
 }
 
+#tableDep th, #orderTable th {
+    background-color: #cccccc;
+    color: #000000;
+    cursor: default;
+}
 
+.larger-nav {
+    font-size: 1.2em;
+}
 
 .input-dialog-design {
     width: 300px;

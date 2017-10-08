@@ -54,7 +54,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult Order(Order order)
         {
-
             return View();
         }
 
@@ -71,14 +70,19 @@ namespace Flybiletter.Controllers
                                              String date, String from,
                                              String to, String price)
         {
-            List<String> DepartureString = new List<string>();
-            DepartureString.Add(id);
-            DepartureString.Add(time);
-            DepartureString.Add(date);
-            DepartureString.Add(from);
-            DepartureString.Add(to);
-            DepartureString.Add(price);
-            Session["DepartureDataList"] = DepartureString;
+
+            var selectedDeparture = new DepartureViewModel
+            {
+                Id = id,
+                Time = time,
+                Date = date,
+                From = from,
+                To = to,
+                Price = price
+            };
+
+            Session["SelectedDeparture"] = selectedDeparture;
+
             return Json("Success");
         }
 
@@ -97,7 +101,7 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
-            ViewData["DepartureDataList"] = Session["DepartureDataList"];
+            ViewData["SelectedDeparture"] = Session["SelectedDeparture"];
             return View();
         }
 
@@ -105,7 +109,7 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Passenger(Order order)
         {
-            var departure = Session["DepartureDataList"] as List<String>;
+            var departure = Session["SelectedDeparture"] as DepartureViewModel;
             var indexView = Session["IndexObject"] as IndexViewModel;
             List<Airport> airports = indexView.FromAirport;
 
@@ -114,11 +118,11 @@ namespace Flybiletter.Controllers
 
             Departure dep = new Departure
             {
-                FlightId = departure[0],
-                From = departure[3],
-                To = departure[4],
-                Date = departure[2],
-                DepartureTime = departure[1],
+                FlightId = departure.Id,
+                From = departure.From,
+                To = departure.To,
+                Date = departure.Date,
+                DepartureTime = departure.Time,
                 Airport = fromAirport
             };
 
@@ -128,59 +132,24 @@ namespace Flybiletter.Controllers
             DB.AddOrder(new Order
             {
                 OrderNumber = order.OrderNumber,
-                Date = departure[2],
+                Date = departure.Date,
                 Firstname = order.Firstname,
                 Surname = order.Surname,
                 Tlf = order.Tlf,
                 Email = order.Email,
-                Price = departure[5],
+                Price = departure.Price,
                 Departure = dep
             });
 
-            var indexObjekt = Session["IndexObject"] as IndexViewModel;
-
-            Invoice invoice = new Invoice
-            {
-                InvoiceId = order.OrderNumber,
-                OrderReferance = order.OrderNumber,
-                Date = indexObjekt.TravelDate.ToShortDateString(),
-                From = fromAirport.Name,
-                Destination = toAirport.Name,
-                Price = departure[5],
-                Email = order.Email
-            };
-
-            GenerateInvoice.SendEmail(invoice);
+            GenerateInvoice.SendEmail(DB.getInvoiceInformation(dep.FlightId, order.OrderNumber));
 
             return RedirectToAction("Confirmation");
         }
 
-
         public ActionResult Confirmation()
         {
-            /*
-            Invoice invoice = new Invoice
-            {
-                InvoiceId = "TestID",
-                OrderReferance = "OrderReference",
-                Date = "12.03.2019",
-                From = "Oslo",
-                Destination = "Dubai",
-                Price = "12345",
-                Email = "katrinealmas@gmail.com",
-            };
 
-            var content = GenerateInvoice.NewInvoice(invoice);
-            var streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
-            GenerateInvoice.SendEmail(streamContent, invoice);
-            */
             return View();
-        }
-        public string UniqueReference()
-        {
-            var guid = System.Guid.NewGuid().ToString();
-
-            return guid;
         }
 
     }
