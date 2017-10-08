@@ -25,28 +25,31 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Index(ViewModels.IndexViewModel indexView)
         {
+
             if (ModelState.IsValid)
             {
+                //Validering av Dato og Flyplass data
                 DateTime now = new DateTime();
                 now = DateTime.Now;
-               // var time = indexView.TravelDate;
-                //indexView.TravelDate = time.Date;
                 if ((indexView.TravelDate) < now.Date)
                 {
+                    //Legger til Error tekst hvis TravelDate er tidligere en Dagens dato
                     ModelState.AddModelError("TravelDate", "Avreise dato kan ikke være tilbake i tid");
                     return Index();
                 }
                 if((indexView.ToAirportID).Equals(indexView.FromAirportID))
                 {
-                    
+                    //Legger til Error tekst hvis fra og til AirportID er det samme
                     ModelState.AddModelError("FromAirportID", "Destinasjon og avreise må være forskjellig");
                     return Index();
                 }
 
+                //Setter session og sender brukeren til Departures
                 Session["IndexObject"] = indexView;
                 return RedirectToAction("Departures");
             }
 
+            //Hvis ModelState ikke er valid, setter Error og sender til Index
             ModelState.AddModelError("TravelDate", "Noe gikk feil, vennsligst prøv igjen");
             return RedirectToAction("Index");
         }
@@ -65,7 +68,8 @@ namespace Flybiletter.Controllers
             return View(departures);
         }
 
-        public JsonResult FlightDetailsTest(String id,
+        [HttpPost]
+        public JsonResult Departures(String id,
                                              String time,
                                              String date, String from,
                                              String to, String price)

@@ -152,7 +152,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Travel.cs" />
-    <Compile Include="StaticMethods.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,8 +270,8 @@
     <None Include="Properties\PublishProfiles\Flybilett-dev - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Flybilett-dev - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\flybiletter-scripts.js" />
-    <Content Include="Scripts\index-custom-JS.js" />
+    <Content Include="Scripts\custom\flightdetails-JS.js" />
+    <Content Include="Scripts\custom\index-custom-JS.js" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />

@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-
-    console.log("ready from index-custom-JS!");
-
-});
+﻿
 
 $('input').blur(function () {
     console.log("same!");
