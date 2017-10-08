@@ -114,11 +114,9 @@ namespace Flybiletter.Controllers
         public ActionResult Passenger(Order order)
         {
             var departure = Session["SelectedDeparture"] as DepartureViewModel;
-            var indexView = Session["IndexObject"] as IndexViewModel;
-            List<Airport> airports = indexView.FromAirport;
 
-            var fromAirport = DB.FindAirport(indexView.FromAirportID);
-            var toAirport = DB.FindAirport(indexView.ToAirportID);
+            var fromAirport = DB.FindAirport(departure.From);
+            var toAirport = DB.FindAirport(departure.To);
 
             Departure dep = new Departure
             {
