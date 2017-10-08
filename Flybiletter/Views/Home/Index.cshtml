@@ -27,9 +27,6 @@
 
 
                 <div class="form-group">
-
-
-                    
                     <div class="col-md-4">
                         @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-7" })
                         @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design", @type = "date" } })
@@ -37,7 +34,6 @@
                     </div>
 
 
-                    
                     <div class="col-md-4">
                         @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-md-7" })
                         @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "index-dialog form-control", @type = "search", @list = "FromAirport" } })
@@ -51,7 +47,6 @@
                     </div>
 
 
-                  
                     <div class="col-md-4">
                         @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-md-7" })
                         @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "index-dialog form-control", @type = "search", @list = "ToAirport" } })
@@ -61,7 +56,6 @@
                             {
                                 <option value="@airport.AirportId" id="@Model.ToAirportID">@airport.AirportId - @airport.Name</option>
                             }
-
                         </datalist>
                     </div>
                 </div>

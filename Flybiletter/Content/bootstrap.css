@@ -4987,6 +4987,12 @@ td {
     cursor: pointer;
 }
 
+#tableDep th, #orderTable th {
+    background-color: #cccccc;
+    color: #000000;
+    cursor: default;
+}
+
 
 
 .input-dialog-design {

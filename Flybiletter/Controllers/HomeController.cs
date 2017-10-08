@@ -44,7 +44,6 @@ namespace Flybiletter.Controllers
 
         public ActionResult Order(Order order)
         {
-
             return View();
         }
 
@@ -145,31 +144,14 @@ namespace Flybiletter.Controllers
             return RedirectToAction("Confirmation");
         }
 
-
         public ActionResult Confirmation()
         {
-            /*
-            Invoice invoice = new Invoice
-            {
-                InvoiceId = "TestID",
-                OrderReferance = "OrderReference",
-                Date = "12.03.2019",
-                From = "Oslo",
-                Destination = "Dubai",
-                Price = "12345",
-                Email = "katrinealmas@gmail.com",
-            };
-
-            var content = GenerateInvoice.NewInvoice(invoice);
-            var streamContent = GenerateInvoice.ConvertHtmlToPDF(content);
-            GenerateInvoice.SendEmail(streamContent, invoice);
-            */
             return View();
         }
+
         public string UniqueReference()
         {
             var guid = System.Guid.NewGuid().ToString();
-
             return guid;
         }
 
