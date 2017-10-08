@@ -3,6 +3,7 @@ Oblig 1 i webprosjekt faget høsten 2017
 
 
 Link til azure: http://flybilett-dev.azurewebsites.net/
+Link til github: https://github.com/WebAppHIOA/Flybiletter/
 
 Webportal for bestilling av flybiletter.
 
