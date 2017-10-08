@@ -87,7 +87,7 @@ namespace Flybiletter.Controllers
         {
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
-            List<Departure> departures = GenerateDepartures.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate);
+            List<Departure> departures = GenerateDepartures.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
 
             Session["Prices"] = GenerateDepartures.GeneratePrice(departures.Count);
             Session["Departures"] = departures;
@@ -143,7 +143,7 @@ namespace Flybiletter.Controllers
             {
                 InvoiceId = order.OrderNumber,
                 OrderReferance = order.OrderNumber,
-                Date = indexObjekt.TravelDate,
+                Date = indexObjekt.TravelDate.ToShortDateString(),
                 From = fromAirport.Name,
                 Destination = toAirport.Name,
                 Price = departure[5],
