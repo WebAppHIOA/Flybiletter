@@ -68,16 +68,28 @@ namespace Flybiletter.Controllers
                                              + date + from
                                              + to + price);
             System.Diagnostics.Debug.WriteLine("Burde være JSON over denne meldingen");
-         
-            List<String> DepartureString = new List<string>();
-            DepartureString.Add(id);
-            DepartureString.Add(name);
-            DepartureString.Add(time);
-            DepartureString.Add(date);
-            DepartureString.Add(from);
-            DepartureString.Add(to);
-            DepartureString.Add(price);
-            Session["DepartureDataList"] = DepartureString;
+            /*
+               List<String> DepartureString = new List<string>();
+               DepartureString.Add(id);
+               DepartureString.Add(name);
+               DepartureString.Add(time);
+               DepartureString.Add(date);
+               DepartureString.Add(from);
+               DepartureString.Add(to);
+               DepartureString.Add(price);
+   */
+            var selectedDeparture = new DepartureViewModel
+            {
+                Id = id,
+                Name = name,
+                Time = time,
+                Date = date,
+                From = from,
+                To = to,
+                Price = price
+            };
+
+            Session["SelectedDeparture"] = selectedDeparture;
             return Json("Success");
         }
 
@@ -140,17 +152,8 @@ namespace Flybiletter.Controllers
 
         public ActionResult Passenger()
         {
-            /*            List<String> DepartureString = new List<string>();
-                            DepartureString.Add(id);
-                            DepartureString.Add(name);
-                            DepartureString.Add(time);
-                             DepartureString.Add(date);
-                             DepartureString.Add(from);
-                             DepartureString.Add(to);
-                              DepartureString.Add(price);
-             * 
-             */
-            ViewData["DepartureDataList"] = Session["DepartureDataList"];
+           
+            ViewData["SelectedDeparture"] = Session["SelectedDeparture"];
 
             return View();
         }
@@ -159,7 +162,9 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Passenger(Order order)
         {
-            var departure = Session["DepartureDataList"] as List<String>;
+            // var departure = Session["DepartureDataList"] as List<String>;
+            // var departure = Session["DepartureDictionary"] as Dictionary<string, string>;
+            var departure = Session["SelectedDeparture"] as DepartureViewModel;
             var indexView = Session["IndexObject"] as IndexViewModel;
             List<Airport> airports = indexView.FromAirport;
 
@@ -168,11 +173,11 @@ namespace Flybiletter.Controllers
 
             Departure dep = new Departure
             {
-                FlightId = departure[0],
-                From = departure[4],
-                To = departure[5],
-                Date = departure[3],
-                DepartureTime = departure[2],
+                FlightId = departure.Id,
+                From = departure.From,
+                To = departure.To,
+                Date = departure.Date,
+                DepartureTime = departure.Time,
                 Airport = fromAirport
             };
 
@@ -182,20 +187,16 @@ namespace Flybiletter.Controllers
             DB.AddOrder(new Order
             {
                 OrderNumber = order.OrderNumber,
-                Date = departure[4],
+                Date = departure.Date,
                 Firstname = order.Firstname,
                 Surname = order.Surname,
                 Tlf = order.Tlf,
                 Email = order.Email,
-                Price = departure[6],
+                Price = departure.Price,
                 Departure = dep
             });
 
-            var indexObjekt = Session["IndexObject"] as IndexViewModel;
-
-            var invoice = DB.getInvoiceInformation(dep.FlightId ,order.OrderNumber);
-
-            GenerateInvoice.SendEmail(invoice);
+            GenerateInvoice.SendEmail(DB.getInvoiceInformation(dep.FlightId, order.OrderNumber));
 
             return RedirectToAction("Confirmation");
         }

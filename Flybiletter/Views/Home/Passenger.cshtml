@@ -14,51 +14,86 @@
 </head>
 <body>
     <div class="container col-md-12">
-        <h2 id="tickets-header">PASSASJER INFORMASJON</h2>
-        <div class="biletter">
-        @foreach (var item in ViewData["DepartureDataList"] as List<String>)
-        {@item}
-        <br />
-        @using (Html.BeginForm(FormMethod.Post))
-        {
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <table>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Firstname)</td>
-                    <td>@Html.TextBoxFor(x => x.Firstname, new { id = "firstname", @class = "input-dialog-design" })</td>
-                    <td>@Html.ValidationMessageFor(model => model.Firstname, "", new {@class = "text-danger" })</td>
-                    <td>@Html.LabelFor(x => x.Surname)</td>
-                    <td>@Html.TextBoxFor(x => x.Surname, new { id = "surname", @class = "input-dialog-design" })</td>
-                    <td>@Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Tlf)</td>
-                    <td>@Html.TextBoxFor(x => x.Tlf, new { id = "tlf", @class = "input-dialog-design" })</td>
-                    <td>@Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })</td>
-                    <td>@Html.LabelFor(x => x.Email)</td>
-                    <td>@Html.TextBoxFor(x => x.Email, new { id = "email", @class = "input-dialog-design" })</td>
-                    <td>@Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })</td>
-                </tr>
-            </table>
-            <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
-        }
-          </div> 
-        <br />
-        <br />
 
-        <h2 id="tickets-header">ORDRE</h2>
-        <div class="biletter">
+        <div class="container col-md-12">
+
+            <!--ORDRE INFO-->
+            <h2 id="tickets-header">ORDRE</h2>
+            <div class="biletter">
+                <br />
+                <table class="table" id="orderTable">
+                    <tr>
+                        <th>ID</th>
+                        <th>Avgangstid</th>
+                        <th>Dato</th>
+                        <th>Fra</th>
+                        <th>Til</th>
+                        <th>Pris</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            @{
+                                var departure = ViewData["SelectedDeparture"] as Flybiletter.ViewModels.DepartureViewModel;
+
+                                <td>@departure.Id</td>
+                                <td>@departure.Name</td>
+                                <td>@departure.Time</td>
+                                <td>@departure.Date</td>
+                                <td>@departure.From</td>
+                                <td>@departure.To</td>
+                                <td>@departure.Price</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <br />
-            <p><label>Fra: </label></p>
-            <p><label>Til: </label></p>
-            <p><label>Dato: </label></p>
-            <p><label>Pris: </label></p>
-        </div>
 
-        <br />
-        <a href="@Url.Action("FlightDetails", "Home")" class="btn btn-default btn-lg pull-left">Tilbake</a>
-        <!--<a href="Url.Action("Confirmation", "Home")" class="btn btn-primary btn-lg pull-right">Bekreft</a>-->
-    </div>
+            <h2 id="tickets-header">PASSASJER INFORMASJON</h2>
+            <div class="biletter">
+
+                <br />
+                @using (Html.BeginForm(FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <table>
+                        <tr>
+                            <td>@Html.LabelFor(x => x.Firstname)</td>
+                            <td>@Html.TextBoxFor(x => x.Firstname, new { id = "firstname", @class = "input-dialog-design" })</td>
+                            <td>@Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })</td>
+                            <td>@Html.LabelFor(x => x.Surname)</td>
+                            <td>@Html.TextBoxFor(x => x.Surname, new { id = "surname", @class = "input-dialog-design" })</td>
+                            <td>@Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(x => x.Tlf)</td>
+                            <td>@Html.TextBoxFor(x => x.Tlf, new { id = "tlf", @class = "input-dialog-design" })</td>
+                            <td>@Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })</td>
+                            <td>@Html.LabelFor(x => x.Email)</td>
+                            <td>@Html.TextBoxFor(x => x.Email, new { id = "email", @class = "input-dialog-design" })</td>
+                            <td>@Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })</td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+                }
+            </div>
+            <br />
+            <br />
+
+            <h2 id="tickets-header">ORDRE</h2>
+            <div class="biletter">
+                <br />
+                <p><label>Fra: </label></p>
+                <p><label>Til: </label></p>
+                <p><label>Dato: </label></p>
+                <p><label>Pris: </label></p>
+            </div>
+
+            <br />
+            <a href="@Url.Action("FlightDetails", "Home")" class="btn btn-default btn-lg pull-left">Tilbake</a>
+            <!--<a href="Url.Action("Confirmation", "Home")" class="btn btn-primary btn-lg pull-right">Bekreft</a>-->
+        </div>
    
 </body>
 </html>
