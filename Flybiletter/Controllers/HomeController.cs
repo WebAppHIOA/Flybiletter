@@ -152,5 +152,10 @@ namespace Flybiletter.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
     }
 }
