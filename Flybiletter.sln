@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flybiletter", "Flybiletter\Flybiletter.csproj", "{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5A823319-5E08-4560-831F-D3DB7E3D2481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{7821C340-262F-414F-A2FC-4A281079B97A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{280F981A-08C9-4D23-B851-B9E4060DC95A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFCEA18A-8A5D-41B7-B01E-C2FA6FF239BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A823319-5E08-4560-831F-D3DB7E3D2481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A823319-5E08-4560-831F-D3DB7E3D2481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A823319-5E08-4560-831F-D3DB7E3D2481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A823319-5E08-4560-831F-D3DB7E3D2481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7821C340-262F-414F-A2FC-4A281079B97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7821C340-262F-414F-A2FC-4A281079B97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7821C340-262F-414F-A2FC-4A281079B97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7821C340-262F-414F-A2FC-4A281079B97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280F981A-08C9-4D23-B851-B9E4060DC95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280F981A-08C9-4D23-B851-B9E4060DC95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280F981A-08C9-4D23-B851-B9E4060DC95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280F981A-08C9-4D23-B851-B9E4060DC95A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

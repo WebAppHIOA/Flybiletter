@@ -1,4 +1,4 @@
-﻿@model Flybiletter.Models.Order
+﻿@model Model.Order
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,7 @@
                 <tbody>
                     <tr>
                         @{
-                            var departure = ViewData["SelectedDeparture"] as Flybiletter.ViewModels.DepartureViewModel;
+                            var departure = ViewData["SelectedDeparture"] as Flybiletter.Models.DepartureViewModel;
 
                                 <td>@departure.Id</td>
                                 <td>@departure.Time</td>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Flybiletter.ViewModels
+namespace Flybiletter.Models
 {
     public class DepartureViewModel
     {

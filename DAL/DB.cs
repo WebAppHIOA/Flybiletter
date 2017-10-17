@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Flybiletter.Models;
+using Model;
 using System.Text;
 
-namespace Flybiletter
+namespace DAL
 {
 
     public static class DB

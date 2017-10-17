@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Flybiletter.Models
+namespace Model
 {
+
     public static class GenerateDepartures
     {
         /* Lager liste med Departure objekter. Alle felt fylt ut, med unntak av pris.
@@ -71,22 +72,12 @@ namespace Flybiletter.Models
             }
             var flightId = builder.ToString();
 
-            if (DB.IsFlightIdAvailable(flightId))
-            {
-                return GenerateFlightId();
-            }
-            else
-            {
-                return flightId;
-            }
+            return flightId;
         }
 
         public static int[] GeneratePrice(int antall)
         {
             int[] price = new int[antall];
-
-            // StringBuilder builder = new StringBuilder();
-
 
             Random random = new Random();
 

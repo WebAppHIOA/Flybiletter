@@ -1,15 +1,19 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Flybiletter.Models
+namespace Model
 {
-    public class Customer
+
+    public class Order
     {
+
         [Key]
-   	    public string CustomerId { get; set; }
+        public string OrderNumber { get; set; }
+        public string Date { get; set; }
 
         [Display(Name = "Fornavn")]
         [Required(ErrorMessage = "Fornavn må oppgis")]
@@ -21,9 +25,9 @@ namespace Flybiletter.Models
 
         [Display(Name = "Telefon")]
         [Required(ErrorMessage = "Telefonnummer må oppgis")]
-        [RegularExpression(@"[0-9]{8}", ErrorMessage="Vennligst skriv en gyldig telefonnummer")]
+        [RegularExpression(@"[0-9]{8}", ErrorMessage = "Vennligst skriv en gyldig telefonnummer")]
         [DataType(DataType.PhoneNumber)]
-        public int Tlf { get; set; }
+        public string Tlf { get; set; }
 
         [Display(Name = "E-post")]
         [Required(ErrorMessage = "E-post adresse må oppgis")]
@@ -31,13 +35,8 @@ namespace Flybiletter.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        //Enum? - Sondre
-        public string Class { get; set; }
+        public string Price { get; set; }
 
-        // Barn eller voksen 
-        public string Category { get; set; }
-
-        public virtual Order Order { get; set; }
-        public virtual Departure Departure { get; set; }
+        public virtual Model.Departure Departure { get; set; }
     }
 }

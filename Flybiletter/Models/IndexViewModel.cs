@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Flybiletter.Models;
+using Model;
 
-namespace Flybiletter.ViewModels
+namespace Flybiletter.Models
 {
     public class IndexViewModel
     {

@@ -11,7 +11,7 @@ using System.Net.Mime;
 using System.IO;
 using System.Net;
 
-namespace Flybiletter.Models
+namespace Model
 {
     public class Invoice
     {
