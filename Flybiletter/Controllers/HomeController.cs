@@ -164,7 +164,7 @@ namespace Flybiletter.Controllers
 
         public ActionResult Login()
         {
-            return RedirectToAction("Login", "Admin");
+            return RedirectToAction("Index", "Admin");
         }
 
     }
