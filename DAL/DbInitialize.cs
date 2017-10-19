@@ -12,6 +12,47 @@ namespace DAL
         {
             List<Airport> allAirports = new List<Airport>();
 
+
+            var order1 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "17.10.2017",
+                Firstname = "Tor",
+                Surname = "Krattebø",
+                Tlf = "12345678",
+                Email = "tor.krattebol@hioa.no",
+                Price = "3999"
+            };
+
+            var order2 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "17.10.2017",
+                Firstname = "Tormine",
+                Surname = "Krattebø",
+                Tlf = "12345678",
+                Email = "test@gmail.com",
+                Price = "3400"
+            };
+
+            var orderList = new List<Order>();
+            orderList.Add(order1);
+            orderList.Add(order2);
+
+            var departure1 = new Departure
+            {
+                FlightId = "SK323234",
+                From = "CAN",
+                To = "OSL",
+                Date = "29.10.2017",
+                DepartureTime = "13:10:00",
+                Order = orderList
+            };
+
+            var departures = new List<Departure>();
+            departures.Add(departure1);
+
+
             allAirports.Add(new Airport
             {
                 AirportId = "AMS",
@@ -75,7 +116,7 @@ namespace DAL
                 Country = "China",
                 Continent = "Asia",
                 Fee = "37.89",
-                Departure = new List<Departure>()
+                Departure = departures
             });
 
             allAirports.Add(new Airport
@@ -574,7 +615,9 @@ namespace DAL
                 Departure = new List<Departure>()
             });
 
-            foreach(Airport f in allAirports)
+            
+
+            foreach (Airport f in allAirports)
             {
                 context.Airport.Add(f);
             }

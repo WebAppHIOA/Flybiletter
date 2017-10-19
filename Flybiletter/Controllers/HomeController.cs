@@ -14,7 +14,7 @@ namespace Flybiletter.Controllers
     {
         public ActionResult Index()
         {
-            var OrderBLL = new OrderBLL();
+            var OrderBLL = new BLL.Order();
             var airports = OrderBLL.getAllAirports();
 
             var IndexVM = new IndexViewModel();
@@ -57,7 +57,7 @@ namespace Flybiletter.Controllers
         }
 
 
-        public ActionResult Order(Order order)
+        public ActionResult Order(Model.Order order)
         {
             return View();
         }
@@ -97,7 +97,7 @@ namespace Flybiletter.Controllers
         {
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
-            var orderBLL = new OrderBLL();
+            var orderBLL = new BLL.Order();
             List<Departure> departures = orderBLL.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
 
             Session["Prices"] = orderBLL.GeneratePrice(departures.Count);
@@ -114,10 +114,10 @@ namespace Flybiletter.Controllers
 
 
         [HttpPost]
-        public ActionResult Passenger(Order order)
+        public ActionResult Passenger(Model.Order order)
         {
             var departure = Session["SelectedDeparture"] as DepartureViewModel;
-            var orderBLL = new OrderBLL();
+            var orderBLL = new BLL.Order();
         
          //   var toAirport = orderBLL.FindAirport(departure.To);
 
@@ -134,7 +134,7 @@ namespace Flybiletter.Controllers
             orderBLL.AddDeparture(dep);
 
             order.OrderNumber = GenerateInvoice.UniqueReference();
-            orderBLL.AddOrder(new Order
+            orderBLL.AddOrder(new Model.Order
             {
                 OrderNumber = order.OrderNumber,
                 Date = departure.Date,
@@ -164,7 +164,7 @@ namespace Flybiletter.Controllers
 
         public ActionResult Login()
         {
-            return RedirectToAction("Login", "Admin");
+            return RedirectToAction("Index", "Admin");
         }
 
     }

@@ -20,8 +20,68 @@ namespace DAL
             }
         }
 
+        public static List<Departure> getAllDepartures()
+        {
+            using (var db = new AirportContext()) {
+                List<Departure> allDepartures = (from d in db.Departure
+                                                 select d).ToList();
+                return allDepartures;
+        }
+        }
 
-        public static Boolean AddOrder(Order order)
+        public static List<Order> getAllOrders()
+        {
+            using(var db = new AirportContext())
+            {
+                List<Order> allOrders = (from o in db.Order
+                                         select o).ToList();
+                return allOrders;
+            }
+        }
+
+        /* When deleting an airport you will delete both related departures and orders due to table relations. 
+         * 
+         */
+        public static bool DeleteAirport(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                var airport = db.Airport.Single(a => (a.AirportId == id));
+                db.Airport.Remove(airport);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        /* When deleting a departure you will delete the related orders due to table relations.
+         * 
+         */
+        public static bool DeleteDeparture(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                var departure = db.Departure.Single(d => (d.FlightId == id));
+                db.Departure.Remove(departure);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        /* Deletes only the order
+         * 
+         */
+        public static bool DeleteOrder(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                var order = db.Order.Single(o => (o.OrderNumber == id));
+                db.Order.Remove(order);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        public static bool AddOrder(Order order)
         {
             using (var db = new AirportContext())
             {
@@ -43,6 +103,16 @@ namespace DAL
             }
         }
 
+
+        public static bool AddAirport(Airport airport)
+        {
+            using (var db = new AirportContext())
+            {
+                db.Airport.Add(airport);
+                
+                return true;
+            }
+        }
 
         public static Order FindOrder(string id)
         {
@@ -92,6 +162,100 @@ namespace DAL
                 return departure;
             }
         }
+
+        /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
+         * 
+         */
+        public static bool UpdateAirport(Airport changes)
+        {
+            using (var db = new AirportContext())
+            {
+                var airport = db.Airport.First(row => row.AirportId == changes.AirportId);
+                airport.Name = changes.Name;
+                airport.City = changes.City;
+                airport.Continent = changes.Continent;
+                airport.Country = changes.Country;
+                airport.Fee = changes.Fee;
+
+                db.SaveChanges();
+                return false;
+            }
+        }
+
+        /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
+         * 
+         */
+        public static bool UpdateDeparture(Departure changes)
+        {
+            using (var db = new AirportContext())
+            {
+                var departure = db.Departure.First(row => row.FlightId == changes.FlightId);
+                departure.From = changes.From;
+                departure.To = changes.To;
+                departure.Date = changes.Date;
+                departure.DepartureTime = changes.DepartureTime;
+
+                db.SaveChanges();
+                return false;
+            }
+        }
+
+        /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
+         * 
+         */
+        public static bool UpdateOrder(Order changes)
+        {
+            using (var db = new AirportContext())
+            {
+                var order = db.Order.First(row => row.OrderNumber == changes.OrderNumber);
+                order.Date = changes.Date;
+                order.Firstname = changes.Firstname;
+                order.Surname = changes.Surname;
+                order.Tlf = changes.Tlf;
+                order.Email = changes.Email;
+                order.Price = changes.Price;
+
+                db.SaveChanges();
+                return false;
+            }
+        }
+
+        /* Counts all registered Airports
+         * 
+         */
+        public static int AirportCount()
+        {
+            using (var db = new AirportContext())
+            {
+                var total = db.Airport.Count();
+                return total;
+            }
+        }
+
+        /* Counts all registered Departures
+        * 
+        */
+        public static int DepartureCount()
+        {
+            using (var db = new AirportContext())
+            {
+                var total = db.Departure.Count();
+                return total;
+            }
+        }
+
+        /* Counts all registered Orders
+         * 
+         */
+        public static int OrderCount()
+        {
+            using (var db = new AirportContext())
+            {
+                var total = db.Departure.Count();
+                return total;
+            }
+        }
+
 
         public static Boolean IsFlightIdAvailable(string toTest)
         {

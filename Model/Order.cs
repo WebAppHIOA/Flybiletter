@@ -37,6 +37,6 @@ namespace Model
 
         public string Price { get; set; }
 
-        public virtual Model.Departure Departure { get; set; }
+        public virtual Departure Departure { get; set; }
     }
 }

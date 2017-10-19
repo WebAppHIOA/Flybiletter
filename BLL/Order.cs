@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BLL
 {
-    public class OrderBLL
+    public class Order
     {
         public List<Airport> getAllAirports()
         {
@@ -51,7 +51,7 @@ namespace BLL
             DB.AddDeparture(departure);
         }
 
-        public void AddOrder(Order order)
+        public void AddOrder(Model.Order order)
         {
             DB.AddOrder(order);
         }
