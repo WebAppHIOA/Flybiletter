@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log inn</title>
+    <meta charset="utf-8" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    @Html.Partial("_Airzures")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    
+
+    </script>
+</head>
+<body id="admin-login-body">
+    <!--
+    <object type="image/svg+xml" data="~/Content/images/airline_logo_lg.svg"></object>-->
+
+    <div class="login-box">
+        <form class="admin-login"> <!--method="post"--> 
+                <h1 class="login-header"> Administrator </h1>
+                <div class="inner-admin-login" >
+                    <label>Brukernavn</label>
+                    <br />
+                    <input type="text" class="admin-input-dialog" />
+                    <br />
+                    <label>Passord</label>
+                    <br />
+                    <input type="password" class="admin-input-dialog"/>
+                    <br />
+
+                    <input type="submit" class="admin-login-btn" value="Log inn">
+                    <br />
+                    <br />
+                    <br />
+                    <!--SKAL FJERNES, ER KUN PÅ SIDEN FOR Å GÅ VIDERE-->
+                    <p>TEMP knappen brukes bare for å gå </p>
+                    <p>videre til admin side. Skal fjernes. <a href="/Admin/Home" class="admin-login-btn"> TEMP </a></p>
+                </div>
+        </form>
+    </div>
+</body>
+</html>

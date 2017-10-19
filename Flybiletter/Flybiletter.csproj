@@ -301,7 +301,11 @@
     <Content Include="Views\Home\FlightDetails.cshtml" />
     <Content Include="Views\Shared\_Airzures.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Admin\Departure.cshtml" />
+    <Content Include="Views\Admin\Airport.cshtml" />
+    <Content Include="Views\Admin\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
