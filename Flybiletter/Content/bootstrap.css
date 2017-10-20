@@ -54,12 +54,14 @@ audio:not([controls]) {
 }
 
 html {
-    font-family: 'Montserrat', sans-serif;  /*font-family: sans-serif;*/
+    font-family: 'Montserrat', sans-serif;  
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    height: 100%;
 }
 
 body {
+    height: 100%;
   margin: 0;
 }
 
@@ -760,6 +762,7 @@ pre code {
 }
 
 .container {
+  height:100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -788,7 +791,7 @@ pre code {
 
 .row {
   margin-right: -15px;
-  margin-left: -15px;
+  margin-left: -17px;/*-15px;*/
 }
 
 .row:before,
@@ -4041,6 +4044,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   z-index: 1000;
   min-height: 50px;
   margin-bottom: 20px;
+  margin-top: 13px;
   border: 1px solid transparent;
 }
 
@@ -4398,12 +4402,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #404040; /*#f8f8f8;*/
   border-color: #e7e7e7;
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #fff;/*#777777;*/
+  
 }
 
 .navbar-default .navbar-brand:hover,
@@ -4446,7 +4451,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #dddddd;
+  background-color: #f9f9f9;
+  outline: none;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -4515,8 +4521,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+    background-color: #404040;
+    -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
 }
 
 .navbar-inverse .navbar-brand {
@@ -4948,6 +4956,323 @@ a.list-group-item.active > .badge,
    
 }
 
+
+/*ADMIN NAVIGATION BAR CSS*/
+.admin-btn {
+    margin-top: 6px;
+    padding-top: 15px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.admin-btn li a:hover {
+    background-color: #2d8659;
+    padding: 15px;
+    color: #fff;
+}
+
+#admin-body {
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+
+.login-header {
+    height: 18%;
+    width: 100%; /*832px;*/ /*500px*/
+    color:  #2d8659;
+    text-align: center;
+    padding-top: 10px;/*40px*/
+    padding-bottom: 70px;
+    border-bottom: dashed 5px #2d8659;
+    margin-top: 0;
+}
+
+
+.login-box {
+    margin-top: 0;
+    margin-left: 0;
+}
+
+#admin-login-body {
+    background-color: #fcfcfc;
+    /**kontrollerer størrelse til logoen*/
+    height: 100px;
+    width: 200px;
+}
+
+.admin-login {
+    background-color: #fcfcfc;
+    height: 570px; /*370px*/
+    position: fixed;
+    margin-top: 0;
+    width: 100%; 
+}
+
+.inner-admin-login {
+    letter-spacing: 2px;
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 16px;
+}
+
+.admin-input-dialog {
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: solid 2px #2d8659;
+    width: 70%;
+    background-color: transparent;
+}
+
+.admin-input-dialog:hover {
+    border: none;
+    outline: 0;
+    border-bottom: solid 3px #b1e7cd;
+}
+
+.admin-input-dialog:focus {
+    border: none;
+    outline: 0;
+    border-bottom: solid 3px #b1e7cd;
+}
+
+
+.admin-login-btn {
+    width: 70%;
+    height: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #2d8659;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(207,207,207,1);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(207,207,207,1);
+    box-shadow: 0px 1px 4px 0px rgba(207,207,207,1);
+}
+
+.admin-login-btn:hover {
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+    transform: translateY(-5px);
+    -webkit-box-shadow: 0px 6px 18px 0px rgba(207,207,207,1);
+    -moz-box-shadow: 0px 6px 18px 0px rgba(207,207,207,1);
+    box-shadow: 0px 6px 18px 0px rgba(207,207,207,1);
+}
+
+.line-break {
+    margin: 10px 10px 10px 10px;
+    padding-top: 10px;
+    width: 93%;
+    border-bottom: solid 0.8px #737373;
+}
+
+.admin-navlogo {
+    background-color: #2d8659;
+    width: 19.72%;
+    height: 65px;
+    -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+}
+
+#admin-logo {
+    position: absolute;
+    top: 2px;
+    left: 55px;
+    overflow: hidden;/*
+    height: 50px;
+    width: 100px;*/
+}
+
+.admin-navbar {
+    background-color: #404040;
+    width: 80.21%;
+    height: 65px;
+    margin-left: 19.75%;
+    -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+}
+
+.admin-navheader {
+    color: #fff;
+    font-size: 24px;
+    margin-left: 60px;
+    margin-top: 15px;
+}
+
+@media (width: 369px){
+    .sidebar-nav .navbar {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebar-nav .navbar {
+        margin-left: 0;
+        margin-top: 12px;
+        padding: 0;
+        height: 100%; 
+        width: 20%;
+        background-color: #404040;
+        position: fixed;
+    }
+
+    .sidebar-nav .navbar .navbar-collapse {
+        margin-left: 0;
+        margin-top: 16px;
+        padding: 0; 
+    }
+
+    .sidebar-nav .navbar ul {
+        float: none;
+        display: block;
+    }
+
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+
+    .sidebar-nav .navbar li a {
+        padding-top: 15px;
+        color: #fff;
+        font-size: 15px;
+        padding-left: 30px;
+    }
+
+    .sidebar-nav .navbar li a:hover {
+        padding-left: 40px;
+        background-color: #737373;
+        color: #fff;
+        width: 99.9%;
+
+    }
+}
+
+.selected {
+    background-color: #2d8659;
+    color: #fff;
+    width: 99.9%;
+}
+
+.active {
+    background-color: #2d8659;
+    color: #fff;
+    width: 99.9%;
+}
+
+.log-out {
+    background-color: #2d8659;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    font-size: 15px;
+    margin-top: -75px;
+    margin-right: 10px;
+}
+
+
+.log-out:hover {
+    background-color: #b32d00;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    font-size: 15px;
+    margin-top: -75px;
+    margin-right: 10px;
+    -webkit-box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
+    -moz-box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
+    box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
+}
+
+
+
+.airzure-footer {
+    color: #fff;
+}
+
+/*ADMIN MAIN CONTENT CSS*/
+@media (min-width: 368px) {
+
+}
+
+.admin-content {
+    /*overflow: auto;*/
+    margin-top: 16px;
+    height: 100%;
+}
+
+
+.flight-updates {
+    height: 240px;
+    width: 91%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+}
+
+
+.home-dep {
+    color: #0B61A4;
+    border-right: solid 1px #f2f2f2;
+    height: 240px;
+    /*
+    width: 30%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
+}
+
+.home-order {
+    color: #FFBF00;
+    border-right: solid 1px #f2f2f2;
+    height: 240px;
+    /*
+    width: 30%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
+}
+
+.home-airport {
+    color: #FF4900;
+    height: 240px;
+    /*
+    width: 30%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
+}
+
+#home-count {
+    font-size: 90px;
+}
+
+#mini-article {
+    margin-top: -30px;
+    color: #4d4d4d;
+}
+
+
+/*FLYBILETTER CSS*/
 .biletter {
     letter-spacing: 0.8px;
     font-size: 15px;
@@ -5008,6 +5333,17 @@ td {
     font-family: 'Montserrat', sans-serif;
 }
 
+.input-dialog-design:hover {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+.input-dialog-design:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+
 .index-dialog {
     width: 300px;
     height: 40px;
@@ -5019,6 +5355,7 @@ td {
     margin-left: 10%;
     font-family: 'Montserrat', sans-serif;
 }
+
 
 input[type=search]:focus {
     border: solid 2px #36b075;
@@ -5059,15 +5396,6 @@ input[type=search]:hover:not(:focus) {
     outline: 0;
 }
 
-input[type=text]:focus {
-    border: solid 2px #36b075;
-    outline: 0;
-}
-
-input[type=text]:hover:not(:focus) {
-    border: solid 2px #b1e7cd;
-    outline: 0;
-}
 
 input[type=radio]:checked ~ .check {
     border: 5px solid #0DFF92;
