@@ -4044,6 +4044,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   z-index: 1000;
   min-height: 50px;
   margin-bottom: 20px;
+  margin-top: 13px;
   border: 1px solid transparent;
 }
 
@@ -4401,12 +4402,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #404040; /*#f8f8f8;*/
   border-color: #e7e7e7;
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #fff;/*#777777;*/
+  
 }
 
 .navbar-default .navbar-brand:hover,
@@ -4449,7 +4451,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #dddddd;
+  background-color: #f9f9f9;
+  outline: none;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -5066,12 +5069,11 @@ a.list-group-item.active > .badge,
 
 .admin-navlogo {
     background-color: #2d8659;
-    width: 19.79%;
+    width: 19.72%;
     height: 65px;
     -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
     -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
     box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
-    overflow: hidden;
 }
 
 #admin-logo {
@@ -5087,7 +5089,7 @@ a.list-group-item.active > .badge,
     background-color: #404040;
     width: 80.21%;
     height: 65px;
-    margin-left: 19.79%;
+    margin-left: 19.75%;
     -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
     -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
     box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
@@ -5098,6 +5100,12 @@ a.list-group-item.active > .badge,
     font-size: 24px;
     margin-left: 60px;
     margin-top: 15px;
+}
+
+@media (width: 369px){
+    .sidebar-nav .navbar {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) {
@@ -5184,17 +5192,23 @@ a.list-group-item.active > .badge,
 }
 
 
-.admin-content {
-    overflow: auto;
-    margin-top: 16px;
-    height: 100%;
-}
 
 .airzure-footer {
     color: #fff;
 }
 
 /*ADMIN MAIN CONTENT CSS*/
+@media (min-width: 368px) {
+
+}
+
+.admin-content {
+    /*overflow: auto;*/
+    margin-top: 16px;
+    height: 100%;
+}
+
+
 .flight-updates {
     height: 240px;
     width: 91%;
@@ -5206,30 +5220,46 @@ a.list-group-item.active > .badge,
     box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
 }
 
-.update-radius {
-    height: 270px;
-    width: 30%;
-    margin-top: 30px;
-    background-color: #fff;
-    border-radius: 100%;
-    text-align: center;
-}
 
 .home-dep {
     color: #0B61A4;
     border-right: solid 1px #f2f2f2;
-    height: 100%;
+    height: 240px;
+    /*
+    width: 30%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
 }
 
 .home-order {
     color: #FFBF00;
     border-right: solid 1px #f2f2f2;
-    height: 100%;
-
+    height: 240px;
+    /*
+    width: 30%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
 }
 
 .home-airport {
     color: #FF4900;
+    height: 240px;
+    /*
+    width: 30%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
 }
 
 #home-count {
