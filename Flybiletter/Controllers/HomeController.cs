@@ -113,39 +113,62 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Passenger(Order order)
         {
-            var departure = Session["SelectedDeparture"] as DepartureViewModel;
+            if (ModelState.IsValid)
+            { 
+                var departure = Session["SelectedDeparture"] as DepartureViewModel;
+                if (departure.Date == null)
+                {
+                    return Passenger();
+                }
 
-            var fromAirport = DB.FindAirport(departure.From);
-            var toAirport = DB.FindAirport(departure.To);
+                if (order.Surname == null)
+                {
+                    return Passenger();
+                }
+                if (order.Email == null)
+                {
+                    return Passenger();
+                }
+                if (order.Surname == null)
+                {
+                    return Passenger();
+                }
 
-            Departure dep = new Departure
-            {
-                FlightId = departure.Id,
-                From = departure.From,
-                To = departure.To,
-                Date = departure.Date,
-                DepartureTime = departure.Time,
-                Airport = fromAirport
-            };
 
-            DB.AddDeparture(dep);
 
-            order.OrderNumber = GenerateInvoice.UniqueReference();
-            DB.AddOrder(new Order
-            {
-                OrderNumber = order.OrderNumber,
-                Date = departure.Date,
-                Firstname = order.Firstname,
-                Surname = order.Surname,
-                Tlf = order.Tlf,
-                Email = order.Email,
-                Price = departure.Price,
-                Departure = dep
-            });
+                var fromAirport = DB.FindAirport(departure.From);
+                var toAirport = DB.FindAirport(departure.To);
 
-            GenerateInvoice.SendEmail(DB.getInvoiceInformation(dep.FlightId, order.OrderNumber));
+                Departure dep = new Departure
+                {
+                    FlightId = departure.Id,
+                    From = departure.From,
+                    To = departure.To,
+                    Date = departure.Date,
+                    DepartureTime = departure.Time,
+                    Airport = fromAirport
+                };
 
-            return RedirectToAction("Confirmation");
+                DB.AddDeparture(dep);
+
+                order.OrderNumber = GenerateInvoice.UniqueReference();
+                DB.AddOrder(new Order
+                {
+                    OrderNumber = order.OrderNumber,
+                    Date = departure.Date,
+                    Firstname = order.Firstname,
+                    Surname = order.Surname,
+                    Tlf = order.Tlf,
+                    Email = order.Email,
+                    Price = departure.Price,
+                    Departure = dep
+                });
+
+                GenerateInvoice.SendEmail(DB.getInvoiceInformation(dep.FlightId, order.OrderNumber));
+
+                return RedirectToAction("Confirmation");
+                }
+            return Passenger();
         }
 
         public ActionResult Confirmation()
