@@ -50,6 +50,8 @@
     <Compile Include="AirportContext.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="DbInitialize.cs" />
+    <Compile Include="DBstub.cs" />
+    <Compile Include="IDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

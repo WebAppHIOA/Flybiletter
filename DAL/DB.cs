@@ -7,10 +7,10 @@ using System.Text;
 namespace DAL
 {
 
-    public static class DB
+    public class DB : IDB
     {
 
-        public static List<Airport> getAllAirports()
+        public List<Airport> getAllAirports()
         {
             using (var db = new AirportContext())
             {
@@ -20,7 +20,7 @@ namespace DAL
             }
         }
 
-        public static List<Departure> getAllDepartures()
+        public List<Departure> getAllDepartures()
         {
             using (var db = new AirportContext()) {
                 List<Departure> allDepartures = (from d in db.Departure
@@ -29,7 +29,7 @@ namespace DAL
         }
         }
 
-        public static List<Order> getAllOrders()
+        public List<Order> getAllOrders()
         {
             using(var db = new AirportContext())
             {
@@ -42,7 +42,7 @@ namespace DAL
         /* When deleting an airport you will delete both related departures and orders due to table relations. 
          * 
          */
-        public static bool DeleteAirport(string id)
+        public bool DeleteAirport(string id)
         {
             using (var db = new AirportContext())
             {
@@ -56,7 +56,7 @@ namespace DAL
         /* When deleting a departure you will delete the related orders due to table relations.
          * 
          */
-        public static bool DeleteDeparture(string id)
+        public bool DeleteDeparture(string id)
         {
             using (var db = new AirportContext())
             {
@@ -70,7 +70,7 @@ namespace DAL
         /* Deletes only the order
          * 
          */
-        public static bool DeleteOrder(string id)
+        public bool DeleteOrder(string id)
         {
             using (var db = new AirportContext())
             {
@@ -81,7 +81,7 @@ namespace DAL
             }
         }
 
-        public static bool AddOrder(Order order)
+        public bool AddOrder(Order order)
         {
             using (var db = new AirportContext())
             {
@@ -104,7 +104,7 @@ namespace DAL
         }
 
 
-        public static bool AddAirport(Airport airport)
+        public bool AddAirport(Airport airport)
         {
             using (var db = new AirportContext())
             {
@@ -114,7 +114,7 @@ namespace DAL
             }
         }
 
-        public static Order FindOrder(string id)
+        public Order FindOrder(string id)
         {
             using (var db = new AirportContext())
             {
@@ -123,7 +123,7 @@ namespace DAL
             }
         }
 
-        public static Airport FindAirport(string id)
+        public Airport FindAirport(string id)
         {
             using (var db = new AirportContext())
             {
@@ -132,7 +132,7 @@ namespace DAL
             }
         }
 
-        public static Boolean AddDeparture(Departure departure)
+        public Boolean AddDeparture(Departure departure)
         {
             using (var db = new AirportContext())
             {
@@ -154,7 +154,7 @@ namespace DAL
         }
 
 
-        public static Departure FindDeparture(string id)
+        public Departure FindDeparture(string id)
         {
             using (var db = new AirportContext())
             {
@@ -166,7 +166,7 @@ namespace DAL
         /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
          * 
          */
-        public static bool UpdateAirport(Airport changes)
+        public bool UpdateAirport(Airport changes)
         {
             using (var db = new AirportContext())
             {
@@ -185,7 +185,7 @@ namespace DAL
         /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
          * 
          */
-        public static bool UpdateDeparture(Departure changes)
+        public bool UpdateDeparture(Departure changes)
         {
             using (var db = new AirportContext())
             {
@@ -203,7 +203,7 @@ namespace DAL
         /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
          * 
          */
-        public static bool UpdateOrder(Order changes)
+        public bool UpdateOrder(Order changes)
         {
             using (var db = new AirportContext())
             {
@@ -223,7 +223,7 @@ namespace DAL
         /* Counts all registered Airports
          * 
          */
-        public static int AirportCount()
+        public int AirportCount()
         {
             using (var db = new AirportContext())
             {
@@ -235,7 +235,7 @@ namespace DAL
         /* Counts all registered Departures
         * 
         */
-        public static int DepartureCount()
+        public int DepartureCount()
         {
             using (var db = new AirportContext())
             {
@@ -247,7 +247,7 @@ namespace DAL
         /* Counts all registered Orders
          * 
          */
-        public static int OrderCount()
+        public int OrderCount()
         {
             using (var db = new AirportContext())
             {
@@ -257,7 +257,7 @@ namespace DAL
         }
 
 
-        public static Boolean IsFlightIdAvailable(string toTest)
+        public Boolean IsFlightIdAvailable(string toTest)
         {
             using (var db = new AirportContext())
             {
@@ -273,7 +273,7 @@ namespace DAL
             }
         }
 
-        public static Invoice getInvoiceInformation(string flightID, string orderNo)
+        public Invoice getInvoiceInformation(string flightID, string orderNo)
         {
 
             using (var db = new AirportContext())
