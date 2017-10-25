@@ -83,25 +83,41 @@ namespace Flybiletter.Controllers
         }
 
         [HttpPost]
-        public JsonResult Departures(String id,
+        public JsonResult Departures1(String id,
                                              String time,
                                              String date, String from,
                                              String to, String price)
         {
-
-            var selectedDeparture = new DepartureViewModel
+            System.Diagnostics.Debug.WriteLine("Departure data blei sjekka 1");
+            //Validerer JSON parameter server side
+            if (id == "" || id == null)
             {
-                Id = id,
-                Time = time,
-                Date = date,
-                From = from,
-                To = to,
-                Price = price
-            };
+                System.Diagnostics.Debug.WriteLine("Departure data blei sjekka 2");
+                return Json(new { success = false, response = "Vennligst velg en reise" });
+            }
+            else
+            {
+                var selectedDeparture = new DepartureViewModel
+                {
+                    Id = id,
+                    Time = time,
+                    Date = date,
+                    From = from,
+                    To = to,
+                    Price = price
+                };
 
-            Session["SelectedDeparture"] = selectedDeparture;
+                if (selectedDeparture.Id == null)
+                {
+                    return Json(new { success = false, response = "Vennligst velg en reise" });
+                }
+                else
+                {
+                    Session["SelectedDeparture"] = selectedDeparture;
 
-            return Json("Success");
+                    return Json(new { success = true, Response = "Success" });
+                }
+            }
         }
 
 
@@ -109,7 +125,6 @@ namespace Flybiletter.Controllers
         {
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
-            
             List<Departure> departures = OrderBLL.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
 
             Session["Prices"] = OrderBLL.GeneratePrice(departures.Count);
