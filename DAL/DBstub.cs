@@ -7,7 +7,7 @@ using Model;
 
 namespace DAL
 {
-    class DBstub : IDB
+    public class DBstub : IDB
     {
         public bool AddAirport(Airport airport)
         {
