@@ -83,16 +83,14 @@ namespace Flybiletter.Controllers
         }
 
         [HttpPost]
-        public JsonResult Departures1(String id,
+        public JsonResult DeparturesFromFlightDetails(String id,
                                              String time,
                                              String date, String from,
                                              String to, String price)
         {
-            System.Diagnostics.Debug.WriteLine("Departure data blei sjekka 1");
             //Validerer JSON parameter server side
             if (id == "" || id == null)
             {
-                System.Diagnostics.Debug.WriteLine("Departure data blei sjekka 2");
                 return Json(new { success = false, response = "Vennligst velg en reise" });
             }
             else
@@ -107,6 +105,7 @@ namespace Flybiletter.Controllers
                     Price = price
                 };
 
+                //Validerer Modelen
                 if (selectedDeparture.Id == null)
                 {
                     return Json(new { success = false, response = "Vennligst velg en reise" });
@@ -143,7 +142,23 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Passenger(Model.Order order)
         {
+
+            if(ModelState.IsValid)
+            {
+
+                if(order.Date == null && order.Email == null && order.Firstname == null && order.Surname == null 
+                    && order.Tlf == null)
+                {
+                    return Passenger();
+                }
+
+            
             var departure = Session["SelectedDeparture"] as DepartureViewModel;
+            
+                if(departure is null)
+                {
+                    return Passenger();
+                }
             
         
          //   var toAirport = orderBLL.FindAirport(departure.To);
@@ -176,6 +191,8 @@ namespace Flybiletter.Controllers
             GenerateInvoice.SendEmail(OrderBLL.GetInvoiceInformation(dep.FlightId, order.OrderNumber));
 
             return RedirectToAction("Confirmation");
+            }
+            return Passenger();
         }
 
         public ActionResult Confirmation()

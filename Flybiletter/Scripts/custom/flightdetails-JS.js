@@ -23,14 +23,13 @@
         function sendPost() {
             if (orderInn !== null) {
                 $.ajax({
-                    url: '/Home/Departures1',
+                    url: '/Home/DeparturesFromFlightDetails',
                     type: 'POST',
                     data: JSON.stringify(orderInn),
                     contentType: "application/json;charset=utf-8",
                     success: function (response) {
                         if (response !== null && response.success) {
-                            //window.location.href = "/Home/Passenger";
-                            alert("Success!");
+                            window.location.href = "/Home/Passenger";
                         }
                         else {
                             alert("Vennligst velg en reise");
