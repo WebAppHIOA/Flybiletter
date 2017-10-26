@@ -9,7 +9,33 @@ namespace DAL
 
     public static class DB
     {
+        public static byte[] CreateHash(string password)
+        {
+            byte[] dataInn, dataOut;
+            var algorithm = System.Security.Cryptography.SHA512.Create();
+            dataInn = System.Text.Encoding.ASCII.GetBytes(password);
+            dataOut = algorithm.ComputeHash(dataInn);
+            return dataOut;
+        }
 
+        public static bool initiateAdmin(Login login)
+        {
+            using (var db = new AirportContext())
+            {
+                byte[] usersPass = CreateHash(login.Password);
+                User findUser = db.User.FirstOrDefault(
+                    b => b.Password == usersPass && b.Username == login.Username);
+                if (findUser == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        
         public static List<Airport> getAllAirports()
         {
             using (var db = new AirportContext())

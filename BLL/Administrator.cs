@@ -26,7 +26,12 @@ namespace BLL
         {
             DB.UpdateAirport(airport);
             return true;
-
+        }
+        
+        public bool UserLogin (Login login)
+        {
+            DB.initiateAdmin(login);
+            return true;
         }
     }
 }

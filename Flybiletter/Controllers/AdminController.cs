@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using BLL;
+using System.Security.Principal;
+using static BLL.Administrator;
 
 namespace Flybiletter.Controllers
 {
@@ -11,19 +15,51 @@ namespace Flybiletter.Controllers
     
         // GET: Admin
         public ActionResult Login()
-        {
+        {/*
+            var adminBLL = new Administrator();
+            adminBLL.DeleteAirport("CAN");*/
+
+            if (Session["LoggedIn"] == null)
+            {
+                Session["LoggedIn"] = false;
+            }
             return View();
         }
-        /*
+
         [HttpPost]
-        public ActionResult Login()
+        public ActionResult Login(Model.Login login)
         {
-            return RedirectToAction("Home");
-        }*/
+            Administrator admin = new Administrator();
+            
+            if (admin.UserLogin(login))
+            {
+                Session["LoggedIn"] = true;
+                return RedirectToAction("Home", "Admin");
+            }
+            else
+            {
+                Session["LoggedIn"] = false;
+                return View();
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session["LoggedIn"] = false;
+            return RedirectToAction("Index", "Home");
+        }
 
         public ActionResult Home()
         {
-            return View();
+            if (Session["LoggedIn"] != null)
+            {
+                bool loggedIn = (bool)Session["LoggedIn"];
+                if (loggedIn)
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("Home");
         }
 
         public ActionResult Departure()
@@ -31,12 +67,12 @@ namespace Flybiletter.Controllers
             return View();
         }
 
+
         public ActionResult Airport()
         {
             return View();
         }
-
-
+        
         public ActionResult Order()
         {
             return View();
