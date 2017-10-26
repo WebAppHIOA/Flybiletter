@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using DAL;
+using System.Text.RegularExpressions;
 
 namespace BLL
 {
@@ -91,8 +92,13 @@ namespace BLL
         public Departure GetDeparture(string id)
         {
             var db = new DB();
-            
-            return db.FindDeparture(id);
+
+            String allowed = @"[SK]+\d{6}$";
+            if (id != null) {
+                if (Regex.IsMatch(id, allowed)) return db.FindDeparture(id);
+                else return null;
+            }
+            else return null;
         }
 
         public Airport GetAirport(string id)

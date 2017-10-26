@@ -216,6 +216,7 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
+
                 var departure = db.Departure.First(d => d.FlightId == id);
                 return departure;
             }

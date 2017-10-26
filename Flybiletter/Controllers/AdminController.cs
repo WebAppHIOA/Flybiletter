@@ -4,18 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
+using System.Text.RegularExpressions;
 
 namespace Flybiletter.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
+        // GET
         public ActionResult Home()
         {
             var adminBLL = new Administrator();
             //adminBLL.DeleteAirport("CAN");
-           
-           // adminBLL.UpdateAirport();
 
             ViewData["CountData"] = adminBLL.TableCounts();
             return View();
@@ -32,14 +31,18 @@ namespace Flybiletter.Controllers
         {
             var admin = new Administrator();
             admin.DeleteDeparture(id);
-           return RedirectToAction("Departure");
+            return RedirectToAction("Departure");
         }
 
         // GET
         public ActionResult UpdateDeparture(string id)
         {
             var admin = new Administrator();
-            return View(admin.GetDeparture(id));
+            var flight = admin.GetDeparture(id);
+            if (flight == null) {
+                ModelState.AddModelError("Cancelled", "Denne avgangen eksister ikke i systemet");
+            }
+            return View(flight);
         }
 
         //POST

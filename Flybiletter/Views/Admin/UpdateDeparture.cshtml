@@ -74,39 +74,57 @@
                 @using (Html.BeginForm(FormMethod.Post))
                 {
                          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <table>
-                                <tr>
-                                    <td>@Html.LabelFor(x => x.From)</td>
-                                    <td>@Html.TextBoxFor(x => x.From, new { id = "from", @class = "input-dialog-design" })</td>
-                                    <td>@Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })</td>
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.From, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "input-dialog-design", @type = "search", @list = "From" } })
+                        @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+                        <datalist id="From">
+                                <option value="@Model.From" id="@Model.From">@Model.From</option>
+                        </datalist>
+                    </div>
 
-                                    <td>@Html.LabelFor(x => x.To)</td>
-                                    <td>@Html.TextBoxFor(x => x.To, new { id = "to", @class = "input-dialog-design" })</td>
-                                    <td>@Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })</td>
-                              </tr>
-                                <tr>
-             
-                                    <td>@Html.LabelFor(x => x.Date)</td>
-                                    <td>@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input-dialog-design", @type = "date" } })</td>
-                                    <td>@Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })</td>
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "input-dialog-design", @type = "search", @list = "To" } })
+                        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                        <datalist id="To">
+                            <option value="@Model.To" id="@Model.To">@Model.To</option>
+                        </datalist>
+                    </div>
+                     
 
+                        <div class="col-md-12">
+                            @Html.LabelFor(x => x.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input-dialog-design", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+</div>
+                          
 
-                                    <td>@Html.LabelFor(x => x.DepartureTime)</td>
-                                    <td>@Html.TextBoxFor(x => x.DepartureTime, new { id = "departuretime", @class = "input-dialog-design" })</td>
-                                    <td>@Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })</td>
-</tr>
-                                    <tr>
-                                    <td>@Html.LabelFor(x => x.Cancelled)</td>
-                                    <td>@Html.TextBoxFor(x => x.Cancelled, new { id = "cancelled", @class = "input-dialog-design" })</td>
-                                    <td>@Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })</td>
-                                </tr>
-                            </table>
-                            <br /><br />
-                            <a href="@Url.Action("UpdateDeparture", "Admin")" class="btn btn-default btn-lg pull-left">Tilbake</a>
-                            <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
-                        }
-            <p>Info</p>
+                         <div class="col-md-12">
+                            @Html.LabelFor(x => x.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.TextBoxFor(x => x.DepartureTime, new { id = "departuretime", @class = "input-dialog-design" })
+                            @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-12">
+                                @Html.LabelFor(x => x.Cancelled, htmlAttributes: new { @class = "control-label col-md-2" })
+                                 @Html.CheckBoxFor(x => x.Cancelled)
+                                @Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })
+                        </div>         
+                            
+                                <br/><br />
+                                    <a href="@Url.Action("UpdateDeparture", "Admin")" class="btn btn-default btn-lg pull-left">Tilbake</a>
+                                    <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+                }
+                <p>Info</p>
             </div>
+
+
+
+
+
+
+
             </div>        
        
 </body>
