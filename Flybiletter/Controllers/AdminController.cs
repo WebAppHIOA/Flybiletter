@@ -10,13 +10,33 @@ namespace Flybiletter.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+
+        [HttpPost]
+        public ActionResult Login(Model.Login login)
+        {
+            var admin = new Administrator();
+
+            if (admin.GetUser(login))
+            {
+                Session["LoggedIn"] = true;
+                return View();
+            }
+            else
+            {
+                Session["LoggedIn"] = false;
+                return View();
+            }
+        }
+
         public ActionResult Home()
         {
             var adminBLL = new Administrator();
-            //adminBLL.DeleteAirport("CAN");
-           
-           // adminBLL.UpdateAirport();
 
+            if (Session["LoggedIn"] == null)
+            {
+                Session["LoggedIn"] = false;
+            }
+            Session["LoggedIn"] = true;
             ViewData["CountData"] = adminBLL.TableCounts();
             return View();
         }
@@ -104,5 +124,10 @@ namespace Flybiletter.Controllers
             return RedirectToAction("Order");
         }
 
+        public ActionResult Logout()
+        {
+            Session["LoggedIn"] = false;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

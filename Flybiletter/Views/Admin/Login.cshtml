@@ -15,7 +15,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-    
+
 
     </script>
 </head>
@@ -25,29 +25,29 @@
     <div class="login-box">
         @using (Html.BeginForm(FormMethod.Post))
         {
-            
+
             <div class="admin-login">
                 <h1 class="login-header"> Administrator </h1>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="inner-admin-login">
-                        <br />
-                        @Html.LabelFor(x => x.Username)
-                        <br />
-                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
-                        <br />
-                        @Html.TextBoxFor(x => x.Username, new { id = "username", @class = "admin-input-dialog" })
-                        <br />
-                        @Html.LabelFor(x => x.Password)
-                        <br />
-                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
-                        <br />
-                        @Html.PasswordFor(x => x.Password, new { id = "password", @class = "admin-input-dialog" })
-                        <br />
-                        <input type="submit" class="admin-login-btn" value="Log inn">
-                        <br />
-                    </div>
-             </div>
+                <div class="inner-admin-login">
+                    <br />
+                    @Html.LabelFor(x => x.Username)
+                    <br />
+                    @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.TextBoxFor(x => x.Username, new { id = "username", @class = "admin-input-dialog" })
+                    <br />
+                    @Html.LabelFor(x => x.Password)
+                    <br />
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.PasswordFor(x => x.Password, new { id = "password", @class = "admin-input-dialog" })
+                    <br />
+                    <input type="submit" class="admin-login-btn" value="Log inn">
+                    <br />
+                </div>
+            </div>
         }
-         </div>
+    </div>
 </body>
 </html>

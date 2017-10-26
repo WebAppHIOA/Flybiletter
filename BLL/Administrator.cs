@@ -10,6 +10,13 @@ namespace BLL
 {
     public class Administrator
     {
+        public bool GetUser(Login login)
+        {
+            var db = new DB();
+            db.initiateAdmin(login);
+            return true;
+        }
+
         public bool DeleteAirport(string id)
         {
             var db = new DB();

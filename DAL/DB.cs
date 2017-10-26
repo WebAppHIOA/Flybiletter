@@ -15,7 +15,7 @@ namespace DAL
 
         private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static byte[] CreateHash(string password)
+        public byte[] CreateHash(string password) //static
         {
             byte[] dataInn, dataOut;
             var algorithm = System.Security.Cryptography.SHA512.Create();
@@ -24,7 +24,7 @@ namespace DAL
             return dataOut;
         }
 
-        public static bool initiateAdmin(Login login)
+        public bool initiateAdmin(Login login) //static
         {
             using (var db = new AirportContext())
             {

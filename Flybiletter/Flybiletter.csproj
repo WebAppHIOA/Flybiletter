@@ -317,6 +317,7 @@
     <Content Include="Views\Admin\Departure.cshtml" />
     <Content Include="Views\Admin\Airport.cshtml" />
     <Content Include="Views\Admin\UpdateDeparture.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
