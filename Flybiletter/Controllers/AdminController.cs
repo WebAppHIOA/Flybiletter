@@ -38,7 +38,10 @@ namespace Flybiletter.Controllers
         public ActionResult UpdateDeparture(string id)
         {
             var admin = new Administrator();
+
             var flight = admin.GetDeparture(id);
+            ViewData["AllAirports"] = admin.GetAllAirports();
+            
             if (flight == null) {
                 ModelState.AddModelError("Cancelled", "Denne avgangen eksister ikke i systemet");
             }
@@ -49,7 +52,9 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateDeparture(Model.Departure departure)
         {
-            return RedirectToAction("Departure");
+            var admin = new Administrator();
+            admin.UpdateDeparture(departure);
+            return RedirectToAction("UpdateDeparture");
         }
 
         public ActionResult Airport()
@@ -76,6 +81,8 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
+            var admin = new Administrator();
+            admin.UpdateAirport(airport);
             return RedirectToAction("Airport");
         }
 
@@ -102,8 +109,10 @@ namespace Flybiletter.Controllers
 
         //POST
         [HttpPost]
-        public ActionResult UpdateOrder(Model.Order airport)
+        public ActionResult UpdateOrder(Model.Order order)
         {
+            var admin = new Administrator();
+            admin.UpdateOrder(order);
             return RedirectToAction("Order");
         }
 

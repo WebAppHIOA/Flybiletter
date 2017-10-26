@@ -27,97 +27,112 @@
     </script>
 </head>
 <body id="admin-body">
+    @{var airports = ViewData["AllAirports"] as List<Model.Airport>; }
 
-    <!--HORIZONTAL TOP NAVIGATION BAR-->
-    <div class="admin-navlogo navbar-fixed-top">
-        <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
-        </a>
-    </div>
-    <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
-        <div class="pull-right">
-            <button class="btn log-out" type="submit">Logg ut</button>
+        <!--HORIZONTAL TOP NAVIGATION BAR-->
+        <div class="admin-navlogo navbar-fixed-top">
+            <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
+                <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+            </a>
         </div>
-    </div>
-
-    <div class="row">
-        <!--VERTICAL SIDE NAVIGATION BAR-->
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Meny</span>
-                    </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav" id="admin-nav">
-                            <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
-                            <li><a class="active" href="@Url.Action("Departure", "Admin")">Avgang</a></li>
-                            <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
-                            <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="admin-navbar navbar-fixed-top">
+            <p class="admin-navheader">ADMINISTRATOR</p>
+            <div class="pull-right">
+                <button class="btn log-out" type="submit">Logg ut</button>
             </div>
         </div>
 
-        <!--CONTENT AREA-->
-        <div class="col-sm-9 admin-content">
-            <h1>Departure</h1>
-    
+        <div class="row">
+            <!--VERTICAL SIDE NAVIGATION BAR-->
+            <div class="col-sm-3">
+                <div class="sidebar-nav">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <span class="visible-xs navbar-brand">Meny</span>
+                        </div>
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav" id="admin-nav">
+                                <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
+                                <li><a class="active" href="@Url.Action("Departure", "Admin")">Avgang</a></li>
+                                <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
+                                <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--CONTENT AREA-->
+            <div class="col-sm-9 admin-content">
+               
+
                 @using (Html.BeginForm(FormMethod.Post))
                 {
-                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.FlightId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.FlightId, new { @readonly = "readonly", id = "flightID", @class = "input-dialog-design" })
+                        @Html.ValidationMessageFor(model => model.FlightId, "", new { @class = "text-danger" })
+                    </div>
+
                     <div class="col-md-12">
                         @Html.LabelFor(model => model.From, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "input-dialog-design", @type = "search", @list = "From" } })
+                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "input-dialog-design", @list = "airports" } })
                         @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
-                        <datalist id="From">
-                                <option value="@Model.From" id="@Model.From">@Model.From</option>
-                        </datalist>
+                            <datalist id="airports">
+                                @foreach (var airport in airports)
+                                {
+                                    <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                                }
+                                }
+                            </datalist>
                     </div>
-
-                    <div class="col-md-12">
-                        @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "input-dialog-design", @type = "search", @list = "To" } })
-                        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
-                        <datalist id="To">
-                            <option value="@Model.To" id="@Model.To">@Model.To</option>
-                        </datalist>
-                    </div>
-                     
 
                         <div class="col-md-12">
-                            @Html.LabelFor(x => x.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "input-dialog-design", @type = "search", @list = "airports" } })
+                            @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                            <datalist id="airports">
+                                @foreach (var airport in airports)
+                                {
+                                    <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                                }
+                            </datalist>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                             @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input-dialog-design", @type = "date" } })
                             @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-</div>
-                          
+                        </div>
 
-                         <div class="col-md-12">
-                            @Html.LabelFor(x => x.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.TextBoxFor(x => x.DepartureTime, new { id = "departuretime", @class = "input-dialog-design" })
+
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.TextBoxFor(model => model.DepartureTime, new { id = "departuretime", @class = "input-dialog-design" })
                             @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="col-md-12">
-                                @Html.LabelFor(x => x.Cancelled, htmlAttributes: new { @class = "control-label col-md-2" })
-                                 @Html.CheckBoxFor(x => x.Cancelled)
-                                @Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })
-                        </div>         
-                            
-                                <br/><br />
-                                    <a href="@Url.Action("UpdateDeparture", "Admin")" class="btn btn-default btn-lg pull-left">Tilbake</a>
-                                    <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
-                }
-                <p>Info</p>
-            </div>
+                            @Html.LabelFor(model => model.Cancelled, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.CheckBoxFor(model => model.Cancelled)
+                            @Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })
+                        </div>
+
+                        <br /><br />
+                        <a href="@Url.Action("Departure", "Admin")" class="btn btn-default btn-lg pull-left">Tilbake</a>
+                        <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+                        }
+                        <p>Info</p>
+                    </div>
 
 
 
@@ -125,7 +140,7 @@
 
 
 
-            </div>        
-       
+        </div>
+
 </body>
 </html>
