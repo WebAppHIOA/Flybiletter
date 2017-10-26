@@ -7,11 +7,16 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using BLL;
+using log4net;
+using System.Reflection;
 
 namespace Flybiletter.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public ActionResult Index()
         {
             var OrderBLL = new BLL.Order();
@@ -164,7 +169,7 @@ namespace Flybiletter.Controllers
 
         public ActionResult Login()
         {
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Home", "Admin");
         }
 
     }
