@@ -49,6 +49,7 @@
     <Compile Include="Departure.cs" />
     <Compile Include="GenerateDepartures.cs" />
     <Compile Include="GenerateInvoice.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

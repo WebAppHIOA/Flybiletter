@@ -5271,6 +5271,105 @@ a.list-group-item.active > .badge,
     color: #4d4d4d;
 }
 
+.btn-create {
+    color: white;
+    background-color: #f4a442;
+    border: 2px solid #e2902b;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-create:hover {
+   outline: 0;
+   color: #333333;
+   background-color: #eeeeee;
+   border: 2px solid #cccccc;
+}
+
+.btn-create:focus {
+    outline: 0;
+}
+
+#show-hide-element {
+    width: 91%;
+    height: 170px;
+    background-color: #e8e8e8;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    margin-top: 25px;
+    padding: 20px 30px 50px 70px;
+    display: none;
+}
+
+.move-to{
+    margin-left: 57px !important;
+}
+
+.move-date {
+    margin-left: 40px !important;
+}
+
+.create-button {
+   margin-right: 50px; 
+}
+
+.create-input-dialog {
+    width: 200px;
+    height: 25px;
+    border: solid 1px #adadad;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.create-input-dialog:hover {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+.create-input-dialog:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+
+.flight-id-input {
+    width: 100px;
+    height: 25px;
+    border: solid 1px #adadad;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.flight-id-input:hover {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+.flight-id-input:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+.btn-save {
+    color: white;
+    background-color: #f4a442;
+    border: 2px solid #e2902b;
+}
+
+.btn-save:hover, .btn-save:focus{
+    color: #333333;
+    background-color: #36b075;
+    border: 2px solid #e2902b;
+    outline: 0;
+}
 
 /*FLYBILETTER CSS*/
 .biletter {

@@ -11,7 +11,15 @@ namespace DAL
         protected override void Seed(AirportContext context)
         {
             List<Airport> allAirports = new List<Airport>();
+            /*
+            var db = new DB();
+            var pass = CreateHash("k1g2s3a4");
 
+            var admin = new User
+            {
+                Username = "airzureadmin",
+                Password = pass
+            };*/
 
             var order1 = new Order
             {
@@ -615,7 +623,7 @@ namespace DAL
                 Departure = new List<Departure>()
             });
 
-            
+            // context.User.Add(admin);
 
             foreach (Airport f in allAirports)
             {

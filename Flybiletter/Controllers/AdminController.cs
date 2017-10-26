@@ -14,12 +14,7 @@ namespace Flybiletter.Controllers
         {
             return View();
         }
-        /*
-        [HttpPost]
-        public ActionResult Login()
-        {
-            return RedirectToAction("Home");
-        }*/
+
 
         public ActionResult Home()
         {

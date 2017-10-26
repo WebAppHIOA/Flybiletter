@@ -19,6 +19,7 @@ namespace DAL
         public DbSet<Departure> Departure { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Airport> Airport { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
