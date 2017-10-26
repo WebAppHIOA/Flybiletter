@@ -8,9 +8,20 @@ namespace BLL
 {
     public class Order
     {
+        IDB _DB;
+
+        public Order()
+        {
+            _DB = new DB();
+        }
+        public Order(IDB stub)
+        {
+            _DB = stub;
+        }
+
         public List<Airport> getAllAirports()
         {
-            var airports = DB.getAllAirports();
+            var airports = _DB.getAllAirports();
  
             return airports;
         }
@@ -18,7 +29,7 @@ namespace BLL
         public string GenerateFlightID()
         {
             var flightId = Model.GenerateDepartures.GenerateFlightId();
-            if (DB.IsFlightIdAvailable(flightId))
+            if (_DB.IsFlightIdAvailable(flightId))
             {
                 return Model.GenerateDepartures.GenerateFlightId();
             }
@@ -42,23 +53,23 @@ namespace BLL
 
         public Airport FindAirport(string destination)
         {
-            var airport = DB.FindAirport(destination);
+            var airport = _DB.FindAirport(destination);
             return airport;
         }
 
         public void AddDeparture(Departure departure)
         {
-            DB.AddDeparture(departure);
+            _DB.AddDeparture(departure);
         }
 
         public void AddOrder(Model.Order order)
         {
-            DB.AddOrder(order);
+            _DB.AddOrder(order);
         }
 
         public Invoice GetInvoiceInformation(string flightId, string orderNumber)
         {
-           return DB.getInvoiceInformation(flightId, orderNumber);
+           return _DB.getInvoiceInformation(flightId, orderNumber);
         }
 
     }

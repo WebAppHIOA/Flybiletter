@@ -10,21 +10,31 @@ namespace BLL
 {
     public class Administrator
     {
+        IDB _DB;
+        public Administrator()
+        {
+            _DB = new DB();
+        }
+
+        public Administrator(IDB stub)
+        {
+            _DB = stub;
+        }
         public bool DeleteAirport(string id)
         {
-            DB.DeleteAirport(id);
+            _DB.DeleteAirport(id);
             return true;
         }
 
         public bool DeleteDeparture(string id)
         {
-            DB.DeleteDeparture(id);
+            _DB.DeleteDeparture(id);
             return true;
         }
 
         public bool UpdateAirport(Airport airport)
         {
-            DB.UpdateAirport(airport);
+            _DB.UpdateAirport(airport);
             return true;
 
         }

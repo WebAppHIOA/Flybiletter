@@ -20,19 +20,20 @@
         <h2 id="tickets-header">ORDRE</h2>
         <div class="biletter">
             <br />
-            <table class="table" id="orderTable">
-                <tr>
-                    <th>ID</th>
-                    <th>Avgangstid</th>
-                    <th>Dato</th>
-                    <th>Fra</th>
-                    <th>Til</th>
-                    <th>Pris</th>
-                </tr>
-                <tbody>
+            <div class="table-responsive">
+                <table class="table" id="orderTable">
                     <tr>
-                        @{
-                            var departure = ViewData["SelectedDeparture"] as Flybiletter.Models.DepartureViewModel;
+                        <th>ID</th>
+                        <th>Avgangstid</th>
+                        <th>Dato</th>
+                        <th>Fra</th>
+                        <th>Til</th>
+                        <th>Pris</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            @{
+                                var departure = ViewData["SelectedDeparture"] as Flybiletter.Models.DepartureViewModel;
 
                                 <td>@departure.Id</td>
                                 <td>@departure.Time</td>
@@ -40,12 +41,12 @@
                                 <td>@departure.From</td>
                                 <td>@departure.To</td>
                                 <td>@departure.Price</td>
-                        }
-                    </tr>
-                </tbody>
-            </table>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
         <br />
 
         <!--PASSASJER INFO-->
@@ -56,30 +57,67 @@
                 @using (Html.BeginForm(FormMethod.Post))
                 {
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <table>
-                        <tr>
-                            <td>@Html.LabelFor(x => x.Firstname)</td>
-                            <td>@Html.TextBoxFor(x => x.Firstname, new { id = "firstname", @class = "input-dialog-design" })</td>
-                            <td>@Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })</td>
-                            <td>@Html.LabelFor(x => x.Surname)</td>
-                            <td>@Html.TextBoxFor(x => x.Surname, new { id = "surname", @class = "input-dialog-design" })</td>
-                            <td>@Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })</td>
-                        </tr>
-                        <tr>
-                            <td>@Html.LabelFor(x => x.Tlf)</td>
-                            <td>@Html.TextBoxFor(x => x.Tlf, new { id = "tlf", @class = "input-dialog-design" })</td>
-                            <td>@Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })</td>
-                            <td>@Html.LabelFor(x => x.Email)</td>
-                            <td>@Html.TextBoxFor(x => x.Email, new { id = "email", @class = "input-dialog-design" })</td>
-                            <td>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</td>
-                        </tr>
-                    </table>
-                    <br /><br />
-                    <a href="@Url.Action("FlightDetails", "Home")" class="btn btn-default btn-lg pull-left">Tilbake</a>
-                    <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
-                }
-            </div> 
-            </div>
-    </div>
+                    
+                        <div class="row">
+                            <div class="col-s-12 col-md-6 ">
+                                <div class="row">
+                                    <div class="col-md-4 ">
+                                        @Html.LabelFor(x => x.Firstname)
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        @Html.TextBoxFor(x => x.Firstname, new { id = "firstname", @class = "input-dialog-design" })
+                                    </div>
+                                        @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+                                    </div>
+                            </div>
+                            <div class="col-s-12 col-md-6 ">
+                                <div class="row">
+                                    <div class="col-md-4 ">
+                                        @Html.LabelFor(x => x.Surname)
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        @Html.TextBoxFor(x => x.Surname, new { id = "surname", @class = "input-dialog-design" })
+                                    </div>
+                                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-s-12 col-md-6 ">
+                                <div class="row">
+                                    <div class="col-md-4 ">
+                                        @Html.LabelFor(x => x.Tlf)
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        @Html.TextBoxFor(x => x.Tlf, new { id = "tlf", @class = "input-dialog-design" })
+                                    </div>
+                                        @Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })
+                                    </div>
+                            </div>
+                            <div class="col-s-12 col-md-6 ">
+                                <div class="row">
+                                    <div class="col-md-4 ">
+                                        @Html.LabelFor(x => x.Email)
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        @Html.TextBoxFor(x => x.Email, new { id = "email", @class = "input-dialog-design" })
+                                    </div>
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <a href="@Url.Action("FlightDetails", "Home")" class="btn btn-default btn-lg pull-left">Tilbake</a>
+                            </div>
+                            <div class="col-md-6 ">
+                                <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+                            </div>
+                        </div>
+                 }
+        </div>
+</div>
+</div>
 </body>
 </html>

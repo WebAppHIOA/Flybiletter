@@ -12,9 +12,21 @@ namespace Flybiletter.Controllers
 {
     public class HomeController : Controller
     {
+        BLL.Order OrderBLL;
+
+        public HomeController()
+        {
+            OrderBLL = new BLL.Order();
+        }
+
+        public HomeController(BLL.Order testOrder)
+        {
+            OrderBLL = testOrder;
+        }
+
         public ActionResult Index()
         {
-            var OrderBLL = new BLL.Order();
+            
             var airports = OrderBLL.getAllAirports();
 
             var IndexVM = new IndexViewModel();
@@ -71,25 +83,40 @@ namespace Flybiletter.Controllers
         }
 
         [HttpPost]
-        public JsonResult Departures(String id,
+        public JsonResult DeparturesFromFlightDetails(String id,
                                              String time,
                                              String date, String from,
                                              String to, String price)
         {
-
-            var selectedDeparture = new DepartureViewModel
+            //Validerer JSON parameter server side
+            if (id == "" || id == null)
             {
-                Id = id,
-                Time = time,
-                Date = date,
-                From = from,
-                To = to,
-                Price = price
-            };
+                return Json(new { success = false, response = "Vennligst velg en reise" });
+            }
+            else
+            {
+                var selectedDeparture = new DepartureViewModel
+                {
+                    Id = id,
+                    Time = time,
+                    Date = date,
+                    From = from,
+                    To = to,
+                    Price = price
+                };
 
-            Session["SelectedDeparture"] = selectedDeparture;
+                //Validerer Modelen
+                if (selectedDeparture.Id == null)
+                {
+                    return Json(new { success = false, response = "Vennligst velg en reise" });
+                }
+                else
+                {
+                    Session["SelectedDeparture"] = selectedDeparture;
 
-            return Json("Success");
+                    return Json(new { success = true, Response = "Success" });
+                }
+            }
         }
 
 
@@ -97,10 +124,9 @@ namespace Flybiletter.Controllers
         {
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
-            var orderBLL = new BLL.Order();
-            List<Departure> departures = orderBLL.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
+            List<Departure> departures = OrderBLL.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
 
-            Session["Prices"] = orderBLL.GeneratePrice(departures.Count);
+            Session["Prices"] = OrderBLL.GeneratePrice(departures.Count);
             Session["Departures"] = departures;
 
             return RedirectToAction("FlightDetails");
@@ -116,8 +142,24 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Passenger(Model.Order order)
         {
+
+            if(ModelState.IsValid)
+            {
+
+                if(order.Date == null && order.Email == null && order.Firstname == null && order.Surname == null 
+                    && order.Tlf == null)
+                {
+                    return Passenger();
+                }
+
+            
             var departure = Session["SelectedDeparture"] as DepartureViewModel;
-            var orderBLL = new BLL.Order();
+            
+                if(departure is null)
+                {
+                    return Passenger();
+                }
+            
         
          //   var toAirport = orderBLL.FindAirport(departure.To);
 
@@ -128,13 +170,13 @@ namespace Flybiletter.Controllers
                 To = departure.To,
                 Date = departure.Date,
                 DepartureTime = departure.Time,
-                Airport = orderBLL.FindAirport(departure.From)
+                Airport = OrderBLL.FindAirport(departure.From)
             };
 
-            orderBLL.AddDeparture(dep);
+            OrderBLL.AddDeparture(dep);
 
             order.OrderNumber = GenerateInvoice.UniqueReference();
-            orderBLL.AddOrder(new Model.Order
+            OrderBLL.AddOrder(new Model.Order
             {
                 OrderNumber = order.OrderNumber,
                 Date = departure.Date,
@@ -146,9 +188,11 @@ namespace Flybiletter.Controllers
                 Departure = dep
             });
 
-            GenerateInvoice.SendEmail(orderBLL.GetInvoiceInformation(dep.FlightId, order.OrderNumber));
+            GenerateInvoice.SendEmail(OrderBLL.GetInvoiceInformation(dep.FlightId, order.OrderNumber));
 
             return RedirectToAction("Confirmation");
+            }
+            return Passenger();
         }
 
         public ActionResult Confirmation()
