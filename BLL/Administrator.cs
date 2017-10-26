@@ -43,8 +43,8 @@ namespace BLL
         public bool UpdateDeparture(Departure departure)
         {
             var db = new DB();
-            
             db.UpdateDeparture(departure);
+            
             return true;
         }
 

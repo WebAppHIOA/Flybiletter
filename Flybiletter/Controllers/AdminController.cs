@@ -54,7 +54,7 @@ namespace Flybiletter.Controllers
         {
             var admin = new Administrator();
             admin.UpdateDeparture(departure);
-            return RedirectToAction("UpdateDeparture");
+            return RedirectToAction("Departure");
         }
 
         public ActionResult Airport()
