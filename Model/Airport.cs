@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Model
 {
-    //[TrackChanges]
+    [TrackChanges]
     public class Airport
     {
         public string AirportId { get; set; }

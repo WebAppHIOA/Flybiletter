@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Model
 {
-    //[TrackChanges]
+    [TrackChanges]
     public class Departure
     {
         [Key]
@@ -18,10 +18,9 @@ namespace Model
         [Required(ErrorMessage = "Dato må oppgis")]
         public string Date { get; set; }
         public string DepartureTime { get; set; }
-
+        public bool Cancelled  { get; set; }
 
         public virtual Airport Airport { get; set; }
         public virtual List<Order> Order { get; set; }
-        //public virtual List<Customer> Customer { get; set; }
     }
 }

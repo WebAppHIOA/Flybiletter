@@ -9,7 +9,7 @@ using TrackerEnabledDbContext;
 namespace DAL
 {
 
-    public class AirportContext : DbContext //TrackerContext
+    public class AirportContext : TrackerContext
     {
         public AirportContext() : base("name=Flybilett")
         {
@@ -25,8 +25,8 @@ namespace DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            /*
-            // Allow to delete and update entries between Airport and Departure
+           /* 
+          // Allow to delete and update entries between Airport and Departure
             modelBuilder.Entity<Airport>()
                         .HasMany(v => v.Departure)
                         .WithRequired(v => v.Airport)
@@ -39,8 +39,9 @@ namespace DAL
                         .WithRequired(v => v.Departure)
                         .WillCascadeOnDelete(true);
                         
-
-            base.OnModelCreating(modelBuilder);*/
+            base.OnModelCreating(modelBuilder);
+            */
+            
         }
     }
     }

@@ -10,17 +10,19 @@ namespace BLL
     {
         public List<Airport> getAllAirports()
         {
-            var airports = DB.getAllAirports();
+            var db = new DB();
+            var airports = db.getAllAirports();
  
             return airports;
         }
 
         public string GenerateFlightID()
         {
-            var flightId = Model.GenerateDepartures.GenerateFlightId();
-            if (DB.IsFlightIdAvailable(flightId))
+            var db = new DB();
+            var flightId = GenerateDepartures.GenerateFlightId();
+            if (db.IsFlightIdAvailable(flightId))
             {
-                return Model.GenerateDepartures.GenerateFlightId();
+                return GenerateDepartures.GenerateFlightId();
             }
             else
             {
@@ -42,23 +44,27 @@ namespace BLL
 
         public Airport FindAirport(string destination)
         {
-            var airport = DB.FindAirport(destination);
+            var db = new DB();
+            var airport = db.FindAirport(destination);
             return airport;
         }
 
         public void AddDeparture(Departure departure)
         {
-            DB.AddDeparture(departure);
+            var db = new DB();
+            db.AddDeparture(departure);
         }
 
         public void AddOrder(Model.Order order)
         {
-            DB.AddOrder(order);
+            var db = new DB();
+            db.AddOrder(order);
         }
 
         public Invoice GetInvoiceInformation(string flightId, string orderNumber)
         {
-           return DB.getInvoiceInformation(flightId, orderNumber);
+            var db = new DB();
+            return db.getInvoiceInformation(flightId, orderNumber);
         }
 
     }

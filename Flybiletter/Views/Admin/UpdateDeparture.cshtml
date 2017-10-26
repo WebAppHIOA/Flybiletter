@@ -1,8 +1,8 @@
-﻿@model List<Model.Departure>
+﻿@model Model.Departure
 
 @{
     Layout = null;
-    ViewBag.Title = "Departure";
+    ViewBag.Title = "Update Departure";
 }
 
 <!DOCTYPE html>
@@ -70,45 +70,44 @@
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
             <h1>Departure</h1>
-            <table class="table">
-                <thread>
-                    <tr>
-                        <th>Flight ID</th>
-                        <th>Tid</th>
-                        <th>Dato</th>
-                        <th>Fra</th>
-                        <th>Til</th>
-                        <th>Kansellert</th>
-                        <th>Oppdater</th>
-                        <th>Slett</th>
-                    </tr>
-                    <tbody>
-                        
-                                @foreach (var departure in Model)
-                                {
+    
+                @using (Html.BeginForm(FormMethod.Post))
+                {
+                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <table>
+                                <tr>
+                                    <td>@Html.LabelFor(x => x.From)</td>
+                                    <td>@Html.TextBoxFor(x => x.From, new { id = "from", @class = "input-dialog-design" })</td>
+                                    <td>@Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })</td>
+
+                                    <td>@Html.LabelFor(x => x.To)</td>
+                                    <td>@Html.TextBoxFor(x => x.To, new { id = "to", @class = "input-dialog-design" })</td>
+                                    <td>@Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })</td>
+                              </tr>
+                                <tr>
+             
+                                    <td>@Html.LabelFor(x => x.Date)</td>
+                                    <td>@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input-dialog-design", @type = "date" } })</td>
+                                    <td>@Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })</td>
+
+
+                                    <td>@Html.LabelFor(x => x.DepartureTime)</td>
+                                    <td>@Html.TextBoxFor(x => x.DepartureTime, new { id = "departuretime", @class = "input-dialog-design" })</td>
+                                    <td>@Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })</td>
+</tr>
                                     <tr>
-                                        <td id="id">@departure.FlightId</td>
-                                        <td id="time">@departure.DepartureTime</td>
-                                        <td id="date">@departure.Date </td>
-                                        <td id="from">@departure.From</td>
-                                        <td id="to">@departure.To</td>
-                                        <td id="price">@departure.Cancelled</td>
-                                        
-                                        <td>@Html.ActionLink("Oppdater", "UpdateDeparture", "Admin", new { id = departure.FlightId }, null)</td>
-                                        <td>@Html.ActionLink("Slett", "DeleteDeparture", "Admin", new { id = departure.FlightId }, null)</td>
-                                        
-                                    </tr>
-                                }
-                    </tbody>
-                </thread>
-            </table>
-
+                                    <td>@Html.LabelFor(x => x.Cancelled)</td>
+                                    <td>@Html.TextBoxFor(x => x.Cancelled, new { id = "cancelled", @class = "input-dialog-design" })</td>
+                                    <td>@Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })</td>
+                                </tr>
+                            </table>
+                            <br /><br />
+                            <a href="@Url.Action("UpdateDeparture", "Admin")" class="btn btn-default btn-lg pull-left">Tilbake</a>
+                            <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+                        }
             <p>Info</p>
-        </div>
-    </div>
-
-
-
-
+            </div>
+            </div>        
+       
 </body>
 </html>
