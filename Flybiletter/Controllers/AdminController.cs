@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
+using System.Text.RegularExpressions;
 using Model;
 using Flybiletter.Models;
 
@@ -107,13 +108,24 @@ namespace Flybiletter.Controllers
                 return View(_admin.GetDeparture(id));
             }
             return RedirectToAction("Login", "Admin");
+            var admin = new Administrator();
+
+            var flight = admin.GetDeparture(id);
+            ViewData["AllAirports"] = admin.GetAllAirports();
+            
+            if (flight == null) {
+                ModelState.AddModelError("Cancelled", "Denne avgangen eksister ikke i systemet");
+            }
+            return View(flight);
         }
 
         //POST
         [HttpPost]
         public ActionResult UpdateDeparture(Model.Departure departure)
         {
-                return RedirectToAction("Departure");    
+            var admin = new Administrator();
+            admin.UpdateDeparture(departure);
+            return RedirectToAction("Departure");
         }
 
         public ActionResult Airport()
@@ -142,6 +154,8 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
+            var admin = new Administrator();
+            admin.UpdateAirport(airport);
             return RedirectToAction("Airport");
         }
 
@@ -165,8 +179,10 @@ namespace Flybiletter.Controllers
 
         //POST
         [HttpPost]
-        public ActionResult UpdateOrder(Model.Order airport)
+        public ActionResult UpdateOrder(Model.Order order)
         {
+            var admin = new Administrator();
+            admin.UpdateOrder(order);
             return RedirectToAction("Order");
         }
 

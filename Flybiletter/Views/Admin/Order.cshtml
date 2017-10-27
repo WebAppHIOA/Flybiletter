@@ -1,6 +1,8 @@
-﻿@{
+﻿@model List<Model.Order>
+
+@{
     Layout = null;
-    ViewBag.Title = "Order";
+    ViewBag.Title = "Bestillinger";
 }
 
 <!DOCTYPE html>
@@ -25,7 +27,7 @@
     </script>
 </head>
 <body id="admin-body">
- 
+
     <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
         <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
@@ -35,7 +37,7 @@
     <div class="admin-navbar navbar-fixed-top">
         <p class="admin-navheader">ADMINISTRATOR</p>
         <div class="pull-right">
-            <button class="btn log-out" type="submit" onclick="location.href='@Url.Action("logout", "Admin")'">Logg ut</button>
+            <button class="btn log-out" type="submit">Logg ut</button>
         </div>
     </div>
 
@@ -56,8 +58,8 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="admin-nav">
                             <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
-                            <li><a href="@Url.Action("Departure", "Admin")">Avgang</a></li>
-                            <li><a class="active" href="@Url.Action("Order", "Admin")">Bestilling</a></li>
+                            <li><a class="active" href="@Url.Action("Departure", "Admin")">Avgang</a></li>
+                            <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
                             <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
                         </ul>
                     </div>
@@ -67,14 +69,48 @@
 
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
-            <h1>Order</h1>
-            <p>Info</p>
+            <h1>Departure</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thread>
+                        <tr>
+                            <th>Ordrenummer</th>
+                            <th>Navn</th>
+                            <th>Etternavn</th>
+                            <th>Tlf</th>
+                            <th>Email</th>
+                            <th>Pris</th>
+                            <th>Kanseller</th>
+                            <th>Oppdater</th>
+                            <th>Slett</th>
+                        </tr>
+                        <tbody>
+
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td id="id">@order.OrderNumber</td>
+                                    <td id="time">@order.Firstname</td>
+                                    <td id="date">@order.Surname </td>
+                                    <td id="from">@order.Tlf</td>
+                                    <td id="to">@order.Email</td>
+                                    <td id="price">@order.Price</td>
+                                    <td id="cancel">@order.Cancelled</td>
+
+                                    <td>@Html.ActionLink("Oppdater", "UpdateOrder", "Admin", new { id = order.OrderNumber }, new { @class = "btn btn-info" })</td>
+                                    <td>@Html.ActionLink("Slett", "DeleteOrder", "Admin", new { id = order.OrderNumber }, new { @class = "btn btn-danger" })</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
         </div>
-    </div>   
-    
+    </div>
+
 
 
 
 </body>
 </html>
-

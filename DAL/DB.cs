@@ -80,6 +80,11 @@ namespace DAL
             {
                 try
                 {
+                    /*   var cancel = db.Departure.Where(d => d.Airport.AirportId == id).ToList();
+                       cancel.ForEach(c => c.Cancelled = true);
+                       db.SaveChanges();
+                       */
+                    CancelDeparture(id);
 
                     var airport = db.Airport.Include("Departure").FirstOrDefault(a => (a.AirportId == id));
 
@@ -97,6 +102,78 @@ namespace DAL
             }
         }
 
+        public bool CancelDeparture(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                try
+                {
+                    var cancel = db.Departure.Where(d => d.Airport.AirportId == id).ToList();
+                    cancel.ForEach(c => c.Cancelled = true);
+                    db.SaveChanges();
+
+                    CancelOrder(cancel);
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+                    log.Error("Cancel departure" + e);
+                    return false;
+                }
+            }
+        }
+        /* Overload 1
+         * 
+         */
+        public bool CancelOrder(List<Departure> id)
+        {
+            using (var db = new AirportContext())
+            {
+                try
+                {
+                    foreach (var departure in id)
+                    {
+                        var cancel = db.Order.Where(d => d.Departure.FlightId == departure.FlightId).ToList();
+                        cancel.ForEach(c => c.Cancelled = true);
+                        
+                    }
+                   /* var cancel = db.Order.Where(d => d.Departure.FlightId == id).ToList();
+                    cancel.ForEach(c => c.Cancelled = true);
+                   */ db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Cancel order list" + e);
+                    return false;
+                }
+            }
+        }
+
+        /* Overload 2
+         * 
+         */
+        public bool CancelOrder(Departure departure)
+        {
+            using (var db = new AirportContext())
+            {
+                try
+                {
+                     var cancel = db.Order.Where(d => d.Departure.FlightId == departure.FlightId).ToList();
+                     cancel.ForEach(c => c.Cancelled = departure.Cancelled);
+
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Cancel order string" + e);
+                    return false;
+                }
+            }
+        }
+
         /* Deletes a departure and sets the foreign key value to null
          * 
          */
@@ -106,7 +183,10 @@ namespace DAL
             {
                 try
                 {
+
                     var departure = db.Departure.Include("Order").FirstOrDefault(a => (a.FlightId == id));
+
+                    CancelOrder(departure);
 
                     db.Departure.Remove(departure);
                     db.SaveChanges();
@@ -115,7 +195,7 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
-                    log.Error("Delete departure from database \n" + e);
+                    log.Error("Delete departure from database" + e);
                     return false;
                 }
             }
@@ -137,7 +217,7 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
-                    log.Error("Delete order from database \n" + e);
+                    log.Error("Delete order from database" + e);
                     return false;
                 }
             }
@@ -167,7 +247,7 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
-                    log.Error("Failed to add order to database \n" + e);
+                    log.Error("Failed to add order to database" + e);
                     return false;
                 }
             }
@@ -186,7 +266,7 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
-                    log.Error("Failed to add departure to database \n" + e);
+                    log.Error("Failed to add departure to database" + e);
                     return false;
                 }
             }
@@ -232,7 +312,7 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
-                    log.Error("Failed to add departure to database \n" + e);
+                    log.Error("Failed to add departure to database" + e);
                     return false;
                 }
             }
@@ -243,41 +323,40 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
+
                 var departure = db.Departure.First(d => d.FlightId == id);
                 return departure;
             }
         }
 
-        /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
-         * 
-         */
+
         public bool UpdateAirport(Airport changes)
         {
             using (var db = new AirportContext())
             {
                 try
                 {
+
                     var airport = db.Airport.First(row => row.AirportId == changes.AirportId);
               
                     airport.Name = changes.Name;
                     airport.City = changes.City;
                     airport.Country = changes.Country;
+                    airport.Continent = changes.Continent;
                     airport.Fee = changes.Fee;
 
                     db.SaveChanges();
+                    
                     return true;
                 }
                 catch (Exception e)
                 {
-                    log.Error("Failed to update airport \n" + e);
+                    log.Error("Failed to update airport" + e);
                     return false;
                 }
             }
         }
 
-        /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
-         * 
-         */
         public bool UpdateDeparture(Departure changes)
         {
             using (var db = new AirportContext())
@@ -285,26 +364,28 @@ namespace DAL
                 try
                 {
                     var departure = db.Departure.First(row => row.FlightId == changes.FlightId);
-     
+
                     departure.From = changes.From;
                     departure.To = changes.To;
                     departure.Date = changes.Date;
                     departure.DepartureTime = changes.DepartureTime;
+                    departure.Cancelled = changes.Cancelled;
 
                     db.SaveChanges();
+
+                    CancelOrder(changes);
+
                     return true;
                 }
                 catch (Exception e)
                 {
-                    log.Error("Failed to update departure \n" + e);
+                    log.Error("Failed to update departure" + e);
                     return false;
                 }
             }
         }
 
-        /* Updates one table row, null values in incoming object just means the value remains the same. Other values are changed
-         * 
-         */
+ 
         public bool UpdateOrder(Order changes)
         {
             using (var db = new AirportContext())
@@ -325,7 +406,7 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
-                    log.Error("Failed to update order \n" + e);
+                    log.Error("Failed to update order" + e);
                     return false;
                 }
             }
@@ -406,5 +487,7 @@ namespace DAL
                 return invoice;
             }
         }
+
+     
     }
 }

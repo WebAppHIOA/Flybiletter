@@ -70,8 +70,8 @@
 
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
-            <h1>Airport</h1>
-            <p>Info</p>
+            <h1>Flyplass</h1>
+            <div class="table-responsive">
             <table class="table">
                 <thread>
                     <tr>
@@ -96,15 +96,16 @@
                                 <td id="to">@airport.Continent</td>
                                 <td id="price">@airport.Fee</td>
 
-                                <td>@Html.ActionLink("Slett", "DeleteAirport", "Admin", new { id = airport.AirportId }, null)</td>
-                                <td>@Html.ActionLink("Oppdater", "UpdateDeparture", "Admin", new { id = airport.AirportId }, null)</td>
+
+                                <td>@Html.ActionLink("Oppdater", "UpdateAirport", "Admin", new { id = airport.AirportId }, new { @class = "btn btn-info" })</td>
+                                <td>@Html.ActionLink("Slett", "DeleteAirport", "Admin", new { id = airport.AirportId }, new { @class = "btn btn-danger" })</td>
 
                             </tr>
                         }
                     </tbody>
                 </thread>
             </table>
-
+            </div>
         </div>
     </div>
 
