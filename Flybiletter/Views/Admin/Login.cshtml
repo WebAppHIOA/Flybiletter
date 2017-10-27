@@ -1,5 +1,4 @@
-﻿@model Flybiletter.Models.LoginModel
-
+﻿@model Model.Login
 
 @{
     Layout = null;
@@ -16,54 +15,39 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-    
+
 
     </script>
 </head>
 <body id="admin-login-body">
-    <!--
-    <object type="image/svg+xml" data="~/Content/images/airline_logo_lg.svg"></object>-->
+
 
     <div class="login-box">
-        <form class="admin-login"> <!--method="post"--> 
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+
+            <div class="admin-login">
                 <h1 class="login-header"> Administrator </h1>
-                <div class="inner-admin-login" >
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true)
-
-                        <fieldset>
-                            <legend>Logg inn</legend>
-
-                            <div class="editor-label">
-                                @Html.LabelFor(model => model.Username)
-                            </div>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.Username)
-                                @Html.ValidationMessageFor(model => model.Username)
-                            </div>
-
-                            <div class="editor-label">
-                                @Html.LabelFor(model => model.Password)
-                            </div>
-
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.Password)
-                                @Html.ValidationMessageFor(model => model.Password)
-                            </div>
-
-                            <input type="submit" value="Logg inn" class="admin-login-btn" />
-                        </fieldset>
-                    }
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="inner-admin-login">
                     <br />
+                    @Html.LabelFor(x => x.Username)
                     <br />
+                    @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger" })
                     <br />
-                    <!--SKAL FJERNES, ER KUN PÅ SIDEN FOR Å GÅ VIDERE-->
-                    <p>TEMP knappen brukes bare for å gå </p>
-                    <p>videre til admin side. Skal fjernes. <a href="/Admin/Home" class="admin-login-btn"> TEMP </a></p>
+                    @Html.TextBoxFor(x => x.Username, new { id = "username", @class = "admin-input-dialog" })
+                    <br />
+                    @Html.LabelFor(x => x.Password)
+                    <br />
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.PasswordFor(x => x.Password, new { id = "password", @class = "admin-input-dialog" })
+                    <br />
+                    <input type="submit" class="admin-login-btn" value="Log inn">
+                    <br />
                 </div>
-        </form>
+            </div>
+        }
     </div>
 </body>
 </html>

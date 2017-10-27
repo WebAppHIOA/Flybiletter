@@ -34,7 +34,7 @@
     <div class="admin-navbar navbar-fixed-top">
         <p class="admin-navheader">ADMINISTRATOR</p>
         <div class="pull-right">
-            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
         </div>
     </div>
 
@@ -76,7 +76,6 @@
                    @{ Dictionary<string, int>
                                     counts = ViewData["CountData"] as Dictionary<string, int>;
                         }
-                            ;
                             <p id="home-count">@counts["Departure"]</p>
                             <p id="mini-article">antall aktive</p>
                 </div>

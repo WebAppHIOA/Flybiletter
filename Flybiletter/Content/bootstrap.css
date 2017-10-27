@@ -4956,11 +4956,8 @@ a.list-group-item.active > .badge,
    
 }
 
+
 /*ADMIN NAVIGATION BAR CSS*/
-.vs ul, .vs li {
-    list-style-type: none;
-
-
 .admin-btn {
     margin-top: 6px;
     padding-top: 15px;
@@ -4989,7 +4986,6 @@ a.list-group-item.active > .badge,
     padding-bottom: 70px;
     border-bottom: dashed 5px #2d8659;
     margin-top: 0;
-    margin-bottom: 0;
 }
 
 
@@ -5015,7 +5011,7 @@ a.list-group-item.active > .badge,
 
 .inner-admin-login {
     letter-spacing: 2px;
-    margin-top: 0;
+    margin-top: 5%;
     margin-left: 40%;
     font-size: 16px;
 }
@@ -5177,21 +5173,6 @@ a.list-group-item.active > .badge,
     font-size: 15px;
     margin-top: -75px;
     margin-right: 10px;
-}
-
-.log-out:focus{
-    background-color: #b32d00;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: #fff;
-    font-size: 15px;
-    margin-top: -75px;
-    margin-right: 10px;
-    -webkit-box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
-    -moz-box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
-    box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
 }
 
 
