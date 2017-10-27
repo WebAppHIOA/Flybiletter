@@ -87,16 +87,11 @@
                 @using (Html.BeginForm(FormMethod.Post))
                 {
 
-                    <div class="col-sm-12">
-                        @Html.Label("Flight ID")
-                        @Html.TextBoxFor(x => x.FlightId, new { @class = "flight-id-input" })
-                    </div>
-
                     <div class="col-sm-6 ">
                         @Html.Label("Til")
-                        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "input-dialog-design", @list = "airports" } })
+                        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog move-to", @list = "Airport" } })
                         @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
-                        <datalist id="airports">
+                        <datalist id="Airport">
                             @foreach (var airport in Model.Airport)
                             {
                                 <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
@@ -107,9 +102,9 @@
                     </div>
                     <div class="col-sm-6">
                         @Html.Label("Fra")
-                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "input-dialog-design", @list = "airports" } })
+                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "create-input-dialog", @list = "Airport" } })
                         @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
-                        <datalist id="airports">
+                        <datalist id="Airport">
                             @foreach (var airport in Model.Airport)
                             {
                                 <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>

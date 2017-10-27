@@ -24,7 +24,7 @@ namespace Flybiletter.Models
         public bool Cancelled  { get; set; }
 
         public virtual Airport Airport { get; set; }
-        public virtual List<Order> Order { get; set; }
+
         public virtual List<Departure> DepartureDetails { get; set; }
     }
 }

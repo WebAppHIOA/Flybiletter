@@ -115,18 +115,20 @@ namespace BLL
             return db.FindOrder(id);
         }
 
-        public bool AddDeparture(Model.AdminDepartureViewModel dep)
+        public bool AddDeparture(AdminDepartureViewModel dep)
         {
+            var db = new DB();
+
             Departure departure = new Departure
             {
-                FlightId = dep.FlightId,
+                FlightId = GenerateDepartures.GenerateFlightId(),
                 From = dep.From,
                 To = dep.To,
                 Date = dep.Date,
                 DepartureTime = dep.DepartureTime,
                 Airport = GetAirport(dep.From)
             };
-            var db = new DB();
+            
             return db.AddDeparture(departure);
         }
     }

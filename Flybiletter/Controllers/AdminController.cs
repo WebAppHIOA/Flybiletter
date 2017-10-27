@@ -25,9 +25,8 @@ namespace Flybiletter.Controllers
         public ActionResult Departure()
         {
             var admin = new Administrator();
-            var dep = admin.GetAllDepartures();
             var AdminDepVM = new Model.AdminDepartureViewModel();
-            AdminDepVM.DepartureDetails = dep;
+            AdminDepVM.DepartureDetails = admin.GetAllDepartures();
             AdminDepVM.Airport = admin.GetAllAirports();
 
             return View(AdminDepVM);
@@ -40,9 +39,9 @@ namespace Flybiletter.Controllers
             if (ModelState.IsValid)
             {
                 admin.AddDeparture(dep);
-                return View();
+                return RedirectToAction("Departure");
             }
-            return View();
+            return RedirectToAction("Departure");
         }
 
 
