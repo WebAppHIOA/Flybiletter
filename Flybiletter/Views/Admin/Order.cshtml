@@ -1,4 +1,4 @@
-﻿@model List<Model.Order>
+﻿@model Model.AdminOrderViewModel
 
 @{
     Layout = null;
@@ -24,6 +24,14 @@
             });
         });
 
+        function showHide() {
+            var x = document.getElementById("show-hide-element");
+            if (!x.style.display || x.style.display == "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
     </script>
 </head>
 <body id="admin-body">
@@ -58,8 +66,8 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav" id="admin-nav">
                             <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
-                            <li><a class="active" href="@Url.Action("Departure", "Admin")">Avgang</a></li>
-                            <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
+                            <li><a href="@Url.Action("Departure", "Admin")">Avgang</a></li>
+                            <li><a class="active" href="@Url.Action("Order", "Admin")">Bestilling</a></li>
                             <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
                         </ul>
                     </div>
@@ -69,7 +77,68 @@
 
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
-            <h1>Departure</h1>
+            <h1>Order</h1>
+
+            <!--Create new order-->
+            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny bestilling</button>
+            <br />
+            <div id="show-hide-element">
+                @using (Html.BeginForm(FormMethod.Post))
+                {
+                    <div class="col-sm-6">
+                        @Html.Label("Flight ID")
+                        @Html.EditorFor(model => model.FlightId, new { htmlAttributes = new { @class = "create-input-dialog ", @list ="Departure" } })
+                        @Html.ValidationMessageFor(model => model.FlightId, "", new { @class = "text-danger" })
+                        <datalist id="Departure">
+                            @foreach (var dep in Model.Departure)
+                            {
+                                <option value="@dep.FlightId" id="@dep.FlightId">@dep.From - @dep.To</option>
+                            }
+                            }
+                        </datalist>
+                    </div>
+
+                    <div class="col-sm-6">
+                        @Html.Label("Dato")
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "create-input-dialog move-order-date", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6">
+                        @Html.Label("Fornavn ")
+                        @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "create-input-dialog move-order-firstname" } })
+                        @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6">
+                        @Html.Label("Etternavn")
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "create-input-dialog " } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6">
+                        @Html.Label("Telefon")
+                        @Html.EditorFor(model => model.Tlf, new { htmlAttributes = new { @class = "create-input-dialog move-order-tlf" } })
+                        @Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6">
+                        @Html.Label("E-post")
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "create-input-dialog move-order-email" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6">
+                        @Html.Label("Pris")
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "create-input-dialog move-order-price" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+
+                    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
+                }
+            </div>
+
+            <br /><br />
             <div class="table-responsive">
                 <table class="table">
                     <thread>
@@ -86,7 +155,7 @@
                         </tr>
                         <tbody>
 
-                            @foreach (var order in Model)
+                            @foreach (var order in Model.Order)
                             {
                                 <tr>
                                     <td id="id">@order.OrderNumber</td>

@@ -5484,7 +5484,7 @@ a.list-group-item.active > .badge,
     border-radius: 5px;
     margin-top: 25px;
     padding: 20px 30px 50px 70px;
-    display: none;
+    /*display: none;*/
 }
 
 .move-to {
@@ -5521,29 +5521,6 @@ a.list-group-item.active > .badge,
         outline: 0;
     }
 
-
-.flight-id-input {
-    width: 100px;
-    height: 25px;
-    border: solid 1px #adadad;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 15px;
-    margin-bottom: 8px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-    .flight-id-input:hover {
-        border: solid 2px #b1e7cd;
-        outline: 0;
-    }
-
-    .flight-id-input:focus {
-        border: solid 2px #36b075;
-        outline: 0;
-    }
-
 .btn-save {
     color: white;
     background-color: #f4a442;
@@ -5563,6 +5540,26 @@ a.list-group-item.active > .badge,
 
 .btn-update-left {
     margin-left: 30px;
+}
+
+.move-order-firstname {
+    margin-left: 19px !important;
+}
+
+.move-order-tlf {
+    margin-left: 25px !important;
+}
+
+.move-order-price {
+    margin-left: 50px !important;
+}
+
+.move-order-date {
+    margin-left: 50px !important;
+}
+
+.move-order-email {
+    margin-left: 39px !important;
 }
 
 /*FLYBILETTER CSS*/

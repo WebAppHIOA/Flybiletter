@@ -98,8 +98,8 @@
                             }
                             }
                         </datalist>
-
                     </div>
+
                     <div class="col-sm-6">
                         @Html.Label("Fra")
                         @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "create-input-dialog", @list = "Airport" } })
@@ -111,12 +111,13 @@
                             }
                             }
                         </datalist>
-
                     </div>
+
                     <div class="col-sm-6">
                         @Html.Label("Dato")
                         @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "create-input-dialog move-date", @type = "date" } })
                     </div>
+
                     <div class="col-sm-6">
                         @Html.Label("Tid")
                         @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "create-input-dialog" } })

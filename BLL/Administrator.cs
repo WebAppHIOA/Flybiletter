@@ -131,5 +131,24 @@ namespace BLL
             
             return db.AddDeparture(departure);
         }
+
+        public bool AddOrder(AdminOrderViewModel order)
+        {
+            var db = new DB();
+            var orderDep = db.FindDeparture(order.FlightId);
+
+            Model.Order ord = new Model.Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = order.Date,
+                Firstname = order.Firstname,
+                Surname = order.Surname,
+                Tlf = order.Tlf,
+                Email = order.Email,
+                Price = order.Price,
+                Departure = orderDep
+            };
+            return db.AddOrder(ord);
+        }
     }
 }

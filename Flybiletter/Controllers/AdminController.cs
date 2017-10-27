@@ -104,11 +104,27 @@ namespace Flybiletter.Controllers
             return RedirectToAction("Airport");
         }
 
-
+        //GET
         public ActionResult Order()
         {
             var admin = new Administrator();
-            return View(admin.GetAllOrders());
+            var AdminOrderVM = new Model.AdminOrderViewModel();
+            AdminOrderVM.Order = admin.GetAllOrders();
+            AdminOrderVM.Departure = admin.GetAllDepartures();
+            return View(AdminOrderVM);
+        }
+        
+
+        [HttpPost]
+        public ActionResult Order(Model.AdminOrderViewModel order)
+        {
+            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                admin.AddOrder(order);
+                return RedirectToAction("Order");
+            }
+            return RedirectToAction("Order");
         }
 
         public ActionResult DeleteOrder(string id)

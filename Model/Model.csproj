@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDepartureViewModel.cs" />
+    <Compile Include="AdminOrderViewModel.cs" />
     <Compile Include="Airport.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Departure.cs" />
