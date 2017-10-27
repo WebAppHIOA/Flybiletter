@@ -78,7 +78,21 @@ namespace Flybiletter.Controllers
         public ActionResult Airport()
         {
             var admin = new Administrator();
-            return View(admin.GetAllAirports());
+            ViewData["AllAirports"] = admin.GetAllAirports();
+            var airport = new Model.Airport();
+            return View(airport);
+        }
+
+        [HttpPost]
+        public ActionResult Airport(Model.Airport airport)
+        {
+            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                admin.AddAirport(airport);
+                return RedirectToAction("Airport");
+            }
+            return RedirectToAction("Airport");
         }
 
         public ActionResult DeleteAirport(string id)

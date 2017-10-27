@@ -231,6 +231,7 @@ namespace DAL
                 try
                 {
                     db.Airport.Add(airport);
+                    db.SaveChanges();
 
                     return true;
                 }
