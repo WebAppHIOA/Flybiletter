@@ -1,4 +1,7 @@
-﻿@{
+﻿@model Flybiletter.Models.LoginModel
+
+
+@{
     Layout = null;
 }
 
@@ -25,16 +28,34 @@
         <form class="admin-login"> <!--method="post"--> 
                 <h1 class="login-header"> Administrator </h1>
                 <div class="inner-admin-login" >
-                    <label>Brukernavn</label>
-                    <br />
-                    <input type="text" class="admin-input-dialog" />
-                    <br />
-                    <label>Passord</label>
-                    <br />
-                    <input type="password" class="admin-input-dialog"/>
-                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
 
-                    <input type="submit" class="admin-login-btn" value="Log inn">
+                        <fieldset>
+                            <legend>Logg inn</legend>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Username)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Username)
+                                @Html.ValidationMessageFor(model => model.Username)
+                            </div>
+
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Password)
+                            </div>
+
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Password)
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+
+                            <input type="submit" value="Logg inn" class="admin-login-btn" />
+                        </fieldset>
+                    }
                     <br />
                     <br />
                     <br />

@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airport.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Departure.cs" />
     <Compile Include="GenerateDepartures.cs" />
