@@ -70,42 +70,42 @@
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
             <h1>Departure</h1>
-            <table class="table">
-                <thread>
-                    <tr>
-                        <th>Ordrenummer</th>
-                        <th>Navn</th>
-                        <th>Etternavn</th>
-                        <th>Tlf</th>
-                        <th>Email</th>
-                        <th>Pris</th>
-                        <th>Kanseller</th>
-                        <th>Oppdater</th>
-                        <th>Slett</th>
-                    </tr>
-                    <tbody>
+            <div class="table-responsive">
+                <table class="table">
+                    <thread>
+                        <tr>
+                            <th>Ordrenummer</th>
+                            <th>Navn</th>
+                            <th>Etternavn</th>
+                            <th>Tlf</th>
+                            <th>Email</th>
+                            <th>Pris</th>
+                            <th>Kanseller</th>
+                            <th>Oppdater</th>
+                            <th>Slett</th>
+                        </tr>
+                        <tbody>
 
-                        @foreach (var order in Model)
-                        {
-                            <tr>
-                                <td id="id">@order.OrderNumber</td>
-                                <td id="time">@order.Firstname</td>
-                                <td id="date">@order.Surname </td>
-                                <td id="from">@order.Tlf</td>
-                                <td id="to">@order.Email</td>
-                                <td id="price">@order.Price</td>
-                                <td id="cancel">@order.Cancelled</td>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td id="id">@order.OrderNumber</td>
+                                    <td id="time">@order.Firstname</td>
+                                    <td id="date">@order.Surname </td>
+                                    <td id="from">@order.Tlf</td>
+                                    <td id="to">@order.Email</td>
+                                    <td id="price">@order.Price</td>
+                                    <td id="cancel">@order.Cancelled</td>
 
-                                <td>@Html.ActionLink("Oppdater", "UpdateOrder", "Admin", new { id = order.OrderNumber }, null)</td>
-                                <td>@Html.ActionLink("Slett", "DeleteOrder", "Admin", new { id = order.OrderNumber }, null)</td>
+                                    <td>@Html.ActionLink("Oppdater", "UpdateOrder", "Admin", new { id = order.OrderNumber }, new { @class = "btn btn-info" })</td>
+                                    <td>@Html.ActionLink("Slett", "DeleteOrder", "Admin", new { id = order.OrderNumber }, new { @class = "btn btn-danger" })</td>
 
-                            </tr>
-                        }
-                    </tbody>
-                </thread>
-            </table>
-
-            <p>Info</p>
+                                </tr>
+                            }
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
         </div>
     </div>
 

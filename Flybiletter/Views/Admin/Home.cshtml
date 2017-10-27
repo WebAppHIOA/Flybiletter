@@ -68,18 +68,19 @@
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
             <h1>Hjem</h1>
-            <p>Text test</p>
+            <p>Statistikk over antall aktive avganger, bestillinger og flyplasser i databasen.</p>
 
             <div class="flight-updates">
                 <div class="col-sm-4 home-dep">
                     <h3>Avganger</h3>
-                   @{ Dictionary<string, int>
-                                    counts = ViewData["CountData"] as Dictionary<string, int>;
-                        }
-                            ;
-                            <p id="home-count">@counts["Departure"]</p>
-                            <p id="mini-article">antall aktive</p>
+                    @{ Dictionary<string, int>
+                        counts = ViewData["CountData"] as Dictionary<string, int>;
+                    }
+                            
+                        <p id="home-count">@counts["Departure"]</p>
+                        <p id="mini-article">antall aktive</p>
                 </div>
+
                 <div class="col-sm-4 home-order">
                     <h3>Bestillinger</h3>
                     <p id="home-count">@counts["Order"]</p>

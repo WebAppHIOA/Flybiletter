@@ -70,7 +70,8 @@
 
             <!--CONTENT AREA-->
             <div class="col-sm-9 admin-content">
-               
+               <h2>Oppdater Avgang</h2>
+                <br />
 
                 @using (Html.BeginForm(FormMethod.Post))
                 {
@@ -128,10 +129,9 @@
                         </div>
 
                         <br /><br />
-                        <a href="@Url.Action("Departure", "Admin")" class="btn btn-default btn-lg pull-left">Tilbake</a>
-                        <input type="submit" value="Bekreft" class="btn btn-default btn-lg pull-right" id="button-design">
+                        <a href="@Url.Action("Departure", "Admin")" class="btn btn-default btn-update-left">Tilbake</a>
+                        <input type="submit" value="Bekreft" class="btn btn-default btn-update-right" id="button-design">
                         }
-                        <p>Info</p>
                     </div>
 
 
