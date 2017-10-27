@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL;
 using Model;
 using Flybiletter.Models;
 
@@ -10,71 +11,126 @@ namespace Flybiletter.Controllers
 {
     public class AdminController : Controller
     {
-    
         // GET: Admin
-        public ActionResult Login()
+
+        [HttpPost]
+        public ActionResult Login(Model.Login login)
         {
-            if(Session["LoggetInn"] ==null)
+            var admin = new Administrator();
+
+            if (admin.GetUser(login))
             {
-                Session["LoggetInn"] = false;
-                ViewBag.Innlogget = false;
+                Session["LoggedIn"] = true;
+                return View();
             }
             else
             {
-                ViewBag.Innlogget = (bool)Session["LoggetInn"];
+                Session["LoggedIn"] = false;
+                return View();
             }
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult Login(Model.Login user)
-        {
-            return RedirectToAction("Home");
         }
 
         public ActionResult Home()
         {
-            if (Session["LoggetInn"] == null || false)
+            var adminBLL = new Administrator();
+
+            if (Session["LoggedIn"] == null)
             {
-                Session["LoggetInn"] = false;
-                return RedirectToAction("Index", "Home", new { area = "" });
+                Session["LoggedIn"] = false;
             }
-            else
-            {
-                ViewBag.Innlogget = (bool)Session["LoggetInn"];
-            }
+            Session["LoggedIn"] = true;
+            ViewData["CountData"] = adminBLL.TableCounts();
             return View();
             
         }
 
+        //GET
         public ActionResult Departure()
         {
-            return View();
+            var admin = new Administrator();
+            return View(admin.GetAllDepartures());
+        }
+
+        public ActionResult DeleteDeparture(string id)
+        {
+            var admin = new Administrator();
+            admin.DeleteDeparture(id);
+           return RedirectToAction("Departure");
+        }
+
+        // GET
+        public ActionResult UpdateDeparture(string id)
+        {
+            var admin = new Administrator();
+            return View(admin.GetDeparture(id));
+        }
+
+        //POST
+        [HttpPost]
+        public ActionResult UpdateDeparture(Model.Departure departure)
+        {
+            return RedirectToAction("Departure");
         }
 
         public ActionResult Airport()
         {
-            return View();
+            var admin = new Administrator();
+            return View(admin.GetAllAirports());
+        }
+
+        public ActionResult DeleteAirport(string id)
+        {
+            var admin = new Administrator();
+            admin.DeleteAirport(id);
+            return RedirectToAction("Airport");
+        }
+
+        // GET
+        public ActionResult UpdateAirport(string id)
+        {
+            var admin = new Administrator();
+            return View(admin.GetAirport(id));
+        }
+
+        //POST
+        [HttpPost]
+        public ActionResult UpdateAirport(Model.Airport airport)
+        {
+            return RedirectToAction("Airport");
         }
 
 
         public ActionResult Order()
         {
-            return View();
+            var admin = new Administrator();
+            return View(admin.GetAllOrders());
         }
-    }
 
-
-    private static bool LoginCheck(LoginModel user)
-    {
-        using(var db = BLL.Administrator)
+        public ActionResult DeleteOrder(string id)
         {
-            byte[] passordDb = makeHash(user.Password);
-            dbUser = foundUser = db.
-
+            var admin = new Administrator();
+            admin.DeleteOrder(id);
+            return RedirectToAction("Order");
         }
-        
 
+        // GET
+        public ActionResult UpdateOrder(string id)
+        {
+            var admin = new Administrator();
+            return View(admin.GetOrder(id));
+        }
 
+        //POST
+        [HttpPost]
+        public ActionResult UpdateOrder(Model.Order airport)
+        {
+            return RedirectToAction("Order");
+        }
+
+        public ActionResult Logout()
+        {
+            Session["LoggedIn"] = false;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

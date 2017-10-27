@@ -25,11 +25,11 @@
 </head>
 <body id="admin-body">
 
-   <!--HORIZONTAL TOP NAVIGATION BAR-->
+    <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
-            <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-                <img src="@Url.Content("~/Content/images/airline_logo.png")"  id="admin-logo"/>
-            </a>
+        <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+        </a>
     </div>
     <div class="admin-navbar navbar-fixed-top">
         <p class="admin-navheader">ADMINISTRATOR</p>
@@ -37,7 +37,6 @@
             <button class="btn log-out" type="submit">Logg ut</button>
         </div>
     </div>
-
 
     <div class="row">
         <!--VERTICAL SIDE NAVIGATION BAR-->
@@ -74,25 +73,29 @@
             <div class="flight-updates">
                 <div class="col-sm-4 home-dep">
                     <h3>Avganger</h3>
-                    <p id="home-count">97</p>
-                    <p id="mini-article">antall aktive</p>
+                   @{ Dictionary<string, int>
+                                    counts = ViewData["CountData"] as Dictionary<string, int>;
+                        }
+                            ;
+                            <p id="home-count">@counts["Departure"]</p>
+                            <p id="mini-article">antall aktive</p>
                 </div>
                 <div class="col-sm-4 home-order">
                     <h3>Bestillinger</h3>
-                    <p id="home-count">103</p>
+                    <p id="home-count">@counts["Order"]</p>
                     <p id="mini-article">antall aktive</p>
                 </div>
                 <div class="col-sm-4 home-airport">
                     <h3>Flyplasser</h3>
-                    <p id="home-count">74</p>
+                    <p id="home-count">@counts["Airport"]</p>
                     <p id="mini-article">antall aktive</p>
                 </div>
             </div>
 
         </div>
     </div>
-        
-   
+
+
 
 </body>
 </html>

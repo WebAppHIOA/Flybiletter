@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using BLL;
+using log4net;
+using System.Reflection;
 
 namespace Flybiletter.Controllers
 {
@@ -208,7 +210,7 @@ namespace Flybiletter.Controllers
 
         public ActionResult Login()
         {
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Home", "Admin");
         }
 
     }

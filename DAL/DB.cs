@@ -3,12 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using Model;
 using System.Text;
+using log4net;
+using System.Reflection;
+using System.Data.Entity;
 
 namespace DAL
 {
 
     public class DB : IDB
     {
+
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        public byte[] CreateHash(string password) //static
+        {
+            byte[] dataInn, dataOut;
+            var algorithm = System.Security.Cryptography.SHA512.Create();
+            dataInn = System.Text.Encoding.ASCII.GetBytes(password);
+            dataOut = algorithm.ComputeHash(dataInn);
+            return dataOut;
+        }
+
+        public bool initiateAdmin(Login login) //static
+        {
+            using (var db = new AirportContext())
+            {
+                byte[] usersPass = CreateHash(login.Password);
+                User findUser = db.User.FirstOrDefault(
+                    b => b.Password == usersPass && b.Username == login.Username);
+                if (findUser == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
 
         public List<Airport> getAllAirports()
         {
@@ -39,45 +71,75 @@ namespace DAL
             }
         }
 
-        /* When deleting an airport you will delete both related departures and orders due to table relations. 
+        /* Deletes an airport and sets the foreign key value to null
          * 
          */
         public bool DeleteAirport(string id)
         {
             using (var db = new AirportContext())
             {
-                var airport = db.Airport.Single(a => (a.AirportId == id));
-                db.Airport.Remove(airport);
-                db.SaveChanges();
-                return true;
+                try
+                {
+
+                    var airport = db.Airport.Include("Departure").FirstOrDefault(a => (a.AirportId == id));
+
+                    db.Airport.Remove(airport);
+                    db.SaveChanges();
+
+                        return true;
+                    
+                }
+                catch (Exception e)
+                {
+                    log.Error("Delete airport from database " + e);
+                    return false;
+                }
             }
         }
 
-        /* When deleting a departure you will delete the related orders due to table relations.
+        /* Deletes a departure and sets the foreign key value to null
          * 
          */
         public bool DeleteDeparture(string id)
         {
             using (var db = new AirportContext())
             {
-                var departure = db.Departure.Single(d => (d.FlightId == id));
-                db.Departure.Remove(departure);
-                db.SaveChanges();
-                return true;
+                try
+                {
+                    var departure = db.Departure.Include("Order").FirstOrDefault(a => (a.FlightId == id));
+
+                    db.Departure.Remove(departure);
+                    db.SaveChanges();
+
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Delete departure from database \n" + e);
+                    return false;
+                }
             }
         }
 
-        /* Deletes only the order
+        /* Deletes an order
          * 
          */
         public bool DeleteOrder(string id)
         {
             using (var db = new AirportContext())
             {
-                var order = db.Order.Single(o => (o.OrderNumber == id));
-                db.Order.Remove(order);
-                db.SaveChanges();
-                return true;
+                try
+                {
+                    var order = db.Order.Single(o => (o.OrderNumber == id));
+                    db.Order.Remove(order);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Delete order from database \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -85,21 +147,29 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-                var departure = db.Departure.Where(d => d.FlightId == order.Departure.FlightId).First();
-                departure.Order.Add(new Order
+                try
                 {
-                    OrderNumber = order.OrderNumber,
-                    Date = order.Date,
-                    Firstname = order.Firstname,
-                    Surname = order.Surname,
-                    Tlf = order.Tlf,
-                    Email = order.Email,
-                    Price = order.Price,
-                });
+                    var departure = db.Departure.Where(d => d.FlightId == order.Departure.FlightId).First();
+                    departure.Order.Add(new Order
+                    {
+                        OrderNumber = order.OrderNumber,
+                        Date = order.Date,
+                        Firstname = order.Firstname,
+                        Surname = order.Surname,
+                        Tlf = order.Tlf,
+                        Email = order.Email,
+                        Price = order.Price,
+                    });
 
-                db.SaveChanges();
+                    db.SaveChanges();
 
-                return true;
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Failed to add order to database \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -108,9 +178,17 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-                db.Airport.Add(airport);
-                
-                return true;
+                try
+                {
+                    db.Airport.Add(airport);
+
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Failed to add departure to database \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -136,20 +214,27 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-
-                var airport = db.Airport.Where(c => c.AirportId == departure.Airport.AirportId).First();
-                airport.Departure.Add(new Departure
+                try
                 {
-                    FlightId = departure.FlightId,
-                    From = departure.From,
-                    To = departure.To,
-                    Date = departure.Date,
-                    DepartureTime = departure.DepartureTime,
-                });
+                    var airport = db.Airport.Where(c => c.AirportId == departure.Airport.AirportId).First();
+                    airport.Departure.Add(new Departure
+                    {
+                        FlightId = departure.FlightId,
+                        From = departure.From,
+                        To = departure.To,
+                        Date = departure.Date,
+                        DepartureTime = departure.DepartureTime,
+                    });
 
-                db.SaveChanges();
+                    db.SaveChanges();
 
-                return true;
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Failed to add departure to database \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -170,15 +255,23 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-                var airport = db.Airport.First(row => row.AirportId == changes.AirportId);
-                airport.Name = changes.Name;
-                airport.City = changes.City;
-                airport.Continent = changes.Continent;
-                airport.Country = changes.Country;
-                airport.Fee = changes.Fee;
+                try
+                {
+                    var airport = db.Airport.First(row => row.AirportId == changes.AirportId);
+              
+                    airport.Name = changes.Name;
+                    airport.City = changes.City;
+                    airport.Country = changes.Country;
+                    airport.Fee = changes.Fee;
 
-                db.SaveChanges();
-                return false;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Failed to update airport \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -189,14 +282,23 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-                var departure = db.Departure.First(row => row.FlightId == changes.FlightId);
-                departure.From = changes.From;
-                departure.To = changes.To;
-                departure.Date = changes.Date;
-                departure.DepartureTime = changes.DepartureTime;
+                try
+                {
+                    var departure = db.Departure.First(row => row.FlightId == changes.FlightId);
+     
+                    departure.From = changes.From;
+                    departure.To = changes.To;
+                    departure.Date = changes.Date;
+                    departure.DepartureTime = changes.DepartureTime;
 
-                db.SaveChanges();
-                return false;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Failed to update departure \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -207,16 +309,25 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-                var order = db.Order.First(row => row.OrderNumber == changes.OrderNumber);
-                order.Date = changes.Date;
-                order.Firstname = changes.Firstname;
-                order.Surname = changes.Surname;
-                order.Tlf = changes.Tlf;
-                order.Email = changes.Email;
-                order.Price = changes.Price;
+                try
+                {
+                    var order = db.Order.First(row => row.OrderNumber == changes.OrderNumber);
+                   
+                    order.Firstname = changes.Firstname;
+                    order.Surname = changes.Surname;
+                    order.Tlf = changes.Tlf;
+                    order.Email = changes.Email;
+                    order.Price = changes.Price;
+                    order.Cancelled = changes.Cancelled;
 
-                db.SaveChanges();
-                return false;
+                    db.SaveChanges();
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    log.Error("Failed to update order \n" + e);
+                    return false;
+                }
             }
         }
 
@@ -278,7 +389,7 @@ namespace DAL
 
             using (var db = new AirportContext())
             {
-
+          
                 var invoice = (from order in db.Order
                                join departure in db.Departure
                                on order.Departure.FlightId equals departure.FlightId

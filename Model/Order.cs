@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Model
 {
-
+    [TrackChanges]
     public class Order
     {
 
@@ -36,6 +36,8 @@ namespace Model
         public string Email { get; set; }
 
         public string Price { get; set; }
+
+        public bool Cancelled { get; set; }
 
         public virtual Departure Departure { get; set; }
     }

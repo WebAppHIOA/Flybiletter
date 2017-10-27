@@ -31,7 +31,7 @@ namespace BLL
             var flightId = Model.GenerateDepartures.GenerateFlightId();
             if (_DB.IsFlightIdAvailable(flightId))
             {
-                return Model.GenerateDepartures.GenerateFlightId();
+                return GenerateDepartures.GenerateFlightId();
             }
             else
             {

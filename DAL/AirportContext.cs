@@ -4,11 +4,12 @@ using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Model;
+using TrackerEnabledDbContext;
 
 namespace DAL
 {
 
-    public class AirportContext : DbContext
+    public class AirportContext : TrackerContext
     {
         public AirportContext() : base("name=Flybilett")
         {
@@ -19,13 +20,13 @@ namespace DAL
         public DbSet<Departure> Departure { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Airport> Airport { get; set; }
-        public DbSet<Login> Login { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            // Allow to delete and update entries between Airport and Departure
+           /* 
+          // Allow to delete and update entries between Airport and Departure
             modelBuilder.Entity<Airport>()
                         .HasMany(v => v.Departure)
                         .WithRequired(v => v.Airport)
@@ -38,8 +39,9 @@ namespace DAL
                         .WithRequired(v => v.Departure)
                         .WillCascadeOnDelete(true);
                         
-
             base.OnModelCreating(modelBuilder);
+            */
+            
         }
     }
     }

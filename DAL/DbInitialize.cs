@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Model;
+using System.Text;
 
 namespace DAL
 {
@@ -12,6 +13,14 @@ namespace DAL
         {
             List<Airport> allAirports = new List<Airport>();
 
+            var db = new DB();
+            var pass = db.CreateHash("k1g2s3a4");
+
+            var admin = new User
+            {
+                Username = "airzureadmin",
+                Password = pass
+            };
 
             var order1 = new Order
             {
@@ -615,7 +624,7 @@ namespace DAL
                 Departure = new List<Departure>()
             });
 
-            
+            context.User.Add(admin);
 
             foreach (Airport f in allAirports)
             {
