@@ -10,21 +10,21 @@ namespace BLL
 {
     public class Administrator
     {
-        IDB _DB;
+        DB _DB;
         public Administrator()
         {
             _DB = new DB();
         }
 
-        public Administrator(IDB stub)
+        public Administrator(DB stub)
         {
             _DB = stub;
         }
+
         public bool GetUser(Login login)
         {
-            var db = new DB();
-            db.initiateAdmin(login);
-            return true;
+            return _DB.initiateAdmin(login);
+            
         }
 
         public bool DeleteAirport(string id)
@@ -36,95 +36,76 @@ namespace BLL
         public bool DeleteDeparture(string id)
         {
             _DB.DeleteDeparture(id);
-            var db = new DB();
-            db.DeleteDeparture(id);
             return true;
         }
 
         public bool DeleteOrder(string id)
         {
-            var db = new DB();
-            db.DeleteOrder(id);
+            _DB.DeleteOrder(id);
             return true;
         }
 
         public bool UpdateAirport(Airport airport)
         {
             _DB.UpdateAirport(airport);
-            var db = new DB();
-          
-            db.UpdateAirport(airport);
             return true;
         }
 
         public bool UpdateDeparture(Departure departure)
-        {
-            var db = new DB();
-            
-            db.UpdateDeparture(departure);
+        {         
+            _DB.UpdateDeparture(departure);
             return true;
         }
 
         public bool UpdateOrder(Model.Order order)
         {
-            var db = new DB();
-            db.UpdateOrder(order);
+            _DB.UpdateOrder(order);
             return true;
         }
 
         public Dictionary<string, int> TableCounts()
         {
-            var db = new DB();
 
             var count = new Dictionary<string, int>();
 
-            count.Add("Departure", db.OrderCount());
-            count.Add("Order", db.DepartureCount());
-            count.Add("Airport", db.AirportCount());
+            count.Add("Departure", _DB.OrderCount());
+            count.Add("Order", _DB.DepartureCount());
+            count.Add("Airport", _DB.AirportCount());
             
             return count;
         }
 
         public List<Airport> GetAllAirports()
         {
-            var db = new DB();
-            var allAirports = db.getAllAirports();
+            var allAirports = _DB.getAllAirports();
             return allAirports;
         }
 
         public List<Departure> GetAllDepartures()
         {
-            var db = new DB();
-            var allDepartures = db.getAllDepartures();
+            var allDepartures = _DB.getAllDepartures();
             return allDepartures;
         }
 
         public List<Model.Order> GetAllOrders()
         {
-            var db = new DB();
-            var allOrders = db.getAllOrders();
+            var allOrders = _DB.getAllOrders();
             return allOrders;
         }
 
         public Departure GetDeparture(string id)
         {
-            var db = new DB();
-            
-            return db.FindDeparture(id);
+            return _DB.FindDeparture(id);
         }
 
         public Airport GetAirport(string id)
         {
-            var db = new DB();
-
-            return db.FindAirport(id);
+            return _DB.FindAirport(id);
         }
 
         public Model.Order GetOrder(string id)
         {
-            var db = new DB();
-
-            return db.FindOrder(id);
+            return _DB.FindOrder(id);
         }
     }
 }

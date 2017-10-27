@@ -12,6 +12,14 @@ namespace Flybiletter.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+        public ActionResult Login()
+        {
+            if (Session["LoggedIn"] == null)
+            {
+                Session["LoggedIn"] = false;
+            }
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Login(Model.Login login)

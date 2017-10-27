@@ -34,7 +34,7 @@
     <div class="admin-navbar navbar-fixed-top">
         <p class="admin-navheader">ADMINISTRATOR</p>
         <div class="pull-right">
-            <button class="btn log-out" type="submit">Logg ut</button>
+            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn btn-default" })
         </div>
     </div>
 
