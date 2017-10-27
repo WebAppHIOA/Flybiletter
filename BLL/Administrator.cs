@@ -139,7 +139,7 @@ namespace BLL
 
             Airport newAirport = new Airport
             {
-                AirportId = "STO",
+                AirportId = GenerateAirportId(),
                 Name = airport.Name,
                 City = airport.City,
                 Country = airport.Country,
@@ -168,6 +168,26 @@ namespace BLL
             };
             return db.AddOrder(ord);
         }
+
+
+        private string GenerateAirportId()
+        {
+            Random random = new Random();
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            StringBuilder builder = new StringBuilder();
+            var index = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                index = (random.Next(chars.Length));
+                builder.Append(chars[index]);
+            }
+            var airportId = builder.ToString();
+
+            return airportId;
+        }
+
+
     }
-    }
+}
 
