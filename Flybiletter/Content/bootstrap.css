@@ -5484,9 +5484,19 @@ a.list-group-item.active > .badge,
     border-radius: 5px;
     margin-top: 25px;
     padding: 20px 30px 50px 70px;
-    /*display: none;*/
+    display: none;
 }
 
+#show-hide-airport {
+    width: 91%;
+    height: 140px;
+    background-color: #e8e8e8;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    margin-top: 25px;
+    padding: 20px 30px 50px 70px;
+    display: none;
+}
 .move-to {
     margin-left: 57px !important;
 }
@@ -5529,7 +5539,7 @@ a.list-group-item.active > .badge,
 
 .btn-save:hover, .btn-save:focus {
         color: #333333;
-        background-color: #36b075;
+        background-color: #f9d4ac;
         border: 2px solid #e2902b;
         outline: 0;
 }
@@ -5560,6 +5570,18 @@ a.list-group-item.active > .badge,
 
 .move-order-email {
     margin-left: 39px !important;
+}
+
+.move-airport-name {
+    margin-left: 20px !important;
+}
+
+.move-airport-country {
+    margin-left: 20px !important;
+}
+
+.move-airport-city {
+    margin-left: 67px !important;
 }
 
 /*FLYBILETTER CSS*/

@@ -26,13 +26,14 @@
         });
 
         function showHide() {
-            var x = document.getElementById("show-hide-element");
+            var x = document.getElementById("show-hide-airport");
             if (!x.style.display || x.style.display == "none") {
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
             }
         }
+
 
     </script>
 </head>
@@ -83,24 +84,22 @@
             <h1>Flyplass</h1>
 
             <!--Create new departure-->
-            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny avgang</button>
+            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button>
             <br />
-            <div id="show-hide-element">
+            <div id="show-hide-airport">
                 @using (Html.BeginForm(FormMethod.Post))
                 {
-
-                 
                     <div class="col-sm-6">
                         @Html.Label("Navn")
-                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog" } })
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog move-airport-name" } })
                     </div>
                     <div class="col-sm-6">
                         @Html.Label("By")
-                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog" } })
+                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog move-airport-city" } })
                     </div>
                     <div class="col-sm-6">
                         @Html.Label("Land")
-                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog" } })
+                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog move-airport-country" } })
                     </div>
                     <div class="col-sm-6">
                         @Html.Label("Kontinent")
@@ -114,7 +113,7 @@
 
                 }
             </div>
-
+            <br /><br />
             <div class="table-responsive">
             <table class="table">
                 <thread>

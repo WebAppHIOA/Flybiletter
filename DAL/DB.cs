@@ -416,7 +416,7 @@ namespace DAL
         {
             using (var db = new AirportContext())
             {
-                var total = db.Departure.Count();
+                var total = db.Order.Count();
                 return total;
             }
         }
