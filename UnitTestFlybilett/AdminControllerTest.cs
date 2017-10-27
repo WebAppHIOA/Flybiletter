@@ -12,12 +12,18 @@ namespace UnitTestFlybilett
     [TestClass]
     public class AdminControllerTest
     {
-        [TestMethod]
-        public void LoginTest()
+        public AdminController setupController()
         {
             var SessionMock = new TestControllerBuilder();
             var controller = new AdminController(new Administrator(new DBstub()));
             SessionMock.InitializeController(controller);
+            return controller;
+        }
+
+        [TestMethod]
+        public void LoginTest()
+        {
+            var controller = setupController();
 
             controller.Session["LoggedIn"] = true;
             var resultat = (ViewResult)controller.Login();
@@ -26,11 +32,9 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
-        public void LoginPostTest()
+        public void LoginPostInvalidTest()
         {
-            var SessionMock = new TestControllerBuilder();
-            var controller = new AdminController(new Administrator(new DBstub()));
-            SessionMock.InitializeController(controller);
+            var controller = setupController();
 
             //controller.ModelState.AddModelError("test", "test");
             var adminTest = new Login
@@ -43,5 +47,27 @@ namespace UnitTestFlybilett
             // Assert
             Assert.AreEqual(resultat.RouteName, "");
         }
+
+        [TestMethod]
+        public void LoginPostValidTest()
+        {
+            var controller = setupController();
+
+            //controller.ModelState.AddModelError("test", "test");
+            var adminTest = new Login
+            {
+                Username = "airzureadmin",
+                Password = "passord"
+            };
+
+            var resultat = (RedirectToRouteResult)controller.Login(adminTest);
+            // Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Home");
+        }
+
+        
     }
 }

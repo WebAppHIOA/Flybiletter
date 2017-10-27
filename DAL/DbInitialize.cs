@@ -14,7 +14,7 @@ namespace DAL
             List<Airport> allAirports = new List<Airport>();
 
             var db = new DB();
-            var pass = db.CreateHash("k1g2s3a4");
+            var pass = db.CreateHash("passord");
 
             var admin = new User
             {
