@@ -38,7 +38,6 @@ namespace Model
         public string Price { get; set; }
 
         public bool Cancelled { get; set; }
-
         public virtual Departure Departure { get; set; }
     }
 }

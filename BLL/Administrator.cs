@@ -35,7 +35,7 @@ namespace BLL
         public bool UpdateAirport(Airport airport)
         {
             var db = new DB();
-          
+
             db.UpdateAirport(airport);
             return true;
         }
@@ -44,7 +44,7 @@ namespace BLL
         {
             var db = new DB();
             db.UpdateDeparture(departure);
-            
+
             return true;
         }
 
@@ -61,10 +61,10 @@ namespace BLL
 
             var count = new Dictionary<string, int>();
 
-            count.Add("Departure", db.OrderCount());
-            count.Add("Order", db.DepartureCount());
+            count.Add("Departure", db.DepartureCount());
+            count.Add("Order", db.OrderCount());
             count.Add("Airport", db.AirportCount());
-            
+
             return count;
         }
 
@@ -92,9 +92,10 @@ namespace BLL
         public Departure GetDeparture(string id)
         {
             var db = new DB();
-           
+
             String allowed = @"[SK]+\d{6}$";
-            if (id != null) {
+            if (id != null)
+            {
                 if (Regex.IsMatch(id, allowed)) return db.FindDeparture(id);
                 else return null;
             }
@@ -128,27 +129,26 @@ namespace BLL
                 DepartureTime = dep.DepartureTime,
                 Airport = GetAirport(dep.From)
             };
-            
+
             return db.AddDeparture(departure);
         }
 
-        public bool AddOrder(AdminOrderViewModel order)
+        public bool AddAirport(Airport airport)
         {
             var db = new DB();
-            var orderDep = db.FindDeparture(order.FlightId);
 
-            Model.Order ord = new Model.Order
+            Airport newAirport = new Airport
             {
-                OrderNumber = GenerateInvoice.UniqueReference(),
-                Date = order.Date,
-                Firstname = order.Firstname,
-                Surname = order.Surname,
-                Tlf = order.Tlf,
-                Email = order.Email,
-                Price = order.Price,
-                Departure = orderDep
+                AirportId = "STO",
+                Name = airport.Name,
+                City = airport.City,
+                Country = airport.Country,
+                Continent = airport.Continent,
+                Fee = airport.Fee
             };
-            return db.AddOrder(ord);
+
+            return db.AddAirport(newAirport);
         }
     }
-}
+    }
+
