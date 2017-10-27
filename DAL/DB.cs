@@ -108,12 +108,10 @@ namespace DAL
                     foreach (var departure in id)
                     {
                         var cancel = db.Order.Where(d => d.Departure.FlightId == departure.FlightId).ToList();
-                        cancel.ForEach(c => c.Cancelled = true);
+                        cancel.ForEach(c => c.Cancelled = departure.Cancelled);
                         
                     }
-                   /* var cancel = db.Order.Where(d => d.Departure.FlightId == id).ToList();
-                    cancel.ForEach(c => c.Cancelled = true);
-                   */ db.SaveChanges();
+                    db.SaveChanges();
                     return true;
                 }
                 catch (Exception e)

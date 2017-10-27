@@ -14,6 +14,7 @@ namespace Flybiletter.Controllers
         public ActionResult Home()
         {
             var adminBLL = new Administrator();
+
             //adminBLL.DeleteAirport("CAN");
 
             ViewData["CountData"] = adminBLL.TableCounts();
@@ -24,8 +25,26 @@ namespace Flybiletter.Controllers
         public ActionResult Departure()
         {
             var admin = new Administrator();
-            return View(admin.GetAllDepartures());
+            var dep = admin.GetAllDepartures();
+            var AdminDepVM = new Model.AdminDepartureViewModel();
+            AdminDepVM.DepartureDetails = dep;
+            AdminDepVM.Airport = admin.GetAllAirports();
+
+            return View(AdminDepVM);
         }
+
+        [HttpPost]
+        public ActionResult Departure(Model.AdminDepartureViewModel dep)
+        {
+            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                admin.AddDeparture(dep);
+                return View();
+            }
+            return View();
+        }
+
 
         public ActionResult DeleteDeparture(string id)
         {
@@ -115,6 +134,6 @@ namespace Flybiletter.Controllers
             admin.UpdateOrder(order);
             return RedirectToAction("Order");
         }
-
+        
     }
 }
