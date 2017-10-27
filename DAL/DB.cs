@@ -127,14 +127,14 @@ namespace DAL
         /* Overload 2
          * 
          */
-        public bool CancelOrder(string id)
+        public bool CancelOrder(Departure departure)
         {
             using (var db = new AirportContext())
             {
                 try
                 {
-                     var cancel = db.Order.Where(d => d.Departure.FlightId == id).ToList();
-                     cancel.ForEach(c => c.Cancelled = true);
+                     var cancel = db.Order.Where(d => d.Departure.FlightId == departure.FlightId).ToList();
+                     cancel.ForEach(c => c.Cancelled = departure.Cancelled);
 
                     db.SaveChanges();
                     return true;
@@ -156,10 +156,11 @@ namespace DAL
             {
                 try
                 {
-                    CancelOrder(id);
 
                     var departure = db.Departure.Include("Order").FirstOrDefault(a => (a.FlightId == id));
-                    
+
+                    CancelOrder(departure);
+
                     db.Departure.Remove(departure);
                     db.SaveChanges();
 
@@ -336,7 +337,7 @@ namespace DAL
                 try
                 {
                     var departure = db.Departure.First(row => row.FlightId == changes.FlightId);
-     
+
                     departure.From = changes.From;
                     departure.To = changes.To;
                     departure.Date = changes.Date;
@@ -345,10 +346,8 @@ namespace DAL
 
                     db.SaveChanges();
 
-                    if (changes.Cancelled)
-                    {
-                        CancelOrder(changes.FlightId);
-                    }
+                    CancelOrder(changes);
+
                     return true;
                 }
                 catch (Exception e)
