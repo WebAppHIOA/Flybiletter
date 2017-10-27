@@ -105,26 +105,25 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
-                return View(_admin.GetDeparture(id));
+                var flight = _admin.GetDeparture(id);
+                ViewData["AllAirports"] = _admin.GetAllAirports();
+
+                if (flight == null)
+                {
+                    ModelState.AddModelError("Cancelled", "Denne avgangen eksister ikke i systemet");
+                }
+                return View(flight);
             }
             return RedirectToAction("Login", "Admin");
-            var admin = new Administrator();
 
-            var flight = admin.GetDeparture(id);
-            ViewData["AllAirports"] = admin.GetAllAirports();
             
-            if (flight == null) {
-                ModelState.AddModelError("Cancelled", "Denne avgangen eksister ikke i systemet");
-            }
-            return View(flight);
         }
 
         //POST
         [HttpPost]
         public ActionResult UpdateDeparture(Model.Departure departure)
         {
-            var admin = new Administrator();
-            admin.UpdateDeparture(departure);
+            _admin.UpdateDeparture(departure);
             return RedirectToAction("Departure");
         }
 
@@ -154,8 +153,7 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
-            var admin = new Administrator();
-            admin.UpdateAirport(airport);
+            _admin.UpdateAirport(airport);
             return RedirectToAction("Airport");
         }
 
@@ -181,8 +179,7 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateOrder(Model.Order order)
         {
-            var admin = new Administrator();
-            admin.UpdateOrder(order);
+            _admin.UpdateOrder(order);
             return RedirectToAction("Order");
         }
 

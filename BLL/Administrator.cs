@@ -96,15 +96,12 @@ namespace BLL
 
         public Departure GetDeparture(string id)
         {
-            var db = new DB();
-           
             String allowed = @"[SK]+\d{6}$";
             if (id != null) {
-                if (Regex.IsMatch(id, allowed)) return db.FindDeparture(id);
+                if (Regex.IsMatch(id, allowed)) return _DB.FindDeparture(id);
                 else return null;
             }
             else return null;
-            return _DB.FindDeparture(id);
         }
 
         public Airport GetAirport(string id)
