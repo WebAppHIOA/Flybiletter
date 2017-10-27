@@ -36,18 +36,25 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {
-            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                var admin = new Administrator();
 
-            if (admin.GetUser(login))
-            {
-                Session["LoggedIn"] = true;
-                return RedirectToAction("Home");
+                if (admin.GetUser(login))
+                {
+                    Session["LoggedIn"] = true;
+                    return RedirectToAction("Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Username", "Wrong username or password");
+                    Session["LoggedIn"] = false;
+                    return Login();
+                }
             }
-            else
-            {
-                Session["LoggedIn"] = false;
-                return Login();
-            }
+            
+            return Login();
+
         }
 
         public ActionResult Home()

@@ -13,7 +13,7 @@ namespace DAL
     public class DB : IDB
     {
         
-        public static byte[] CreateHash(string password)
+        public byte[] CreateHash(string password)
         {
             byte[] dataInn, dataOut;
             var algorithm = System.Security.Cryptography.SHA512.Create();
@@ -22,7 +22,7 @@ namespace DAL
             return dataOut;
         }
 
-        public static bool initiateAdmin(Login login)
+        public bool initiateAdmin(Login login)
         {
             using (var db = new AirportContext())
             {
@@ -41,33 +41,6 @@ namespace DAL
         }
 
         private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        public byte[] CreateHash(string password) //static
-        {
-            byte[] dataInn, dataOut;
-            var algorithm = System.Security.Cryptography.SHA512.Create();
-            dataInn = System.Text.Encoding.ASCII.GetBytes(password);
-            dataOut = algorithm.ComputeHash(dataInn);
-            return dataOut;
-        }
-
-        public bool initiateAdmin(Login login) //static
-        {
-            using (var db = new AirportContext())
-            {
-                byte[] usersPass = CreateHash(login.Password);
-                User findUser = db.User.FirstOrDefault(
-                    b => b.Password == usersPass && b.Username == login.Username);
-                if (findUser == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
 
         public List<Airport> getAllAirports()
         {

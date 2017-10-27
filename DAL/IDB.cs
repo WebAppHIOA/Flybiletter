@@ -25,5 +25,7 @@ namespace DAL
         bool UpdateAirport(Airport changes);
         bool UpdateDeparture(Departure changes);
         bool UpdateOrder(Order changes);
+        byte[] CreateHash(string password);
+        bool initiateAdmin(Login login);
     }
 }

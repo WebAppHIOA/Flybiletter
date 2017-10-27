@@ -207,5 +207,14 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
+
+        public byte[] CreateHash(string password)
+        {
+            throw new NotImplementedException();
+        }
+        public bool initiateAdmin(Login login)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
