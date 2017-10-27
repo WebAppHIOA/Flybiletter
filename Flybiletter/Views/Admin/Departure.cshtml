@@ -1,4 +1,4 @@
-﻿@model Model.Departure
+﻿@model List<Model.Departure>
 
 @{
     Layout = null;
@@ -88,7 +88,7 @@
                 {
 
                     <div class="col-sm-12">
-                        @Html.Label("Flight ID")
+                        #@Html.Label("Flight ID")
                         @Html.TextBoxFor(x => x.FlightId, new { @class = "flight-id-input" })
                     </div>
 

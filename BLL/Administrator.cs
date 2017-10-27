@@ -10,13 +10,13 @@ namespace BLL
 {
     public class Administrator
     {
-        DB _DB;
+        IDB _DB;
         public Administrator()
         {
             _DB = new DB();
         }
 
-        public Administrator(DB stub)
+        public Administrator(DBstub stub)
         {
             _DB = stub;
         }

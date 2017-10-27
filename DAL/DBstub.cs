@@ -185,36 +185,40 @@ namespace DAL
 
         public bool IsFlightIdAvailable(string toTest)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public int OrderCount()
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public bool UpdateAirport(Airport changes)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool UpdateDeparture(Departure changes)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool UpdateOrder(Order changes)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public byte[] CreateHash(string password)
         {
-            throw new NotImplementedException();
+            byte[] dataInn, dataOut;
+            var algorithm = System.Security.Cryptography.SHA512.Create();
+            dataInn = System.Text.Encoding.ASCII.GetBytes(password);
+            dataOut = algorithm.ComputeHash(dataInn);
+            return dataOut;
         }
         public bool initiateAdmin(Login login)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

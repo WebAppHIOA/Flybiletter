@@ -11,6 +11,18 @@ namespace Flybiletter.Controllers
 {
     public class AdminController : Controller
     {
+        Administrator _admin;
+
+        public AdminController()
+        {
+            _admin = new Administrator();
+        }
+
+        public AdminController(Administrator testAdmin)
+        {
+            _admin = testAdmin;
+        }
+
         private bool IsLoggedIn()
         {
             if (Session["LoggedIn"] == null)
@@ -38,9 +50,8 @@ namespace Flybiletter.Controllers
         {
             if (ModelState.IsValid)
             {
-                var admin = new Administrator();
 
-                if (admin.GetUser(login))
+                if (_admin.GetUser(login))
                 {
                     Session["LoggedIn"] = true;
                     return RedirectToAction("Home");
@@ -59,11 +70,9 @@ namespace Flybiletter.Controllers
 
         public ActionResult Home()
         {
-            var adminBLL = new Administrator();
-
             if(IsLoggedIn())
             {
-                ViewData["CountData"] = adminBLL.TableCounts();
+                ViewData["CountData"] = _admin.TableCounts();
                 return View();
             }
             return RedirectToAction("Login","Admin");
@@ -74,8 +83,7 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
-                var admin = new Administrator();
-                return View(admin.GetAllDepartures());
+                return View(_admin.GetAllDepartures());
             }
             return RedirectToAction("Login", "Admin");
         }
@@ -84,8 +92,7 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
-                var admin = new Administrator();
-                admin.DeleteDeparture(id);
+                _admin.DeleteDeparture(id);
                 return RedirectToAction("Departure");
 
             }
@@ -97,8 +104,7 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
-                var admin = new Administrator();
-                return View(admin.GetDeparture(id));
+                return View(_admin.GetDeparture(id));
             }
             return RedirectToAction("Login", "Admin");
         }
@@ -114,8 +120,7 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
-                var admin = new Administrator();
-                return View(admin.GetAllAirports());
+                return View(_admin.GetAllAirports());
             }
             return RedirectToAction("Login", "Admin");
 
@@ -123,16 +128,14 @@ namespace Flybiletter.Controllers
 
         public ActionResult DeleteAirport(string id)
         {
-            var admin = new Administrator();
-            admin.DeleteAirport(id);
+            _admin.DeleteAirport(id);
             return RedirectToAction("Airport");
         }
 
         // GET
         public ActionResult UpdateAirport(string id)
         {
-            var admin = new Administrator();
-            return View(admin.GetAirport(id));
+            return View(_admin.GetAirport(id));
         }
 
         //POST
@@ -145,23 +148,19 @@ namespace Flybiletter.Controllers
 
         public ActionResult Order()
         {
-
-            var admin = new Administrator();
-            return View(admin.GetAllOrders());
+            return View(_admin.GetAllOrders());
         }
 
         public ActionResult DeleteOrder(string id)
         {
-            var admin = new Administrator();
-            admin.DeleteOrder(id);
+            _admin.DeleteOrder(id);
             return RedirectToAction("Order");
         }
 
         // GET
         public ActionResult UpdateOrder(string id)
         {
-            var admin = new Administrator();
-            return View(admin.GetOrder(id));
+            return View(_admin.GetOrder(id));
         }
 
         //POST
