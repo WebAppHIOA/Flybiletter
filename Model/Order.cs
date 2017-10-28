@@ -35,6 +35,7 @@ namespace Model
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "E-post adresse må oppgis")]
         public string Price { get; set; }
 
         public bool Cancelled { get; set; }

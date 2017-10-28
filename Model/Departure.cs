@@ -11,12 +11,16 @@ namespace Model
     {
         [Key]
         public string FlightId { get; set; }
+
         [Required(ErrorMessage = "Opprinnelig sted må oppgis")]
         public string From { get; set; }
+
         [Required(ErrorMessage = "Destinasjon må oppgis")]
         public string To { get; set; }
         [Required(ErrorMessage = "Dato må oppgis")]
+        //[DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}",ApplyFormatInEditMode = true)]
         public string Date { get; set; }
+
         [Required(ErrorMessage = "Avgangstid må oppgis")]
         public string DepartureTime { get; set; }
         public bool Cancelled  { get; set; }

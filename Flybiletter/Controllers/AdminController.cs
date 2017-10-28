@@ -37,16 +37,16 @@ namespace Flybiletter.Controllers
             if (ModelState.IsValid)
             {
                 //Validering av Dato og Flyplass data
-                DateTime now = new DateTime();
-                now = DateTime.Now;
+              //  DateTime now = new DateTime();
+                //now = DateTime.Now;
 
-                if (dep.Date < now.Date)
-                {
-                    //Legger til Error tekst hvis Date er før dagens dato
-                    ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                    return View(Session["Departure"] as Model.AdminDepartureViewModel);
-                }
-
+                /*   if (dep.Date < now.Date)
+                   {
+                       //Legger til Error tekst hvis Date er før dagens dato
+                       ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                       return View(Session["Departure"] as Model.AdminDepartureViewModel);
+                   }*/
+            
                 admin.AddDeparture(dep);
                 return RedirectToAction("Departure");
             }
