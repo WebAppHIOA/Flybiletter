@@ -113,5 +113,59 @@ namespace BLL
         {
             return _DB.FindOrder(id);
         }
+
+        public bool AddDeparture(AdminDepartureViewModel dep)
+        {
+            var db = new DB();
+
+            Departure departure = new Departure
+            {
+                FlightId = GenerateDepartures.GenerateFlightId(),
+                From = dep.From,
+                To = dep.To,
+                Date = dep.Date,
+                DepartureTime = dep.DepartureTime,
+                Airport = GetAirport(dep.From)
+            };
+
+            return db.AddDeparture(departure);
+        }
+
+        public bool AddAirport(Airport airport)
+        {
+            var db = new DB();
+
+            Airport newAirport = new Airport
+            {
+                AirportId = "STO",
+                Name = airport.Name,
+                City = airport.City,
+                Country = airport.Country,
+                Continent = airport.Continent,
+                Fee = airport.Fee
+            };
+
+            return db.AddAirport(newAirport);
+        }
+
+        public bool AddOrder(AdminOrderViewModel order)
+        {
+            var db = new DB();
+            var depOrder = db.FindDeparture(order.FlightId);
+
+            Model.Order ord = new Model.Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = order.Date,
+                Firstname = order.Firstname,
+                Surname = order.Surname,
+                Tlf = order.Tlf,
+                Email = order.Email,
+                Price = order.Price,
+                Departure = depOrder
+            };
+            return db.AddOrder(ord);
+        }
     }
-}
+    }
+

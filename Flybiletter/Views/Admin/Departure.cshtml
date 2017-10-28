@@ -1,4 +1,4 @@
-﻿@model List<Model.Departure>
+﻿@model Model.AdminDepartureViewModel
 
 @{
     Layout = null;
@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>Administrator</title>
-    <meta charset="utf-8" content="width=device-width" />
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1" />
+   
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     @Html.Partial("_Airzures")
     @Styles.Render("~/Content/css")
@@ -40,11 +41,11 @@
     <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
         <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="hidden-md" />
         </a>
     </div>
     <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
+        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
         <div class="pull-right">
             @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
         </div>
@@ -52,19 +53,22 @@
 
     <div class="row">
         <!--VERTICAL SIDE NAVIGATION BAR-->
+
+   
+
         <div class="col-sm-3">
             <div class="sidebar-nav">
                 <div class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Meny</span>
+                        <span class="visible-xs navbar-brand">Administrator</span>
                     </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                    <div class="navbar-collapse collapse" id="navbar1">
                         <ul class="nav navbar-nav" id="admin-nav">
                             <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
                             <li><a class="active" href="@Url.Action("Departure", "Admin")">Avgang</a></li>
@@ -77,18 +81,61 @@
         </div>
 
         <!--CONTENT AREA-->
-        <div class="col-sm-9 admin-content">
+        <div class="col-sm-9 col-md-9 admin-content">
             <h1>Avgang</h1>
 
             <!--Create new departure-->
-            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny avgang</button>
+            <button onclick="showHide()" id="btn-showHide" class="pull-right btn-create">+ Lag ny avgang</button>
             <br />
-            <div id="show-hide-element">
-               
+            <div id="show-hide-element"class="form-inline">
+                @using (Html.BeginForm(FormMethod.Post))
+                {
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Til", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog move-to form-control col-md-10", @list = "Airport" } })
+                        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                        <datalist id="Airport">
+                            @foreach (var airport in Model.Airport)
+                            {
+                                <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                            }
+                            }
+                        </datalist>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Fra", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10", @list = "Airport" } })
+                        @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+                        <datalist id="Airport">
+                            @foreach (var airport in Model.Airport)
+                            {
+                                <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                            }
+                            }
+                        </datalist>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Dato", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10", @type = "date" } })
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Tid", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10" } })
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <input type="submit" value="Lagre" class="btn btn-default btn-admin-save btn-save" />
+                    </div>
+                }
             </div>
 
             <br /><br />
-            <div class="table-responsive">
+            <!--Show data information-->
+            <div class="table-responsive table-query">
                 <table class="table">
                     <thread>
                         <tr>
@@ -103,7 +150,7 @@
                         </tr>
                         <tbody>
 
-                            @foreach (var departure in Model)
+                            @foreach (var departure in Model.DepartureDetails)
                             {
                                 <tr>
                                     <td id="id">@departure.FlightId</td>
@@ -123,11 +170,7 @@
                 </table>
             </div>
             </div>
-
     </div>
-
-
-
 
 </body>
 </html>

@@ -1,17 +1,15 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Model
 {
-    [TrackChanges]
-    public class Order
+    public class AdminOrderViewModel
     {
 
-        [Key]
         public string OrderNumber { get; set; }
         public string Date { get; set; }
 
@@ -38,6 +36,9 @@ namespace Model
         public string Price { get; set; }
 
         public bool Cancelled { get; set; }
-        public virtual Departure Departure { get; set; }
+        public string FlightId { get; set; }
+
+        public virtual List<Departure> Departure { get; set; }
+        public virtual List<Order> Order { get; set; }
     }
 }

@@ -88,6 +88,26 @@ namespace Flybiletter.Controllers
             }
             return RedirectToAction("Login", "Admin");
         }
+            var admin = new Administrator();
+            var AdminDepVM = new Model.AdminDepartureViewModel();
+            AdminDepVM.DepartureDetails = admin.GetAllDepartures();
+            AdminDepVM.Airport = admin.GetAllAirports();
+
+            return View(AdminDepVM);
+        }
+
+        [HttpPost]
+        public ActionResult Departure(Model.AdminDepartureViewModel dep)
+        {
+            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                admin.AddDeparture(dep);
+                return RedirectToAction("Departure");
+            }
+            return RedirectToAction("Departure");
+        }
+
 
         public ActionResult DeleteDeparture(string id)
         {
@@ -133,6 +153,22 @@ namespace Flybiletter.Controllers
 
         public ActionResult Airport()
         {
+            var admin = new Administrator();
+            ViewData["AllAirports"] = admin.GetAllAirports();
+            var airport = new Model.Airport();
+            return View(airport);
+        }
+
+        [HttpPost]
+        public ActionResult Airport(Model.Airport airport)
+        {
+            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                admin.AddAirport(airport);
+                return RedirectToAction("Airport");
+            }
+            return RedirectToAction("Airport");
             if (IsLoggedIn())
             {
                 return View(_admin.GetAllAirports());
@@ -165,6 +201,12 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
+            if (ModelState.IsValid) {
+                var admin = new Administrator();
+                admin.UpdateAirport(airport);
+            }
+            return RedirectToAction("Airport");
+        }
             if (IsLoggedIn())
             {
                 _admin.UpdateAirport(airport);
@@ -173,9 +215,27 @@ namespace Flybiletter.Controllers
             return RedirectToAction("Login", "Admin");
         }
 
-
+        //GET
         public ActionResult Order()
         {
+            var admin = new Administrator();
+            var AdminOrderVM = new Model.AdminOrderViewModel();
+            AdminOrderVM.Order = admin.GetAllOrders();
+            AdminOrderVM.Departure = admin.GetAllDepartures();
+            return View(AdminOrderVM);
+        }
+        
+
+        [HttpPost]
+        public ActionResult Order(Model.AdminOrderViewModel order)
+        {
+            var admin = new Administrator();
+            if (ModelState.IsValid)
+            {
+                admin.AddOrder(order);
+                return RedirectToAction("Order");
+            }
+            return RedirectToAction("Order");
             if (IsLoggedIn())
             {
                 return View(_admin.GetAllOrders());
