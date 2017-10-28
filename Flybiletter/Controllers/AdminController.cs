@@ -96,6 +96,7 @@ namespace Flybiletter.Controllers
                     ViewData["AllAirports"] = Session["AllAirports"] as List<Model.Airport>;
                     return View();
                 }
+                /*
                 //Validering av Dato
                 DateTime now = new DateTime();
                 now = DateTime.Now;
@@ -106,6 +107,7 @@ namespace Flybiletter.Controllers
                        ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
                        return View(Session["Departure"] as Model.AdminDepartureViewModel);
                    }
+                   */
                 var admin = new Administrator();
                 admin.UpdateDeparture(departure);
                 return RedirectToAction("Departure");
