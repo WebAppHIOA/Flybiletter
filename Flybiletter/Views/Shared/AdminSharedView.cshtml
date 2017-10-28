@@ -5,27 +5,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Administrator</title>
-        <meta charset="utf-8" content="width=device-width" />
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        @Html.Partial("_Airzures")
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript">
-        </script>
+    <title>Administrator</title>
+    <meta charset="utf-8" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    @Html.Partial("_Airzures")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $('#admin-nav li').click(function () {
+                $('#admin-nav li').removeClass('selected');
+                $(this).addClass('selected');
+            });
+        });
+
+    </script>
 </head>
-<body>
+
+<body id="admin-body">
+
     <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
         <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="hidden-md" />
         </a>
     </div>
     <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
+        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
         <div class="pull-right">
-            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
+            @Html.ActionLink("Logout", "Admin");
         </div>
     </div>
 
@@ -54,19 +64,18 @@
                 </div>
             </div>
         </div>
-    </div>
-  
-    <div class="container">
+
+        <div class="container">
             @RenderBody()
             <hr />
-            
-    </div>
-    <div>
-        <footer>
-        <p>&copy; @DateTime.Now.Year - Airzure!</p>
-        </footer>
-    </div>
-    
+
+        </div>
+        <div>
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Airzure!</p>
+            </footer>
+        </div>
+
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
