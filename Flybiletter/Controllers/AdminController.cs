@@ -180,6 +180,7 @@ namespace Flybiletter.Controllers
             {
                 return View(_admin.GetAllOrders());
             }
+            return RedirectToAction("Login", "Admin");
         }
 
         public ActionResult DeleteOrder(string id)
