@@ -311,5 +311,19 @@ namespace UnitTestFlybilett
             Assert.AreEqual(e.Current, "Login");
         }
 
+        [TestMethod]
+        public void loggedOutTest()
+
+        {
+            var controller = setupController();
+
+            controller.Session["LoggedIn"] = false;
+            var resultat = (ViewResult) controller.Login();
+            // Assert
+            Assert.AreEqual(resultat.ViewName, "");
+
+
+        }
+
     }
 }
