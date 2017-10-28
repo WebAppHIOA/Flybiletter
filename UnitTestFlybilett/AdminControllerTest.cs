@@ -165,6 +165,24 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
+        public void PostDepartureInvalidTest()
+        {
+            var controller = setupController();
+            var _admin = new Administrator(new DBstub());
+            var departureVM = new Model.AdminDepartureViewModel();
+            departureVM.DepartureDetails = (List<Departure>)_admin.GetAllDepartures();
+            departureVM.Airport = _admin.GetAllAirports();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (ViewResult)controller.Departure();
+            var resultatListe = (Model.AdminDepartureViewModel)resultat.Model;
+            var resultatArray = departureVM.DepartureDetails.ToArray();
+            var departureArray = departureVM.DepartureDetails.ToArray();
+
+            Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
         public void DeleteDepartureValidTest()
         {
             var controller = setupController();

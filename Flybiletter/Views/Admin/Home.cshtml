@@ -18,8 +18,9 @@
             <h1>Hjem</h1>
             <p>Statistikk over antall aktive avganger, bestillinger og flyplasser i databasen.</p>
 
-            <div class="flight-updates">
+            <div>
                 <div class="col-sm-4 home-dep">
+                    <br />
                     <h3>Avganger</h3>
                     @{ Dictionary<string, int>
                         counts = ViewData["CountData"] as Dictionary<string, int>;
@@ -30,11 +31,13 @@
                 </div>
 
                 <div class="col-sm-4 home-order">
+                    <br />
                     <h3>Bestillinger</h3>
                     <p id="home-count">@counts["Order"]</p>
                     <p id="mini-article">antall aktive</p>
                 </div>
                 <div class="col-sm-4 home-airport">
+                    <br />
                     <h3>Flyplasser</h3>
                     <p id="home-count">@counts["Airport"]</p>
                     <p id="mini-article">antall aktive</p>

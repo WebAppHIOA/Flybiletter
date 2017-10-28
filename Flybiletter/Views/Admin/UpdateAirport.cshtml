@@ -1,71 +1,8 @@
 ﻿@model Model.Airport
 
 @{
-    Layout = null;
-    ViewBag.Title = "Airport";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Administrator</title>
-    <meta charset="utf-8" content="width=device-width" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    @Html.Partial("_Airzures")
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript">
-
-        $(function () {
-            $('#admin-nav li').click(function () {
-                $('#admin-nav li').removeClass('selected');
-                $(this).addClass('selected');
-            });
-        });
-
-    </script>
-</head>
-<body id="admin-body">
-
-    <!--HORIZONTAL TOP NAVIGATION BAR-->
-    <div class="admin-navlogo navbar-fixed-top">
-        <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
-        </a>
-    </div>
-    <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
-        <div class="pull-right">
-            <button class="btn log-out" type="submit">Logg ut</button>
-        </div>
-    </div>
-
-    <div class="row">
-        <!--VERTICAL SIDE NAVIGATION BAR-->
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Meny</span>
-                    </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav" id="admin-nav">
-                            <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
-                            <li><a class="active" href="@Url.Action("Departure", "Admin")">Avgang</a></li>
-                            <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
-                            <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!--CONTENT AREA-->
         <div class="col-sm-9 admin-content">
@@ -76,55 +13,58 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="col-md-12">
-                    @Html.LabelFor(model => model.AirportId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "AirportId", @class = "input-dialog-design" })
-                    @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
+                    <div class="row">
+                        @Html.LabelFor(model => model.AirportId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "AirportId", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
-                    <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="row">
                         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => model.Name, new { id = "name", @class = "input-dialog-design" })
+                        @Html.TextBoxFor(model => model.Name, new { id = "name", @class = "input-dialog-design col-md-10 form-control" })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="row">
                         @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => model.City, new { id = "city", @class = "input-dialog-design" })
+                        @Html.TextBoxFor(model => model.City, new { id = "city", @class = "input-dialog-design col-md-10 form-control" })
                         @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="row">
                         @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => model.Country, new { id = "country", @class = "input-dialog-design" })
+                        @Html.TextBoxFor(model => model.Country, new { id = "country", @class = "input-dialog-design col-md-10 form-control" })
                         @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
 
-                    <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="row">
                         @Html.LabelFor(model => model.Continent, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => model.Continent, new { id = "continent", @class = "input-dialog-design" })
+                        @Html.TextBoxFor(model => model.Continent, new { id = "continent", @class = "input-dialog-design col-md-10 form-control" })
                         @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="row">
                         @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => model.Fee, new { id = "fee", @class = "input-dialog-design" })
+                        @Html.TextBoxFor(model => model.Fee, new { id = "fee", @class = "input-dialog-design col-md-10 form-control" })
                         @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
-                        </div>
+                    </div>
+                </div>
 
                         <br /><br />
                         <a href="@Url.Action("Airport", "Admin")" class="btn btn-default btn-update-left">Tilbake</a>
                         <input type="submit" value="Bekreft" class="btn btn-default btn-update-right" id="button-design">
             }
         </div>
-
-
-
-
-
-
-
-    </div>
-
-</body>
-</html>
+<br />
+<br />

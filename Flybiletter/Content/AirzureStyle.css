@@ -249,17 +249,6 @@
 }
 
 
-.flight-updates {
-    height: 100%; /*240px*/
-    width: 91%;
-    margin-top: 30px;
-    background-color: #fff;
-    text-align: center;
-    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-}
-
 .btn-save {
     color: white;
     background-color: #f4a442;
@@ -496,17 +485,38 @@
     color: #0B61A4;
     border-right: solid 1px #f2f2f2;
     height: 240px;
+    width: 80%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
 }
 
 .home-order {
     color: #FFBF00;
     border-right: solid 1px #f2f2f2;
     height: 240px;
+    width: 80%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
 }
 
 .home-airport {
     color: #FF4900;
     height: 240px;
+    width: 80%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
 }
 
 #home-count {
