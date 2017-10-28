@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MvcContrib.TestHelper;
 using Model;
 using System.Collections.Generic;
+using Flybiletter.Models;
 
 namespace UnitTestFlybilett
 {
@@ -125,24 +126,27 @@ namespace UnitTestFlybilett
         {
             var controller = setupController();
             var _admin = new Administrator(new DBstub());
-            var departureListe = (List<Departure>)_admin.GetAllDepartures();
+            var departureVM = new Model.AdminDepartureViewModel();
+            departureVM.DepartureDetails = (List<Departure>)_admin.GetAllDepartures();
+            departureVM.Airport = _admin.GetAllAirports();
             controller.Session["LoggedIn"] = true;
-            var resultat = (ViewResult)controller.Departure();
-            var resultatListe = (List<Departure>)resultat.Model;
 
+            var resultat = (ViewResult)controller.Departure();
+            var resultatListe = (Model.AdminDepartureViewModel)resultat.Model;
+            var resultatArray = departureVM.DepartureDetails.ToArray();
+            var departureArray = departureVM.DepartureDetails.ToArray();
 
             Assert.AreEqual(resultat.ViewName, "");
-            for (var i = 0; i < departureListe.Count; i++)
+            for (var i = 0; i < departureVM.DepartureDetails.Count; i++)
             {
-                Assert.AreEqual(departureListe[i].FlightId, resultatListe[i].FlightId);
-                Assert.AreEqual(departureListe[i].Cancelled, resultatListe[i].Cancelled);
-                Assert.AreEqual(departureListe[i].Airport, resultatListe[i].Airport);
-                Assert.AreEqual(departureListe[i].Date, resultatListe[i].Date);
-                Assert.AreEqual(departureListe[i].DepartureTime, resultatListe[i].DepartureTime);
-                Assert.AreEqual(departureListe[i].DepartureTime, resultatListe[i].DepartureTime);
-                Assert.AreEqual(departureListe[i].From, resultatListe[i].From);
+                Assert.AreEqual(departureArray[i].FlightId, resultatArray[i].FlightId);
+                Assert.AreEqual(departureArray[i].Cancelled, departureArray[i].Cancelled);
+                Assert.AreEqual(departureArray[i].Airport, resultatArray[i].Airport);
+                Assert.AreEqual(departureArray[i].Date, resultatArray[i].Date);
+                Assert.AreEqual(departureArray[i].DepartureTime, resultatArray[i].DepartureTime);
+                Assert.AreEqual(departureArray[i].From, resultatArray[i].From);
             }
-
+            Assert.AreEqual(departureVM.Airport.Count, resultatListe.Airport.Count);
         }
 
         [TestMethod]
@@ -237,6 +241,34 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
+        public void PostAirportInValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+            var _admin = new Administrator(new DBstub());
+
+            var resultat = (RedirectToRouteResult)controller.Airport(_admin.GetAirport("Test"));
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Airport");
+        }
+
+        [TestMethod]
+        public void PostAirportInInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+            var _admin = new Administrator(new DBstub());
+
+            var resultat = (RedirectToRouteResult)controller.Airport(_admin.GetAirport("Test"));
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
         public void DeleteAirportValidTest()
         {
             var controller = setupController();
@@ -309,6 +341,180 @@ namespace UnitTestFlybilett
             var e = resultat.RouteValues.Values.GetEnumerator();
             e.MoveNext();
             Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void OrderValidTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var CheckOrderVM = new Model.AdminOrderViewModel();
+            CheckOrderVM.Order = _admin.GetAllOrders();
+            CheckOrderVM.Departure = _admin.GetAllDepartures();
+
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (ViewResult)controller.Order();
+            Assert.AreEqual(resultat.ViewName, "");
+
+            var resultatVM = (AdminOrderViewModel)resultat.Model;
+
+            Assert.AreEqual(resultatVM.Firstname, CheckOrderVM.Firstname);
+            Assert.AreEqual(resultatVM.Surname, CheckOrderVM.Surname);
+            Assert.AreEqual(resultatVM.Cancelled, CheckOrderVM.Cancelled);
+            Assert.AreEqual(resultatVM.Date, CheckOrderVM.Date);
+            Assert.AreEqual(resultatVM.Departure.Count, CheckOrderVM.Departure.Count);
+            Assert.AreEqual(resultatVM.Email, CheckOrderVM.Email);
+        }
+
+        [TestMethod]
+        public void OrderInvalidTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var CheckOrderVM = new Model.AdminOrderViewModel();
+            CheckOrderVM.Order = _admin.GetAllOrders();
+            CheckOrderVM.Departure = _admin.GetAllDepartures();
+
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.Order();
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void PostOrderValidTest()
+        {
+
+            var _admin = new Administrator(new DBstub());
+            var CheckOrderVM = new Model.AdminOrderViewModel();
+            CheckOrderVM.Order = _admin.GetAllOrders();
+            CheckOrderVM.Departure = _admin.GetAllDepartures();
+
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (RedirectToRouteResult)controller.Order(CheckOrderVM);
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Order");
+        }
+
+        [TestMethod]
+        public void PostOrderInvalidTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var CheckOrderVM = new Model.AdminOrderViewModel();
+            CheckOrderVM.Order = _admin.GetAllOrders();
+            CheckOrderVM.Departure = _admin.GetAllDepartures();
+
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.Order(CheckOrderVM);
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void DeleteOrderInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.DeleteOrder("Test");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+
+        }
+
+        [TestMethod]
+        public void DeleteOrderValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (RedirectToRouteResult)controller.DeleteOrder("Test");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Order");
+        }
+
+        [TestMethod]
+        public void UpdateOrderValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+            var _admin = new Administrator(new DBstub());
+
+            var testModel = _admin.GetOrder("Test");
+            var resultat = (ViewResult)controller.UpdateOrder("Test");
+            Assert.AreEqual(resultat.ViewName, "");
+            var restultatModel = (Model.Order)resultat.Model;
+
+            Assert.AreNotEqual(restultatModel.OrderNumber, testModel.OrderNumber);
+            Assert.AreEqual(restultatModel.Price, testModel.Price);
+        }
+
+        [TestMethod]
+        public void UpdateOrderInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.UpdateOrder("Test");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void PostUpdateOrderValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+            var testModel = new Model.Order();
+            var resultat = (RedirectToRouteResult)controller.UpdateOrder(testModel);
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Order");
+        }
+
+        [TestMethod]
+        public void PostUpdateOrderInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+            var testModel = new Model.Order();
+            var resultat = (RedirectToRouteResult)controller.UpdateOrder(testModel);
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void LogoutValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (RedirectToRouteResult)controller.Logout();
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Index");
         }
 
     }

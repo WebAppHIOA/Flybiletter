@@ -150,9 +150,14 @@ namespace Flybiletter.Controllers
 
         public ActionResult Airport()
         {
-            ViewData["AllAirports"] = _admin.GetAllAirports();
-            var airport = new Model.Airport();
-            return View(airport);
+            if (IsLoggedIn())
+            {
+                ViewData["AllAirports"] = _admin.GetAllAirports();
+                var airport = new Model.Airport();
+                return View(airport);
+
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         [HttpPost]
