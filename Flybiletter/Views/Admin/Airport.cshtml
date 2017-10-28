@@ -1,10 +1,8 @@
 ﻿@model Model.Airport
 
 @{
-    Layout = null;
-    ViewBag.Title = "Airport";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -12,19 +10,8 @@
     <title>Administrator</title>
     <meta charset="utf-8" content="width=device-width" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    @Html.Partial("_Airzures")
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-
-        $(function () {
-            $('#admin-nav li').click(function () {
-                $('#admin-nav li').removeClass('selected');
-                $(this).addClass('selected');
-            });
-        });
-
         function showHide() {
             var x = document.getElementById("show-hide-airport");
             if (!x.style.display || x.style.display == "none") {
@@ -34,65 +21,25 @@
             }
         }
 
-
     </script>
 </head>
+
 <body id="admin-body">
+    <!--CONTENT AREA-->
+    <div class="col-sm-9 col-md-9 admin-content">
+        @{ var AllAirports = ViewData["AllAirports"] as List<Model.Airport>;}
+        <h1>Flyplass</h1>
 
-    <!--HORIZONTAL TOP NAVIGATION BAR-->
-    <div class="admin-navlogo navbar-fixed-top">
-        <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="hidden-md" />
-        </a>
-    </div>
-    <div class="admin-navbar navbar-fixed-top">
-        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
-        <div class="pull-right">
-            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
-        </div>
-    </div>
+        <!--Create new departure-->
+        <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button><br />
 
-    <div class="row">
-        <!--VERTICAL SIDE NAVIGATION BAR-->
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Meny</span>
-                    </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav" id="admin-nav">
-                            <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
-                            <li><a href="@Url.Action("Departure", "Admin")">Avgang</a></li>
-                            <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
-                            <li><a class="active" href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
-                        </ul>
-                    </div>
+        <div id="show-hide-airport">
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <div class="col-sm-6">
+                    @Html.Label("Navn", htmlAttributes: new { @class = "control-label col-md-3" })
+                    @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                 </div>
-            </div>
-        </div>
-
-        <!--CONTENT AREA-->
-        <div class="col-sm-9 admin-content">
-            @{ var AllAirports = ViewData["AllAirports"] as List<Model.Airport>;}
-            <h1>Flyplass</h1>
-
-            <!--Create new departure-->
-            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button>
-            <br />
-            <div id="show-hide-airport">
-                @using (Html.BeginForm(FormMethod.Post))
-                {
-                    <div class="col-sm-6">
-                        @Html.Label("Navn", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                    </div>
                     <div class="col-sm-6">
                         @Html.Label("By", htmlAttributes: new { @class = "control-label col-md-3" })
                         @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
@@ -109,13 +56,14 @@
                         @Html.Label("Avgift", htmlAttributes: new { @class = "control-label col-md-3" })
                         @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
-                    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <input type="submit" value="Lagre" class="btn btn-default btn-admin-save btn-save" />
+                    </div>
+            }
+        </div>
+        <br /><br />
 
-                }
-            </div>
-            <br /><br />
-            
-            <div class="table-responsive table-query">
+        <div class="table-responsive table-query">
             <table class="table">
                 <thread>
                     <tr>
@@ -149,11 +97,10 @@
                     </tbody>
                 </thread>
             </table>
-            </div>
         </div>
     </div>
 
 
-
 </body>
+
 </html>

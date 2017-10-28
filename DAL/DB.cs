@@ -162,8 +162,9 @@ namespace DAL
                         cancel.ForEach(c => c.Cancelled = true);
 
                     }
-
-                    db.SaveChanges();
+                   /* var cancel = db.Order.Where(d => d.Departure.FlightId == id).ToList();
+                    cancel.ForEach(c => c.Cancelled = true);
+                   */ db.SaveChanges();
                     return true;
                 }
             }
@@ -284,6 +285,7 @@ namespace DAL
                 {
 
                     db.Airport.Add(airport);
+                    db.SaveChanges();
 
                     return true;
                 }
@@ -503,16 +505,8 @@ namespace DAL
 
             using (var db = new AirportContext())
             {
-                try
-                {
-                    var total = db.Departure.Count();
-                    return total;
-                }
-                catch (Exception e)
-                {
-                    log.Error("Failed to count Orders" + e);
-                    return -1;
-                }
+                var total = db.Order.Count();
+                return total;
             }
         }
 
