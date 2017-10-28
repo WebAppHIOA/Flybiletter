@@ -97,12 +97,16 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Departure(Model.AdminDepartureViewModel dep)
         {
-            if (ModelState.IsValid)
+            if (IsLoggedIn())
             {
-                _admin.AddDeparture(dep);
+                if (ModelState.IsValid)
+                {
+                    _admin.AddDeparture(dep);
+                    return RedirectToAction("Departure");
+                }
                 return RedirectToAction("Departure");
             }
-            return RedirectToAction("Departure");
+            return RedirectToAction("Login", "Admin");
         }
 
 
