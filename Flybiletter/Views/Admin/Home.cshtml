@@ -1,102 +1,42 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/AdminSharedView.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
+
 <head>
-    <title>Administrator</title>
-    <meta charset="utf-8" content="width=device-width" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    @Html.Partial("_Airzures")
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript">
-
-        $(function () {
-            $('#admin-nav li').click(function () {
-                $('#admin-nav li').removeClass('selected');
-                $(this).addClass('selected');
-            });
-        });
-
-    </script>
+    <script src="~/Scripts/admin_custom/home_custom_JS.js"></script>
 </head>
-<body id="admin-body">
-
-    <!--HORIZONTAL TOP NAVIGATION BAR-->
-    <div class="admin-navlogo navbar-fixed-top">
-        <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
-        </a>
-    </div>
-    <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
-        <div class="pull-right">
-            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
-        </div>
-    </div>
-
-    <div class="row">
-        <!--VERTICAL SIDE NAVIGATION BAR-->
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Administrator</span>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav" id="admin-nav">
-                            <li><a class="active" href="@Url.Action("Home", "Admin")">Hjem</a></li>
-                            <li><a href="@Url.Action("Departure", "Admin")">Avgang</a></li>
-                            <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
-                            <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <!--CONTENT AREA-->
-        <div class="col-sm-9 admin-content">
-            <h1>Hjem</h1>
-            <p>Statistikk over antall aktive avganger, bestillinger og flyplasser i databasen.</p>
+<div class="row">
+    <div class="col-sm-9 admin-content">
+        <h1>Hjem</h1>
+        <p>Statistikk over antall aktive avganger, bestillinger og flyplasser i databasen.</p>
 
-            <div class="flight-updates">
-                <div class="col-sm-4 home-dep">
-                    <h3>Avganger</h3>
-                    @{ Dictionary<string, int>
-                        counts = ViewData["CountData"] as Dictionary<string, int>;
-                    }
-                            
-                        <p id="home-count">@counts["Departure"]</p>
-                        <p id="mini-article">antall aktive</p>
-                </div>
+        <div class="flight-updates">
+            <div class="col-sm-12 col-md-4 home-dep">
+                <h3>Avganger</h3>
+                @{ Dictionary<string, int>
+                      counts = ViewData["CountData"] as Dictionary<string, int>;
+                }
 
-                <div class="col-sm-4 home-order">
-                    <h3>Bestillinger</h3>
-                    <p id="home-count">@counts["Order"]</p>
-                    <p id="mini-article">antall aktive</p>
-                </div>
-                <div class="col-sm-4 home-airport">
-                    <h3>Flyplasser</h3>
-                    <p id="home-count">@counts["Airport"]</p>
-                    <p id="mini-article">antall aktive</p>
-                </div>
+                <p id="home-count">@counts["Departure"]</p>
+                <p id="mini-article">antall aktive</p>
             </div>
 
+            <div class="col-sm-12 col-md-4 home-order">
+                <h3>Bestillinger</h3>
+                <p id="home-count">@counts["Order"]</p>
+                <p id="mini-article">antall aktive</p>
+            </div>
+            <div class="col-sm-12 col-md-4 home-airport">
+                <h3>Flyplasser</h3>
+                <p id="home-count">@counts["Airport"]</p>
+                <p id="mini-article">antall aktive</p>
+            </div>
         </div>
+
     </div>
+</div>
 
-
-
-</body>
-</html>
