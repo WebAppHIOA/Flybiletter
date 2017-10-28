@@ -809,7 +809,7 @@ pre {
 
 .row {
     margin-right: -15px;
-    margin-left: -17px; /*-15px;*/
+    margin-left: -15px;
 }
 
     .row:before,
@@ -4604,13 +4604,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
     }
 
     .navbar-default .navbar-nav > li > a {
-        color: #777777;
+        color: #fff; /*#777777;*/
     }
 
         .navbar-default .navbar-nav > li > a:hover,
         .navbar-default .navbar-nav > li > a:focus {
             color: #333333;
-            background-color: transparent;
+            background-color: #339966; /*transparent*/
         }
 
     .navbar-default .navbar-nav > .active > a,

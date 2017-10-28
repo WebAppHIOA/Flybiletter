@@ -133,15 +133,16 @@
     box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
 }
 
+#admin-nav {
+    color: #fff !important;
+}
+
 .admin-navheader {
     color: #fff;
     font-size: 24px;
     text-align: left;
     padding-left: 30px;
     padding-top: 15px;
-    /*
-    margin-left: 60px;
-    margin-top: 15px;*/
 }
 
 @media (width: 369px) {
@@ -152,7 +153,7 @@
 
 @media (min-width: 768px) {
     .sidebar-nav .navbar {
-        margin-left: 0;
+        margin-left: -3px;
         margin-top: 12px;
         padding: 0;
         height: 100%;
@@ -216,14 +217,9 @@
     margin-right: 10px;
 }
 
-
     .log-out:hover {
         background-color: #b32d00;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        color: #fff;
+        color: #fff !important;
         font-size: 15px;
         margin-top: -75px;
         margin-right: 10px;
@@ -254,7 +250,7 @@
 
 
 .flight-updates {
-    height: 240px;
+    height: 100%; /*240px*/
     width: 91%;
     margin-top: 30px;
     background-color: #fff;
@@ -263,6 +259,20 @@
     -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
     box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
 }
+
+.btn-save {
+    color: white;
+    background-color: #f4a442;
+    border: 2px solid #e2902b;
+}
+
+    .btn-save:hover, .btn-save:focus {
+        color: #333333;
+        background-color: #f9d4ac;
+        border: 2px solid #e2902b;
+        outline: 0;
+    }
+
 
 /*MEDIA QUERIES*/
 
@@ -273,7 +283,9 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px 20px 90px 70px;
+        display: none;
     }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -296,11 +308,16 @@
         width: 100%;
     }
 
+    
     .log-out {
-        margin-top: -5px;
+        margin-top: 0;
         margin-right: 15px;
     }
 
+    .log-out:hover {
+           margin-top: 0;
+           margin-right: 15px;
+    }
 
     #show-hide-element {
         background-color: #e8e8e8;
@@ -308,11 +325,23 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px 20px 20px 70px;
+        display: none;
     }
 
     #show-hide-airport {
         padding: 20px 20px 60px 70px;
     }
+
+    #show-hide-order {
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px 20px 50px 70px;
+    }
+
+
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -320,7 +349,7 @@
 
     .admin-content {
         margin-top: 16px;
-        margin-left: 0 !important;
+        margin-left: 290px !important;
         margin-right: 0 !important;
     }
 
@@ -345,9 +374,8 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px;
+        display: none;
     }
-
-
 
     #show-hide-airport {
         width: 95% !important;
@@ -356,11 +384,26 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px 30px 120px 70px;
+        display: none;
     }
 
     .btn-admin-save {
         margin-right: 90px;
     }
+
+
+    #show-hide-order {
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        margin-right: 50px;
+        padding: 20px 20px 280px 70px;
+        display: none;
+    }
+
+
+
 }
 
 @media only screen and (min-width: 369px) and (max-width: 422px) {
@@ -376,6 +419,7 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px;
+        display: none;
     }
 
     #show-hide-airport {
@@ -385,6 +429,7 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px;
+        display: none;
     }
 
     .btn-admin-save {
@@ -406,6 +451,7 @@
         border-radius: 5px;
         margin-top: 25px;
         padding: 20px;
+        display: none;
     }
 
     #show-hide-airport {
@@ -414,12 +460,16 @@
         border: 1px solid #adadad;
         border-radius: 5px;
         margin-top: 25px;
-        padding-left: 70px;
+        padding: 20px;
+        display: none;
     }
 
     .btn-admin-save {
         margin-left: 78%;
     }
+
+
+
 }
 
 @media only screen and (min-width: 368px) {
@@ -429,11 +479,8 @@
         border: 1px solid #adadad;
         border-radius: 5px;
         margin-top: 25px;
+        display: none;
     }
-
-    #show-hide-airport {
-    }
-
 
     .btn-create {
         color: white;
@@ -442,48 +489,24 @@
         padding: 5px 10px 5px 10px;
         border-radius: 5px;
     }
-}
 
+}
 
 .home-dep {
     color: #0B61A4;
     border-right: solid 1px #f2f2f2;
     height: 240px;
-    /*
-    width: 30%;
-    margin-top: 30px;
-    background-color: #fff;
-    text-align: center;
-    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
 }
 
 .home-order {
     color: #FFBF00;
     border-right: solid 1px #f2f2f2;
     height: 240px;
-    /*
-    width: 30%;
-    margin-top: 30px;
-    background-color: #fff;
-    text-align: center;
-    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
 }
 
 .home-airport {
     color: #FF4900;
     height: 240px;
-    /*
-    width: 30%;
-    margin-top: 30px;
-    background-color: #fff;
-    text-align: center;
-    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
-    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);*/
 }
 
 #home-count {
@@ -494,29 +517,6 @@
     margin-top: -30px;
     color: #4d4d4d;
 }
-
-/*
-.btn-create {
-    color: white;
-    background-color: #f4a442;
-    border: 2px solid #e2902b;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    margin-right: 50px;
-}
-
-    .btn-create:hover {
-        outline: 0;
-        color: #333333;
-        background-color: #eeeeee;
-        border: 2px solid #cccccc;
-    }
-
-    .btn-create:focus {
-        outline: 0;
-    }
-
-    */
 
 
 .create-input-dialog {
@@ -541,18 +541,7 @@
         outline: 0;
     }
 
-.btn-save {
-    color: white;
-    background-color: #f4a442;
-    border: 2px solid #e2902b;
-}
 
-    .btn-save:hover, .btn-save:focus {
-        color: #333333;
-        background-color: #f9d4ac;
-        border: 2px solid #e2902b;
-        outline: 0;
-    }
 
 .btn-update-right {
     margin-left: 260px;
