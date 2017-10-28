@@ -36,14 +36,17 @@
         <div id="show-hide-airport">
             @using (Html.BeginForm(FormMethod.Post))
             {
-                <div class="col-sm-6">
-                    @Html.Label("Navn", htmlAttributes: new { @class = "control-label col-md-3" })
-                    @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        @Html.Label("Navn", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
+                    </div>
                     <div class="col-sm-6">
                         @Html.Label("By", htmlAttributes: new { @class = "control-label col-md-3" })
                         @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
                         @Html.Label("Land", htmlAttributes: new { @class = "control-label col-md-3" })
                         @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
@@ -52,15 +55,18 @@
                         @Html.Label("Kontinent", htmlAttributes: new { @class = "control-label col-md-3" })
                         @Html.EditorFor(x => x.Continent, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
                         @Html.Label("Avgift", htmlAttributes: new { @class = "control-label col-md-3" })
                         @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
                         <input type="submit" value="Lagre" class="btn btn-default btn-admin-save btn-save" />
                     </div>
-            }
-        </div>
+                </div>
+             }
+                </div>
         <br /><br />
 
         <div class="table-responsive table-query">

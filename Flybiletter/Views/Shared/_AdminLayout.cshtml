@@ -25,7 +25,7 @@
     <div class="admin-navbar navbar-fixed-top">
         <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
         <div class="pull-right">
-            <button class="btn log-out" type="submit">Logg ut</button>
+            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
         </div>
     </div>
 
