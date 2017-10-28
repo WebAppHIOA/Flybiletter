@@ -10,7 +10,7 @@ namespace Model
     public class AdminDepartureViewModel
     {
         [Key]
-        [Required(ErrorMessage = "Avgang må oppgis")]
+        
         public string FlightId { get; set; }
         [Required(ErrorMessage = "Opprinnelig sted må oppgis")]
         public string From { get; set; }

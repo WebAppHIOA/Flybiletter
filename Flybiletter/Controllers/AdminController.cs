@@ -33,11 +33,12 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Departure(Model.AdminDepartureViewModel departure)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 if ((departure.From).Equals(departure.To))
                 {
-                    ModelState.AddModelError("To", "Destinasjon og avreise må være forskjellig");
+                    ModelState.AddModelError("From", "Destinasjon og avreise må være forskjellig");
                     return Departure();
                 }
                 //Validering av Dato og Flyplass data

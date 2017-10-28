@@ -86,7 +86,7 @@
             <div id="show-hide-element">
                 @using (Html.BeginForm(FormMethod.Post))
                 {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                     <div class="col-sm-6 ">
                         @Html.Label("Til")
                         @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog move-to", @list = "Airport" } })
