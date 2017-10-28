@@ -19,7 +19,7 @@ namespace Model
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}",
                ApplyFormatInEditMode = true)]
         [Display(Name = "Dato")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string DepartureTime { get; set; }
         public bool Cancelled  { get; set; }
 

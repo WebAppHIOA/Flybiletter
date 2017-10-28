@@ -15,8 +15,6 @@ namespace Flybiletter.Controllers
         {
             var adminBLL = new Administrator();
 
-            //adminBLL.DeleteAirport("CAN");
-
             ViewData["CountData"] = adminBLL.TableCounts();
             return View();
         }
@@ -28,7 +26,7 @@ namespace Flybiletter.Controllers
             var AdminDepVM = new Model.AdminDepartureViewModel();
             AdminDepVM.DepartureDetails = admin.GetAllDepartures();
             AdminDepVM.Airport = admin.GetAllAirports();
-
+            Session["Departure"] = AdminDepVM; 
             return View(AdminDepVM);
         }
 
@@ -38,10 +36,22 @@ namespace Flybiletter.Controllers
             var admin = new Administrator();
             if (ModelState.IsValid)
             {
+                //Validering av Dato og Flyplass data
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+
+                if (dep.Date < now.Date)
+                {
+                    //Legger til Error tekst hvis Date er før dagens dato
+                    ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                    return View(Session["Departure"] as Model.AdminDepartureViewModel);
+                }
+
                 admin.AddDeparture(dep);
                 return RedirectToAction("Departure");
             }
-            return RedirectToAction("Departure");
+
+            return View(Session["Departure"] as Model.AdminDepartureViewModel);
         }
 
 
@@ -57,12 +67,14 @@ namespace Flybiletter.Controllers
         {
             var admin = new Administrator();
 
-            var flight = admin.GetDeparture(id);
-            ViewData["AllAirports"] = admin.GetAllAirports();
-            
-            if (flight == null) {
+            if (id == null)
+            {
                 ModelState.AddModelError("Cancelled", "Denne avgangen eksister ikke i systemet");
             }
+            var flight = admin.GetDeparture(id);
+            Session["AllAirports"] = admin.GetAllAirports();
+            ViewData["AllAirports"] = Session["AllAirports"];
+
             return View(flight);
         }
 
@@ -70,17 +82,21 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateDeparture(Model.Departure departure)
         {
-            var admin = new Administrator();
-            admin.UpdateDeparture(departure);
-            return RedirectToAction("Departure");
+            if (ModelState.IsValid) {
+                var admin = new Administrator();
+                admin.UpdateDeparture(departure);
+                return RedirectToAction("Departure");
+            }
+            ViewData["AllAirports"] = Session["AllAirports"] as List<Model.Airport>;
+            return View();
         }
 
         public ActionResult Airport()
         {
             var admin = new Administrator();
-            ViewData["AllAirports"] = admin.GetAllAirports();
-            var airport = new Model.Airport();
-            return View(airport);
+            Session["Airport"] = admin.GetAllAirports();
+            ViewData["AllAirports"] = Session["Airport"];
+            return View();
         }
 
         [HttpPost]
@@ -92,7 +108,8 @@ namespace Flybiletter.Controllers
                 admin.AddAirport(airport);
                 return RedirectToAction("Airport");
             }
-            return RedirectToAction("Airport");
+            ViewData["AllAirports"] = Session["Airport"];
+            return View();
         }
 
         public ActionResult DeleteAirport(string id)
@@ -113,9 +130,13 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
-            var admin = new Administrator();
-            admin.UpdateAirport(airport);
-            return RedirectToAction("Airport");
+            if (ModelState.IsValid)
+            {
+                var admin = new Administrator();
+                admin.UpdateAirport(airport);
+                return RedirectToAction("Airport");
+            }
+            return View();
         }
 
         //GET
@@ -125,9 +146,10 @@ namespace Flybiletter.Controllers
             var AdminOrderVM = new Model.AdminOrderViewModel();
             AdminOrderVM.Order = admin.GetAllOrders();
             AdminOrderVM.Departure = admin.GetAllDepartures();
+            Session["Order"] = AdminOrderVM;
             return View(AdminOrderVM);
         }
-        
+
 
         [HttpPost]
         public ActionResult Order(Model.AdminOrderViewModel order)
@@ -138,7 +160,8 @@ namespace Flybiletter.Controllers
                 admin.AddOrder(order);
                 return RedirectToAction("Order");
             }
-            return RedirectToAction("Order");
+
+            return View(Session["Order"] as Model.AdminOrderViewModel);
         }
 
         public ActionResult DeleteOrder(string id)
@@ -159,10 +182,13 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateOrder(Model.Order order)
         {
-            var admin = new Administrator();
-            admin.UpdateOrder(order);
-            return RedirectToAction("Order");
+            if (ModelState.IsValid)
+            {
+                var admin = new Administrator();
+                admin.UpdateOrder(order);
+                return RedirectToAction("Order");
+            }
+            return View();
         }
-        
     }
 }

@@ -125,7 +125,7 @@ namespace BLL
                 FlightId = GenerateDepartures.GenerateFlightId(),
                 From = dep.From,
                 To = dep.To,
-                Date = dep.Date,
+                Date = dep.Date.ToString(),
                 DepartureTime = dep.DepartureTime,
                 Airport = GetAirport(dep.From)
             };

@@ -17,6 +17,7 @@ namespace Model
         public string To { get; set; }
         [Required(ErrorMessage = "Dato må oppgis")]
         public string Date { get; set; }
+        [Required(ErrorMessage = "Avgangstid må oppgis")]
         public string DepartureTime { get; set; }
         public bool Cancelled  { get; set; }
 
