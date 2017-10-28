@@ -36,8 +36,14 @@ namespace Flybiletter.Controllers
             var admin = new Administrator();
             if (ModelState.IsValid)
             {
+                if ((dep.From).Equals(dep.To))
+                {
+                    //Legger til Error tekst hvis fra og til AirportID er det samme
+                    ModelState.AddModelError("To", "Destinasjon og avreise må være forskjellig");
+                    return View(Session["Departure"] as Model.AdminDepartureViewModel);
+                }
                 //Validering av Dato og Flyplass data
-              //  DateTime now = new DateTime();
+                //  DateTime now = new DateTime();
                 //now = DateTime.Now;
 
                 /*   if (dep.Date < now.Date)
@@ -46,7 +52,7 @@ namespace Flybiletter.Controllers
                        ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
                        return View(Session["Departure"] as Model.AdminDepartureViewModel);
                    }*/
-            
+
                 admin.AddDeparture(dep);
                 return RedirectToAction("Departure");
             }
@@ -83,6 +89,23 @@ namespace Flybiletter.Controllers
         public ActionResult UpdateDeparture(Model.Departure departure)
         {
             if (ModelState.IsValid) {
+                if ((departure.From).Equals(departure.To))
+                {
+                    //Legger til Error tekst hvis fra og til AirportID er det samme
+                    ModelState.AddModelError("To", "Destinasjon og avreise må være forskjellig");
+                    ViewData["AllAirports"] = Session["AllAirports"] as List<Model.Airport>;
+                    return View();
+                }
+                //Validering av Dato
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+
+                if (departure.Date < now.Date)
+                   {
+                       //Legger til Error tekst hvis Date er før dagens dato
+                       ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                       return View(Session["Departure"] as Model.AdminDepartureViewModel);
+                   }
                 var admin = new Administrator();
                 admin.UpdateDeparture(departure);
                 return RedirectToAction("Departure");
