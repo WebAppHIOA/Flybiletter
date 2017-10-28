@@ -77,7 +77,7 @@
 
                 <div class="col-md-12">
                     @Html.LabelFor(model => model.AirportId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "flightID", @class = "input-dialog-design" })
+                    @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "AirportId", @class = "input-dialog-design" })
                     @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
                 </div>
 
@@ -108,7 +108,7 @@
 
                     <div class="col-md-12">
                         @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => model.Fee, new { id = "Fee", @class = "input-dialog-design" })
+                        @Html.TextBoxFor(model => model.Fee, new { id = "fee", @class = "input-dialog-design" })
                         @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
                         </div>
 

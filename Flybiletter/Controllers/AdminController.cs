@@ -113,8 +113,10 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
-            var admin = new Administrator();
-            admin.UpdateAirport(airport);
+            if (ModelState.IsValid) {
+                var admin = new Administrator();
+                admin.UpdateAirport(airport);
+            }
             return RedirectToAction("Airport");
         }
 
