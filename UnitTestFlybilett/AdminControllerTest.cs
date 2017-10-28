@@ -73,7 +73,7 @@ namespace UnitTestFlybilett
         public void LoginPostModelStateTest()
         {
             var controller = setupController();
-            controller.ViewData.ModelState.AddModelError("Username","Ikke oppgitt brukernavn");
+            controller.ViewData.ModelState.AddModelError("Username", "Ikke oppgitt brukernavn");
 
             var adminTest = new Login
             {
@@ -109,7 +109,15 @@ namespace UnitTestFlybilett
 
             var resultat = (ViewResult)controller.Home();
             Assert.AreEqual(resultat.ViewName, "");
-            Assert.AreEqual(controller.ViewData["CountData"], 1);
+
+            var cd = (Dictionary<string, int>)controller.ViewData["CountData"];
+            var DepartureCount = cd["Departure"];
+            var OrderCount = cd["Order"];
+            var AirportCount = cd["Airport"];
+
+            Assert.AreEqual(DepartureCount, 1);
+            Assert.AreEqual(OrderCount, 10);
+            Assert.AreEqual(AirportCount, 10);
         }
 
         [TestMethod]
@@ -134,7 +142,7 @@ namespace UnitTestFlybilett
                 Assert.AreEqual(departureListe[i].DepartureTime, resultatListe[i].DepartureTime);
                 Assert.AreEqual(departureListe[i].From, resultatListe[i].From);
             }
-            
+
         }
 
         [TestMethod]
@@ -180,21 +188,128 @@ namespace UnitTestFlybilett
         public void UpdateDepartureValidTest()
         {
             var _admin = new Administrator(new DBstub());
-            var expectedModel = _admin.UpdateDeparture("Test");
             var controller = setupController();
             controller.Session["LoggedIn"] = true;
-            var resultat = (ViewResult)controller.UpdateDeparture("Test");
-            var resultatModel = (Departure)resultat.Model;
 
-            Assert.AreEqual(resultatModel.FlightId, resultatListe[i].FlightId);
-            Assert.AreEqual(resultatModel.Cancelled, resultatListe[i].Cancelled);
-            Assert.AreEqual(resultatModel.Airport, resultatListe[i].Airport);
-            Assert.AreEqual(resultatModel.Date, resultatListe[i].Date);
-            Assert.AreEqual(resultatModel.DepartureTime, resultatListe[i].DepartureTime);
-            Assert.AreEqual(resultatModel.DepartureTime, resultatListe[i].DepartureTime);
-            Assert.AreEqual(resultatModel.From, resultatListe[i].From);
+            var resultat = (RedirectToRouteResult)controller.UpdateDeparture(_admin.GetDeparture("Test"));
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Departure");
         }
 
+        [TestMethod]
+        public void UpdateDepartureInvalidTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.UpdateDeparture(_admin.GetDeparture("Test"));
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void AirportValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (ViewResult)controller.Airport();
+
+            Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
+        public void AirportInValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.Airport();
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void DeleteAirportValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (RedirectToRouteResult)controller.DeleteAirport("Test");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Airport");
+        }
+
+        [TestMethod]
+        public void DeleteAirportInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.DeleteAirport("Test");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void UpdateAirportValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (ViewResult)controller.UpdateAirport("Test");
+            Assert.AreEqual(resultat.ViewName, "");
+        }
+
+        [TestMethod]
+        public void UpdateAirportInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.UpdateAirport("Test");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void PostUpdateAirportValidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+            var _admin = new Administrator(new DBstub());
+            var resultat = (RedirectToRouteResult)controller.UpdateAirport((Airport)_admin.GetAirport("Test"));
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Airport");
+        }
+
+        [TestMethod]
+        public void PostUpdateAirportInvalidTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+            var _admin = new Administrator(new DBstub());
+            var resultat = (RedirectToRouteResult)controller.UpdateAirport((Airport)_admin.GetAirport("Test"));
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
 
     }
 }

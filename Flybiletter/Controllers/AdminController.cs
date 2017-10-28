@@ -123,8 +123,12 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateDeparture(Model.Departure departure)
         {
-            _admin.UpdateDeparture(departure);
-            return RedirectToAction("Departure");
+            if (IsLoggedIn())
+            {
+                _admin.UpdateDeparture(departure);
+                return RedirectToAction("Departure");
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         public ActionResult Airport()
@@ -139,28 +143,43 @@ namespace Flybiletter.Controllers
 
         public ActionResult DeleteAirport(string id)
         {
-            _admin.DeleteAirport(id);
-            return RedirectToAction("Airport");
+            if (IsLoggedIn())
+            {
+                _admin.DeleteAirport(id);
+                return RedirectToAction("Airport");
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         // GET
         public ActionResult UpdateAirport(string id)
         {
-            return View(_admin.GetAirport(id));
+            if (IsLoggedIn())
+            {
+                return View(_admin.GetAirport(id));
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         //POST
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
-            _admin.UpdateAirport(airport);
-            return RedirectToAction("Airport");
+            if (IsLoggedIn())
+            {
+                _admin.UpdateAirport(airport);
+                return RedirectToAction("Airport");
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
 
         public ActionResult Order()
         {
-            return View(_admin.GetAllOrders());
+            if (IsLoggedIn())
+            {
+                return View(_admin.GetAllOrders());
+            }
         }
 
         public ActionResult DeleteOrder(string id)
