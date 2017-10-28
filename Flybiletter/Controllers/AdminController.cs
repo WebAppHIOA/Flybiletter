@@ -33,13 +33,12 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Departure(Model.AdminDepartureViewModel departure)
         {
-            var admin = new Administrator();
             if (ModelState.IsValid)
             {
                 if ((departure.From).Equals(departure.To))
                 {
                     ModelState.AddModelError("To", "Destinasjon og avreise må være forskjellig");
-                    return View(Session["Departure"] as Model.AdminDepartureViewModel);
+                    return Departure();
                 }
                 //Validering av Dato og Flyplass data
                 DateTime now = new DateTime();
@@ -50,9 +49,9 @@ namespace Flybiletter.Controllers
                 {
                     //Legger til Error tekst hvis Date er før dagens dato
                     ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                       return View(Session["Departure"] as Model.AdminDepartureViewModel);
-                 }
-
+                    return Departure();
+                }
+                var admin = new Administrator();
                 admin.AddDeparture(departure);
                 return RedirectToAction("Departure");
             }
@@ -91,13 +90,11 @@ namespace Flybiletter.Controllers
             if (ModelState.IsValid) {
                 if ((departure.From).Equals(departure.To))
                 {
-                    //Legger til Error tekst hvis fra og til AirportID er det samme
                     ModelState.AddModelError("To", "Destinasjon og avreise må være forskjellig");
                     ViewData["AllAirports"] = Session["AllAirports"] as List<Model.Airport>;
                     return View();
                 }
                 
-                //Validering av Dato
                 DateTime now = new DateTime();
                 now = DateTime.Now;
   
@@ -105,7 +102,6 @@ namespace Flybiletter.Controllers
                 if (dt < now.Date)
                    {
                     ViewData["AllAirports"] = Session["AllAirports"] as List<Model.Airport>;
-                    //Legger til Error tekst hvis Date er før dagens dato
                     ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
                        return View();
                    }

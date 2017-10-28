@@ -86,7 +86,7 @@
             <div id="show-hide-element">
                 @using (Html.BeginForm(FormMethod.Post))
                 {
-
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="col-sm-6 ">
                         @Html.Label("Til")
                         @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog move-to", @list = "Airport" } })
@@ -116,11 +116,13 @@
                     <div class="col-sm-6">
                         @Html.Label("Dato")
                         @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "create-input-dialog move-date", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="col-sm-6">
                         @Html.Label("Tid")
                         @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "create-input-dialog" } })
+                        @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
                     </div>
 
                     <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />

@@ -18,7 +18,7 @@ namespace Model
         [Required(ErrorMessage = "Destinasjon må oppgis")]
         public string To { get; set; }
         [Required(ErrorMessage = "Dato må oppgis")]
-        //[DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}",ApplyFormatInEditMode = true)]
+
         public string Date { get; set; }
 
         [Required(ErrorMessage = "Avgangstid må oppgis")]
