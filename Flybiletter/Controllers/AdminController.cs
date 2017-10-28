@@ -128,11 +128,13 @@ namespace Flybiletter.Controllers
             var admin = new Administrator();
             if (ModelState.IsValid)
             {
+                ViewData["AllAirports"] = Session["Airport"];
                 admin.AddAirport(airport);
-                return RedirectToAction("Airport");
+                
+                return Json(new { result = true});
             }
             ViewData["AllAirports"] = Session["Airport"];
-            return View();
+            return PartialView("AirportForm");
         }
 
         public ActionResult DeleteAirport(string id)
@@ -173,7 +175,7 @@ namespace Flybiletter.Controllers
             return View(AdminOrderVM);
         }
 
-
+        
         [HttpPost]
         public ActionResult Order(Model.AdminOrderViewModel order)
         {
@@ -201,6 +203,7 @@ namespace Flybiletter.Controllers
 
             return View(Session["Order"] as Model.AdminOrderViewModel);
         }
+       
 
         public ActionResult DeleteOrder(string id)
         {

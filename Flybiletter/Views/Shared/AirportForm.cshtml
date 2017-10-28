@@ -1,0 +1,34 @@
+﻿@model Model.Airport
+
+@using (Ajax.BeginForm("Airport", "Admin", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Validation", UpdateTargetId = "show-hide-airport" }, new { id = "form" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-sm-6">
+        @Html.Label("Navn")
+        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog move-airport-name", id = "Name" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("By")
+                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog move-airport-city", id = "City" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Land")
+                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog move-airport-country", id = "Country" } })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Kontinent")
+                        @Html.EditorFor(x => x.Continent, new { htmlAttributes = new { @class = "create-input-dialog", id = "Continent" } })
+                        @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.Label("Avgift")
+                        @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog", id = "Fee" } })
+                        @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                    </div>
+
+    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
+}

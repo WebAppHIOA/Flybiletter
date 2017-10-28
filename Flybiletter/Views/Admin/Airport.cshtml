@@ -16,6 +16,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript">
 
         $(function () {
@@ -34,6 +35,9 @@
             }
         }
 
+        function Validation(data) {
+            if (data.result) { window.location.href = "/Admin/Airport"; }
+        }
 
     </script>
 </head>
@@ -87,39 +91,9 @@
             <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button>
             <br />
             <div id="show-hide-airport">
-                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "Form" }))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                    <div class="col-sm-6">
-                        @Html.Label("Navn")
-                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog move-airport-name", id="name" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.Label("By")
-                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog move-airport-city" } })
-                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.Label("Land")
-                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog move-airport-country" } })
-                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.Label("Kontinent")
-                        @Html.EditorFor(x => x.Continent, new { htmlAttributes = new { @class = "create-input-dialog" } })
-                        @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.Label("Avgift")
-                        @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog" } })
-                        @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
-                    </div>
-                    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save"/>
-
-                }
+            @Html.Partial("AirportForm", Model)
             </div>
+            <div id="validation"></div>
             <br /><br />
             <div class="table-responsive">
             <table class="table">

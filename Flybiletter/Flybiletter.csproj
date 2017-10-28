@@ -320,6 +320,7 @@
     <Content Include="Views\Admin\UpdateAirport.cshtml" />
     <Content Include="Views\Admin\UpdateOrder.cshtml" />
     <Content Include="Views\Admin\Order.cshtml" />
+    <Content Include="Views\Shared\AirportForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
