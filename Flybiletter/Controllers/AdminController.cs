@@ -84,25 +84,22 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
-                return View(_admin.GetAllDepartures());
+                var AdminDepVM = new Model.AdminDepartureViewModel();
+                AdminDepVM.DepartureDetails = _admin.GetAllDepartures();
+                AdminDepVM.Airport = _admin.GetAllAirports();
+                return View(AdminDepVM);
             }
             return RedirectToAction("Login", "Admin");
         }
-            var admin = new Administrator();
-            var AdminDepVM = new Model.AdminDepartureViewModel();
-            AdminDepVM.DepartureDetails = admin.GetAllDepartures();
-            AdminDepVM.Airport = admin.GetAllAirports();
-
-            return View(AdminDepVM);
-        }
+            
+        
 
         [HttpPost]
         public ActionResult Departure(Model.AdminDepartureViewModel dep)
         {
-            var admin = new Administrator();
             if (ModelState.IsValid)
             {
-                admin.AddDeparture(dep);
+                _admin.AddDeparture(dep);
                 return RedirectToAction("Departure");
             }
             return RedirectToAction("Departure");
@@ -153,8 +150,7 @@ namespace Flybiletter.Controllers
 
         public ActionResult Airport()
         {
-            var admin = new Administrator();
-            ViewData["AllAirports"] = admin.GetAllAirports();
+            ViewData["AllAirports"] = _admin.GetAllAirports();
             var airport = new Model.Airport();
             return View(airport);
         }
@@ -162,16 +158,16 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Airport(Model.Airport airport)
         {
-            var admin = new Administrator();
-            if (ModelState.IsValid)
-            {
-                admin.AddAirport(airport);
-                return RedirectToAction("Airport");
-            }
-            return RedirectToAction("Airport");
+            
             if (IsLoggedIn())
             {
-                return View(_admin.GetAllAirports());
+                if (ModelState.IsValid)
+                {
+                    _admin.AddAirport(airport);
+                    return RedirectToAction("Airport");
+                }
+                return RedirectToAction("Airport");
+                //return View(_admin.GetAllAirports());
             }
             return RedirectToAction("Login", "Admin");
 
@@ -201,66 +197,78 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult UpdateAirport(Model.Airport airport)
         {
-            if (ModelState.IsValid) {
-                var admin = new Administrator();
-                admin.UpdateAirport(airport);
-            }
-            return RedirectToAction("Airport");
-        }
+
             if (IsLoggedIn())
             {
-                _admin.UpdateAirport(airport);
+                if (ModelState.IsValid)
+                {
+                    _admin.UpdateAirport(airport);
+                }
                 return RedirectToAction("Airport");
             }
-            return RedirectToAction("Login", "Admin");
+            return RedirectToAction("Login", "Admin");        
         }
+            
+        
 
         //GET
         public ActionResult Order()
         {
-            var admin = new Administrator();
-            var AdminOrderVM = new Model.AdminOrderViewModel();
-            AdminOrderVM.Order = admin.GetAllOrders();
-            AdminOrderVM.Departure = admin.GetAllDepartures();
-            return View(AdminOrderVM);
+            if (IsLoggedIn())
+            {
+                var AdminOrderVM = new Model.AdminOrderViewModel();
+                AdminOrderVM.Order = _admin.GetAllOrders();
+                AdminOrderVM.Departure = _admin.GetAllDepartures();
+                return View(AdminOrderVM);
+            }
+            return RedirectToAction("Login", "Admin");
         }
         
 
         [HttpPost]
         public ActionResult Order(Model.AdminOrderViewModel order)
         {
-            var admin = new Administrator();
-            if (ModelState.IsValid)
-            {
-                admin.AddOrder(order);
-                return RedirectToAction("Order");
-            }
-            return RedirectToAction("Order");
             if (IsLoggedIn())
             {
-                return View(_admin.GetAllOrders());
+                if (ModelState.IsValid)
+                {
+                    _admin.AddOrder(order);
+                }
+                return RedirectToAction("Order");
             }
             return RedirectToAction("Login", "Admin");
         }
 
         public ActionResult DeleteOrder(string id)
         {
-            _admin.DeleteOrder(id);
-            return RedirectToAction("Order");
+            if (IsLoggedIn())
+            {
+                _admin.DeleteOrder(id);
+                return RedirectToAction("Order");
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         // GET
         public ActionResult UpdateOrder(string id)
         {
-            return View(_admin.GetOrder(id));
+            if (IsLoggedIn())
+            {
+                return View(_admin.GetOrder(id));
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         //POST
         [HttpPost]
         public ActionResult UpdateOrder(Model.Order order)
         {
-            _admin.UpdateOrder(order);
-            return RedirectToAction("Order");
+            if (IsLoggedIn())
+            {
+                _admin.UpdateOrder(order);
+                return RedirectToAction("Order");
+            }
+            return RedirectToAction("Login", "Admin");
         }
 
         public ActionResult Logout()
