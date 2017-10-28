@@ -116,8 +116,6 @@ namespace BLL
 
         public bool AddDeparture(AdminDepartureViewModel dep)
         {
-            var db = new DB();
-
             Departure departure = new Departure
             {
                 FlightId = GenerateDepartures.GenerateFlightId(),
@@ -128,12 +126,11 @@ namespace BLL
                 Airport = GetAirport(dep.From)
             };
 
-            return db.AddDeparture(departure);
+            return _DB.AddDeparture(departure);
         }
 
         public bool AddAirport(Airport airport)
         {
-            var db = new DB();
 
             Airport newAirport = new Airport
             {
@@ -145,13 +142,12 @@ namespace BLL
                 Fee = airport.Fee
             };
 
-            return db.AddAirport(newAirport);
+            return _DB.AddAirport(newAirport);
         }
 
         public bool AddOrder(AdminOrderViewModel order)
         {
-            var db = new DB();
-            var depOrder = db.FindDeparture(order.FlightId);
+            var depOrder = _DB.FindDeparture(order.FlightId);
 
             Model.Order ord = new Model.Order
             {
@@ -164,7 +160,7 @@ namespace BLL
                 Price = order.Price,
                 Departure = depOrder
             };
-            return db.AddOrder(ord);
+            return _DB.AddOrder(ord);
         }
     }
     }
