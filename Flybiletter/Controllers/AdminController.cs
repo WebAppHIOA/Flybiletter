@@ -33,7 +33,6 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Departure(Model.AdminDepartureViewModel departure)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 if ((departure.From).Equals(departure.To))
@@ -181,6 +180,21 @@ namespace Flybiletter.Controllers
             var admin = new Administrator();
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrWhiteSpace(order.FlightId))
+                {
+                    ModelState.AddModelError("FlightId", "Vennligst oppgi FlightId");
+                    return View(Session["Order"] as Model.AdminOrderViewModel);
+                }
+
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+
+                DateTime dt = DateTime.Parse(order.Date);
+                if (dt < now.Date)
+                {
+                    ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                    return View(Session["Order"] as Model.AdminOrderViewModel);
+                }
                 admin.AddOrder(order);
                 return RedirectToAction("Order");
             }
