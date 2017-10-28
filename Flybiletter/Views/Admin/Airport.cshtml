@@ -42,11 +42,11 @@
     <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
         <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="hidden-md" />
         </a>
     </div>
     <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
+        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
         <div class="pull-right">
             <button class="btn log-out" type="submit">Logg ut</button>
         </div>
@@ -90,31 +90,32 @@
                 @using (Html.BeginForm(FormMethod.Post))
                 {
                     <div class="col-sm-6">
-                        @Html.Label("Navn")
-                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog move-airport-name" } })
+                        @Html.Label("Navn", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
                     <div class="col-sm-6">
-                        @Html.Label("By")
-                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog move-airport-city" } })
+                        @Html.Label("By", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
                     <div class="col-sm-6">
-                        @Html.Label("Land")
-                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog move-airport-country" } })
+                        @Html.Label("Land", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
                     <div class="col-sm-6">
-                        @Html.Label("Kontinent")
-                        @Html.EditorFor(x => x.Continent, new { htmlAttributes = new { @class = "create-input-dialog" } })
+                        @Html.Label("Kontinent", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(x => x.Continent, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
                     <div class="col-sm-6">
-                        @Html.Label("Avgift")
-                        @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog" } })
+                        @Html.Label("Avgift", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                     </div>
                     <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
 
                 }
             </div>
             <br /><br />
-            <div class="table-responsive">
+            
+            <div class="table-responsive table-query">
             <table class="table">
                 <thread>
                     <tr>

@@ -39,16 +39,15 @@
     <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
         <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="hidden-md" />
         </a>
     </div>
     <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
+        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
         <div class="pull-right">
             <button class="btn log-out" type="submit">Logg ut</button>
         </div>
     </div>
-
     <div class="row">
         <!--VERTICAL SIDE NAVIGATION BAR-->
         <div class="col-sm-3">
@@ -85,9 +84,9 @@
             <div id="show-hide-element">
                 @using (Html.BeginForm(FormMethod.Post))
                 {
-                    <div class="col-sm-6">
-                        @Html.Label("Flight ID")
-                        @Html.EditorFor(model => model.FlightId, new { htmlAttributes = new { @class = "create-input-dialog ", @list ="Departure" } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Flight ID", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.FlightId, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9", @list ="Departure" } })
                         @Html.ValidationMessageFor(model => model.FlightId, "", new { @class = "text-danger" })
                         <datalist id="Departure">
                             @foreach (var dep in Model.Departure)
@@ -98,39 +97,39 @@
                         </datalist>
                     </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("Dato")
-                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "create-input-dialog move-order-date", @type = "date" } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Dato", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("Fornavn ")
-                        @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "create-input-dialog move-order-firstname" } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Fornavn", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                         @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("Etternavn")
-                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "create-input-dialog " } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Etternavn", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                         @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("Telefon")
-                        @Html.EditorFor(model => model.Tlf, new { htmlAttributes = new { @class = "create-input-dialog move-order-tlf" } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Telefon", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.Tlf, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                         @Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("E-post")
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "create-input-dialog move-order-email" } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("E-post", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("Pris")
-                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "create-input-dialog move-order-price" } })
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.Label("Pris", htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
                         @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                     </div>
 
@@ -139,7 +138,7 @@
             </div>
 
             <br /><br />
-            <div class="table-responsive">
+            <div class="table-responsive table-query">
                 <table class="table">
                     <thread>
                         <tr>

@@ -28,11 +28,11 @@
     <!--HORIZONTAL TOP NAVIGATION BAR-->
     <div class="admin-navlogo navbar-fixed-top">
         <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
-            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="hidden-md" />
         </a>
     </div>
     <div class="admin-navbar navbar-fixed-top">
-        <p class="admin-navheader">ADMINISTRATOR</p>
+        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
         <div class="pull-right">
             <button class="btn log-out" type="submit">Logg ut</button>
         </div>
