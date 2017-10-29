@@ -1,0 +1,73 @@
+﻿@model Model.Airport
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+        <!--CONTENT AREA-->
+<div class="col-sm-9">
+    <div class=" admin-content">
+        <h2>Oppdater Flyplass</h2>
+
+        @using (Html.BeginForm(FormMethod.Post))
+            {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-12">
+                <div class="row">
+                    @Html.LabelFor(model => model.AirportId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "AirportId", @class = "input-dialog-design col-md-10 form-control" })
+                    @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Name, new { id = "name", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.City, new { id = "city", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Country, new { id = "country", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Continent, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Continent, new { id = "continent", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Fee, new { id = "fee", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br /><br />
+                        <a href="@Url.Action("Airport", "Admin")" class="btn btn-default btn-update-left">Tilbake</a>
+                        <input type="submit" value="Bekreft" class="btn btn-default btn-update-right" id="button-design">
+        }
+    </div>
+</div>
+
+<br />
+<br />

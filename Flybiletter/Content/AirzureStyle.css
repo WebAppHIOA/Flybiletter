@@ -1,0 +1,822 @@
+﻿/*ADMIN NAVIGATION BAR CSS*/
+.admin-btn {
+    margin-top: 6px;
+    padding-top: 15px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.admin-btn li a:hover {
+        background-color: #2d8659;
+        padding: 15px;
+        color: #fff;
+}
+
+#admin-body {
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+
+.login-header {
+    height: 18%;
+    width: 100%; /*832px;*/ /*500px*/
+    color: #2d8659;
+    text-align: center;
+    padding-top: 10px; /*40px*/
+    padding-bottom: 70px;
+    border-bottom: dashed 5px #2d8659;
+    margin-top: 0;
+}
+
+
+.login-box {
+    margin-top: 0;
+    margin-left: 0;
+}
+
+#admin-login-body {
+    background-color: #fcfcfc;
+    /**kontrollerer størrelse til logoen*/
+    height: 100px;
+    width: 200px;
+}
+
+.admin-login {
+    background-color: #fcfcfc;
+    height: 570px; /*370px*/
+    position: fixed;
+    margin-top: 0;
+    width: 100%;
+}
+
+.inner-admin-login {
+    letter-spacing: 2px;
+    margin-top: 5%;
+    margin-left: 40%;
+    font-size: 16px;
+}
+
+.admin-input-dialog {
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: solid 2px #2d8659;
+    width: 70%;
+    background-color: transparent;
+}
+
+    .admin-input-dialog:hover {
+        border: none;
+        outline: 0;
+        border-bottom: solid 3px #b1e7cd;
+    }
+
+    .admin-input-dialog:focus {
+        border: none;
+        outline: 0;
+        border-bottom: solid 3px #b1e7cd;
+    }
+
+
+.admin-login-btn {
+    width: 70%;
+    height: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #2d8659;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(207,207,207,1);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(207,207,207,1);
+    box-shadow: 0px 1px 4px 0px rgba(207,207,207,1);
+}
+
+    .admin-login-btn:hover {
+        transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+        transform: translateY(-5px);
+        -webkit-box-shadow: 0px 6px 18px 0px rgba(207,207,207,1);
+        -moz-box-shadow: 0px 6px 18px 0px rgba(207,207,207,1);
+        box-shadow: 0px 6px 18px 0px rgba(207,207,207,1);
+    }
+
+.line-break {
+    margin: 10px 10px 10px 10px;
+    padding-top: 10px;
+    width: 93%;
+    border-bottom: solid 0.8px #737373;
+}
+
+.admin-navlogo {
+    background-color: #2d8659;
+    width: 19.72%;
+    height: 65px;
+    -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    display: block;
+}
+
+#admin-logo {
+    display: block;
+    margin: auto;
+}
+
+.admin-navbar {
+    background-color: #404040;
+    width: 80.21%;
+    height: 65px;
+    margin-left: 19.75%;
+    -webkit-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    -moz-box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+    box-shadow: 2px 0px 11px -3px rgba(3,3,3,1);
+}
+
+#admin-nav {
+    color: #fff !important;
+}
+
+.admin-navheader {
+    color: #fff;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 15px;
+}
+
+@media (width: 369px) {
+    .sidebar-nav .navbar {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebar-nav .navbar {
+        margin-left: -3px;
+        margin-top: 12px;
+        padding: 0;
+        height: 100%;
+        width: 20%;
+        background-color: #404040;
+        position: fixed;
+    }
+
+        .sidebar-nav .navbar .navbar-collapse {
+            margin-left: 0;
+            margin-top: 16px;
+            padding: 0;
+        }
+
+        .sidebar-nav .navbar ul {
+            float: none;
+            display: block;
+        }
+
+        .sidebar-nav .navbar li {
+            float: none;
+            display: block;
+        }
+
+            .sidebar-nav .navbar li a {
+                padding-top: 15px;
+                color: #fff;
+                font-size: 15px;
+                padding-left: 30px;
+            }
+
+                .sidebar-nav .navbar li a:hover {
+                    padding-left: 40px;
+                    background-color: #737373;
+                    color: #fff;
+                    width: 99.9%;
+                }
+}
+
+.selected {
+    background-color: #2d8659;
+    color: #fff;
+    width: 99.9%;
+}
+
+.active {
+    background-color: #2d8659;
+    color: #fff;
+    width: 99.9%;
+}
+
+.log-out {
+    background-color: #2d8659;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    font-size: 15px;
+    margin-top: -75px;
+    margin-right: 10px;
+}
+
+    .log-out:hover {
+        background-color: #b32d00;
+        color: #fff !important;
+        font-size: 15px;
+        margin-top: -75px;
+        margin-right: 10px;
+        -webkit-box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
+        -moz-box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
+        box-shadow: 0px 2px 7px -3px rgba(77,77,77,1);
+    }
+
+
+
+.airzure-footer {
+    color: #fff;
+}
+
+
+
+/*ADMIN MAIN CONTENT CSS*/
+.btn-create:hover {
+    outline: 0;
+    color: #333333;
+    background-color: #eeeeee;
+    border: 2px solid #cccccc;
+}
+
+.btn-create:focus {
+    outline: 0;
+}
+
+
+.btn-save {
+    color: white;
+    background-color: #f4a442;
+    border: 2px solid #e2902b;
+}
+
+    .btn-save:hover, .btn-save:focus {
+        color: #333333;
+        background-color: #f9d4ac;
+        border: 2px solid #e2902b;
+        outline: 0;
+    }
+
+
+/*MEDIA QUERIES*/
+
+@media only screen and (min-width: 773) and (max-width: 1052px) {
+    #show-hide-airport {
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px 20px 90px 70px;
+        display: none;
+    }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+
+    #admin-logo {
+        display: none;
+    }
+
+    .admin-navlogo {
+        display: none;
+        background-color: #404040;
+        width: 90%;
+    }
+
+    #hide-admin-title {
+        display: none;
+    }
+
+    .admin-navbar {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    
+    .log-out {
+        margin-top: 0;
+        margin-right: 15px;
+    }
+
+    .log-out:hover {
+           margin-top: 0;
+           margin-right: 15px;
+    }
+
+    #show-hide-element {
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px 20px 20px 70px;
+        display: none;
+    }
+
+    #show-hide-airport {
+        padding: 20px 20px 60px 70px;
+    }
+
+    #show-hide-order {
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px 20px 50px 70px; /*do not touch*/
+    }
+}
+
+
+@media only screen and (min-width: 768px) {
+    /*For desktop 768*/
+
+    .admin-content {
+        margin-top: 16px;
+        /*margin-left: 2% !important;*/
+        margin-right: 0 !important;
+    }
+
+    .table-query {
+        margin-right: 50px !important;
+    }
+
+    .btn-create {
+        color: white;
+        background-color: #f4a442;
+        border: 2px solid #e2902b;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+        margin-right: 50px;
+    }
+
+
+    #show-hide-element {
+        width: 95% !important;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px;
+        display: none;
+    }
+
+    
+
+
+
+    #show-hide-airport {
+        width: 95% !important;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px 30px 120px 70px;
+        display: none;
+    }
+
+    #show-hide-order {
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        margin-right: 50px;
+        padding: 20px 20px 350px 70px; /*når skjerm er på fullscreen*/
+        display: none;
+    }
+
+    .btn-admin-save {
+        margin-right: 90px;
+    }
+
+}
+
+@media only screen and (min-width: 369px) and (max-width: 422px) {
+    .admin-content {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    #show-hide-element {
+        width: 100%;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px;
+        display: none;
+    }
+
+    #show-hide-airport {
+        width: 95% !important;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px;
+        display: none;
+    }
+
+
+    .btn-admin-save {
+        margin-left: 75%;
+    }
+}
+
+@media only screen and (min-width: 422px) {
+
+    .admin-content {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+
+    #show-hide-element {
+        width: 100%;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px;
+        display: none;
+    }
+
+    #show-hide-airport {
+        width: 95% !important;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        padding: 20px;
+        display: none;
+    }
+
+    .btn-admin-save {
+        margin-left: 78%;
+    }
+
+
+
+}
+
+@media only screen and (min-width: 368px) {
+    #show-hide-element {
+        width: 100%;
+        background-color: #e8e8e8;
+        border: 1px solid #adadad;
+        border-radius: 5px;
+        margin-top: 25px;
+        display: none;
+    }
+
+    .btn-create {
+        color: white;
+        background-color: #f4a442;
+        border: 2px solid #e2902b;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+    }
+
+}
+
+.home-dep {
+    color: #0B61A4;
+    border-right: solid 1px #f2f2f2;
+    height: 240px;
+    width: 80%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+}
+
+.home-order {
+    color: #FFBF00;
+    border-right: solid 1px #f2f2f2;
+    height: 240px;
+    width: 80%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+}
+
+.home-airport {
+    color: #FF4900;
+    height: 240px;
+    width: 80%;
+    margin-top: 30px;
+    background-color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    -moz-box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+    box-shadow: 0px 7px 14px -6px rgba(161,161,161,1);
+}
+
+#home-count {
+    font-size: 90px;
+}
+
+#mini-article {
+    margin-top: -30px;
+    color: #4d4d4d;
+}
+
+
+.create-input-dialog {
+    width: 200px;
+    height: 25px;
+    border: solid 1px #adadad;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .create-input-dialog:hover {
+        border: solid 2px #b1e7cd;
+        outline: 0;
+    }
+
+    .create-input-dialog:focus {
+        border: solid 2px #36b075;
+        outline: 0;
+    }
+
+
+
+.btn-update-right {
+    margin-left: 260px;
+}
+
+.btn-update-left {
+    margin-left: 30px;
+}
+
+.move-airport-name {
+    margin-left: 20px !important;
+}
+
+.move-airport-country {
+    margin-left: 20px !important;
+}
+
+.move-airport-city {
+    margin-left: 67px !important;
+}
+
+/*FLYBILETTER CSS*/
+.biletter {
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 30px;
+    background-color: #eff0f2;
+    width: 100%;
+    margin: 0;
+}
+
+#tickets-header {
+    background-color: #2d8659;
+    width: 100%;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    letter-spacing: 3px;
+}
+
+table {
+    margin: auto;
+}
+
+td {
+    padding: 5px 10px 5px 10px;
+}
+
+#tableDep tr:hover, tr.selected {
+    background-color: #66cc99;
+}
+
+#tableDep tr:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+#tableDep th, #orderTable th {
+    background-color: #cccccc;
+    color: #000000;
+    cursor: default;
+}
+
+.larger-nav {
+    font-size: 1.2em;
+}
+
+.input-dialog-design {
+    width: 300px;
+    height: 33px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .input-dialog-design:hover {
+        border: solid 2px #b1e7cd;
+        outline: 0;
+    }
+
+    .input-dialog-design:focus {
+        border: solid 2px #36b075;
+        outline: 0;
+    }
+
+
+.index-dialog {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 8px;
+    margin-left: 10%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+input[type=search]:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+input[type=search]:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+#airports, datalist {
+    font-family: 'Montserrat', sans-serif;
+}
+
+    #airports:hover, datalist:hover {
+        background-color: #53c68c;
+        color: white;
+    }
+
+option {
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+}
+
+    option:hover, focus {
+        background-color: #53c68c;
+        color: white;
+    }
+
+input[type=search]:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+input[type=search]:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+
+input[type=radio]:checked ~ .check {
+    border: 5px solid #0DFF92;
+}
+
+.date-design {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 8px;
+    margin-left: 10%;
+}
+
+input[type=date]:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+input[type=date]:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+.passengers-dropdown {
+    width: 58px;
+    height: 33px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 5px;
+    margin-left: 10px;
+    margin-right: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+#passengers-dropdown:focus {
+    border: solid 2px #36b075;
+    outline: 0;
+}
+
+#passengers-dropdown:hover:not(:focus) {
+    border: solid 2px #b1e7cd;
+    outline: 0;
+}
+
+#cabinclass {
+    width: 213px;
+    height: 33px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 10px;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    #cabinclass:focus {
+        border: solid 2px #36b075;
+        outline: 0;
+    }
+
+    #cabinclass:hover:not(:focus) {
+        border: solid 2px #b1e7cd;
+        outline: 0;
+    }
+
+#dropdown-content:hover {
+    background-color: #76d5a7;
+    color: black;
+}
+
+.explore h1, p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#button-design {
+    border: 2px solid #2d8659;
+    background-color: #39ac73;
+    border-radius: 3px;
+    color: black;
+}
+
+    #button-design:hover {
+        border: solid 2px #36b075;
+        color: white;
+    }
+
+#index-button {
+    border: 2px solid #2d8659;
+    background-color: #39ac73;
+    border-radius: 3px;
+    color: #fff;
+}
+
+    #index-button:hover {
+        border: solid 2px #40bf80;
+        background-color: #66cc99;
+        color: black;
+    }
+
+.reisende-input {
+    width: 400px;
+    height: 40px;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.position-button {
+    float: right !important;
+    margin-right: 29px;
+}

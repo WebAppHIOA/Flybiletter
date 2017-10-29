@@ -1,4 +1,4 @@
-﻿@model Flybiletter.Models.Order
+﻿@model Flybiletter.Models.PassengerViewModel
 
 <!DOCTYPE html>
 <html>
@@ -15,38 +15,6 @@
 <body>
     <br /><br />
     <div class="container col-md-12">
-
-        <!--ORDRE INFO-->
-        <h2 id="tickets-header">ORDRE</h2>
-        <div class="biletter">
-            <br />
-            <table class="table" id="orderTable">
-                <tr>
-                    <th>ID</th>
-                    <th>Avgangstid</th>
-                    <th>Dato</th>
-                    <th>Fra</th>
-                    <th>Til</th>
-                    <th>Pris</th>
-                </tr>
-                <tbody>
-                    <tr>
-                        @{
-                            var departure = ViewData["SelectedDeparture"] as Flybiletter.ViewModels.DepartureViewModel;
-
-                                <td>@departure.Id</td>
-                                <td>@departure.Time</td>
-                                <td>@departure.Date</td>
-                                <td>@departure.From</td>
-                                <td>@departure.To</td>
-                                <td>@departure.Price</td>
-                        }
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <br />
 
         <!--PASSASJER INFO-->
         <h2 id="tickets-header">PASSASJER INFORMASJON</h2>

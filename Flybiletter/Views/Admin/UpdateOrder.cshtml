@@ -1,0 +1,82 @@
+﻿@model Model.Order
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+      <!--CONTENT AREA-->
+        <div class="col-sm-9">
+    <div class=" admin-content">
+        <h2>Oppdater Bestilling</h2>
+        <br />
+
+        @using (Html.BeginForm(FormMethod.Post))
+            {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-12">
+                <div class="row">
+                    @Html.LabelFor(model => model.OrderNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(model => Model.OrderNumber, new { @readonly = "readonly", id = "order", @class = "input-dialog-design col-md-10 form-control" })
+                    @Html.ValidationMessageFor(model => model.OrderNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Firstname, new { id = "firstname", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Surname, new { id = "surname", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Tlf, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Tlf, new { id = "tlf", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Email, new { id = "email", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(model => model.Price, new { id = "price", @class = "input-dialog-design col-md-10 form-control" })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Cancelled, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.CheckBoxFor(model => model.Cancelled)
+                        @Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br /><br />
+                        <a href="@Url.Action("Airport", "Admin")" class="btn btn-default btn-update-left">Tilbake</a>
+                        <input type="submit" value="Bekreft" class="btn btn-default btn-update-right" id="button-design">
+        }
+    </div>
+</div>
+
+<br />
+<br />

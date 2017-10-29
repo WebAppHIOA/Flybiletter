@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @ViewBag.Title
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    @Html.Partial("_Airzures")
+    @Styles.Render("~/Content/AirzureStyle.css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("custom_scripts", required: false)
+</head>
+<body id="admin-body">
+    
+
+    <!--HORIZONTAL TOP NAVIGATION BAR-->
+    <div class="admin-navlogo navbar-fixed-top">
+        <a href="@Url.Action("Index", "Home")" title="Airzure Airlines">
+            <img src="@Url.Content("~/Content/images/airline_logo.png")" id="admin-logo" />
+        </a>
+    </div>
+    <div class="admin-navbar navbar-fixed-top">
+        <div class="admin-navheader"><p id="hide-admin-title">ADMINISTRATOR</p></div>
+        <div class="pull-right">
+            @Html.ActionLink("Logg ut", "Logout", "Admin", null, new { @class = "btn log-out" })
+        </div>
+    </div>
+
+        <!--VERTICAL SIDE NAVIGATION BAR-->
+    <div class="row">
+        <div class="sidebar-nav col-sm-12 col-md-3">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="visible-xs navbar-brand">Administrator</span>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar1">
+                    <ul class="nav navbar-nav" id="admin-nav">
+                        <li><a href="@Url.Action("Home", "Admin")">Hjem</a></li>
+                        <li><a href="@Url.Action("Departure", "Admin")">Avgang</a></li>
+                        <li><a href="@Url.Action("Order", "Admin")">Bestilling</a></li>
+                        <li><a href="@Url.Action("Airport", "Admin")">Flyplass</a></li>
+                        <li><a href="/elmah.axd">Logging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        @RenderBody()
+    </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

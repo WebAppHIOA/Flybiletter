@@ -1,0 +1,84 @@
+﻿@model Model.AdminDepartureViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section custom_scripts{
+<script type="text/javascript">
+
+    $(function () {
+        $('#admin-nav li').click(function () {
+            $('#admin-nav li').removeClass('selected');
+            $(this).addClass('selected');
+        });
+    });
+
+    function showHide() {
+        var x = document.getElementById("show-hide-element");
+        if (!x.style.display || x.style.display == "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function Validation(data) {
+        if (data.result == true) { window.location.href = "/Admin/Departure"; }
+    }
+
+</script>
+    }
+
+
+        <!--CONTENT AREA-->
+        
+        <div class="col-sm-9">
+        <div class="admin-content">
+            <h1>Avgang</h1>
+
+            <!--Create new departure-->
+            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny avgang</button>
+            <br />
+            <div id="show-hide-element">
+                @Html.Partial("DepartureForm", Model)
+            </div>
+
+            <br /><br />
+            <!--Show data information-->
+            <div class="table-responsive table-query">
+                <table class="table">
+                    <thread>
+                        <tr>
+                            <th>Flight ID</th>
+                            <th>Tid</th>
+                            <th>Dato</th>
+                            <th>Fra</th>
+                            <th>Til</th>
+                            <th>Kansellert</th>
+                            <th>Oppdater</th>
+                            <th>Slett</th>
+                        </tr>
+                        <tbody>
+
+                            @foreach (var departure in Model.DepartureDetails)
+                            {
+                                <tr>
+                                    <td id="id">@departure.FlightId</td>
+                                    <td id="time">@departure.DepartureTime</td>
+                                    <td id="date">@departure.Date </td>
+                                    <td id="from">@departure.From</td>
+                                    <td id="to">@departure.To</td>
+                                    <td id="price">@departure.Cancelled</td>
+
+                                    <td>@Html.ActionLink("Oppdater", "UpdateDeparture", "Admin", new { id = departure.FlightId }, new { @class = "btn btn-info" })</td>
+                                    <td>@Html.ActionLink("Slett", "DeleteDeparture", "Admin", new { id = departure.FlightId }, new { @class = "btn btn-danger" })</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
+            </div>
+        </div>

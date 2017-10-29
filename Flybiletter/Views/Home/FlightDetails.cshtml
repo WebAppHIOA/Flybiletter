@@ -1,4 +1,4 @@
-﻿@model List<Flybiletter.Models.Departure>
+﻿@model List<Model.Departure>
 
 <!DOCTYPE html>
 <html>
@@ -15,49 +15,51 @@
         <!--UTREISE-->
         <h2 id="tickets-header">UTREISE</h2>
         <div class="biletter">
-            <table class="table" id="tableDep">
-                <thread>
-                    <tr >
-                        <th>Flight ID</th>
-                        <th>Tid</th>
-                        <th>Dato</th>
-                        <th>Fra</th>
-                        <th>Til</th>
-                        <th>Pris</th>
-                    </tr>
-                    <tbody>
-                        @{
-                            int[] array = ViewData["Price"] as int[];
-                            int i = -1;
+            <div class="table-responsive">
+                <table class="table" id="tableDep">
+                    <thread>
+                        <tr>
+                            <th>Flight ID</th>
+                            <th>Tid</th>
+                            <th>Dato</th>
+                            <th>Fra</th>
+                            <th>Til</th>
+                            <th>Pris</th>
+                        </tr>
+                        <tbody>
+                            @{
+                                int[] array = ViewData["Price"] as int[];
+                                int i = -1;
 
-                            if (array.Length == 0)
-                            {
-                                <tr><td><p>Det er ingen avganger denne datoen</p></td></tr>
-                            }
-                            else
-                            {
-                                foreach (var departure in Model)
+                                if (array.Length == 0)
                                 {
-                                    i++;
-                                <tr onclick="clickDep(this)" class="clickable-row clickDep">
-                                    <td id="id">@departure.FlightId</td>
-                                    <td id="time">@departure.DepartureTime</td>
-                                    <td id="date">@departure.Date </td>
-                                    <td id="from">@departure.From</td>
-                                    <td id="to">@departure.To</td>
-                                    <td id="price">@array[i]</td>
-                                </tr>
+                                    <tr><td><p>Det er ingen avganger denne datoen</p></td></tr>
+                                }
+                                else
+                                {
+                                    foreach (var departure in Model)
+                                    {
+                                        i++;
+                                        <tr onclick="clickDep(this)" class="clickable-row clickDep">
+                                            <td id="id">@departure.FlightId</td>
+                                            <td id="time">@departure.DepartureTime</td>
+                                            <td id="date">@departure.Date </td>
+                                            <td id="from">@departure.From</td>
+                                            <td id="to">@departure.To</td>
+                                            <td id="price">@array[i]</td>
+                                        </tr>
                                     }
                                 }
                             }
-                    </tbody>
-                </thread>
-            </table>
-        </div>
+                        </tbody>
+                    </thread>
+                </table>
+            </div>
         <br />
         <a href="Index" class="btn btn-lg btn-default pull-left">Tilbake</a>
         <input onclick="sendPost()" type="submit" value="Velg" class="btn btn-lg btn-primary pull-right" id="button-design" />
+            <br />
     </div>
-
+</div>
 </body>
 </html>

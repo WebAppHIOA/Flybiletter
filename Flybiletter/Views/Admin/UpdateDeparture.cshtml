@@ -1,0 +1,91 @@
+﻿@model Model.Departure
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{var airports = ViewData["AllAirports"] as List<Model.Airport>; }
+
+        
+
+            <!--CONTENT AREA-->
+<div class="col-sm-9 ">
+    <div class="admin-content">
+        <h2>Oppdater Avgang</h2>
+        <br />
+
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-12">
+                <div class="row">
+                    @Html.LabelFor(model => model.FlightId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(model => model.FlightId, new { @readonly = "readonly", id = "flightID", @class = "input-dialog-design form-control col-md-10" })
+                    @Html.ValidationMessageFor(model => model.FlightId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            @Html.LabelFor(model => model.From, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "input-dialog-design form-control col-md-10", @list = "airports" } })
+                            @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+                            <datalist id="airports">
+                                @foreach (var airport in airports)
+                                {
+                                    <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                                }
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "input-dialog-design form-control col-md-10", @type = "search", @list = "airports" } })
+                            @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                            <datalist id="airports">
+                                @foreach (var airport in airports)
+                                {
+                                    <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                                }
+                            </datalist>
+                        </div>
+                    </div>
+
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "input-dialog-design form-control col-md-10", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.TextBoxFor(model => model.DepartureTime, new { id = "departuretime", @class = "input-dialog-design form-control col-md-10" })
+                                @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Cancelled, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.CheckBoxFor(model => model.Cancelled)
+                                @Html.ValidationMessageFor(model => model.Cancelled, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <br /><br />
+                        <a href="@Url.Action("Departure", "Admin")" class="btn btn-default btn-update-left">Tilbake</a>
+                        <input type="submit" value="Bekreft" class="btn btn-default btn-update-right" id="button-design">
+        }
+    </div>
+</div>
+
+<br />
+<br />

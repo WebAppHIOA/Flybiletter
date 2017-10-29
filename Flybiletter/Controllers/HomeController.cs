@@ -1,29 +1,45 @@
-﻿using Flybiletter.Models;
+﻿using Model;
 using System;
+using Flybiletter.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using Flybiletter.ViewModels;
+using BLL;
+using log4net;
+using System.Reflection;
 
 namespace Flybiletter.Controllers
 {
     public class HomeController : Controller
     {
+        BLL.Order OrderBLL;
+
+        public HomeController()
+        {
+            OrderBLL = new BLL.Order();
+        }
+
+        public HomeController(BLL.Order testOrder)
+        {
+            OrderBLL = testOrder;
+        }
+
         public ActionResult Index()
         {
+            
+            var airports = OrderBLL.getAllAirports();
+
             var IndexVM = new IndexViewModel();
-            IndexVM.FromAirport = DB.getAllAirports();
-            IndexVM.ToAirport = DB.getAllAirports();
+            IndexVM.FromAirport = airports;
+            IndexVM.ToAirport = airports;
 
             return View(IndexVM);
         }
 
         [HttpPost]
-        public ActionResult Index(ViewModels.IndexViewModel indexView)
+        public ActionResult Index(IndexViewModel indexView)
         {
 
             if (ModelState.IsValid)
@@ -55,7 +71,7 @@ namespace Flybiletter.Controllers
         }
 
 
-        public ActionResult Order(Order order)
+        public ActionResult Order(Model.Order order)
         {
             return View();
         }
@@ -69,25 +85,40 @@ namespace Flybiletter.Controllers
         }
 
         [HttpPost]
-        public JsonResult Departures(String id,
+        public JsonResult DeparturesFromFlightDetails(String id,
                                              String time,
                                              String date, String from,
                                              String to, String price)
         {
-
-            var selectedDeparture = new DepartureViewModel
+            //Validerer JSON parameter server side
+            if (id == "" || id == null)
             {
-                Id = id,
-                Time = time,
-                Date = date,
-                From = from,
-                To = to,
-                Price = price
-            };
+                return Json(new { success = false, response = "Vennligst velg en reise" });
+            }
+            else
+            {
+                var selectedDeparture = new DepartureViewModel
+                {
+                    Id = id,
+                    Time = time,
+                    Date = date,
+                    From = from,
+                    To = to,
+                    Price = price
+                };
 
-            Session["SelectedDeparture"] = selectedDeparture;
+                //Validerer Modelen
+                if (selectedDeparture.Id == null)
+                {
+                    return Json(new { success = false, response = "Vennligst velg en reise" });
+                }
+                else
+                {
+                    Session["SelectedDeparture"] = selectedDeparture;
 
-            return Json("Success");
+                    return Json(new { success = true, Response = "Success" });
+                }
+            }
         }
 
 
@@ -95,9 +126,9 @@ namespace Flybiletter.Controllers
         {
             var indexObject = Session["IndexObject"] as IndexViewModel;
 
-            List<Departure> departures = GenerateDepartures.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
+            List<Departure> departures = OrderBLL.CreateDepartures(indexObject.FromAirportID, indexObject.ToAirportID, indexObject.TravelDate.ToShortDateString());
 
-            Session["Prices"] = GenerateDepartures.GeneratePrice(departures.Count);
+            Session["Prices"] = OrderBLL.GeneratePrice(departures.Count);
             Session["Departures"] = departures;
 
             return RedirectToAction("FlightDetails");
@@ -111,63 +142,61 @@ namespace Flybiletter.Controllers
 
 
         [HttpPost]
-        public ActionResult Passenger(Order order)
+        public ActionResult Passenger(Models.PassengerViewModel order)
         {
-            if (ModelState.IsValid)
-            { 
-                var departure = Session["SelectedDeparture"] as DepartureViewModel;
-                if (departure.Date == null)
+
+            if(ModelState.IsValid)
+            {
+
+                if(order.Date == null && order.Email == null && order.Firstname == null && order.Surname == null 
+                    && order.Tlf == null)
                 {
+                    ModelState.AddModelError(string.Empty, "Vennligst fyll ut alle feltene");
                     return Passenger();
                 }
 
-                if (order.Surname == null)
+            
+            var departure = Session["SelectedDeparture"] as DepartureViewModel;
+            
+                if(departure is null)
                 {
+                    ModelState.AddModelError(string.Empty, "En feil oppstod under ordre bekreftelsen");
                     return Passenger();
                 }
-                if (order.Email == null)
-                {
-                    return Passenger();
-                }
-                if (order.Surname == null)
-                {
-                    return Passenger();
-                }
+            
+        
+         //   var toAirport = orderBLL.FindAirport(departure.To);
 
+            Departure dep = new Departure
+            {
+                FlightId = departure.Id,
+                From = departure.From,
+                To = departure.To,
+                Date = departure.Date,
+                DepartureTime = departure.Time,
+                Airport = OrderBLL.FindAirport(departure.From)
+            };
 
+            OrderBLL.AddDeparture(dep);
 
-                var fromAirport = DB.FindAirport(departure.From);
-                var toAirport = DB.FindAirport(departure.To);
+            order.OrderNumber = GenerateInvoice.UniqueReference();
+            OrderBLL.AddOrder(new Model.Order
+            {
+                OrderNumber = order.OrderNumber,
+                Date = departure.Date,
+                Firstname = order.Firstname,
+                Surname = order.Surname,
+                Tlf = order.Tlf,
+                Email = order.Email,
+                Price = departure.Price,
+                Departure = dep
+            });
 
-                Departure dep = new Departure
-                {
-                    FlightId = departure.Id,
-                    From = departure.From,
-                    To = departure.To,
-                    Date = departure.Date,
-                    DepartureTime = departure.Time,
-                    Airport = fromAirport
-                };
+            GenerateInvoice.SendEmail(OrderBLL.GetInvoiceInformation(dep.FlightId, order.OrderNumber));
 
-                DB.AddDeparture(dep);
-
-                order.OrderNumber = GenerateInvoice.UniqueReference();
-                DB.AddOrder(new Order
-                {
-                    OrderNumber = order.OrderNumber,
-                    Date = departure.Date,
-                    Firstname = order.Firstname,
-                    Surname = order.Surname,
-                    Tlf = order.Tlf,
-                    Email = order.Email,
-                    Price = departure.Price,
-                    Departure = dep
-                });
-
-                GenerateInvoice.SendEmail(DB.getInvoiceInformation(dep.FlightId, order.OrderNumber));
-
-                return RedirectToAction("Confirmation");
-                }
+            return RedirectToAction("Confirmation");
+            }
+            ModelState.AddModelError(string.Empty, "En feil oppstod");
             return Passenger();
         }
 
@@ -180,6 +209,11 @@ namespace Flybiletter.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public ActionResult Login()
+        {
+            return RedirectToAction("Home", "Admin");
         }
 
     }

@@ -1,4 +1,4 @@
-﻿@model Flybiletter.ViewModels.IndexViewModel
+﻿@model Flybiletter.Models.IndexViewModel
 
 <!DOCTYPE html>
 <html>
@@ -26,38 +26,46 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
-                <div class="form-group">
-                    <div class="col-md-4">
-                        @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-7" })
-                        @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.TravelDate, "", new { @class = "text-danger" })
-                    </div>
-
-
-                    <div class="col-md-4">
-                        @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-md-7" })
-                        @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "index-dialog form-control", @type = "search", @list = "FromAirport" } })
-                        @Html.ValidationMessageFor(model => model.FromAirportID, "", new { @class = "text-danger" })
-                        <datalist id="FromAirport">
-                            @foreach (var airport in Model.FromAirport)
-                            {
-                                <option value="@airport.AirportId" id="FromAirportID">@airport.AirportId - @airport.Name</option>
-                            }
-                        </datalist>
-                    </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row">
+                                @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design col-md-10", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.TravelDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
 
-                    <div class="col-md-4">
-                        @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-md-7" })
-                        @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "index-dialog form-control", @type = "search", @list = "ToAirport" } })
-                        @Html.ValidationMessageFor(model => model.ToAirportID, "", new { @class = "text-danger" })
-                        <datalist id="ToAirport">
-                            @foreach (var airport in Model.ToAirport)
-                            {
-                                <option value="@airport.AirportId" id="@Model.ToAirportID">@airport.AirportId - @airport.Name</option>
-                            }
-                        </datalist>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row">
+                                @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "index-dialog form-control col-sm-10", @type = "search", @list = "FromAirport" } })
+                                @Html.ValidationMessageFor(model => model.FromAirportID, "", new { @class = "text-danger" })
+                            </div>
+                            <datalist id="FromAirport">
+                                @foreach (var airport in Model.FromAirport)
+                                {
+                                    <option value="@airport.AirportId" id="FromAirportID">@airport.AirportId - @airport.Name</option>
+                                }
+                            </datalist>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row">
+                                @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "index-dialog form-control col-sm-10", @type = "search", @list = "ToAirport" } })
+                                @Html.ValidationMessageFor(model => model.ToAirportID, "", new { @class = "text-danger" })
+                            </div>
+                            <datalist id="ToAirport">
+                                @foreach (var airport in Model.ToAirport)
+                                {
+                                    <option value="@airport.AirportId" id="@Model.ToAirportID">@airport.AirportId - @airport.Name</option>
+                                }
+                            </datalist>
+                        </div>
                     </div>
                 </div>
 
@@ -66,7 +74,7 @@
                         <input type="submit" value="Bestill" class="btn btn-default position-button" id="button-design"/>
                     </div>
                 </div>
-            </div>
+          </div>
         }
     </div>
 
