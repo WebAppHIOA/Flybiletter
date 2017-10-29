@@ -259,18 +259,35 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
-        public void PostAirportInValidTest()
+        public void PostAirportValidTest()
         {
             var controller = setupController();
             controller.Session["LoggedIn"] = true;
             var _admin = new Administrator(new DBstub());
 
-            var resultat = (RedirectToRouteResult)controller.Airport(_admin.GetAirport("Test"));
-            Assert.AreEqual(resultat.RouteName, "");
+            var resultat = (JsonResult)controller.Airport(_admin.GetAirport("Test"));
+            Assert.AreEqual(resultat.Data.ToString(), "{ result = True }");
+            /*
             var e = resultat.RouteValues.Values.GetEnumerator();
             e.MoveNext();
             Assert.AreEqual(e.Current, "Airport");
+            */
         }
+
+        [TestMethod]
+        public void PostAirportInvalidTDataTest()
+        {
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+            var _admin = new Administrator(new DBstub());
+            var TestModel = _admin.GetAirport("Test");
+            TestModel.AirportId = null;
+            TestModel.City = "";
+            TestModel.Country= "";
+            var resultat = (PartialViewResult)controller.Airport(TestModel);
+            Assert.AreEqual(resultat.ViewName, "AirportForm");
+        }
+
 
         [TestMethod]
         public void PostAirportInInvalidTest()
