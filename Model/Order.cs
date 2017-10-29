@@ -25,7 +25,7 @@ namespace Model
 
         [Display(Name = "Telefon")]
         [Required(ErrorMessage = "Telefonnummer må oppgis")]
-        [RegularExpression(@"[0-9]{8}", ErrorMessage = "Vennligst skriv en gyldig telefonnummer")]
+        [RegularExpression(@"[0-9]{8}", ErrorMessage = "Vennligst skriv et gyldig telefonnummer")]
         [DataType(DataType.PhoneNumber)]
         public string Tlf { get; set; }
 
