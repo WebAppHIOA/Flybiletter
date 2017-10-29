@@ -326,6 +326,9 @@
     <Content Include="Views\Admin\UpdateAirport.cshtml" />
     <Content Include="Views\Admin\UpdateOrder.cshtml" />
     <Content Include="Views\Admin\Order.cshtml" />
+    <Content Include="Views\Shared\AirportForm.cshtml" />
+    <Content Include="Views\Shared\DepartureForm.cshtml" />
+    <Content Include="Views\Shared\OrderForm.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>

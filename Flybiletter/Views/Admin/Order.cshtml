@@ -11,6 +11,7 @@
     <meta charset="utf-8" content="width=device-width" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript">
         function showHide() {
             var x = document.getElementById("show-hide-order");
@@ -20,6 +21,10 @@
                 x.style.display = "none";
             }
         }
+
+        function Validation(data) {
+            if (data.result == true) { window.location.href = "/Admin/Order"; }
+        }
     </script>
 </head>
 <body id="admin-body">
@@ -28,61 +33,10 @@
             <h1>Bestilling</h1>
 
             <!--Create new order-->
-            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny bestilling</button><br />
-            <div id="show-hide-order">
-                @using (Html.BeginForm(FormMethod.Post))
-                {
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("Flight ID", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.FlightId, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9", @list ="Departure" } })
-                        @Html.ValidationMessageFor(model => model.FlightId, "", new { @class = "text-danger" })
-                        <datalist id="Departure">
-                            @foreach (var dep in Model.Departure)
-                            {
-                                <option value="@dep.FlightId" id="@dep.FlightId">@dep.From - @dep.To</option>
-                            }
-                            }
-                        </datalist>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("Dato", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("Fornavn", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                        @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("Etternavn", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("Telefon", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.Tlf, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                        @Html.ValidationMessageFor(model => model.Tlf, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("E-post", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @Html.Label("Pris", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                    </div>
-
-                    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
-                }
+            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny bestilling</button>
+            <br />
+            <div id="show-hide-element">
+                    @Html.Partial("OrderForm", Model);
             </div>
 
             <br /><br />

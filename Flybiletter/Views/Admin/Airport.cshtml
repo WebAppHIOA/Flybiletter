@@ -11,14 +11,19 @@
     <meta charset="utf-8" content="width=device-width" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript">
         function showHide() {
-            var x = document.getElementById("show-hide-airport");
+            var x = document.getElementById("show-hide-element");
             if (!x.style.display || x.style.display == "none") {
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
             }
+        }
+
+        function Validation(data) {
+            if (data.result) { window.location.href = "/Admin/Airport"; }
         }
 
     </script>
@@ -30,46 +35,15 @@
         @{ var AllAirports = ViewData["AllAirports"] as List<Model.Airport>;}
         <h1>Flyplass</h1>
 
-        <!--Create new departure-->
-        <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button><br />
-
-        <div id="show-hide-airport">
-            @using (Html.BeginForm(FormMethod.Post))
-            {
-                <div class="row">
-                    <div class="col-sm-6">
-                        @Html.Label("Navn", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.Label("By", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(x => x.City, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        @Html.Label("Land", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(x => x.Country, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                    </div>
-                    <div class="col-sm-6">
-                        @Html.Label("Kontinent", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(x => x.Continent, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        @Html.Label("Avgift", htmlAttributes: new { @class = "control-label col-md-3" })
-                        @Html.EditorFor(x => x.Fee, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-9" } })
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <input type="submit" value="Lagre" class="btn btn-default btn-admin-save btn-save" />
-                    </div>
-                </div>
-             }
-                </div>
-        <br /><br />
-
-        <div class="table-responsive table-query">
+            <!--Create new departure-->
+            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button>
+            <br />
+            <div id="show-hide-element">
+            @Html.Partial("AirportForm", Model)
+            </div>
+            <div id="validation"></div>
+            <br /><br />
+            <div class="table-responsive">
             <table class="table">
                 <thread>
                     <tr>

@@ -44,10 +44,73 @@ namespace DAL
                 Price = "3400"
             };
 
+            var order3 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "16.10.2017",
+                Firstname = "Torben",
+                Surname = "Krattebø",
+                Tlf = "98125279",
+                Email = "torben@gmail.com",
+                Price = "3120"
+            };
+
+            var order4 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "30.09.2017",
+                Firstname = "Torkel",
+                Surname = "Krattebø",
+                Tlf = "41928374",
+                Email = "torkel@gmail.com",
+                Price = "419"
+            };
+
+            var order5 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "11.10.2017",
+                Firstname = "Tormod",
+                Surname = "Krattebø",
+                Tlf = "22334455",
+                Email = "tormod@gmail.com",
+                Price = "499"
+            };
+
+            var order6 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "30.10.2017",
+                Firstname = "Torstein",
+                Surname = "Krattebø",
+                Tlf = "11111111",
+                Email = "torkel@gmail.com",
+                Price = "899"
+            };
+
+            var order7 = new Order
+            {
+                OrderNumber = GenerateInvoice.UniqueReference(),
+                Date = "30.10.2017",
+                Firstname = "Torunn",
+                Surname = "Krattebø",
+                Tlf = "42889823",
+                Email = "torunn@gmail.com",
+                Price = "1290"
+            };
+
+
             var orderList = new List<Order>();
             orderList.Add(order1);
             orderList.Add(order2);
-            
+            var orderList2 = new List<Order>();
+            orderList.Add(order3);
+            orderList.Add(order4);
+            orderList.Add(order5);
+            var orderList3 = new List<Order>();
+            orderList.Add(order6);
+            var orderList4 = new List<Order>();
+            orderList.Add(order7);
 
             var departure1 = new Departure
             {
@@ -59,8 +122,43 @@ namespace DAL
                 Order = orderList
             };
 
+            var departure2 = new Departure
+            {
+                FlightId = "SK987632",
+                From = "CAN",
+                To = "HND",
+                Date = "30.10.2017",
+                DepartureTime = "23:10:00",
+                Order = orderList2
+            };
+
+            var departure3 = new Departure
+            {
+                FlightId = "SK567429",
+                From = "OSL",
+                To = "BCN",
+                Date = "30.10.2017",
+                DepartureTime = "21:45:00",
+                Order = orderList3
+            };
+
+            var departure4 = new Departure
+            {
+                FlightId = "SK109573",
+                From = "LHR",
+                To = "AMS",
+                Date = "31.10.2017",
+                DepartureTime = "18:25:00",
+                Order = orderList4
+            };
+
             var departures = new List<Departure>();
+            var departures2 = new List<Departure>();
+            var departures3 = new List<Departure>();
             departures.Add(departure1);
+            departures.Add(departure2);
+            departures2.Add(departure3);
+            departures3.Add(departure4);
 
 
             allAirports.Add(new Airport
@@ -391,7 +489,7 @@ namespace DAL
                 Country = "United Kingdom",
                 Continent = "Europe",
                 Fee = "37.11",
-                Departure = new List<Departure>()
+                Departure = departures3
             });
 
             allAirports.Add(new Airport
@@ -501,7 +599,7 @@ namespace DAL
                 Country = "Norway",
                 Continent = "Europe",
                 Fee = "36.78",
-                Departure = new List<Departure>()
+                Departure = departures2
             });
 
             allAirports.Add(new Airport
