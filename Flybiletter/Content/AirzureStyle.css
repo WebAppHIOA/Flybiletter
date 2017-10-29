@@ -277,7 +277,10 @@
 
 }
 
+
 @media only screen and (max-width: 768px) {
+
+
     #admin-logo {
         display: none;
     }
@@ -326,19 +329,17 @@
         border: 1px solid #adadad;
         border-radius: 5px;
         margin-top: 25px;
-        padding: 20px 20px 50px 70px;
+        padding: 20px 20px 50px 70px; /*do not touch*/
     }
-
-
-
 }
+
 
 @media only screen and (min-width: 768px) {
     /*For desktop 768*/
 
     .admin-content {
         margin-top: 16px;
-        margin-left: 290px !important;
+        margin-left: 0 !important;
         margin-right: 0 !important;
     }
 
@@ -366,6 +367,10 @@
         display: none;
     }
 
+    
+
+
+
     #show-hide-airport {
         width: 95% !important;
         background-color: #e8e8e8;
@@ -376,22 +381,19 @@
         display: none;
     }
 
-    .btn-admin-save {
-        margin-right: 90px;
-    }
-
-
     #show-hide-order {
         background-color: #e8e8e8;
         border: 1px solid #adadad;
         border-radius: 5px;
         margin-top: 25px;
         margin-right: 50px;
-        padding: 20px 20px 280px 70px;
+        padding: 20px 20px 350px 70px; /*når skjerm er på fullscreen*/
         display: none;
     }
 
-
+    .btn-admin-save {
+        margin-right: 90px;
+    }
 
 }
 
@@ -421,6 +423,7 @@
         display: none;
     }
 
+
     .btn-admin-save {
         margin-left: 75%;
     }
@@ -432,6 +435,7 @@
         margin-left: 30px;
         margin-right: 30px;
     }
+
 
     #show-hide-element {
         width: 100%;

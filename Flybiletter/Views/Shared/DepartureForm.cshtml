@@ -2,44 +2,59 @@
 
 @using (Ajax.BeginForm("Departure", "Admin", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Validation", UpdateTargetId = "show-hide-element" }, new { id = "form" }))
 {
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="row">
+                @Html.Label("Til", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10", @list = "Airport" } })
+                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger col-md-10" })
+                <datalist id="Airport">
+                    @foreach (var airport in Model.Airport)
+                    {
+                        <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                    }
+                    }
+                </datalist>
+            </div>
+        </div>
 
-   <div class="col-sm-6 ">
-        @Html.Label("Til")
-        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog move-to", @list = "Airport" } })
-        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
-        <datalist id="Airport">
-            @foreach (var airport in Model.Airport)
-            {
-                <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
-            }
-            
-        </datalist>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="row">
+                @Html.Label("Fra", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10", @list = "Airport" } })
+                @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger col-md-10" })
+                <datalist id="Airport">
+                    @foreach (var airport in Model.Airport)
+                    {
+                        <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
+                    }
+                    }
+                </datalist>
+            </div>
+        </div>
     </div>
 
-     <div class="col-sm-6">
-         @Html.Label("Fra")
-         @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "create-input-dialog", @list = "Airport" } })
-          @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
-             <datalist id="Airport">
-                @foreach (var airport in Model.Airport)
-                {
-                    <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name </option>
-                }
-                        </datalist>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                @Html.Label("Dato", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger col-md-10" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                @Html.Label("Tid", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "create-input-dialog form-control col-md-10" } })
+                                @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger col-md-10" })
+                            </div>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <input type="submit" value="Lagre" class="btn btn-default btn-admin-save btn-save" />
+                        </div>
 
-                    <div class="col-sm-6">
-                        @Html.Label("Dato")
-                        @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "create-input-dialog move-date", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                     </div>
-
-                    <div class="col-sm-6">
-                        @Html.Label("Tid")
-                        @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "create-input-dialog" } })
-                        @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
-                    </div>
-
-                    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
-
 }
