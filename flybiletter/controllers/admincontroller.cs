@@ -205,12 +205,16 @@ namespace Flybiletter.Controllers
         {
             if (IsLoggedIn())
             {
+
                 if (ModelState.IsValid)
                 {
-                    ViewData["AllAirports"] = Session["Airport"];
-                    _admin.AddAirport(airport);
+                    if(airport.AirportId != null)
+                    {
+                        ViewData["AllAirports"] = Session["Airport"];
+                        _admin.AddAirport(airport);
 
-                    return Json(new { result = true });
+                        return Json(new { result = true });
+                    }
                 }
                 ViewData["AllAirports"] = Session["Airport"];
                 return PartialView("AirportForm");
