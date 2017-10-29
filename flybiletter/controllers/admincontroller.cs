@@ -96,35 +96,32 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Departure(Model.AdminDepartureViewModel departure)
         {
-            if (IsLoggedIn())
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    if ((departure.From).Equals(departure.To))
-                    {
-                        ModelState.AddModelError("From", "Destinasjon og avreise må være forskjellig");
-                        return Departure();
-                    }
-                    //Validering av Dato og Flyplass data
-                    DateTime now = new DateTime();
-                    now = DateTime.Now;
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+                DateTime dt = DateTime.Parse(departure.Date);
 
-                    DateTime dt = DateTime.Parse(departure.Date);
-                    if (dt < now.Date)
-                    {
-                        //Legger til Error tekst hvis Date er før dagens dato
-                        ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                        return Departure();
-                    }
+                if ((departure.From).Equals(departure.To))
+                {
+                    ModelState.AddModelError("From", "Destinasjon og avreise må være forskjellig");
+                    return PartialView("DepartureForm", Session["Departure"] as Model.AdminDepartureViewModel);
+                }
+                if (dt < now.Date)
+                {
+                    //Legger til Error tekst hvis Date er før dagens dato
+                    ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                    return PartialView("DepartureForm", Session["Departure"] as Model.AdminDepartureViewModel);
+                }
+               
                     var admin = new Administrator();
                     admin.AddDeparture(departure);
-                    return RedirectToAction("Departure");
-                }
-
-                return View(Session["Departure"] as Model.AdminDepartureViewModel)
+                    return Json(new { result = true });
             }
-            return RedirectToAction("Login", "Admin");
-        }
+                return PartialView("DepartureForm", Session["Departure"] as Model.AdminDepartureViewModel);
+            }
+        
+    
 
 
         public ActionResult DeleteDeparture(string id)
@@ -205,17 +202,16 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Airport(Model.Airport airport)
         {
-            if (IsLoggedIn())
+            var admin = new Administrator();
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _admin.AddAirport(airport);
-                    return RedirectToAction("Airport");
-                }
                 ViewData["AllAirports"] = Session["Airport"];
-                return View();
+                admin.AddAirport(airport);
+                
+                return Json(new { result = true});
             }
-            return RedirectToAction("Login", "Admin");
+            ViewData["AllAirports"] = Session["Airport"];
+            return PartialView("AirportForm");
         }
 
         public ActionResult DeleteAirport(string id)
@@ -270,37 +266,35 @@ namespace Flybiletter.Controllers
             return RedirectToAction("Login", "Admin");
         }
 
-
+        
         [HttpPost]
         public ActionResult Order(Model.AdminOrderViewModel order)
         {
-            if (IsLoggedIn())
+            var admin = new Administrator();
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                if (string.IsNullOrWhiteSpace(order.FlightId))
                 {
-                    if (string.IsNullOrWhiteSpace(order.FlightId))
-                    {
-                        ModelState.AddModelError("FlightId", "Vennligst oppgi FlightId");
-                        return View(Session["Order"] as Model.AdminOrderViewModel);
-                    }
+                    ModelState.AddModelError("FlightId", "Vennligst oppgi FlightId");
+                    return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
+                }
 
                     DateTime now = new DateTime();
                     now = DateTime.Now;
 
-                    DateTime dt = DateTime.Parse(order.Date);
-                    if (dt < now.Date)
-                    {
-                        ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                        return View(Session["Order"] as Model.AdminOrderViewModel);
-                    }
-                    _admin.AddOrder(order);
-                    return RedirectToAction("Order");
+                DateTime dt = DateTime.Parse(order.Date);
+                if (dt < now.Date)
+                {
+                    ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                    return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
                 }
-
-                return View(Session["Order"] as Model.AdminOrderViewModel);
+                admin.AddOrder(order);
+                return Json(new { result = true });
             }
-            return RedirectToAction("Login", "Admin");
+
+            return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
         }
+       
 
         public ActionResult DeleteOrder(string id)
         {
