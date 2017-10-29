@@ -29,8 +29,8 @@
     </div>
 
         <!--VERTICAL SIDE NAVIGATION BAR-->
-
-        <div class="sidebar-nav">
+    <div class="row">
+        <div class="sidebar-nav col-sm-12 col-md-3">
             <div class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
@@ -53,8 +53,8 @@
             </div>
         </div>
 
-    @RenderBody()
-
+        @RenderBody()
+    </div>
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
