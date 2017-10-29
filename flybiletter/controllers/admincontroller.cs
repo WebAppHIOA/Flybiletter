@@ -278,29 +278,32 @@ namespace Flybiletter.Controllers
         [HttpPost]
         public ActionResult Order(Model.AdminOrderViewModel order)
         {
-            var admin = new Administrator();
-            if (ModelState.IsValid)
+            if (IsLoggedIn())
             {
-                if (string.IsNullOrWhiteSpace(order.FlightId))
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError("FlightId", "Vennligst oppgi FlightId");
-                    return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
-                }
+                    if (string.IsNullOrWhiteSpace(order.FlightId))
+                    {
+                        ModelState.AddModelError("FlightId", "Vennligst oppgi FlightId");
+                        return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
+                    }
 
                     DateTime now = new DateTime();
                     now = DateTime.Now;
 
-                DateTime dt = DateTime.Parse(order.Date);
-                if (dt < now.Date)
-                {
-                    ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                    return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
+                    DateTime dt = DateTime.Parse(order.Date);
+                    if (dt < now.Date)
+                    {
+                        ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
+                        return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
+                    }
+                    _admin.AddOrder(order);
+                    return Json(new { result = true });
                 }
-                admin.AddOrder(order);
-                return Json(new { result = true });
-            }
 
-            return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
+                return PartialView("OrderForm", Session["Order"] as Model.AdminOrderViewModel);
+            }
+            return RedirectToAction("Login", "Admin");
         }
        
 
