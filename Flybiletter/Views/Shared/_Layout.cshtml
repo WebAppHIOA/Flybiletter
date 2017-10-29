@@ -6,6 +6,7 @@
     <!--<title>@ViewBag.Title - My ASP.NET Application</title>-->
     @Html.Partial("_Airzures")
     <title>Flybiletter</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
@@ -29,7 +30,7 @@
 
             <div class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Kontakt", "Contact", "Home", new { @class = "btn admin-btn" })</li>
+                    <li><a href="@Url.Action("Contact","Home")" class="btn admin-btn">Kontakt</a></li>
                     <li>@Html.ActionLink("Admin", "Login", "Admin", new { @class = "btn admin-btn" })</li>
                 </ul>
             </div>

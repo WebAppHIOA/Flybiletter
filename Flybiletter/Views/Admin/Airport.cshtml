@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
 <head>
     <title>Administrator</title>
     <meta charset="utf-8" content="width=device-width" />
@@ -29,23 +27,21 @@
     </script>
 </head>
 
-<body id="admin-body">
     <!--CONTENT AREA-->
-    <div class="col-sm-3"></div>
-
-    <div class="col-sm-9 col-md-9 admin-content">
+    <div class="col-sm-9">
+    <div class="admin-content">
         @{ var AllAirports = ViewData["AllAirports"] as List<Model.Airport>;}
         <h1>Flyplass</h1>
 
-            <!--Create new departure-->
-            <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button>
-            <br />
-            <div id="show-hide-element">
+        <!--Create new departure-->
+        <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny flyplass</button>
+        <br />
+        <div id="show-hide-element">
             @Html.Partial("AirportForm", Model)
-            </div>
-            <div id="validation"></div>
-            <br /><br />
-            <div class="table-responsive table-query">
+        </div>
+        <div id="validation"></div>
+        <br /><br />
+        <div class="table-responsive table-query">
             <table class="table">
                 <thread>
                     <tr>
@@ -81,8 +77,4 @@
             </table>
         </div>
     </div>
-
-
-</body>
-
-</html>
+</div>
