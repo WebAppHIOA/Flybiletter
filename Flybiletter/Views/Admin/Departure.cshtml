@@ -15,6 +15,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript">
 
         $(function () {
@@ -31,6 +32,10 @@
             } else {
                 x.style.display = "none";
             }
+        }
+
+        function Validation(data) {
+            if (data.result == true) { window.location.href = "/Admin/Departure"; }
         }
 
     </script>
@@ -84,50 +89,7 @@
             <button onclick="showHide()" id="btn-showHide" class="create-button pull-right btn-create">+ Lag ny avgang</button>
             <br />
             <div id="show-hide-element">
-                @using (Html.BeginForm(FormMethod.Post))
-                {
-
-                    <div class="col-sm-6 ">
-                        @Html.Label("Til")
-                        @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "create-input-dialog move-to", @list = "Airport" } })
-                        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
-                        <datalist id="Airport">
-                            @foreach (var airport in Model.Airport)
-                            {
-                                <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
-                            }
-                            }
-                        </datalist>
-                    </div>
-
-                    <div class="col-sm-6">
-                        @Html.Label("Fra")
-                        @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "create-input-dialog", @list = "Airport" } })
-                        @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
-                        <datalist id="Airport">
-                            @foreach (var airport in Model.Airport)
-                            {
-                                <option value="@airport.AirportId" id="@airport.AirportId">@airport.Name</option>
-                            }
-                            }
-                        </datalist>
-                    </div>
-
-                    <div class="col-sm-6">
-                        @Html.Label("Dato")
-                        @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "create-input-dialog move-date", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-sm-6">
-                        @Html.Label("Tid")
-                        @Html.EditorFor(x => x.DepartureTime, new { htmlAttributes = new { @class = "create-input-dialog" } })
-                        @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
-                    </div>
-
-                    <input type="submit" value="Lagre" class="btn btn-default position-button btn-save" />
-
-                }
+                @Html.Partial("DepartureForm", Model)
             </div>
 
             <br /><br />

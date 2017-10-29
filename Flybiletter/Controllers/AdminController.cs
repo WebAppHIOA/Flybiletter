@@ -35,29 +35,30 @@ namespace Flybiletter.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+                DateTime dt = DateTime.Parse(departure.Date);
+
                 if ((departure.From).Equals(departure.To))
                 {
                     ModelState.AddModelError("From", "Destinasjon og avreise må være forskjellig");
-                    return Departure();
+                    return PartialView("DepartureForm", Session["Departure"] as Model.AdminDepartureViewModel);
                 }
-                //Validering av Dato og Flyplass data
-                DateTime now = new DateTime();
-                now = DateTime.Now;
-
-                DateTime dt = DateTime.Parse(departure.Date);
                 if (dt < now.Date)
                 {
                     //Legger til Error tekst hvis Date er før dagens dato
                     ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                    return Departure();
+                    return PartialView("DepartureForm", Session["Departure"] as Model.AdminDepartureViewModel);
                 }
-                var admin = new Administrator();
-                admin.AddDeparture(departure);
-                return RedirectToAction("Departure");
+               
+                    var admin = new Administrator();
+                    admin.AddDeparture(departure);
+                    return Json(new { result = true });
             }
-
-            return View(Session["Departure"] as Model.AdminDepartureViewModel);
-        }
+                return PartialView("DepartureForm", Session["Departure"] as Model.AdminDepartureViewModel);
+            }
+        
+    
 
 
         public ActionResult DeleteDeparture(string id)
@@ -185,7 +186,7 @@ namespace Flybiletter.Controllers
                 if (string.IsNullOrWhiteSpace(order.FlightId))
                 {
                     ModelState.AddModelError("FlightId", "Vennligst oppgi FlightId");
-                    return View(Session["Order"] as Model.AdminOrderViewModel);
+                    return PartialView("DepartureForm", Session["Order"] as Model.AdminOrderViewModel);
                 }
 
                 DateTime now = new DateTime();
@@ -195,13 +196,13 @@ namespace Flybiletter.Controllers
                 if (dt < now.Date)
                 {
                     ModelState.AddModelError("Date", "Avreise dato kan ikke være tilbake i tid");
-                    return View(Session["Order"] as Model.AdminOrderViewModel);
+                    return PartialView("DepartureForm", Session["Order"] as Model.AdminOrderViewModel);
                 }
                 admin.AddOrder(order);
-                return RedirectToAction("Order");
+                return Json(new { result = true });
             }
 
-            return View(Session["Order"] as Model.AdminOrderViewModel);
+            return PartialView("DepartureForm", Session["Order"] as Model.AdminOrderViewModel);
         }
        
 

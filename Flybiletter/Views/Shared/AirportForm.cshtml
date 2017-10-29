@@ -1,6 +1,6 @@
 ﻿@model Model.Airport
 
-@using (Ajax.BeginForm("Airport", "Admin", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Validation", UpdateTargetId = "show-hide-airport" }, new { id = "form" }))
+@using (Ajax.BeginForm("Airport", "Admin", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Validation", UpdateTargetId = "show-hide-element" }, new { id = "form" }))
 {
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
