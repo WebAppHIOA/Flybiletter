@@ -70,7 +70,7 @@ namespace DAL
             var order = new Order
             {
                 OrderNumber = GenerateInvoice.UniqueReference(),
-                Date = "17.10.2017",
+                Date = "17.10.2018",
                 Firstname = "Tormine",
                 Surname = "Krattebø",
                 Tlf = "12345678",
@@ -86,7 +86,7 @@ namespace DAL
                 FlightId = "SK323234",
                 From = "CAN",
                 To = "OSL",
-                Date = "29.10.2017",
+                Date = "29.10.2018",
                 DepartureTime = "13:10:00",
                 Order = orderList
             };
@@ -99,7 +99,7 @@ namespace DAL
             var order = new Order
             {
                 OrderNumber = GenerateInvoice.UniqueReference(),
-                Date = "17.10.2017",
+                Date = "17.10.2018",
                 Firstname = "Tormine",
                 Surname = "Krattebø",
                 Tlf = "12345678",
@@ -133,7 +133,7 @@ namespace DAL
             var order = new Order
             {
                 OrderNumber = GenerateInvoice.UniqueReference(),
-                Date = "17.10.2017",
+                Date = "17.10.2018",
                 Firstname = "Tormine",
                 Surname = "Krattebø",
                 Tlf = "12345678",
@@ -149,7 +149,7 @@ namespace DAL
                 FlightId = "SK323234",
                 From = "CAN",
                 To = "OSL",
-                Date = "29.10.2017",
+                Date = "29.10.2018",
                 DepartureTime = "13:10:00",
                 Order = orderList
             };
@@ -164,7 +164,7 @@ namespace DAL
             var order = new Order
             {
                 OrderNumber = GenerateInvoice.UniqueReference(),
-                Date = "17.10.2017",
+                Date = "17.10.2018",
                 Firstname = "Tormine",
                 Surname = "Krattebø",
                 Tlf = "12345678",

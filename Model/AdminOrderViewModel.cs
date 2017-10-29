@@ -11,6 +11,8 @@ namespace Model
     {
 
         public string OrderNumber { get; set; }
+
+        [Required(ErrorMessage = "Dato må opppgis")]
         public string Date { get; set; }
 
         [Display(Name = "Fornavn")]

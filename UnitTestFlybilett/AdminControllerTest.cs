@@ -165,6 +165,75 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
+        public void PostDepartureValidTest()
+        {
+            var controller = setupController();
+            var _admin = new Administrator(new DBstub());
+            var departureVM = new Model.AdminDepartureViewModel();
+            departureVM.DepartureDetails = (List<Departure>)_admin.GetAllDepartures();
+            departureVM.Airport = _admin.GetAllAirports();
+            departureVM.Order = _admin.GetAllOrders();
+            controller.Session["LoggedIn"] = true;
+            departureVM.FlightId = "SK777777";
+            departureVM.Date = "10.10.2018";
+            departureVM.From = "OSL";
+            departureVM.To = "BLR";
+
+            var resultat = (JsonResult)controller.Departure(departureVM);
+            /*
+            var resultat = (JsonResult)controller.Order(CheckOrderVM);
+            Assert.AreEqual(resultat.Data.ToString(), "{ result = True }");
+            var resultatListe = (Model.AdminDepartureViewModel)resultat.Model;
+            var resultatArray = departureVM.DepartureDetails.ToArray();
+            var departureArray = departureVM.DepartureDetails.ToArray();
+
+            Assert.AreEqual(resultat.ViewName, "");
+            */
+        }
+
+        [TestMethod]
+        public void PostDepartureInvalidDateTest()
+        {
+            var controller = setupController();
+            var _admin = new Administrator(new DBstub());
+            var departureVM = new Model.AdminDepartureViewModel();
+            departureVM.DepartureDetails = (List<Departure>)_admin.GetAllDepartures();
+            departureVM.Airport = _admin.GetAllAirports();
+            departureVM.Order = _admin.GetAllOrders();
+            controller.Session["LoggedIn"] = true;
+            departureVM.FlightId = "SK777777";
+            departureVM.Date = "10.10.2000";
+            departureVM.From = "OSL";
+            departureVM.To = "BLR";
+
+            var resultat = (PartialViewResult)controller.Departure(departureVM);
+
+            Assert.AreEqual(resultat.ViewName, "OrderForm");
+            Assert.IsTrue(resultat.ViewData.ModelState.Count == 1);
+        }
+
+        [TestMethod]
+        public void PostDepartureInvalidToFromTest()
+        {
+            var controller = setupController();
+            var _admin = new Administrator(new DBstub());
+            var departureVM = new Model.AdminDepartureViewModel();
+            departureVM.DepartureDetails = (List<Departure>)_admin.GetAllDepartures();
+            departureVM.Airport = _admin.GetAllAirports();
+            departureVM.Order = _admin.GetAllOrders();
+            controller.Session["LoggedIn"] = true;
+            departureVM.FlightId = "SK777777";
+            departureVM.Date = "10.10.2000";
+            departureVM.From = "OSL";
+            departureVM.To = "OSL";
+
+            var resultat = (PartialViewResult)controller.Departure(departureVM);
+
+            Assert.AreEqual(resultat.ViewName, "OrderForm");
+            Assert.IsTrue(resultat.ViewData.ModelState.Count == 1);
+        }
+
+        [TestMethod]
         public void PostDepartureInvalidTest()
         {
             var controller = setupController();
@@ -172,14 +241,14 @@ namespace UnitTestFlybilett
             var departureVM = new Model.AdminDepartureViewModel();
             departureVM.DepartureDetails = (List<Departure>)_admin.GetAllDepartures();
             departureVM.Airport = _admin.GetAllAirports();
-            controller.Session["LoggedIn"] = true;
+            controller.Session["LoggedIn"] = false;
 
-            var resultat = (ViewResult)controller.Departure();
-            var resultatListe = (Model.AdminDepartureViewModel)resultat.Model;
-            var resultatArray = departureVM.DepartureDetails.ToArray();
-            var departureArray = departureVM.DepartureDetails.ToArray();
+            var resultat = (RedirectToRouteResult)controller.Departure(departureVM);
 
-            Assert.AreEqual(resultat.ViewName, "");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
         }
 
         [TestMethod]
@@ -207,13 +276,13 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
-        public void UpdateDepartureValidTest()
+        public void PostUpdateDepartureValidTest()
         {
             var _admin = new Administrator(new DBstub());
             var controller = setupController();
             controller.Session["LoggedIn"] = true;
 
-            var resultat = (RedirectToRouteResult)controller.UpdateDeparture(_admin.GetDeparture("Test"));
+            var resultat = (RedirectToRouteResult)controller.UpdateDeparture(_admin.GetDeparture("SK646436"));
             Assert.AreEqual(resultat.RouteName, "");
             var e = resultat.RouteValues.Values.GetEnumerator();
             e.MoveNext();
@@ -221,7 +290,33 @@ namespace UnitTestFlybilett
         }
 
         [TestMethod]
+        public void UpdateDepartureValidTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (ViewResult)controller.UpdateDeparture("SK646436");
+            Assert.AreEqual(resultat.ViewName, "");
+            Assert.IsNotNull(resultat.ViewData["AllAirports"]);
+        }
+
+        [TestMethod]
         public void UpdateDepartureInvalidTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var controller = setupController();
+            controller.Session["LoggedIn"] = false;
+
+            var resultat = (RedirectToRouteResult)controller.UpdateDeparture("SK646436");
+            Assert.AreEqual(resultat.RouteName, "");
+            var e = resultat.RouteValues.Values.GetEnumerator();
+            e.MoveNext();
+            Assert.AreEqual(e.Current, "Login");
+        }
+
+        [TestMethod]
+        public void PostUpdateDepartureInvalidTest()
         {
             var _admin = new Administrator(new DBstub());
             var controller = setupController();
@@ -423,20 +518,56 @@ namespace UnitTestFlybilett
         [TestMethod]
         public void PostOrderValidTest()
         {
-
             var _admin = new Administrator(new DBstub());
             var CheckOrderVM = new Model.AdminOrderViewModel();
             CheckOrderVM.Order = _admin.GetAllOrders();
             CheckOrderVM.Departure = _admin.GetAllDepartures();
+            CheckOrderVM.Date = "10.10.2018";
+            CheckOrderVM.FlightId = "asff2f211";
 
             var controller = setupController();
             controller.Session["LoggedIn"] = true;
 
-            var resultat = (RedirectToRouteResult)controller.Order(CheckOrderVM);
-            Assert.AreEqual(resultat.RouteName, "");
-            var e = resultat.RouteValues.Values.GetEnumerator();
-            e.MoveNext();
-            Assert.AreEqual(e.Current, "Order");
+            var resultat = (JsonResult)controller.Order(CheckOrderVM);
+            Assert.AreEqual(resultat.Data.ToString(), "{ result = True }");
+        }
+
+        [TestMethod]
+        public void PostOrderInvalidDateTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var CheckOrderVM = new Model.AdminOrderViewModel();
+            CheckOrderVM.Order = _admin.GetAllOrders();
+            CheckOrderVM.Departure = _admin.GetAllDepartures();
+            CheckOrderVM.Date = "01.01.2000";
+            CheckOrderVM.FlightId = "asff2f211";
+
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (PartialViewResult)controller.Order(CheckOrderVM);
+
+            Assert.AreEqual(resultat.ViewName, "OrderForm");
+            Assert.IsTrue(resultat.ViewData.ModelState.Count == 1);
+        }
+
+        [TestMethod]
+        public void PostOrderInvalidFlightIDTest()
+        {
+            var _admin = new Administrator(new DBstub());
+            var CheckOrderVM = new Model.AdminOrderViewModel();
+            CheckOrderVM.Order = _admin.GetAllOrders();
+            CheckOrderVM.Departure = _admin.GetAllDepartures();
+            CheckOrderVM.Date = "01.01.2018";
+            CheckOrderVM.FlightId = "";
+
+            var controller = setupController();
+            controller.Session["LoggedIn"] = true;
+
+            var resultat = (PartialViewResult)controller.Order(CheckOrderVM);
+
+            Assert.AreEqual(resultat.ViewName, "OrderForm");
+            Assert.IsTrue(resultat.ViewData.ModelState.Count == 1);
         }
 
         [TestMethod]
