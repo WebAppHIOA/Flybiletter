@@ -5,20 +5,21 @@
 }
 
         <!--CONTENT AREA-->
-        <div class="col-sm-9 admin-content">
-            <h2>Oppdater Flyplass</h2>
+<div class="col-sm-9">
+    <div class=" admin-content">
+        <h2>Oppdater Flyplass</h2>
 
-            @using (Html.BeginForm(FormMethod.Post))
+        @using (Html.BeginForm(FormMethod.Post))
             {
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="col-md-12">
-                    <div class="row">
-                        @Html.LabelFor(model => model.AirportId, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "AirportId", @class = "input-dialog-design col-md-10 form-control" })
-                        @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
-                    </div>
+            <div class="col-md-12">
+                <div class="row">
+                    @Html.LabelFor(model => model.AirportId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextBoxFor(model => Model.AirportId, new { @readonly = "readonly", id = "AirportId", @class = "input-dialog-design col-md-10 form-control" })
+                    @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
                 <div class="col-md-12">
                     <div class="row">
@@ -61,10 +62,12 @@
                     </div>
                 </div>
 
-                        <br /><br />
+                <br /><br />
                         <a href="@Url.Action("Airport", "Admin")" class="btn btn-default btn-update-left">Tilbake</a>
                         <input type="submit" value="Bekreft" class="btn btn-default btn-update-right" id="button-design">
-            }
-        </div>
+        }
+    </div>
+</div>
+
 <br />
 <br />
