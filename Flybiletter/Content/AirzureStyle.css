@@ -275,9 +275,6 @@
         display: none;
     }
 
-    .table-query {
-        margin-right: 50px !important;
-    } 
 }
 
 
@@ -342,7 +339,7 @@
 
     .admin-content {
         margin-top: 16px;
-        margin-left: 3% !important;
+        margin-left: 2% !important;
         margin-right: 0 !important;
     }
 
@@ -369,6 +366,9 @@
         padding: 20px;
         display: none;
     }
+
+    
+
 
 
     #show-hide-airport {
