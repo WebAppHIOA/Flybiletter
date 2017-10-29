@@ -1,17 +1,13 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Model
+namespace Flybiletter.Models
 {
-    [TrackChanges]
-    public class Order
+    public class PassengerViewModel
     {
-
-        [Key]
         public string OrderNumber { get; set; }
         public string Date { get; set; }
 
@@ -35,10 +31,5 @@ namespace Model
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Pris må oppgis")]
-        public string Price { get; set; }
-
-        public bool Cancelled { get; set; }
-        public virtual Departure Departure { get; set; }
     }
 }

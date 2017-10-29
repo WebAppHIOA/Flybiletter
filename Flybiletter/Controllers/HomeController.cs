@@ -142,7 +142,7 @@ namespace Flybiletter.Controllers
 
 
         [HttpPost]
-        public ActionResult Passenger(Model.Order order)
+        public ActionResult Passenger(Models.PassengerViewModel order)
         {
 
             if(ModelState.IsValid)
@@ -151,6 +151,7 @@ namespace Flybiletter.Controllers
                 if(order.Date == null && order.Email == null && order.Firstname == null && order.Surname == null 
                     && order.Tlf == null)
                 {
+                    ModelState.AddModelError(string.Empty, "Vennligst fyll ut alle feltene");
                     return Passenger();
                 }
 
@@ -159,6 +160,7 @@ namespace Flybiletter.Controllers
             
                 if(departure is null)
                 {
+                    ModelState.AddModelError(string.Empty, "En feil oppstod under ordre bekreftelsen");
                     return Passenger();
                 }
             
@@ -194,6 +196,7 @@ namespace Flybiletter.Controllers
 
             return RedirectToAction("Confirmation");
             }
+            ModelState.AddModelError(string.Empty, "En feil oppstod");
             return Passenger();
         }
 
