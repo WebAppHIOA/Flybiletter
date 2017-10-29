@@ -18,10 +18,10 @@ namespace Model
         [Required(ErrorMessage = "By må oppgis")]
         public string City { get; set; }
         [Display(Name = "Country")]
-        [Required(ErrorMessage = "By må oppgis")]
+        [Required(ErrorMessage = "Land må oppgis")]
         public string Country { get; set; }
         [Display(Name = "Continent")]
-        [Required(ErrorMessage = "By må oppgis")]
+        [Required(ErrorMessage = "Kontinent må oppgis")]
         public string Continent { get; set; }
         [Display(Name = "Fee")]
         [Required(ErrorMessage = "Avgift må oppgis")]

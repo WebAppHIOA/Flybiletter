@@ -567,6 +567,43 @@ namespace DAL
             
         }
 
+        
+        private string GenerateAirportId()
+        {
+            Random random = new Random();
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            StringBuilder builder = new StringBuilder();
+            var index = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                index = (random.Next(chars.Length));
+                builder.Append(chars[index]);
+            }
+            var airportId = builder.ToString();
+
+            return airportId;
+        }
+
+        public bool IsAirportIdAvailable(string id)
+        {
+            using (var db = new AirportContext())
+            {
+                try
+                {
+                    var available = db.Airport.Any(row => row.AirportId == id);
+                    if (available) return true;
+                    else return false;
+                }
+
+                catch (Exception e)
+                {
+                    log.Error("Checking if Airport id is available" + e);
+                    return false;
+                }
+            }
+        }
+
      
     }
 }

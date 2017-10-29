@@ -32,7 +32,7 @@ namespace Model
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Vennligst skriv en gyldig e-post")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
+        [Required(ErrorMessage = "Pris må oppgis")]
         public string Price { get; set; }
 
         public bool Cancelled { get; set; }
