@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<head>
+@section custom_scripts{
     <script type="text/javascript">
         function showHide() {
             var x = document.getElementById("show-hide-order");
@@ -19,7 +19,7 @@
             if (data.result == true) { window.location.href = "/Admin/Order"; }
         }
     </script>
-</head>
+}
 
 
         <!--CONTENT AREA-->

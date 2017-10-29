@@ -208,13 +208,10 @@ namespace Flybiletter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    if(airport.AirportId != null)
-                    {
                         ViewData["AllAirports"] = Session["Airport"];
                         _admin.AddAirport(airport);
 
                         return Json(new { result = true });
-                    }
                 }
                 ViewData["AllAirports"] = Session["Airport"];
                 return PartialView("AirportForm");
