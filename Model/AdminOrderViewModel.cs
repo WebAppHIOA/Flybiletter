@@ -9,7 +9,6 @@ namespace Model
 {
     public class AdminOrderViewModel
     {
-
         public string OrderNumber { get; set; }
         [Display(Name = "Dato")]
         [Required(ErrorMessage = "Dato må oppgis")]
@@ -37,6 +36,7 @@ namespace Model
         [Required(ErrorMessage = "Pris må oppgis")]
         public string Price { get; set; }
         public bool Cancelled { get; set; }
+        [Required(ErrorMessage = "Flight ID må velges")]
         public string FlightId { get; set; }
 
         public virtual List<Departure> Departure { get; set; }
