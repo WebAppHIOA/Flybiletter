@@ -331,9 +331,6 @@
         margin-top: 25px;
         padding: 20px 20px 50px 70px; /*do not touch*/
     }
-
-
-
 }
 
 
@@ -342,7 +339,7 @@
 
     .admin-content {
         margin-top: 16px;
-        margin-left: 290px !important;
+        margin-left: 0 !important;
         margin-right: 0 !important;
     }
 
