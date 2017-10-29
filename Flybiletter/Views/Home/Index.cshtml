@@ -30,8 +30,8 @@
                     <div class="form-group">
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
-                                @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-3" })
-                                @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design col-md-2", @type = "date" } })
+                                @Html.LabelFor(model => model.TravelDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.TravelDate, new { htmlAttributes = new { @class = "date-design col-md-10", @type = "date" } })
                                 @Html.ValidationMessageFor(model => model.TravelDate, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -40,8 +40,8 @@
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
-                                @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-sm-3" })
-                                @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "index-dialog form-control col-sm-2", @type = "search", @list = "FromAirport" } })
+                                @Html.LabelFor(model => model.FromAirportID, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                @Html.EditorFor(model => model.FromAirportID, new { htmlAttributes = new { @class = "index-dialog form-control col-sm-10", @type = "search", @list = "FromAirport" } })
                                 @Html.ValidationMessageFor(model => model.FromAirportID, "", new { @class = "text-danger" })
                             </div>
                             <datalist id="FromAirport">
@@ -55,8 +55,8 @@
 
                         <div class="col-md-4 col-sm-12">
                             <div class="row">
-                                @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-sm-3" })
-                                @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "index-dialog form-control col-sm-9", @type = "search", @list = "ToAirport" } })
+                                @Html.LabelFor(model => model.ToAirportID, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                @Html.EditorFor(model => model.ToAirportID, new { htmlAttributes = new { @class = "index-dialog form-control col-sm-10", @type = "search", @list = "ToAirport" } })
                                 @Html.ValidationMessageFor(model => model.ToAirportID, "", new { @class = "text-danger" })
                             </div>
                             <datalist id="ToAirport">
